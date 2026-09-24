@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use or reference this work, please cite it as below."
+title: "Agentic Ontology of Work (AOW)"
+type: dataset
+authors:
+  - family-names: "Garg"
+    given-names: "Manish"
+    affiliation: "Skan.ai"
+    website: "https://www.linkedin.com/in/manishga"
+repository-code: "https://github.com/Skandotai/agentic-ontology-of-work"
+url: "https://skandotai.github.io/agentic-ontology-of-work/"
+abstract: >
+  A platform-agnostic semantic model for intelligent, autonomous, and
+  governed enterprise work: 25 classes and 33 relationships across four
+  layers (Perception, Cognition, Execution, Assurance), including a
+  five-level Assurance Level scale for governed autonomy. Published as a
+  whitepaper and as an OWL ontology with a JSON-LD context, SHACL shapes,
+  JSON Schemas, SPARQL queries, and validated examples.
+keywords:
+  - agentic-ai
+  - ontology
+  - enterprise-ai
+  - ai-governance
+  - multi-agent-systems
+  - human-in-the-loop
+  - knowledge-graph
+  - owl
+  - shacl
+  - json-ld
+license: "CC-BY-4.0"
+version: 2.0.0
+date-released: "2026-09-24"
+references:
+  - type: dataset
+    title: "SOA-to-Agentic AI Terminology Mapping"
+    authors:
+      - name: "Skan, Inc."
+    doi: "10.5281/zenodo.21823088"
+    url: "https://github.com/Skandotai/soa-to-agentic-terms"

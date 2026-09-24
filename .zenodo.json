@@ -1,0 +1,30 @@
+{
+  "title": "Agentic Ontology of Work (AOW)",
+  "upload_type": "dataset",
+  "description": "<p>A platform-agnostic semantic model for intelligent, autonomous, and governed enterprise work: 25 classes and 33 relationships across four layers (Perception, Cognition, Execution, Assurance), including a five-level Assurance Level scale for governed autonomy.</p><p>Published as a whitepaper and as an OWL 2 ontology with a JSON-LD context, SHACL shapes, JSON Schemas, SPARQL queries for explainability and oversight checks, and validated examples in insurance, banking, healthcare, the public sector, and retail.</p><p>Companion to the SOA-to-Agentic AI Terminology Mapping (doi:10.5281/zenodo.21823088).</p>",
+  "creators": [
+    { "name": "Garg, Manish", "affiliation": "Skan.ai" }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "agentic AI",
+    "ontology",
+    "enterprise AI",
+    "AI governance",
+    "multi-agent systems",
+    "human-in-the-loop",
+    "knowledge graph",
+    "OWL",
+    "SHACL",
+    "JSON-LD"
+  ],
+  "related_identifiers": [
+    { "identifier": "10.5281/zenodo.21823088", "relation": "isSupplementTo", "scheme": "doi", "resource_type": "dataset" },
+    { "identifier": "https://skandotai.github.io/agentic-ontology-of-work/", "relation": "isDocumentedBy", "scheme": "url" },
+    { "identifier": "https://w3id.org/aow", "relation": "isIdenticalTo", "scheme": "url" }
+  ],
+  "version": "2.0.0",
+  "language": "eng",
+  "notes": "Prose is licensed CC-BY 4.0; the ontology, shapes, schemas, queries, examples, and code are licensed Apache 2.0."
+}

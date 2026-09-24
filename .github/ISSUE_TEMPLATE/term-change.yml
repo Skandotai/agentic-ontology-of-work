@@ -1,0 +1,30 @@
+name: Propose or change a term
+description: Add a class, relationship, or attribute, or change a definition.
+labels: ["term"]
+body:
+  - type: input
+    id: term
+    attributes:
+      label: Term
+      description: For example, "Intent", "requires_assurance", or a new term you're proposing.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: The new or revised definition, attributes, or relationships.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What can't be expressed today, or what is ambiguous? Why can't it be an extension in your own namespace?
+    validations:
+      required: true
+  - type: textarea
+    id: alignment
+    attributes:
+      label: Related standards
+      description: Does an existing standard or protocol already define this? (PROV-O, BPMN, A2A, MCP, and so on)
