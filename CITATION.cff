@@ -31,6 +31,14 @@ license: "CC-BY-4.0"
 version: 2.0.0
 date-released: "2026-09-24"
 references:
+  - type: article
+    title: "Agentic Ontology of Work (AOW), Version 2.0: A semantic model for enterprise work performed by AI agents, people, and systems"
+    authors:
+      - family-names: "Garg"
+        given-names: "Manish"
+    year: 2026
+    doi: "10.5281/zenodo.22945754"
+    url: "https://doi.org/10.5281/zenodo.22945754"
   - type: dataset
     title: "SOA-to-Agentic AI Terminology Mapping"
     authors:

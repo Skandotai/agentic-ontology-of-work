@@ -653,7 +653,7 @@ def whitepaper(m: Model) -> str:
 <div class="wrap">
   <div class="prose" style="padding-top:40px">
     <p class="eyebrow">Whitepaper · version 2.0</p>
-    <p class="small"><a href="../{PDF_V2}">Download as PDF</a> · <a href="../downloads/agentic-ontology-of-work-v2.0-preprint.pdf">Preprint edition (PDF)</a> · <a href="{REPO}/blob/main/whitepaper.md">Source on GitHub</a> · <a href="../{PDF_V1}">Version 1.0 (PDF)</a></p>
+    <p class="small"><a href="../{PDF_V2}">Download as PDF</a> · <a href="../downloads/agentic-ontology-of-work-v2.0-preprint.pdf">Preprint edition (PDF)</a> · Preprint DOI: <a href="https://doi.org/10.5281/zenodo.22945754">https://doi.org/10.5281/zenodo.22945754</a> · <a href="{REPO}/blob/main/whitepaper.md">Source on GitHub</a> · <a href="../{PDF_V1}">Version 1.0 (PDF)</a></p>
     <details class="toc"><summary>Contents</summary><ol>{toc_html}</ol></details>
     {body_html}
   </div>
@@ -713,6 +713,7 @@ def about(m: Model) -> str:
   <p>Prose: CC-BY 4.0. Ontology, shapes, schemas, queries, examples, and code: Apache 2.0. Both licenses permit copying, adaptation, and commercial use with attribution to the author and Skan.ai and an indication of changes.</p>
 
   <h2>Citation</h2>
+  <p>Whitepaper preprint: https://doi.org/10.5281/zenodo.22945754</p>
   <blockquote>Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. {REPO}</blockquote>
 </section>
 """

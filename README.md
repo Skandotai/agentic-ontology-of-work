@@ -4,7 +4,7 @@
 
 [![validate](https://github.com/Skandotai/agentic-ontology-of-work/actions/workflows/validate.yml/badge.svg)](https://github.com/Skandotai/agentic-ontology-of-work/actions/workflows/validate.yml)
 
-[Website](https://skandotai.github.io/agentic-ontology-of-work/) · [Whitepaper](whitepaper.md) · [Term reference](https://skandotai.github.io/agentic-ontology-of-work/ontology/)
+[Website](https://skandotai.github.io/agentic-ontology-of-work/) · [Whitepaper](whitepaper.md) · [Term reference](https://skandotai.github.io/agentic-ontology-of-work/ontology/) · Whitepaper preprint: https://doi.org/10.5281/zenodo.22945754
 
 ## Overview
 
@@ -134,6 +134,8 @@ Prose and documentation are licensed under [CC-BY 4.0](LICENSE). The ontology, s
 
 ## Citation
 
-Use GitHub's "Cite this repository" option, which reads [`CITATION.cff`](CITATION.cff), or cite as:
+To cite the whitepaper, use the preprint: Garg, M. (2026). *Agentic Ontology of Work (AOW), Version 2.0: A semantic model for enterprise work performed by AI agents, people, and systems*. Zenodo. https://doi.org/10.5281/zenodo.22945754
+
+To cite the ontology and data, use GitHub's "Cite this repository" option, which reads [`CITATION.cff`](CITATION.cff), or cite as:
 
 > Garg, M. (2026). *Agentic Ontology of Work (AOW)*, version 2.0.0. Skan.ai. https://github.com/Skandotai/agentic-ontology-of-work

@@ -4,6 +4,8 @@
 
 Version 2.0 · September 2026 · Manish Garg, Skan.ai
 
+Preprint: https://doi.org/10.5281/zenodo.22945754
+
 Licensed [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). The machine-readable ontology, shapes, schemas, and examples that accompany this paper are licensed Apache 2.0 and published at [github.com/Skandotai/agentic-ontology-of-work](https://github.com/Skandotai/agentic-ontology-of-work).
 
 ---
