@@ -1,0 +1,1139 @@
+# Agentic Ontology of Work (AOW) — canonical source
+#
+# This file is the single source of truth. The OWL ontology, the JSON-LD
+# context, the SHACL shapes, the JSON Schemas, the CSV downloads, the
+# reference pages on the site, and the generated sections of whitepaper.md
+# are all built from it by tools/build.py. If they ever disagree, this file
+# is right.
+#
+# Conventions
+#   - Class names are UpperCamelCase (Intent, WorkItem).
+#   - Attribute and relationship keys are snake_case in JSON and YAML
+#     (goal_statement, serves_objective) and lowerCamelCase in RDF
+#     (aow:goalStatement, aow:servesObjective). The build derives one from
+#     the other, so only the snake_case key is written here.
+#   - "since" records the version a term first appeared in.
+
+ontology:
+  title: Agentic Ontology of Work
+  short_title: AOW
+  version: 2.0.0
+  released: "2026-09-24"
+  prefix: aow
+  namespace: "https://w3id.org/aow#"
+  iri: "https://w3id.org/aow"
+  site: "https://skandotai.github.io/agentic-ontology-of-work/"
+  repository: "https://github.com/Skandotai/agentic-ontology-of-work"
+  creator:
+    name: Manish Garg
+    affiliation: Skan.ai
+    url: "https://www.linkedin.com/in/manishga"
+  publisher:
+    name: "Skan, Inc."
+    url: "https://www.skan.ai"
+  license_prose: CC-BY-4.0
+  license_data: Apache-2.0
+  description: >-
+    A platform-agnostic semantic model for intelligent, autonomous, and
+    governed enterprise work. AOW names the things that agentic systems,
+    people, and the governance around them have in common: the Objectives
+    work serves, the Intents and Plans derived from them, the Actors and
+    Skills that carry them out, the Results and Outcomes they produce, and
+    the Assurance, Feedback, and Memory that keep the whole loop safe and
+    improving.
+
+layers:
+  - id: perception
+    name: Perception
+    order: 1
+    question: What exists, and what is happening?
+    summary: >-
+      Captures the Work Items in flight and the Signals and Observations
+      about them. This is the ground truth the rest of the ontology reasons
+      over.
+  - id: cognition
+    name: Cognition
+    order: 2
+    question: What should happen, and within what limits?
+    summary: >-
+      Turns business goals into actionable Intents, gives them Context,
+      bounds them with Policy, and plans how to fulfill them.
+  - id: execution
+    name: Execution
+    order: 3
+    question: Who does the work, and what did it change?
+    summary: >-
+      Actors (Agents and people alike) take on Tasks, invoke Skills through
+      Actions, and produce Results.
+  - id: assurance
+    name: Assurance
+    order: 4
+    question: Was it safe, did it work, and what did we learn?
+    summary: >-
+      Governs autonomy, measures certainty, oversees behavior, evaluates
+      Outcomes, and carries Feedback into Memory so the next cycle starts
+      smarter.
+
+# Attributes every AOW entity may carry. Provenance and versioning are a
+# facet of every entity rather than an entity of their own (see the
+# whitepaper, section 5); they are expressed with W3C PROV-O.
+common_attributes:
+  - key: id
+    type: uri
+    required: true
+    description: Stable identifier of the entity. Serialized as the node's IRI.
+  - key: type
+    type: class
+    required: true
+    description: The AOW class of the entity (for example, "Intent").
+  - key: label
+    type: string
+    description: Short human-readable name.
+  - key: description
+    type: text
+    description: Longer human-readable explanation.
+  - key: version
+    type: string
+    description: Version of this entity definition, ideally a semantic version such as "1.4.2".
+  - key: created_at
+    type: datetime
+    description: When this entity or version was created.
+    prov: "prov:generatedAtTime"
+  - key: created_by
+    type: ref
+    range: [Actor]
+    description: The Actor responsible for creating this entity or version.
+    prov: "prov:wasAttributedTo"
+  - key: revision_of
+    type: ref
+    range: [any]
+    description: The earlier version this entity revises.
+    prov: "prov:wasRevisionOf"
+
+entities:
+
+  # ---------------------------------------------------------------- Perception
+  - id: WorkItem
+    label: Work Item
+    layer: perception
+    since: 2.0.0
+    definition: >-
+      The unit of business work that the rest of the ontology is about: a
+      claim, an application, an order, a case, a ticket.
+    purpose: >-
+      Gives every Intent, Task, Action, and Observation a concrete subject,
+      so that work can be followed end to end regardless of which systems,
+      agents, or people touched it.
+    notes:
+      - >-
+        Version 1.0 carried the work item implicitly inside Context
+        (for example, "ctx-claim-84933"). Making it explicit lets two
+        Intents, or an Intent and a human Task, refer to the same claim.
+      - >-
+        Corresponds to a case or object in process mining (IEEE 1849 XES
+        and the OCEL 2.0 object-centric event log format).
+    attributes:
+      - key: item_type
+        type: string
+        required: true
+        description: The kind of work item, for example "insurance-claim" or "purchase-order".
+      - key: external_ref
+        type: string
+        description: Identifier of the item in its system of record.
+      - key: state
+        type: string
+        description: Current business state of the item, in the vocabulary of its system of record.
+      - key: opened_at
+        type: datetime
+        description: When the item entered the process.
+      - key: closed_at
+        type: datetime
+        description: When the item left the process, if it has.
+    alignments:
+      - {scheme: OCEL 2.0, term: "object", relation: closeMatch}
+      - {scheme: IEEE 1849 XES, term: "trace (case)", relation: relatedMatch}
+      - {scheme: BPMN 2.0, term: "Data Object", relation: relatedMatch}
+
+  - id: Signal
+    label: Signal
+    layer: perception
+    since: 2.0.0
+    definition: >-
+      A raw, time-stamped trace emitted by a system, a person, or the
+      environment: an event, a log line, a user-interface interaction, a
+      document arriving, a state change, a metric sample.
+    purpose: >-
+      Anchors the ontology in what actually happened, before any
+      interpretation. Signals are the evidence that Observations, Context,
+      and audit trails are built from.
+    notes:
+      - >-
+        Version 1.0 listed Telemetry Events, Signals, Session State, and
+        Environmental Observations as Perception-layer elements without
+        defining them. In 2.0 a Telemetry Event is a Signal whose
+        signal_type is "event" or "metric"; Session State is Context with
+        context_type "session".
+      - >-
+        Actions leave Signals behind. Linking a Signal to the Action that
+        generated it (generated_by) is what makes agent behavior observable
+        with the same tools used to observe human and system work.
+    attributes:
+      - key: signal_type
+        type: enum
+        required: true
+        values: [event, log, metric, interaction, document, state-change]
+        description: The kind of trace.
+      - key: source
+        type: string
+        required: true
+        description: The system, sensor, application, or channel that emitted the Signal.
+      - key: observed_at
+        type: datetime
+        required: true
+        description: When the Signal occurred.
+      - key: payload_ref
+        type: uri
+        description: Where the raw payload is stored, if it is kept.
+      - key: sensitivity_level
+        type: enum
+        values: [public, internal, confidential, restricted]
+        description: Handling classification of the payload.
+    alignments:
+      - {scheme: OpenTelemetry, term: "span / log record / metric data point", relation: relatedMatch}
+      - {scheme: IEEE 1849 XES, term: "event", relation: closeMatch}
+      - {scheme: W3C PROV-O, term: "prov:Entity", relation: subClassOf}
+
+  - id: Observation
+    label: Observation
+    layer: perception
+    since: 2.0.0
+    definition: >-
+      An interpreted fact about a Work Item, Actor, or Action, derived from
+      one or more Signals and carrying a Confidence.
+    purpose: >-
+      Separates what was seen (Signal) from what it was taken to mean
+      (Observation), so that a wrong interpretation can be traced and
+      corrected without doubting the evidence.
+    notes:
+      - >-
+        "The claim amount is $38,200" is an Observation; the scanned claim
+        form it was extracted from is a Signal.
+    attributes:
+      - key: observed_property
+        type: string
+        required: true
+        description: What was observed, for example "claim_amount" or "handling_time".
+      - key: observed_value
+        type: json
+        description: The observed value, in any JSON form.
+      - key: observed_at
+        type: datetime
+        description: When the observation was made.
+      - key: method
+        type: string
+        description: How the value was derived, for example "document-extraction" or "rule".
+    alignments:
+      - {scheme: W3C SOSA/SSN, term: "sosa:Observation", relation: closeMatch}
+      - {scheme: W3C PROV-O, term: "prov:Entity", relation: subClassOf}
+
+  # ----------------------------------------------------------------- Cognition
+  - id: Objective
+    label: Objective
+    layer: cognition
+    since: 1.0.0
+    definition: A business-level goal expressed in strategic or operational terms.
+    purpose: Connects agentic activity to specific, measurable enterprise value.
+    notes:
+      - "Objective answers why. Intent answers what."
+    attributes:
+      - key: kpi_target
+        type: string
+        description: The measurable target, for example "claims cycle time -20%".
+      - key: priority
+        type: enum
+        values: [low, medium, high, critical]
+        description: Relative business priority.
+      - key: time_horizon
+        type: string
+        description: The period over which the Objective is pursued, for example "FY2027".
+    required_common: [description]
+    alignments:
+      - {scheme: BDI agent model, term: "desire", relation: relatedMatch}
+
+  - id: Intent
+    label: Intent
+    layer: cognition
+    since: 1.0.0
+    definition: >-
+      A structured, actionable goal derived from an Objective and
+      interpretable by agents, orchestrators, and people.
+    purpose: >-
+      Turns a business goal into something that can be planned, assigned,
+      governed, and checked.
+    notes:
+      - "Objective answers why. Intent answers what. Plan answers how."
+    attributes:
+      - key: goal_statement
+        type: text
+        required: true
+        description: What the Intent is meant to achieve, stated as an outcome rather than a procedure.
+      - key: constraints
+        type: string-list
+        description: Free-text constraints that are not (yet) captured as Policies.
+      - key: priority
+        type: enum
+        values: [low, medium, high, critical]
+        description: Relative priority.
+      - key: acceptable_risk_band
+        type: enum
+        values: [low, medium, high]
+        description: The level of residual risk the requester accepts.
+      - key: status
+        type: enum
+        values: [proposed, active, fulfilled, abandoned]
+        description: Where the Intent is in its life.
+    alignments:
+      - {scheme: BDI agent model, term: "intention", relation: relatedMatch}
+
+  - id: Context
+    label: Context
+    layer: cognition
+    since: 1.0.0
+    definition: The structured situational information that gives relevance to an Intent.
+    purpose: >-
+      Makes the same Intent resolve differently for different situations,
+      and records what an Actor knew when it acted.
+    notes:
+      - >-
+        Context types: environmental, procedural, data, historical, session.
+    attributes:
+      - key: context_type
+        type: enum
+        values: [environmental, procedural, data, historical, session]
+        description: The kind of situational information.
+      - key: variables
+        type: json
+        description: The situational values themselves.
+      - key: sensitivity_level
+        type: enum
+        values: [public, internal, confidential, restricted]
+        description: Handling classification.
+      - key: valid_until
+        type: datetime
+        description: When the Context should be considered stale.
+    alignments:
+      - {scheme: BDI agent model, term: "belief", relation: relatedMatch}
+      - {scheme: Model Context Protocol, term: "resource", relation: relatedMatch}
+
+  - id: Policy
+    label: Policy
+    layer: cognition
+    since: 1.0.0
+    definition: Declarative constraints defining permissible, required, or restricted behavior.
+    purpose: >-
+      Makes governance explicit and machine-checkable. Policies constrain
+      behavior; they never describe it.
+    notes:
+      - >-
+        AOW does not prescribe a policy language. rule_set may hold rules in
+        ODRL, Rego, Cedar, DMN, or plain text, named in rule_language.
+    attributes:
+      - key: rule_set
+        type: text
+        required: true
+        description: The rules, or a reference to them.
+      - key: rule_language
+        type: string
+        description: The language rule_set is written in, for example "ODRL", "Rego", "DMN", "text".
+      - key: effect
+        type: enum
+        values: [permit, prohibit, require, escalate]
+        description: What the Policy does when it applies.
+      - key: trigger_conditions
+        type: string-list
+        description: Conditions under which the Policy applies.
+      - key: severity
+        type: enum
+        values: [low, medium, high, critical]
+        description: Consequence of a violation.
+      - key: override_protocol
+        type: text
+        description: Who may override the Policy, and how.
+    alignments:
+      - {scheme: W3C ODRL 2.2, term: "odrl:Policy", relation: closeMatch}
+      - {scheme: OMG DMN, term: "Decision", relation: relatedMatch}
+
+  - id: Plan
+    label: Plan
+    layer: cognition
+    since: 2.0.0
+    definition: >-
+      An ordered or partially ordered set of Tasks intended to fulfill an
+      Intent, produced by an Orchestrator or other Actor.
+    purpose: >-
+      Separates deciding how to do something from doing it, so that plans
+      can be inspected, approved, compared, and replayed.
+    notes:
+      - "Listed as an optional concept in version 1.0; a full entity in 2.0."
+      - >-
+        The Orchestrator's dependency_graph in version 1.0 is the Plan's set
+        of Tasks and their depends_on links.
+    attributes:
+      - key: status
+        type: enum
+        values: [draft, approved, executing, completed, failed, abandoned]
+        description: Where the Plan is in its life.
+      - key: exception_protocol
+        type: text
+        description: What to do when a Task fails or a Policy blocks progress.
+    alignments:
+      - {scheme: W3C PROV-O, term: "prov:Plan", relation: subClassOf}
+
+  # ----------------------------------------------------------------- Execution
+  - id: Task
+    label: Task
+    layer: execution
+    since: 2.0.0
+    definition: >-
+      A unit of assigned work within a Plan, performed by an Actor filling
+      a Role.
+    purpose: >-
+      Gives "task" a single meaning. A Task is what gets assigned; an Action
+      is what gets done; a Skill is what makes it possible.
+    notes:
+      - >-
+        Task states follow the Agent2Agent (A2A) protocol's task lifecycle
+        so that AOW Tasks can be exchanged over A2A without translation.
+    attributes:
+      - key: status
+        type: enum
+        values: [submitted, working, input-required, completed, failed, canceled, rejected]
+        description: Where the Task is in its life.
+      - key: due_by
+        type: datetime
+        description: When the Task must be completed.
+    required_common: [description]
+    alignments:
+      - {scheme: Agent2Agent (A2A), term: "Task", relation: closeMatch}
+      - {scheme: BPMN 2.0, term: "Task", relation: relatedMatch}
+
+  - id: Actor
+    label: Actor
+    layer: execution
+    since: 2.0.0
+    abstract: true
+    definition: >-
+      Anything that can be assigned Tasks, perform Actions, and be held to
+      account for them: an Agent, a person, an Orchestrator, or a Guardian.
+    purpose: >-
+      Lets the ontology describe work the same way whoever performs it, so
+      that work can move between people and agents without being
+      re-modeled.
+    attributes:
+      - key: name
+        type: string
+        description: Display name.
+    alignments:
+      - {scheme: W3C PROV-O, term: "prov:Agent", relation: subClassOf}
+
+  - id: Agent
+    label: Agent
+    layer: execution
+    since: 1.0.0
+    subclass_of: Actor
+    definition: >-
+      A software Actor that interprets Intents and Tasks and acts on them
+      using Skills, within the autonomy it has been cleared for.
+    purpose: >-
+      The primary performer of agentic work, described by what it may do
+      rather than by how it is built.
+    notes:
+      - >-
+        Deliberately says nothing about models, prompts, or frameworks.
+        implementation_ref may point to those.
+    attributes:
+      - key: autonomy_level
+        type: ref
+        range: [AssuranceLevel]
+        description: >-
+          The highest Assurance Level the Agent has been cleared to operate
+          at. The Agent may operate at a lower level on a given Task, never
+          a higher one.
+      - key: implementation_ref
+        type: uri
+        description: Pointer to the Agent's implementation, model card, or A2A Agent Card.
+    alignments:
+      - {scheme: Agent2Agent (A2A), term: "Agent (AgentCard)", relation: closeMatch}
+      - {scheme: OpenTelemetry GenAI, term: "gen_ai.agent.*", relation: relatedMatch}
+      - {scheme: SOA-to-Agentic mapping, term: "Agent (from Service)", relation: exactMatch}
+
+  - id: HumanActor
+    label: Human Actor
+    layer: execution
+    since: 2.0.0
+    subclass_of: Actor
+    definition: A person who performs, approves, reviews, or oversees work.
+    purpose: >-
+      Makes human-in-the-loop a first-class, traceable part of the model
+      rather than an exception outside it.
+    attributes:
+      - key: organizational_unit
+        type: string
+        description: The team or department the person works in.
+    alignments:
+      - {scheme: W3C PROV-O, term: "prov:Person", relation: subClassOf}
+
+  - id: Orchestrator
+    label: Orchestrator
+    layer: execution
+    since: 1.0.0
+    subclass_of: Actor
+    definition: >-
+      A coordinating Actor that turns Intents into Plans, assigns Tasks to
+      Actors, and manages sequencing and exceptions.
+    purpose: Decomposes and coordinates work so that no single Agent has to.
+    notes:
+      - >-
+        An Orchestrator may itself be an Agent, a deterministic workflow
+        engine, or a person. The role is what matters.
+    attributes:
+      - key: planning_model
+        type: string
+        description: How the Orchestrator plans, for example "rule-based", "LLM-planned", "hybrid".
+      - key: exception_protocol
+        type: text
+        description: Default handling for failures across the Plans it runs.
+      - key: resource_constraints
+        type: text
+        description: Limits on concurrency, cost, or time it must respect.
+    alignments:
+      - {scheme: SOA-to-Agentic mapping, term: "Agentic Orchestrator", relation: exactMatch}
+
+  - id: Guardian
+    label: Guardian
+    layer: assurance
+    since: 1.0.0
+    subclass_of: Actor
+    definition: >-
+      The oversight Actor that enforces Policy and Assurance Levels,
+      monitors behavior, and escalates to people when needed.
+    purpose: >-
+      Separates doing the work from checking the work, so that no Actor is
+      its own only safeguard.
+    notes:
+      - >-
+        A Guardian may be software, a person, or both. Because it is an
+        Actor, its own interventions are Actions and leave the same trail as
+        everyone else's.
+    attributes:
+      - key: enforcement_mode
+        type: enum
+        values: [preventive, detective, corrective]
+        description: Whether it blocks before, detects after, or repairs after the fact.
+      - key: scope
+        type: text
+        description: The Actors, Skills, or Work Items it watches.
+
+  - id: Role
+    label: Role
+    layer: execution
+    since: 2.0.0
+    definition: >-
+      A named set of responsibilities and authority that an Actor can fill,
+      such as "claims adjuster" or "eligibility reviewer".
+    purpose: >-
+      Lets Tasks, Policies, and escalations target a responsibility rather
+      than a specific person or agent, so either can fill it.
+    attributes:
+      - key: responsibilities
+        type: string-list
+        description: What an Actor in this Role is accountable for.
+    required_common: [label]
+    alignments:
+      - {scheme: W3C Organization Ontology, term: "org:Role", relation: closeMatch}
+
+  - id: Skill
+    label: Skill
+    layer: execution
+    since: 1.0.0
+    definition: A reusable capability that an Actor can invoke.
+    purpose: >-
+      Describes what can be done, with its inputs, outputs, cost, and side
+      effects, so that it can be discovered, governed, and swapped.
+    notes:
+      - >-
+        side_effects is new in 2.0. Whether a Skill changes the world, and
+        whether that change can be undone, is the single most important fact
+        for deciding how much autonomy to grant around it.
+    attributes:
+      - key: input_schema
+        type: json
+        description: JSON Schema (or equivalent) for the Skill's inputs.
+      - key: output_schema
+        type: json
+        description: JSON Schema (or equivalent) for the Skill's outputs.
+      - key: binding
+        type: string
+        description: How to invoke it, for example an MCP tool name, an API endpoint, or a UI automation.
+      - key: side_effects
+        type: enum
+        values: [none, reversible, irreversible]
+        description: Whether invoking the Skill changes external state, and whether that can be undone.
+      - key: latency
+        type: string
+        description: Typical or maximum latency, for example "< 1s".
+      - key: cost_profile
+        type: enum
+        values: [low, medium, high]
+        description: Relative cost per invocation.
+    alignments:
+      - {scheme: Model Context Protocol, term: "tool", relation: closeMatch}
+      - {scheme: Agent2Agent (A2A), term: "AgentSkill", relation: closeMatch}
+      - {scheme: SOA-to-Agentic mapping, term: "Agentic Tools (from Operation / Common Services)", relation: relatedMatch}
+
+  - id: Action
+    label: Action
+    layer: execution
+    since: 1.0.0
+    definition: >-
+      A single execution event in which an Actor invokes a Skill, in service
+      of a Task, at a point in time.
+    purpose: >-
+      The atom of accountability. Every Result traces back to an Action,
+      and every Action to who did it, why, and under what authority.
+    notes:
+      - >-
+        Named in version 1.0 but never defined. In 2.0 the Action, not the
+        Skill, produces the Result: a Skill is a capability, an Action is its
+        use.
+    attributes:
+      - key: started_at
+        type: datetime
+        required: true
+        description: When the Action began.
+      - key: ended_at
+        type: datetime
+        description: When the Action ended.
+      - key: status
+        type: enum
+        values: [succeeded, failed, blocked, escalated, compensated]
+        description: How the Action ended.
+      - key: rationale
+        type: text
+        description: The Actor's stated reason for the Action, recorded for explainability.
+      - key: idempotency_key
+        type: string
+        description: Key that makes a retried Action safe to repeat.
+      - key: inputs
+        type: json
+        description: The inputs passed to the Skill.
+    alignments:
+      - {scheme: W3C PROV-O, term: "prov:Activity", relation: subClassOf}
+      - {scheme: schema.org, term: "schema:Action", relation: closeMatch}
+      - {scheme: OpenTelemetry GenAI, term: "execute_tool span", relation: relatedMatch}
+      - {scheme: SOA-to-Agentic mapping, term: "Idempotent Action", relation: relatedMatch}
+
+  - id: Result
+    label: Result
+    layer: execution
+    since: 1.0.0
+    definition: The immediate, atomic effect or output of an Action.
+    purpose: >-
+      Records what an Action changed or produced, so that it can be
+      verified, rolled up into Outcomes, and fed back.
+    notes:
+      - "A Result is local and immediate. An Outcome is aggregated and business-level."
+    attributes:
+      - key: status
+        type: enum
+        values: [success, partial, failure]
+        description: Whether the Action achieved what it set out to.
+      - key: summary
+        type: text
+        description: What the Result is, in words.
+      - key: artifacts
+        type: uri-list
+        description: Documents, records, or state changes the Result produced.
+    alignments:
+      - {scheme: W3C PROV-O, term: "prov:Entity", relation: subClassOf}
+
+  # ----------------------------------------------------------------- Assurance
+  - id: Confidence
+    label: Confidence
+    layer: assurance
+    since: 1.0.0
+    definition: >-
+      A model-, rule-, or human-derived measure of certainty about an
+      Observation, a Result, or an Action.
+    purpose: >-
+      Lets autonomy depend on certainty: the same Agent may act alone when
+      it is sure and escalate when it is not.
+    attributes:
+      - key: value
+        type: number
+        required: true
+        min: 0
+        max: 1
+        description: Certainty between 0 and 1.
+      - key: source
+        type: enum
+        values: [model, heuristic, rule, ensemble, human]
+        description: What produced the measure.
+      - key: calibrated
+        type: boolean
+        description: Whether the value has been calibrated against observed accuracy.
+      - key: volatility
+        type: enum
+        values: [low, medium, high]
+        description: How much the value is expected to move as evidence arrives.
+
+  - id: AssuranceLevel
+    label: Assurance Level
+    layer: assurance
+    since: 1.0.0
+    definition: >-
+      A governance-set level of permitted autonomy, with the human oversight
+      and evidence it requires.
+    purpose: >-
+      Makes the choice between autonomy and human oversight explicit,
+      graded, and checkable. AOW defines five levels, AL0 to AL4.
+    notes:
+      - >-
+        Higher levels grant more autonomy and therefore demand more
+        assurance evidence before they are granted. See the Assurance Level
+        scale.
+    attributes:
+      - key: level
+        type: integer
+        required: true
+        min: 0
+        max: 4
+        description: Position on the AL0 to AL4 scale.
+      - key: human_role
+        type: text
+        description: What people do at this level.
+      - key: agent_role
+        type: text
+        description: What Agents may do at this level.
+      - key: review_protocol
+        type: text
+        description: The human oversight this level requires.
+      - key: default_confidence_floor
+        type: number
+        min: 0
+        max: 1
+        description: >-
+          Confidence below which an Actor operating at this level must
+          escalate, unless a Policy sets a different floor.
+      - key: risk_class
+        type: string
+        description: The class of risk this level is suited to.
+
+  - id: Outcome
+    label: Outcome
+    layer: assurance
+    since: 1.0.0
+    definition: The aggregated business impact of one or more Results, measured against an Objective.
+    purpose: Closes the loop between what agents did and what the business wanted.
+    attributes:
+      - key: kpi_impact
+        type: json
+        description: "The measured change, for example {\"cycle_time_hours\": {\"before\": 48, \"after\": 0.12}}."
+      - key: measured_at
+        type: datetime
+        description: When the Outcome was measured.
+      - key: measurement_window
+        type: string
+        description: The period the measurement covers.
+      - key: time_to_value
+        type: string
+        description: How long it took for the impact to appear.
+      - key: risk_profile_change
+        type: text
+        description: How the risk picture changed as a result.
+
+  - id: Feedback
+    label: Feedback
+    layer: assurance
+    since: 1.0.0
+    definition: Structured information, from people or systems, used to improve future behavior.
+    purpose: Turns Outcomes, reviews, and incidents into specific, attributable changes.
+    attributes:
+      - key: feedback_type
+        type: enum
+        values: [accuracy, policy, exception, preference, incident]
+        description: What the Feedback is about.
+      - key: issue_detected
+        type: text
+        description: What went wrong or could be better.
+      - key: recommended_adjustments
+        type: string-list
+        description: Specific changes proposed.
+      - key: severity
+        type: enum
+        values: [low, medium, high, critical]
+        description: How urgent the Feedback is.
+      - key: timestamp
+        type: datetime
+        description: When the Feedback was given.
+
+  - id: Memory
+    label: Memory
+    layer: assurance
+    since: 1.0.0
+    abstract: true
+    definition: Persistent knowledge accumulated from experience, used to inform future Context.
+    purpose: Lets the system learn without retraining, and remember why it did what it did.
+    notes:
+      - "Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived)."
+    attributes:
+      - key: store_ref
+        type: uri
+        description: Where the memory is held.
+      - key: retention_policy
+        type: text
+        description: How long entries are kept and when they are purged.
+
+  - id: OperationalMemory
+    label: Operational Memory
+    layer: assurance
+    since: 1.0.0
+    subclass_of: Memory
+    definition: Short-lived, execution-oriented memory scoped to a session, Task, or Work Item.
+    purpose: Carries state across the steps of a single piece of work.
+    attributes: []
+
+  - id: KnowledgeBase
+    label: Knowledge Base
+    layer: assurance
+    since: 1.0.0
+    subclass_of: Memory
+    definition: Long-lived memory of generalized patterns, rules, and precedents.
+    purpose: Carries what was learned from one piece of work into the next.
+    attributes: []
+
+# Pairs or groups of classes that can never share an instance. Stated so
+# that the "minimal redundancy" validation criterion is checkable.
+disjoint:
+  - [Agent, HumanActor]
+  - [Signal, Observation]
+  - [Result, Outcome]
+  - [Objective, Intent]
+  - [Task, Action]
+  - [Skill, Action]
+  - [Confidence, AssuranceLevel]
+  - [OperationalMemory, KnowledgeBase]
+
+# Relationships (object properties). "domain" lists the classes a
+# relationship may start from; "range" the classes it may point to. A
+# relationship listed under "required" must be present on those classes.
+relationships:
+  - key: serves_objective
+    label: serves objective
+    inverse_label: produces intent
+    domain: [Intent]
+    range: [Objective]
+    required: [Intent]
+    description: The Objective an Intent was derived from.
+
+  - key: shaped_by
+    label: shaped by
+    inverse_label: shapes
+    domain: [Intent, Task]
+    range: [Context]
+    many: true
+    description: Context that gives the Intent or Task its situational meaning.
+
+  - key: draws_on
+    label: draws on
+    inverse_label: informs
+    domain: [Context]
+    range: [Memory, Observation]
+    many: true
+    description: Memory and Observations the Context was assembled from.
+
+  - key: concerns
+    label: concerns
+    inverse_label: is subject of
+    domain: [Intent, Task, Action]
+    range: [WorkItem]
+    many: true
+    description: The Work Item the Intent, Task, or Action is about.
+
+  - key: constrained_by
+    label: constrained by
+    inverse_label: constrains
+    domain: [Intent, Plan, Task, Actor, Skill, Role]
+    range: [Policy]
+    many: true
+    description: Policies that apply.
+
+  - key: requires_assurance
+    label: requires assurance
+    inverse_label: required by
+    domain: [Intent, Task, Skill]
+    range: [AssuranceLevel]
+    required: [Intent]
+    description: >-
+      The highest Assurance Level at which this work may be done. The
+      effective level is the lowest of the Intent's, the Task's, the
+      Skill's, and the performing Agent's autonomy_level.
+
+  - key: realizes
+    label: realizes
+    inverse_label: realized by
+    domain: [Plan]
+    range: [Intent]
+    required: [Plan]
+    description: The Intent the Plan is meant to fulfill.
+
+  - key: planned_by
+    label: planned by
+    inverse_label: plans
+    domain: [Plan]
+    range: [Actor]
+    description: The Actor (usually an Orchestrator) that produced the Plan.
+
+  - key: has_task
+    label: has task
+    inverse_label: part of plan
+    domain: [Plan]
+    range: [Task]
+    many: true
+    description: The Tasks that make up the Plan.
+
+  - key: depends_on
+    label: depends on
+    inverse_label: prerequisite of
+    domain: [Task]
+    range: [Task]
+    many: true
+    description: Tasks that must complete before this one can start.
+
+  - key: assigned_to
+    label: assigned to
+    inverse_label: assigned
+    domain: [Task]
+    range: [Actor]
+    description: The Actor responsible for performing the Task.
+
+  - key: requires_role
+    label: requires role
+    inverse_label: required for
+    domain: [Task]
+    range: [Role]
+    description: The Role an Actor must fill to take the Task.
+
+  - key: fills_role
+    label: fills role
+    inverse_label: filled by
+    domain: [Actor]
+    range: [Role]
+    many: true
+    description: Roles the Actor is authorized to fill.
+
+  - key: has_skill
+    label: has skill
+    inverse_label: available to
+    domain: [Actor]
+    range: [Skill]
+    many: true
+    description: Skills the Actor can invoke.
+
+  - key: performed_by
+    label: performed by
+    inverse_label: performs
+    domain: [Action]
+    range: [Actor]
+    required: [Action]
+    prov: "prov:wasAssociatedWith"
+    description: The Actor that carried out the Action.
+
+  - key: fulfills
+    label: fulfills
+    inverse_label: fulfilled through
+    domain: [Action]
+    range: [Task]
+    description: The Task the Action was performed for.
+
+  - key: invokes
+    label: invokes
+    inverse_label: invoked by
+    domain: [Action]
+    range: [Skill]
+    description: The Skill the Action used.
+
+  - key: approved_by
+    label: approved by
+    inverse_label: approves
+    domain: [Action, Plan, Result]
+    range: [HumanActor]
+    many: true
+    description: >-
+      People who confirmed the Action, Plan, or Result before it took
+      effect. Required whenever the effective Assurance Level or a Policy
+      calls for human confirmation.
+
+  - key: generated_by
+    label: generated by
+    inverse_label: generated
+    domain: [Result, Signal, Observation]
+    range: [Action]
+    required: [Result]
+    prov: "prov:wasGeneratedBy"
+    description: The Action that produced this Result, Signal, or Observation.
+
+  - key: derived_from
+    label: derived from
+    inverse_label: source of
+    domain: [Observation]
+    range: [Signal]
+    many: true
+    required: [Observation]
+    prov: "prov:wasDerivedFrom"
+    description: The Signals an Observation was interpreted from.
+
+  - key: about
+    label: about
+    inverse_label: observed by
+    domain: [Observation]
+    range: [WorkItem, Actor, Action, Task]
+    description: What the Observation describes.
+
+  - key: affects
+    label: affects
+    inverse_label: affected by
+    domain: [Result]
+    range: [WorkItem]
+    many: true
+    description: Work Items whose state the Result changed.
+
+  - key: has_confidence
+    label: has confidence
+    inverse_label: confidence of
+    domain: [Result, Observation, Action, Plan]
+    range: [Confidence]
+    description: The Confidence attached to this Result, Observation, Action, or Plan.
+
+  - key: compared_against
+    label: compared against
+    inverse_label: threshold for
+    domain: [Confidence]
+    range: [AssuranceLevel]
+    description: The Assurance Level whose confidence floor the Confidence was checked against.
+
+  - key: contributes_to
+    label: contributes to
+    inverse_label: aggregates
+    domain: [Result]
+    range: [Outcome]
+    many: true
+    description: Outcomes this Result counts toward.
+
+  - key: evaluates
+    label: evaluates
+    inverse_label: evaluated by
+    domain: [Outcome]
+    range: [Objective]
+    required: [Outcome]
+    description: The Objective the Outcome is measured against.
+
+  - key: feedback_on
+    label: feedback on
+    inverse_label: received feedback
+    domain: [Feedback]
+    range: [Outcome, Result, Action, Plan]
+    many: true
+    required: [Feedback]
+    description: What the Feedback is about.
+
+  - key: provided_by
+    label: provided by
+    inverse_label: provided
+    domain: [Feedback]
+    range: [Actor]
+    description: Who gave the Feedback.
+
+  - key: updates
+    label: updates
+    inverse_label: updated by
+    domain: [Feedback]
+    range: [Policy, Memory, Plan, Skill, Actor, Context]
+    many: true
+    description: What the Feedback changed.
+
+  - key: writes_to
+    label: writes to
+    inverse_label: written by
+    domain: [Actor]
+    range: [Memory]
+    many: true
+    description: Memory the Actor records its experience in.
+
+  - key: enforces
+    label: enforces
+    inverse_label: enforced by
+    domain: [Guardian]
+    range: [Policy, AssuranceLevel]
+    many: true
+    description: The Policies and Assurance Levels the Guardian enforces.
+
+  - key: oversees
+    label: oversees
+    inverse_label: overseen by
+    domain: [Guardian]
+    range: [Actor, Plan, Skill]
+    many: true
+    description: What the Guardian watches.
+
+  - key: escalates_to
+    label: escalates to
+    inverse_label: escalation target of
+    domain: [Guardian, Policy]
+    range: [Role, HumanActor]
+    many: true
+    description: Where escalations go.
+
+# The Assurance Level scale. These are published as named individuals of
+# aow:AssuranceLevel (aow:AL0 ... aow:AL4).
+assurance_levels:
+  - id: AL0
+    label: Manual
+    level: 0
+    human_role: Performs the work.
+    agent_role: Observes and prepares; takes no Action that changes a Work Item.
+    review_protocol: Not applicable; the work is done by people.
+    default_confidence_floor: null
+    risk_class: Any risk; the default for work not yet assessed.
+  - id: AL1
+    label: Assisted
+    level: 1
+    human_role: Decides. Approves every Action that changes a Work Item before it takes effect.
+    agent_role: Recommends, drafts, and prepares.
+    review_protocol: Every state-changing Action carries approved_by.
+    default_confidence_floor: null
+    risk_class: High-risk or irreversible decisions; new or poorly characterized work.
+  - id: AL2
+    label: Delegated
+    level: 2
+    human_role: Confirms when confidence is low or a Policy triggers; reviews a sample otherwise.
+    agent_role: Decides and acts within Policy.
+    review_protocol: Escalate below the confidence floor or on Policy trigger; sampled review otherwise.
+    default_confidence_floor: 0.90
+    risk_class: Moderate-risk, well-characterized decisions.
+  - id: AL3
+    label: Supervised
+    level: 3
+    human_role: Reviews by exception, when the Guardian raises an alert, and in periodic audit.
+    agent_role: Acts, and must be able to reverse or compensate its Actions.
+    review_protocol: Guardian-raised exceptions and periodic audit; Skills used must be reversible.
+    default_confidence_floor: 0.95
+    risk_class: Low-to-moderate risk, reversible effects.
+  - id: AL4
+    label: Autonomous
+    level: 4
+    human_role: Sets Policy and monitors aggregate Outcomes.
+    agent_role: Acts without routine human review; the Guardian can suspend it at any time.
+    review_protocol: Continuous Guardian monitoring; audit of aggregate Outcomes.
+    default_confidence_floor: 0.98
+    risk_class: Low-risk, reversible, high-volume, well-characterized work.
