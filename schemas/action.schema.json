@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/action.schema.json",
+  "title": "Action",
+  "description": "A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "Action",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "started_at": {
+      "description": "When the Action began.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "description": "When the Action ended.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "description": "How the Action ended.",
+      "enum": [
+        "succeeded",
+        "failed",
+        "blocked",
+        "escalated",
+        "compensated"
+      ]
+    },
+    "rationale": {
+      "description": "The Actor's stated reason for the Action, recorded for explainability.",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "description": "Key that makes a retried Action safe to repeat.",
+      "type": "string"
+    },
+    "inputs": {
+      "description": "The inputs passed to the Skill."
+    },
+    "concerns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "The Work Item the Intent, Task, or Action is about."
+    },
+    "performed_by": {
+      "$ref": "#/$defs/ref",
+      "description": "The Actor that carried out the Action."
+    },
+    "fulfills": {
+      "$ref": "#/$defs/ref",
+      "description": "The Task the Action was performed for."
+    },
+    "invokes": {
+      "$ref": "#/$defs/ref",
+      "description": "The Skill the Action used."
+    },
+    "approved_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."
+    },
+    "has_confidence": {
+      "$ref": "#/$defs/ref",
+      "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "started_at",
+    "performed_by"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

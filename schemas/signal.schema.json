@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/signal.schema.json",
+  "title": "Signal",
+  "description": "A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "Signal",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "signal_type": {
+      "description": "The kind of trace.",
+      "enum": [
+        "event",
+        "log",
+        "metric",
+        "interaction",
+        "document",
+        "state-change"
+      ]
+    },
+    "source": {
+      "description": "The system, sensor, application, or channel that emitted the Signal.",
+      "type": "string"
+    },
+    "observed_at": {
+      "description": "When the Signal occurred.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload_ref": {
+      "description": "Where the raw payload is stored, if it is kept.",
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "sensitivity_level": {
+      "description": "Handling classification of the payload.",
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "generated_by": {
+      "$ref": "#/$defs/ref",
+      "description": "The Action that produced this Result, Signal, or Observation."
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "signal_type",
+    "source",
+    "observed_at"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

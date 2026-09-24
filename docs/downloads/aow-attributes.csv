@@ -1,0 +1,92 @@
+class,key,rdf_property,type,required,allowed_values,description
+(all),id,@id,uri,true,,Stable identifier of the entity. Serialized as the node's IRI.
+(all),type,@type,class,true,,"The AOW class of the entity (for example, ""Intent"")."
+(all),label,rdfs:label,string,false,,Short human-readable name.
+(all),description,dcterms:description,text,false,,Longer human-readable explanation.
+(all),version,schema:version,string,false,,"Version of this entity definition, ideally a semantic version such as ""1.4.2""."
+(all),created_at,prov:generatedAtTime,datetime,false,,When this entity or version was created.
+(all),created_by,prov:wasAttributedTo,ref,false,,The Actor responsible for creating this entity or version.
+(all),revision_of,prov:wasRevisionOf,ref,false,,The earlier version this entity revises.
+WorkItem,item_type,aow:itemType,string,true,,"The kind of work item, for example ""insurance-claim"" or ""purchase-order""."
+WorkItem,external_ref,aow:externalRef,string,false,,Identifier of the item in its system of record.
+WorkItem,state,aow:state,string,false,,"Current business state of the item, in the vocabulary of its system of record."
+WorkItem,opened_at,aow:openedAt,datetime,false,,When the item entered the process.
+WorkItem,closed_at,aow:closedAt,datetime,false,,"When the item left the process, if it has."
+Signal,signal_type,aow:signalType,enum,true,event|log|metric|interaction|document|state-change,The kind of trace.
+Signal,source,aow:source,string,true,,"The system, sensor, application, or channel that emitted the Signal."
+Signal,observed_at,aow:observedAt,datetime,true,,When the Signal occurred.
+Signal,payload_ref,aow:payloadRef,uri,false,,"Where the raw payload is stored, if it is kept."
+Signal,sensitivity_level,aow:sensitivityLevel,enum,false,public|internal|confidential|restricted,Handling classification of the payload.
+Observation,observed_property,aow:observedProperty,string,true,,"What was observed, for example ""claim_amount"" or ""handling_time""."
+Observation,observed_value,aow:observedValue,json,false,,"The observed value, in any JSON form."
+Observation,observed_at,aow:observedAt,datetime,false,,When the observation was made.
+Observation,method,aow:method,string,false,,"How the value was derived, for example ""document-extraction"" or ""rule""."
+Objective,kpi_target,aow:kpiTarget,string,false,,"The measurable target, for example ""claims cycle time -20%""."
+Objective,priority,aow:priority,enum,false,low|medium|high|critical,Relative business priority.
+Objective,time_horizon,aow:timeHorizon,string,false,,"The period over which the Objective is pursued, for example ""FY2027""."
+Intent,goal_statement,aow:goalStatement,text,true,,"What the Intent is meant to achieve, stated as an outcome rather than a procedure."
+Intent,constraints,aow:constraints,string-list,false,,Free-text constraints that are not (yet) captured as Policies.
+Intent,priority,aow:priority,enum,false,low|medium|high|critical,Relative priority.
+Intent,acceptable_risk_band,aow:acceptableRiskBand,enum,false,low|medium|high,The level of residual risk the requester accepts.
+Intent,status,aow:status,enum,false,proposed|active|fulfilled|abandoned,Where the Intent is in its life.
+Context,context_type,aow:contextType,enum,false,environmental|procedural|data|historical|session,The kind of situational information.
+Context,variables,aow:variables,json,false,,The situational values themselves.
+Context,sensitivity_level,aow:sensitivityLevel,enum,false,public|internal|confidential|restricted,Handling classification.
+Context,valid_until,aow:validUntil,datetime,false,,When the Context should be considered stale.
+Policy,rule_set,aow:ruleSet,text,true,,"The rules, or a reference to them."
+Policy,rule_language,aow:ruleLanguage,string,false,,"The language rule_set is written in, for example ""ODRL"", ""Rego"", ""DMN"", ""text""."
+Policy,effect,aow:effect,enum,false,permit|prohibit|require|escalate,What the Policy does when it applies.
+Policy,trigger_conditions,aow:triggerConditions,string-list,false,,Conditions under which the Policy applies.
+Policy,severity,aow:severity,enum,false,low|medium|high|critical,Consequence of a violation.
+Policy,override_protocol,aow:overrideProtocol,text,false,,"Who may override the Policy, and how."
+Plan,status,aow:status,enum,false,draft|approved|executing|completed|failed|abandoned,Where the Plan is in its life.
+Plan,exception_protocol,aow:exceptionProtocol,text,false,,What to do when a Task fails or a Policy blocks progress.
+Task,status,aow:status,enum,false,submitted|working|input-required|completed|failed|canceled|rejected,Where the Task is in its life.
+Task,due_by,aow:dueBy,datetime,false,,When the Task must be completed.
+Actor,name,aow:name,string,false,,Display name.
+Agent,autonomy_level,aow:autonomyLevel,ref:AssuranceLevel,false,,"The highest Assurance Level the Agent has been cleared to operate at. The Agent may operate at a lower level on a given Task, never a higher one."
+Agent,implementation_ref,aow:implementationRef,uri,false,,"Pointer to the Agent's implementation, model card, or A2A Agent Card."
+HumanActor,organizational_unit,aow:organizationalUnit,string,false,,The team or department the person works in.
+Orchestrator,planning_model,aow:planningModel,string,false,,"How the Orchestrator plans, for example ""rule-based"", ""LLM-planned"", ""hybrid""."
+Orchestrator,exception_protocol,aow:exceptionProtocol,text,false,,Default handling for failures across the Plans it runs.
+Orchestrator,resource_constraints,aow:resourceConstraints,text,false,,"Limits on concurrency, cost, or time it must respect."
+Guardian,enforcement_mode,aow:enforcementMode,enum,false,preventive|detective|corrective,"Whether it blocks before, detects after, or repairs after the fact."
+Guardian,scope,aow:scope,text,false,,"The Actors, Skills, or Work Items it watches."
+Role,responsibilities,aow:responsibilities,string-list,false,,What an Actor in this Role is accountable for.
+Skill,input_schema,aow:inputSchema,json,false,,JSON Schema (or equivalent) for the Skill's inputs.
+Skill,output_schema,aow:outputSchema,json,false,,JSON Schema (or equivalent) for the Skill's outputs.
+Skill,binding,aow:binding,string,false,,"How to invoke it, for example an MCP tool name, an API endpoint, or a UI automation."
+Skill,side_effects,aow:sideEffects,enum,false,none|reversible|irreversible,"Whether invoking the Skill changes external state, and whether that can be undone."
+Skill,latency,aow:latency,string,false,,"Typical or maximum latency, for example ""< 1s""."
+Skill,cost_profile,aow:costProfile,enum,false,low|medium|high,Relative cost per invocation.
+Action,started_at,aow:startedAt,datetime,true,,When the Action began.
+Action,ended_at,aow:endedAt,datetime,false,,When the Action ended.
+Action,status,aow:status,enum,false,succeeded|failed|blocked|escalated|compensated,How the Action ended.
+Action,rationale,aow:rationale,text,false,,"The Actor's stated reason for the Action, recorded for explainability."
+Action,idempotency_key,aow:idempotencyKey,string,false,,Key that makes a retried Action safe to repeat.
+Action,inputs,aow:inputs,json,false,,The inputs passed to the Skill.
+Result,status,aow:status,enum,false,success|partial|failure,Whether the Action achieved what it set out to.
+Result,summary,aow:summary,text,false,,"What the Result is, in words."
+Result,artifacts,aow:artifacts,uri-list,false,,"Documents, records, or state changes the Result produced."
+Confidence,value,aow:value,number,true,,Certainty between 0 and 1.
+Confidence,source,aow:source,enum,false,model|heuristic|rule|ensemble|human,What produced the measure.
+Confidence,calibrated,aow:calibrated,boolean,false,,Whether the value has been calibrated against observed accuracy.
+Confidence,volatility,aow:volatility,enum,false,low|medium|high,How much the value is expected to move as evidence arrives.
+AssuranceLevel,level,aow:level,integer,true,,Position on the AL0 to AL4 scale.
+AssuranceLevel,human_role,aow:humanRole,text,false,,What people do at this level.
+AssuranceLevel,agent_role,aow:agentRole,text,false,,What Agents may do at this level.
+AssuranceLevel,review_protocol,aow:reviewProtocol,text,false,,The human oversight this level requires.
+AssuranceLevel,default_confidence_floor,aow:defaultConfidenceFloor,number,false,,"Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor."
+AssuranceLevel,risk_class,aow:riskClass,string,false,,The class of risk this level is suited to.
+Outcome,kpi_impact,aow:kpiImpact,json,false,,"The measured change, for example {""cycle_time_hours"": {""before"": 48, ""after"": 0.12}}."
+Outcome,measured_at,aow:measuredAt,datetime,false,,When the Outcome was measured.
+Outcome,measurement_window,aow:measurementWindow,string,false,,The period the measurement covers.
+Outcome,time_to_value,aow:timeToValue,string,false,,How long it took for the impact to appear.
+Outcome,risk_profile_change,aow:riskProfileChange,text,false,,How the risk picture changed as a result.
+Feedback,feedback_type,aow:feedbackType,enum,false,accuracy|policy|exception|preference|incident,What the Feedback is about.
+Feedback,issue_detected,aow:issueDetected,text,false,,What went wrong or could be better.
+Feedback,recommended_adjustments,aow:recommendedAdjustments,string-list,false,,Specific changes proposed.
+Feedback,severity,aow:severity,enum,false,low|medium|high|critical,How urgent the Feedback is.
+Feedback,timestamp,aow:timestamp,datetime,false,,When the Feedback was given.
+Memory,store_ref,aow:storeRef,uri,false,,Where the memory is held.
+Memory,retention_policy,aow:retentionPolicy,text,false,,How long entries are kept and when they are purged.

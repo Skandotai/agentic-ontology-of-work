@@ -1,0 +1,6 @@
+# Build and validation tooling (tools/build.py, tools/validate.py)
+pyyaml>=6.0
+rdflib>=7.0
+pyshacl>=0.26
+jsonschema>=4.21
+markdown>=3.5

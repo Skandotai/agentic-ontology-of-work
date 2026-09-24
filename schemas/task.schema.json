@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/task.schema.json",
+  "title": "Task",
+  "description": "A unit of assigned work within a Plan, performed by an Actor filling a Role.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "Task",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "status": {
+      "description": "Where the Task is in its life.",
+      "enum": [
+        "submitted",
+        "working",
+        "input-required",
+        "completed",
+        "failed",
+        "canceled",
+        "rejected"
+      ]
+    },
+    "due_by": {
+      "description": "When the Task must be completed.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "shaped_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Context that gives the Intent or Task its situational meaning."
+    },
+    "concerns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "The Work Item the Intent, Task, or Action is about."
+    },
+    "constrained_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Policies that apply."
+    },
+    "requires_assurance": {
+      "$ref": "#/$defs/ref",
+      "description": "The highest Assurance Level at which this work may be done. The effective level is the lowest of the Intent's, the Task's, the Skill's, and the performing Agent's autonomy_level."
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Tasks that must complete before this one can start."
+    },
+    "assigned_to": {
+      "$ref": "#/$defs/ref",
+      "description": "The Actor responsible for performing the Task."
+    },
+    "requires_role": {
+      "$ref": "#/$defs/ref",
+      "description": "The Role an Actor must fill to take the Task."
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "description"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

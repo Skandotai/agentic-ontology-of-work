@@ -1,0 +1,319 @@
+# SHACL shapes for Agentic Ontology of Work 2.0.0 instance data.
+# Generated from aow.yaml by tools/build.py. Do not edit by hand.
+# Validate with the ontology mixed in, so subclasses are recognized, and without
+# RDFS inference (which would infer types from ranges), for example:
+#   pyshacl -s shapes.ttl -e aow.ttl -i none data.ttl
+
+@prefix aowsh: <https://w3id.org/aow/shapes#> .
+@prefix aow: <https://w3id.org/aow#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schema: <https://schema.org/> .
+
+<https://w3id.org/aow/shapes>
+    a <http://www.w3.org/2002/07/owl#Ontology> ;
+    rdfs:label "Agentic Ontology of Work shapes"@en ;
+    <http://www.w3.org/2002/07/owl#versionInfo> "2.0.0" ;
+    dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> .
+
+aowsh:CommonShape
+    a sh:NodeShape ;
+    rdfs:comment "Attributes every AOW entity may carry, including the provenance facet."@en ;
+    sh:targetClass aow:WorkItem , aow:Signal , aow:Observation , aow:Objective , aow:Intent , aow:Context , aow:Policy , aow:Plan , aow:Task , aow:Actor , aow:Role , aow:Skill , aow:Action , aow:Result , aow:Confidence , aow:AssuranceLevel , aow:Outcome , aow:Feedback , aow:Memory ;
+    sh:property 
+        [ sh:path rdfs:label ; sh:name "label" ] , 
+        [ sh:path dcterms:description ; sh:name "description" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ] , 
+        [ sh:path schema:version ; sh:name "version" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path prov:generatedAtTime ; sh:name "created_at" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path prov:wasAttributedTo ; sh:name "created_by" ; sh:class aow:Actor ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] , 
+        [ sh:path prov:wasRevisionOf ; sh:name "revision_of" ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] .
+
+aowsh:WorkItemShape
+    a sh:NodeShape ;
+    rdfs:label "Work Item shape"@en ;
+    sh:targetClass aow:WorkItem ;
+    sh:property 
+        [ sh:path aow:itemType ; sh:name "item_type" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:externalRef ; sh:name "external_ref" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:state ; sh:name "state" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:openedAt ; sh:name "opened_at" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path aow:closedAt ; sh:name "closed_at" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] .
+
+aowsh:SignalShape
+    a sh:NodeShape ;
+    rdfs:label "Signal shape"@en ;
+    sh:targetClass aow:Signal ;
+    sh:property 
+        [ sh:path aow:signalType ; sh:name "signal_type" ; sh:in ( "event" "log" "metric" "interaction" "document" "state-change" ) ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:source ; sh:name "source" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:observedAt ; sh:name "observed_at" ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:payloadRef ; sh:name "payload_ref" ; sh:datatype xsd:anyURI ; sh:maxCount 1 ] , 
+        [ sh:path aow:sensitivityLevel ; sh:name "sensitivity_level" ; sh:in ( "public" "internal" "confidential" "restricted" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:generatedBy ; sh:name "generated_by" ; sh:nodeKind sh:IRI ; sh:class aow:Action ; sh:maxCount 1 ] .
+
+aowsh:ObservationShape
+    a sh:NodeShape ;
+    rdfs:label "Observation shape"@en ;
+    sh:targetClass aow:Observation ;
+    sh:property 
+        [ sh:path aow:observedProperty ; sh:name "observed_property" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:observedValue ; sh:name "observed_value" ; sh:datatype rdf:JSON ; sh:maxCount 1 ] , 
+        [ sh:path aow:observedAt ; sh:name "observed_at" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path aow:method ; sh:name "method" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:generatedBy ; sh:name "generated_by" ; sh:nodeKind sh:IRI ; sh:class aow:Action ; sh:maxCount 1 ] , 
+        [ sh:path aow:derivedFrom ; sh:name "derived_from" ; sh:nodeKind sh:IRI ; sh:class aow:Signal ; sh:minCount 1 ] , 
+        [ sh:path aow:about ; sh:name "about" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:WorkItem ] [ sh:class aow:Actor ] [ sh:class aow:Action ] [ sh:class aow:Task ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:hasConfidence ; sh:name "has_confidence" ; sh:nodeKind sh:IRI ; sh:class aow:Confidence ; sh:maxCount 1 ] .
+
+aowsh:ObjectiveShape
+    a sh:NodeShape ;
+    rdfs:label "Objective shape"@en ;
+    sh:targetClass aow:Objective ;
+    sh:property 
+        [ sh:path aow:kpiTarget ; sh:name "kpi_target" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:priority ; sh:name "priority" ; sh:in ( "low" "medium" "high" "critical" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:timeHorizon ; sh:name "time_horizon" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path dcterms:description ; sh:name "description" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ] .
+
+aowsh:IntentShape
+    a sh:NodeShape ;
+    rdfs:label "Intent shape"@en ;
+    sh:targetClass aow:Intent ;
+    sh:property 
+        [ sh:path aow:goalStatement ; sh:name "goal_statement" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:constraints ; sh:name "constraints" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ] , 
+        [ sh:path aow:priority ; sh:name "priority" ; sh:in ( "low" "medium" "high" "critical" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:acceptableRiskBand ; sh:name "acceptable_risk_band" ; sh:in ( "low" "medium" "high" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:status ; sh:name "status" ; sh:in ( "proposed" "active" "fulfilled" "abandoned" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:servesObjective ; sh:name "serves_objective" ; sh:nodeKind sh:IRI ; sh:class aow:Objective ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:shapedBy ; sh:name "shaped_by" ; sh:nodeKind sh:IRI ; sh:class aow:Context ] , 
+        [ sh:path aow:concerns ; sh:name "concerns" ; sh:nodeKind sh:IRI ; sh:class aow:WorkItem ] , 
+        [ sh:path aow:constrainedBy ; sh:name "constrained_by" ; sh:nodeKind sh:IRI ; sh:class aow:Policy ] , 
+        [ sh:path aow:requiresAssurance ; sh:name "requires_assurance" ; sh:nodeKind sh:IRI ; sh:class aow:AssuranceLevel ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+aowsh:ContextShape
+    a sh:NodeShape ;
+    rdfs:label "Context shape"@en ;
+    sh:targetClass aow:Context ;
+    sh:property 
+        [ sh:path aow:contextType ; sh:name "context_type" ; sh:in ( "environmental" "procedural" "data" "historical" "session" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:variables ; sh:name "variables" ; sh:datatype rdf:JSON ; sh:maxCount 1 ] , 
+        [ sh:path aow:sensitivityLevel ; sh:name "sensitivity_level" ; sh:in ( "public" "internal" "confidential" "restricted" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:validUntil ; sh:name "valid_until" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path aow:drawsOn ; sh:name "draws_on" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Memory ] [ sh:class aow:Observation ] ) ] .
+
+aowsh:PolicyShape
+    a sh:NodeShape ;
+    rdfs:label "Policy shape"@en ;
+    sh:targetClass aow:Policy ;
+    sh:property 
+        [ sh:path aow:ruleSet ; sh:name "rule_set" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:ruleLanguage ; sh:name "rule_language" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:effect ; sh:name "effect" ; sh:in ( "permit" "prohibit" "require" "escalate" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:triggerConditions ; sh:name "trigger_conditions" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ] , 
+        [ sh:path aow:severity ; sh:name "severity" ; sh:in ( "low" "medium" "high" "critical" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:overrideProtocol ; sh:name "override_protocol" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:escalatesTo ; sh:name "escalates_to" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Role ] [ sh:class aow:HumanActor ] ) ] .
+
+aowsh:PlanShape
+    a sh:NodeShape ;
+    rdfs:label "Plan shape"@en ;
+    sh:targetClass aow:Plan ;
+    sh:property 
+        [ sh:path aow:status ; sh:name "status" ; sh:in ( "draft" "approved" "executing" "completed" "failed" "abandoned" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:exceptionProtocol ; sh:name "exception_protocol" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:constrainedBy ; sh:name "constrained_by" ; sh:nodeKind sh:IRI ; sh:class aow:Policy ] , 
+        [ sh:path aow:realizes ; sh:name "realizes" ; sh:nodeKind sh:IRI ; sh:class aow:Intent ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:plannedBy ; sh:name "planned_by" ; sh:nodeKind sh:IRI ; sh:class aow:Actor ; sh:maxCount 1 ] , 
+        [ sh:path aow:hasTask ; sh:name "has_task" ; sh:nodeKind sh:IRI ; sh:class aow:Task ] , 
+        [ sh:path aow:approvedBy ; sh:name "approved_by" ; sh:nodeKind sh:IRI ; sh:class aow:HumanActor ] , 
+        [ sh:path aow:hasConfidence ; sh:name "has_confidence" ; sh:nodeKind sh:IRI ; sh:class aow:Confidence ; sh:maxCount 1 ] .
+
+aowsh:TaskShape
+    a sh:NodeShape ;
+    rdfs:label "Task shape"@en ;
+    sh:targetClass aow:Task ;
+    sh:property 
+        [ sh:path aow:status ; sh:name "status" ; sh:in ( "submitted" "working" "input-required" "completed" "failed" "canceled" "rejected" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:dueBy ; sh:name "due_by" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path dcterms:description ; sh:name "description" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:minCount 1 ] , 
+        [ sh:path aow:shapedBy ; sh:name "shaped_by" ; sh:nodeKind sh:IRI ; sh:class aow:Context ] , 
+        [ sh:path aow:concerns ; sh:name "concerns" ; sh:nodeKind sh:IRI ; sh:class aow:WorkItem ] , 
+        [ sh:path aow:constrainedBy ; sh:name "constrained_by" ; sh:nodeKind sh:IRI ; sh:class aow:Policy ] , 
+        [ sh:path aow:requiresAssurance ; sh:name "requires_assurance" ; sh:nodeKind sh:IRI ; sh:class aow:AssuranceLevel ; sh:maxCount 1 ] , 
+        [ sh:path aow:dependsOn ; sh:name "depends_on" ; sh:nodeKind sh:IRI ; sh:class aow:Task ] , 
+        [ sh:path aow:assignedTo ; sh:name "assigned_to" ; sh:nodeKind sh:IRI ; sh:class aow:Actor ; sh:maxCount 1 ] , 
+        [ sh:path aow:requiresRole ; sh:name "requires_role" ; sh:nodeKind sh:IRI ; sh:class aow:Role ; sh:maxCount 1 ] .
+
+aowsh:ActorShape
+    a sh:NodeShape ;
+    rdfs:label "Actor shape"@en ;
+    sh:targetClass aow:Actor ;
+    sh:property 
+        [ sh:path aow:name ; sh:name "name" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:constrainedBy ; sh:name "constrained_by" ; sh:nodeKind sh:IRI ; sh:class aow:Policy ] , 
+        [ sh:path aow:fillsRole ; sh:name "fills_role" ; sh:nodeKind sh:IRI ; sh:class aow:Role ] , 
+        [ sh:path aow:hasSkill ; sh:name "has_skill" ; sh:nodeKind sh:IRI ; sh:class aow:Skill ] , 
+        [ sh:path aow:writesTo ; sh:name "writes_to" ; sh:nodeKind sh:IRI ; sh:class aow:Memory ] .
+
+aowsh:AgentShape
+    a sh:NodeShape ;
+    rdfs:label "Agent shape"@en ;
+    sh:targetClass aow:Agent ;
+    sh:property 
+        [ sh:path aow:autonomyLevel ; sh:name "autonomy_level" ; sh:class aow:AssuranceLevel ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] , 
+        [ sh:path aow:implementationRef ; sh:name "implementation_ref" ; sh:datatype xsd:anyURI ; sh:maxCount 1 ] .
+
+aowsh:HumanActorShape
+    a sh:NodeShape ;
+    rdfs:label "Human Actor shape"@en ;
+    sh:targetClass aow:HumanActor ;
+    sh:property 
+        [ sh:path aow:organizationalUnit ; sh:name "organizational_unit" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] .
+
+aowsh:OrchestratorShape
+    a sh:NodeShape ;
+    rdfs:label "Orchestrator shape"@en ;
+    sh:targetClass aow:Orchestrator ;
+    sh:property 
+        [ sh:path aow:planningModel ; sh:name "planning_model" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:exceptionProtocol ; sh:name "exception_protocol" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:resourceConstraints ; sh:name "resource_constraints" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] .
+
+aowsh:GuardianShape
+    a sh:NodeShape ;
+    rdfs:label "Guardian shape"@en ;
+    sh:targetClass aow:Guardian ;
+    sh:property 
+        [ sh:path aow:enforcementMode ; sh:name "enforcement_mode" ; sh:in ( "preventive" "detective" "corrective" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:scope ; sh:name "scope" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:enforces ; sh:name "enforces" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Policy ] [ sh:class aow:AssuranceLevel ] ) ] , 
+        [ sh:path aow:oversees ; sh:name "oversees" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Actor ] [ sh:class aow:Plan ] [ sh:class aow:Skill ] ) ] , 
+        [ sh:path aow:escalatesTo ; sh:name "escalates_to" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Role ] [ sh:class aow:HumanActor ] ) ] .
+
+aowsh:RoleShape
+    a sh:NodeShape ;
+    rdfs:label "Role shape"@en ;
+    sh:targetClass aow:Role ;
+    sh:property 
+        [ sh:path aow:responsibilities ; sh:name "responsibilities" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ] , 
+        [ sh:path rdfs:label ; sh:name "label" ; sh:minCount 1 ] , 
+        [ sh:path aow:constrainedBy ; sh:name "constrained_by" ; sh:nodeKind sh:IRI ; sh:class aow:Policy ] .
+
+aowsh:SkillShape
+    a sh:NodeShape ;
+    rdfs:label "Skill shape"@en ;
+    sh:targetClass aow:Skill ;
+    sh:property 
+        [ sh:path aow:inputSchema ; sh:name "input_schema" ; sh:datatype rdf:JSON ; sh:maxCount 1 ] , 
+        [ sh:path aow:outputSchema ; sh:name "output_schema" ; sh:datatype rdf:JSON ; sh:maxCount 1 ] , 
+        [ sh:path aow:binding ; sh:name "binding" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:sideEffects ; sh:name "side_effects" ; sh:in ( "none" "reversible" "irreversible" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:latency ; sh:name "latency" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:costProfile ; sh:name "cost_profile" ; sh:in ( "low" "medium" "high" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:constrainedBy ; sh:name "constrained_by" ; sh:nodeKind sh:IRI ; sh:class aow:Policy ] , 
+        [ sh:path aow:requiresAssurance ; sh:name "requires_assurance" ; sh:nodeKind sh:IRI ; sh:class aow:AssuranceLevel ; sh:maxCount 1 ] .
+
+aowsh:ActionShape
+    a sh:NodeShape ;
+    rdfs:label "Action shape"@en ;
+    sh:targetClass aow:Action ;
+    sh:property 
+        [ sh:path aow:startedAt ; sh:name "started_at" ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:endedAt ; sh:name "ended_at" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path aow:status ; sh:name "status" ; sh:in ( "succeeded" "failed" "blocked" "escalated" "compensated" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:rationale ; sh:name "rationale" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:idempotencyKey ; sh:name "idempotency_key" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:inputs ; sh:name "inputs" ; sh:datatype rdf:JSON ; sh:maxCount 1 ] , 
+        [ sh:path aow:concerns ; sh:name "concerns" ; sh:nodeKind sh:IRI ; sh:class aow:WorkItem ] , 
+        [ sh:path aow:performedBy ; sh:name "performed_by" ; sh:nodeKind sh:IRI ; sh:class aow:Actor ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:fulfills ; sh:name "fulfills" ; sh:nodeKind sh:IRI ; sh:class aow:Task ; sh:maxCount 1 ] , 
+        [ sh:path aow:invokes ; sh:name "invokes" ; sh:nodeKind sh:IRI ; sh:class aow:Skill ; sh:maxCount 1 ] , 
+        [ sh:path aow:approvedBy ; sh:name "approved_by" ; sh:nodeKind sh:IRI ; sh:class aow:HumanActor ] , 
+        [ sh:path aow:hasConfidence ; sh:name "has_confidence" ; sh:nodeKind sh:IRI ; sh:class aow:Confidence ; sh:maxCount 1 ] .
+
+aowsh:ResultShape
+    a sh:NodeShape ;
+    rdfs:label "Result shape"@en ;
+    sh:targetClass aow:Result ;
+    sh:property 
+        [ sh:path aow:status ; sh:name "status" ; sh:in ( "success" "partial" "failure" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:summary ; sh:name "summary" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:artifacts ; sh:name "artifacts" ; sh:datatype xsd:anyURI ] , 
+        [ sh:path aow:approvedBy ; sh:name "approved_by" ; sh:nodeKind sh:IRI ; sh:class aow:HumanActor ] , 
+        [ sh:path aow:generatedBy ; sh:name "generated_by" ; sh:nodeKind sh:IRI ; sh:class aow:Action ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:affects ; sh:name "affects" ; sh:nodeKind sh:IRI ; sh:class aow:WorkItem ] , 
+        [ sh:path aow:hasConfidence ; sh:name "has_confidence" ; sh:nodeKind sh:IRI ; sh:class aow:Confidence ; sh:maxCount 1 ] , 
+        [ sh:path aow:contributesTo ; sh:name "contributes_to" ; sh:nodeKind sh:IRI ; sh:class aow:Outcome ] .
+
+aowsh:ConfidenceShape
+    a sh:NodeShape ;
+    rdfs:label "Confidence shape"@en ;
+    sh:targetClass aow:Confidence ;
+    sh:property 
+        [ sh:path aow:value ; sh:name "value" ; sh:or ( [ sh:datatype xsd:double ] [ sh:datatype xsd:integer ] [ sh:datatype xsd:decimal ] ) ; sh:minInclusive 0 ; sh:maxInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:source ; sh:name "source" ; sh:in ( "model" "heuristic" "rule" "ensemble" "human" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:calibrated ; sh:name "calibrated" ; sh:datatype xsd:boolean ; sh:maxCount 1 ] , 
+        [ sh:path aow:volatility ; sh:name "volatility" ; sh:in ( "low" "medium" "high" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:comparedAgainst ; sh:name "compared_against" ; sh:nodeKind sh:IRI ; sh:class aow:AssuranceLevel ; sh:maxCount 1 ] .
+
+aowsh:AssuranceLevelShape
+    a sh:NodeShape ;
+    rdfs:label "Assurance Level shape"@en ;
+    sh:targetClass aow:AssuranceLevel ;
+    sh:property 
+        [ sh:path aow:level ; sh:name "level" ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxInclusive 4 ; sh:minCount 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:humanRole ; sh:name "human_role" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:agentRole ; sh:name "agent_role" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:reviewProtocol ; sh:name "review_protocol" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:defaultConfidenceFloor ; sh:name "default_confidence_floor" ; sh:or ( [ sh:datatype xsd:double ] [ sh:datatype xsd:integer ] [ sh:datatype xsd:decimal ] ) ; sh:minInclusive 0 ; sh:maxInclusive 1 ; sh:maxCount 1 ] , 
+        [ sh:path aow:riskClass ; sh:name "risk_class" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] .
+
+aowsh:OutcomeShape
+    a sh:NodeShape ;
+    rdfs:label "Outcome shape"@en ;
+    sh:targetClass aow:Outcome ;
+    sh:property 
+        [ sh:path aow:kpiImpact ; sh:name "kpi_impact" ; sh:datatype rdf:JSON ; sh:maxCount 1 ] , 
+        [ sh:path aow:measuredAt ; sh:name "measured_at" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path aow:measurementWindow ; sh:name "measurement_window" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:timeToValue ; sh:name "time_to_value" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:riskProfileChange ; sh:name "risk_profile_change" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:evaluates ; sh:name "evaluates" ; sh:nodeKind sh:IRI ; sh:class aow:Objective ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+aowsh:FeedbackShape
+    a sh:NodeShape ;
+    rdfs:label "Feedback shape"@en ;
+    sh:targetClass aow:Feedback ;
+    sh:property 
+        [ sh:path aow:feedbackType ; sh:name "feedback_type" ; sh:in ( "accuracy" "policy" "exception" "preference" "incident" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:issueDetected ; sh:name "issue_detected" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:recommendedAdjustments ; sh:name "recommended_adjustments" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ] , 
+        [ sh:path aow:severity ; sh:name "severity" ; sh:in ( "low" "medium" "high" "critical" ) ; sh:maxCount 1 ] , 
+        [ sh:path aow:timestamp ; sh:name "timestamp" ; sh:datatype xsd:dateTime ; sh:maxCount 1 ] , 
+        [ sh:path aow:feedbackOn ; sh:name "feedback_on" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Outcome ] [ sh:class aow:Result ] [ sh:class aow:Action ] [ sh:class aow:Plan ] ) ; sh:minCount 1 ] , 
+        [ sh:path aow:providedBy ; sh:name "provided_by" ; sh:nodeKind sh:IRI ; sh:class aow:Actor ; sh:maxCount 1 ] , 
+        [ sh:path aow:updates ; sh:name "updates" ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class aow:Policy ] [ sh:class aow:Memory ] [ sh:class aow:Plan ] [ sh:class aow:Skill ] [ sh:class aow:Actor ] [ sh:class aow:Context ] ) ] .
+
+aowsh:MemoryShape
+    a sh:NodeShape ;
+    rdfs:label "Memory shape"@en ;
+    sh:targetClass aow:Memory ;
+    sh:property 
+        [ sh:path aow:storeRef ; sh:name "store_ref" ; sh:datatype xsd:anyURI ; sh:maxCount 1 ] , 
+        [ sh:path aow:retentionPolicy ; sh:name "retention_policy" ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype rdf:langString ] ) ; sh:maxCount 1 ] .
+
+aowsh:OperationalMemoryShape
+    a sh:NodeShape ;
+    rdfs:label "Operational Memory shape"@en ;
+    sh:targetClass aow:OperationalMemory .
+
+aowsh:KnowledgeBaseShape
+    a sh:NodeShape ;
+    rdfs:label "Knowledge Base shape"@en ;
+    sh:targetClass aow:KnowledgeBase .
+
