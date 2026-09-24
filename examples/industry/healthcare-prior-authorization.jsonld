@@ -1,0 +1,165 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    {
+      "@base": "https://example.org/health/"
+    }
+  ],
+  "@graph": [
+    {
+      "id": "obj-wait-time",
+      "type": "Objective",
+      "description": "Reduce patient wait time for prior authorization decisions.",
+      "kpi_target": "Median decision time under 24 hours",
+      "priority": "critical"
+    },
+    {
+      "id": "intent-necessity",
+      "type": "Intent",
+      "goal_statement": "Assess medical necessity against plan rules and prepare a decision for clinical review.",
+      "serves_objective": "obj-wait-time",
+      "shaped_by": [
+        "ctx-clinical"
+      ],
+      "constrained_by": [
+        "policy-dual-validation"
+      ],
+      "requires_assurance": "aow:AL1"
+    },
+    {
+      "id": "ctx-clinical",
+      "type": "Context",
+      "context_type": "data",
+      "variables": {
+        "procedure": "MRI lumbar spine",
+        "plan_rules": "imaging-2026"
+      },
+      "sensitivity_level": "restricted"
+    },
+    {
+      "id": "policy-dual-validation",
+      "type": "Policy",
+      "rule_set": "Advanced imaging and surgical procedures require validation by a clinical reviewer before authorization.",
+      "rule_language": "text",
+      "effect": "require",
+      "severity": "critical",
+      "escalates_to": [
+        "role-clinical-reviewer"
+      ]
+    },
+    {
+      "id": "role-clinical-reviewer",
+      "type": "Role",
+      "label": "Clinical reviewer"
+    },
+    {
+      "id": "nurse-reviewer-4",
+      "type": "HumanActor",
+      "name": "Clinical reviewer 4",
+      "fills_role": [
+        "role-clinical-reviewer"
+      ]
+    },
+    {
+      "id": "request-3390",
+      "type": "WorkItem",
+      "item_type": "prior-authorization-request",
+      "external_ref": "PA-3390",
+      "state": "authorized"
+    },
+    {
+      "id": "plan-3390",
+      "type": "Plan",
+      "realizes": "intent-necessity",
+      "has_task": [
+        "task-assess-3390"
+      ]
+    },
+    {
+      "id": "task-assess-3390",
+      "type": "Task",
+      "description": "Assess medical necessity and record the authorization.",
+      "concerns": [
+        "request-3390"
+      ],
+      "assigned_to": "agent-necessity"
+    },
+    {
+      "id": "agent-necessity",
+      "type": "Agent",
+      "name": "Medical necessity agent",
+      "has_skill": [
+        "skill-record-authorization"
+      ],
+      "autonomy_level": "aow:AL2"
+    },
+    {
+      "id": "skill-record-authorization",
+      "type": "Skill",
+      "label": "record_authorization",
+      "side_effects": "reversible"
+    },
+    {
+      "id": "act-authorize-3390",
+      "type": "Action",
+      "performed_by": "agent-necessity",
+      "fulfills": "task-assess-3390",
+      "invokes": "skill-record-authorization",
+      "approved_by": [
+        "nurse-reviewer-4"
+      ],
+      "has_confidence": "conf-3390",
+      "started_at": "2026-09-15T13:00:00Z",
+      "status": "succeeded",
+      "rationale": "Clinical notes document six weeks of conservative therapy, meeting plan criteria."
+    },
+    {
+      "id": "conf-3390",
+      "type": "Confidence",
+      "value": 0.88,
+      "source": "model"
+    },
+    {
+      "id": "res-3390",
+      "type": "Result",
+      "summary": "Authorization granted after clinical review.",
+      "generated_by": "act-authorize-3390",
+      "approved_by": [
+        "nurse-reviewer-4"
+      ],
+      "affects": [
+        "request-3390"
+      ],
+      "contributes_to": [
+        "outcome-approval-speed"
+      ]
+    },
+    {
+      "id": "outcome-approval-speed",
+      "type": "Outcome",
+      "evaluates": "obj-wait-time",
+      "description": "Illustrative figures.",
+      "kpi_impact": {
+        "median_decision_hours": {
+          "before": 72,
+          "after": 20
+        }
+      }
+    },
+    {
+      "id": "fbk-guidelines",
+      "type": "Feedback",
+      "feedback_type": "policy",
+      "feedback_on": [
+        "outcome-approval-speed"
+      ],
+      "provided_by": "nurse-reviewer-4",
+      "recommended_adjustments": [
+        "Update clinical decision guidelines for repeat imaging"
+      ],
+      "updates": [
+        "policy-dual-validation"
+      ]
+    }
+  ]
+}

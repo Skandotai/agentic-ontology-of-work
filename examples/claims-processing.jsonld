@@ -1,0 +1,471 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    { "@base": "https://example.org/claims/" }
+  ],
+  "@graph": [
+    {
+      "id": "obj-claims-cycle-time",
+      "type": "Objective",
+      "label": "Faster disability claims",
+      "description": "Reduce disability claims cycle time by 20% without increasing claims leakage.",
+      "kpi_target": "Median cycle time -20% against the FY2026 baseline; leakage no higher than baseline.",
+      "priority": "high",
+      "time_horizon": "FY2027"
+    },
+    {
+      "id": "intent-eligibility-2026",
+      "type": "Intent",
+      "label": "Automate eligibility determination",
+      "goal_statement": "Determine eligibility for incoming disability claims automatically wherever policy allows, and route the rest to an adjuster with the work already done.",
+      "serves_objective": "obj-claims-cycle-time",
+      "shaped_by": ["ctx-claims-procedure"],
+      "constrained_by": ["policy-auto-approval", "policy-high-risk-review"],
+      "requires_assurance": "aow:AL2",
+      "acceptable_risk_band": "low",
+      "priority": "high",
+      "status": "active"
+    },
+    {
+      "id": "ctx-claims-procedure",
+      "type": "Context",
+      "label": "Disability claims procedure",
+      "context_type": "procedural",
+      "variables": { "procedure": "LTD eligibility v7", "regulatory_regime": "state insurance code", "service_level_hours": 48 },
+      "sensitivity_level": "internal",
+      "draws_on": ["kb-claims"]
+    },
+    {
+      "id": "policy-auto-approval",
+      "type": "Policy",
+      "label": "Auto-approval limit",
+      "rule_set": "An eligibility decision on a disability claim under $50,000 may be recorded without human confirmation when eligibility confidence is at least 0.90.",
+      "rule_language": "text",
+      "effect": "permit",
+      "trigger_conditions": ["claim_amount < 50000", "confidence >= 0.90"],
+      "severity": "high",
+      "override_protocol": "Claims operations lead may lower the limit at any time; raising it requires model risk approval.",
+      "escalates_to": ["role-claims-adjuster"]
+    },
+    {
+      "id": "policy-high-risk-review",
+      "type": "Policy",
+      "label": "High-risk review",
+      "rule_set": "Claims with fraud indicators, or from claimants over 65 with pre-existing conditions, require adjuster review before a decision is recorded.",
+      "rule_language": "text",
+      "effect": "escalate",
+      "trigger_conditions": ["fraud_indicator = true", "claimant_age > 65 and pre_existing_condition = true"],
+      "severity": "high",
+      "escalates_to": ["role-claims-adjuster"],
+      "version": "1.1.0",
+      "revision_of": "policy-high-risk-review-v1.0"
+    },
+    {
+      "id": "policy-high-risk-review-v1.0",
+      "type": "Policy",
+      "label": "High-risk review (superseded)",
+      "rule_set": "Claims with fraud indicators require adjuster review before a decision is recorded.",
+      "rule_language": "text",
+      "effect": "escalate",
+      "version": "1.0.0"
+    },
+    {
+      "id": "role-eligibility-processor",
+      "type": "Role",
+      "label": "Eligibility processor",
+      "responsibilities": ["Extract claim details", "Validate coverage", "Calculate benefit", "Record eligibility decisions within policy"]
+    },
+    {
+      "id": "role-claims-adjuster",
+      "type": "Role",
+      "label": "Claims adjuster",
+      "responsibilities": ["Decide escalated claims", "Confirm low-confidence decisions", "Give feedback on automated decisions"]
+    },
+    {
+      "id": "orch-claims",
+      "type": "Orchestrator",
+      "name": "Claims orchestrator",
+      "planning_model": "hybrid: rule-based task graph with model-assisted exception handling",
+      "exception_protocol": "On any failed or blocked Task, stop the Plan and assign the decision Task to the Claims adjuster role."
+    },
+    {
+      "id": "agent-validation",
+      "type": "Agent",
+      "name": "Validation agent",
+      "fills_role": ["role-eligibility-processor"],
+      "has_skill": ["skill-extract-claim-fields", "skill-rule-validate", "skill-record-decision"],
+      "autonomy_level": "aow:AL3",
+      "writes_to": ["mem-runtime-claims"],
+      "version": "3.2.0"
+    },
+    {
+      "id": "agent-coverage",
+      "type": "Agent",
+      "name": "Coverage agent",
+      "fills_role": ["role-eligibility-processor"],
+      "has_skill": ["skill-check-coverage"],
+      "autonomy_level": "aow:AL3"
+    },
+    {
+      "id": "agent-benefit",
+      "type": "Agent",
+      "name": "Benefit agent",
+      "fills_role": ["role-eligibility-processor"],
+      "has_skill": ["skill-calculate-benefit"],
+      "autonomy_level": "aow:AL3"
+    },
+    {
+      "id": "person-adjuster-17",
+      "type": "HumanActor",
+      "name": "Claims adjuster 17",
+      "organizational_unit": "Disability Claims",
+      "fills_role": ["role-claims-adjuster"],
+      "has_skill": ["skill-record-decision"]
+    },
+    {
+      "id": "guardian-claims",
+      "type": "Guardian",
+      "name": "Claims guardian",
+      "enforcement_mode": "preventive",
+      "scope": "All eligibility decisions on disability claims.",
+      "enforces": ["policy-auto-approval", "policy-high-risk-review", "aow:AL2"],
+      "oversees": ["agent-validation", "agent-coverage", "agent-benefit"],
+      "escalates_to": ["role-claims-adjuster"]
+    },
+    {
+      "id": "skill-extract-claim-fields",
+      "type": "Skill",
+      "label": "extract_claim_fields",
+      "binding": "mcp://claims-tools/extract_claim_fields",
+      "side_effects": "none",
+      "input_schema": { "type": "object", "properties": { "document_uri": { "type": "string" } } },
+      "output_schema": { "type": "object", "properties": { "claim_amount": { "type": "number" }, "claimant_age": { "type": "integer" } } },
+      "latency": "< 5s",
+      "cost_profile": "medium"
+    },
+    {
+      "id": "skill-check-coverage",
+      "type": "Skill",
+      "label": "check_coverage",
+      "binding": "https://api.example.org/policy-admin/coverage",
+      "side_effects": "none",
+      "latency": "< 1s",
+      "cost_profile": "low"
+    },
+    {
+      "id": "skill-rule-validate",
+      "type": "Skill",
+      "label": "rule_validate",
+      "binding": "dmn://claims/eligibility-rules",
+      "side_effects": "none",
+      "cost_profile": "low"
+    },
+    {
+      "id": "skill-calculate-benefit",
+      "type": "Skill",
+      "label": "calculate_benefit",
+      "binding": "mcp://claims-tools/calculate_benefit",
+      "side_effects": "none",
+      "input_schema": { "type": "object", "properties": { "claim_amount": { "type": "number" }, "policy_rules": { "type": "object" } } },
+      "output_schema": { "type": "object", "properties": { "benefit_amount": { "type": "number" } } },
+      "latency": "< 1s",
+      "cost_profile": "low",
+      "version": "1.4.2",
+      "created_by": "person-claims-engineering-lead"
+    },
+    {
+      "id": "person-claims-engineering-lead",
+      "type": "HumanActor",
+      "name": "Claims engineering lead",
+      "organizational_unit": "Claims Technology"
+    },
+    {
+      "id": "skill-record-decision",
+      "type": "Skill",
+      "label": "record_decision",
+      "binding": "https://api.example.org/claims/{claim}/decision",
+      "side_effects": "reversible",
+      "constrained_by": ["policy-auto-approval", "policy-high-risk-review"],
+      "cost_profile": "low"
+    },
+    {
+      "id": "kb-claims",
+      "type": "KnowledgeBase",
+      "label": "Claims knowledge base",
+      "store_ref": "https://kb.example.org/claims",
+      "retention_policy": "Case traces kept seven years for audit; patterns reviewed quarterly."
+    },
+    {
+      "id": "mem-runtime-claims",
+      "type": "OperationalMemory",
+      "label": "Claims runtime memory",
+      "retention_policy": "Purged 30 days after the claim closes."
+    },
+
+    {
+      "id": "claim-84933",
+      "type": "WorkItem",
+      "item_type": "disability-claim",
+      "external_ref": "CLM-2026-084933",
+      "state": "approved",
+      "opened_at": "2026-09-14T09:12:04Z"
+    },
+    {
+      "id": "sig-claim-form-84933",
+      "type": "Signal",
+      "signal_type": "document",
+      "source": "claims-intake-portal",
+      "observed_at": "2026-09-14T09:12:04Z",
+      "payload_ref": "https://dms.example.org/claims/84933/claim-form.pdf",
+      "sensitivity_level": "confidential"
+    },
+    {
+      "id": "obs-claim-amount-84933",
+      "type": "Observation",
+      "observed_property": "claim_amount",
+      "observed_value": 38200,
+      "method": "document-extraction",
+      "derived_from": ["sig-claim-form-84933"],
+      "about": "claim-84933",
+      "generated_by": "act-extract-84933",
+      "has_confidence": "conf-obs-84933"
+    },
+    {
+      "id": "conf-obs-84933",
+      "type": "Confidence",
+      "value": 0.97,
+      "source": "model",
+      "calibrated": true
+    },
+    {
+      "id": "ctx-claim-84933",
+      "type": "Context",
+      "context_type": "data",
+      "variables": { "claim_type": "disability", "claimant_age": 45, "claim_amount": 38200, "policy_form": "LTD-2024" },
+      "sensitivity_level": "confidential",
+      "draws_on": ["obs-claim-amount-84933", "kb-claims"]
+    },
+    {
+      "id": "plan-84933",
+      "type": "Plan",
+      "realizes": "intent-eligibility-2026",
+      "planned_by": "orch-claims",
+      "status": "completed",
+      "has_task": ["task-extract-84933", "task-coverage-84933", "task-benefit-84933", "task-decision-84933"],
+      "constrained_by": ["policy-auto-approval", "policy-high-risk-review"]
+    },
+    {
+      "id": "task-extract-84933",
+      "type": "Task",
+      "description": "Extract claim metadata from the claim form.",
+      "status": "completed",
+      "concerns": ["claim-84933"],
+      "assigned_to": "agent-validation",
+      "requires_role": "role-eligibility-processor"
+    },
+    {
+      "id": "task-coverage-84933",
+      "type": "Task",
+      "description": "Validate that the claimant's coverage was active on the date of disability.",
+      "status": "completed",
+      "concerns": ["claim-84933"],
+      "depends_on": ["task-extract-84933"],
+      "assigned_to": "agent-coverage",
+      "requires_role": "role-eligibility-processor"
+    },
+    {
+      "id": "task-benefit-84933",
+      "type": "Task",
+      "description": "Determine the monthly benefit.",
+      "status": "completed",
+      "concerns": ["claim-84933"],
+      "depends_on": ["task-coverage-84933"],
+      "assigned_to": "agent-benefit",
+      "requires_role": "role-eligibility-processor"
+    },
+    {
+      "id": "task-decision-84933",
+      "type": "Task",
+      "description": "Generate and record the eligibility decision.",
+      "status": "completed",
+      "concerns": ["claim-84933"],
+      "shaped_by": ["ctx-claim-84933"],
+      "depends_on": ["task-benefit-84933"],
+      "assigned_to": "agent-validation",
+      "requires_role": "role-eligibility-processor",
+      "requires_assurance": "aow:AL2"
+    },
+    {
+      "id": "act-extract-84933",
+      "type": "Action",
+      "performed_by": "agent-validation",
+      "fulfills": "task-extract-84933",
+      "invokes": "skill-extract-claim-fields",
+      "concerns": ["claim-84933"],
+      "started_at": "2026-09-14T09:12:06Z",
+      "ended_at": "2026-09-14T09:12:09Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "act-coverage-84933",
+      "type": "Action",
+      "performed_by": "agent-coverage",
+      "fulfills": "task-coverage-84933",
+      "invokes": "skill-check-coverage",
+      "concerns": ["claim-84933"],
+      "started_at": "2026-09-14T09:12:10Z",
+      "ended_at": "2026-09-14T09:12:10Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "res-coverage-84933",
+      "type": "Result",
+      "status": "success",
+      "summary": "Coverage active under policy form LTD-2024 on the date of disability.",
+      "generated_by": "act-coverage-84933"
+    },
+    {
+      "id": "act-benefit-84933",
+      "type": "Action",
+      "performed_by": "agent-benefit",
+      "fulfills": "task-benefit-84933",
+      "invokes": "skill-calculate-benefit",
+      "concerns": ["claim-84933"],
+      "inputs": { "claim_amount": 38200, "policy_form": "LTD-2024" },
+      "started_at": "2026-09-14T09:12:11Z",
+      "ended_at": "2026-09-14T09:12:11Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "res-benefit-84933",
+      "type": "Result",
+      "status": "success",
+      "summary": "Monthly benefit of $3,180 calculated.",
+      "generated_by": "act-benefit-84933"
+    },
+    {
+      "id": "act-decision-84933",
+      "type": "Action",
+      "performed_by": "agent-validation",
+      "fulfills": "task-decision-84933",
+      "invokes": "skill-record-decision",
+      "concerns": ["claim-84933"],
+      "rationale": "Coverage active, benefit calculated, no high-risk indicators; claim under $50,000 and eligibility confidence 0.93 meets the AL2 floor of 0.90.",
+      "idempotency_key": "decision-CLM-2026-084933-1",
+      "has_confidence": "conf-decision-84933",
+      "started_at": "2026-09-14T09:12:12Z",
+      "ended_at": "2026-09-14T09:19:02Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "conf-decision-84933",
+      "type": "Confidence",
+      "value": 0.93,
+      "source": "ensemble",
+      "calibrated": true,
+      "compared_against": "aow:AL2"
+    },
+    {
+      "id": "res-decision-84933",
+      "type": "Result",
+      "status": "success",
+      "summary": "Eligibility approved.",
+      "generated_by": "act-decision-84933",
+      "affects": ["claim-84933"],
+      "has_confidence": "conf-decision-84933",
+      "contributes_to": ["outcome-cycle-time-2026q3"]
+    },
+
+    {
+      "id": "claim-84951",
+      "type": "WorkItem",
+      "item_type": "disability-claim",
+      "external_ref": "CLM-2026-084951",
+      "state": "approved",
+      "opened_at": "2026-09-14T10:02:40Z"
+    },
+    {
+      "id": "plan-84951",
+      "type": "Plan",
+      "description": "Extraction, coverage, and benefit Tasks omitted for brevity; they mirror plan-84933.",
+      "realizes": "intent-eligibility-2026",
+      "planned_by": "orch-claims",
+      "status": "completed",
+      "has_task": ["task-decision-84951"]
+    },
+    {
+      "id": "task-decision-84951",
+      "type": "Task",
+      "description": "Generate and record the eligibility decision.",
+      "status": "completed",
+      "concerns": ["claim-84951"],
+      "assigned_to": "agent-validation",
+      "requires_role": "role-eligibility-processor",
+      "requires_assurance": "aow:AL2"
+    },
+    {
+      "id": "act-decision-84951",
+      "type": "Action",
+      "performed_by": "agent-validation",
+      "fulfills": "task-decision-84951",
+      "invokes": "skill-record-decision",
+      "concerns": ["claim-84951"],
+      "rationale": "Eligibility confidence 0.81 is below the AL2 floor of 0.90; escalated to the Claims adjuster role with a recommendation to approve.",
+      "has_confidence": "conf-decision-84951",
+      "started_at": "2026-09-14T10:03:15Z",
+      "ended_at": "2026-09-14T10:03:16Z",
+      "status": "escalated"
+    },
+    {
+      "id": "conf-decision-84951",
+      "type": "Confidence",
+      "value": 0.81,
+      "source": "ensemble",
+      "calibrated": true,
+      "compared_against": "aow:AL2"
+    },
+    {
+      "id": "act-review-84951",
+      "type": "Action",
+      "performed_by": "person-adjuster-17",
+      "fulfills": "task-decision-84951",
+      "invokes": "skill-record-decision",
+      "concerns": ["claim-84951"],
+      "rationale": "Reviewed the agent's recommendation and the attending physician's statement; approved.",
+      "started_at": "2026-09-14T11:40:00Z",
+      "ended_at": "2026-09-14T11:52:30Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "res-decision-84951",
+      "type": "Result",
+      "status": "success",
+      "summary": "Eligibility approved after adjuster review.",
+      "generated_by": "act-review-84951",
+      "affects": ["claim-84951"],
+      "contributes_to": ["outcome-cycle-time-2026q3"]
+    },
+
+    {
+      "id": "outcome-cycle-time-2026q3",
+      "type": "Outcome",
+      "evaluates": "obj-claims-cycle-time",
+      "kpi_impact": { "median_turnaround": { "before": "48h", "after": "7m" }, "straight_through_rate": 0.64 },
+      "measurement_window": "2026-07-01/2026-09-30",
+      "measured_at": "2026-10-01T00:00:00Z",
+      "time_to_value": "one quarter"
+    },
+    {
+      "id": "fbk-age-65",
+      "type": "Feedback",
+      "feedback_type": "exception",
+      "issue_detected": "Claimants over 65 with pre-existing conditions reached an adjuster only after an automated decision had been drafted.",
+      "recommended_adjustments": ["Add a rule exception for claimants over 65 with pre-existing conditions", "Record the exception pattern in the claims knowledge base"],
+      "severity": "medium",
+      "timestamp": "2026-09-20T15:04:00Z",
+      "feedback_on": ["outcome-cycle-time-2026q3"],
+      "provided_by": "person-adjuster-17",
+      "updates": ["policy-high-risk-review", "kb-claims"]
+    }
+  ]
+}

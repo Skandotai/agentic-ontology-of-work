@@ -1,0 +1,157 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    {
+      "@base": "https://example.org/retail/"
+    }
+  ],
+  "@graph": [
+    {
+      "id": "obj-stockouts",
+      "type": "Objective",
+      "description": "Reduce stockouts on fast-moving lines.",
+      "kpi_target": "Stockout rate under 2%",
+      "priority": "high"
+    },
+    {
+      "id": "intent-shipment-anomalies",
+      "type": "Intent",
+      "goal_statement": "Detect shipment anomalies and resolve them before shelves run empty.",
+      "serves_objective": "obj-stockouts",
+      "shaped_by": [
+        "ctx-inventory"
+      ],
+      "constrained_by": [
+        "policy-risk-threshold"
+      ],
+      "requires_assurance": "aow:AL3"
+    },
+    {
+      "id": "ctx-inventory",
+      "type": "Context",
+      "context_type": "environmental",
+      "variables": {
+        "store": "DC-North",
+        "on_hand_days": 1.5,
+        "route_delay_hours": 30
+      }
+    },
+    {
+      "id": "policy-risk-threshold",
+      "type": "Policy",
+      "rule_set": "Auto-correct only when estimated risk is at or below threshold and the correction can be reversed.",
+      "rule_language": "text",
+      "effect": "permit",
+      "severity": "medium"
+    },
+    {
+      "id": "shipment-4410",
+      "type": "WorkItem",
+      "item_type": "inbound-shipment",
+      "external_ref": "SHP-4410",
+      "state": "re-routed"
+    },
+    {
+      "id": "sig-delay-4410",
+      "type": "Signal",
+      "signal_type": "event",
+      "source": "carrier-tracking-feed",
+      "observed_at": "2026-09-15T05:40:00Z"
+    },
+    {
+      "id": "obs-delay-4410",
+      "type": "Observation",
+      "observed_property": "expected_delay_hours",
+      "observed_value": 30,
+      "derived_from": [
+        "sig-delay-4410"
+      ],
+      "about": "shipment-4410"
+    },
+    {
+      "id": "plan-4410",
+      "type": "Plan",
+      "realizes": "intent-shipment-anomalies",
+      "has_task": [
+        "task-reroute-4410"
+      ]
+    },
+    {
+      "id": "task-reroute-4410",
+      "type": "Task",
+      "description": "Re-route or replenish to avoid a stockout.",
+      "concerns": [
+        "shipment-4410"
+      ],
+      "assigned_to": "agent-supply"
+    },
+    {
+      "id": "agent-supply",
+      "type": "Agent",
+      "name": "Supply exception agent",
+      "has_skill": [
+        "skill-reroute"
+      ],
+      "autonomy_level": "aow:AL3"
+    },
+    {
+      "id": "skill-reroute",
+      "type": "Skill",
+      "label": "reroute_shipment",
+      "side_effects": "reversible"
+    },
+    {
+      "id": "act-reroute-4410",
+      "type": "Action",
+      "performed_by": "agent-supply",
+      "fulfills": "task-reroute-4410",
+      "invokes": "skill-reroute",
+      "has_confidence": "conf-4410",
+      "started_at": "2026-09-15T05:41:00Z",
+      "status": "succeeded",
+      "idempotency_key": "reroute-SHP-4410-1"
+    },
+    {
+      "id": "conf-4410",
+      "type": "Confidence",
+      "value": 0.97,
+      "source": "model",
+      "compared_against": "aow:AL3"
+    },
+    {
+      "id": "res-4410",
+      "type": "Result",
+      "summary": "Shipment re-routed via DC-East; arrival moved up 22 hours.",
+      "generated_by": "act-reroute-4410",
+      "affects": [
+        "shipment-4410"
+      ],
+      "contributes_to": [
+        "outcome-lost-sales"
+      ]
+    },
+    {
+      "id": "outcome-lost-sales",
+      "type": "Outcome",
+      "evaluates": "obj-stockouts",
+      "description": "Illustrative figures.",
+      "kpi_impact": {
+        "stockout_rate": {
+          "before": 0.043,
+          "after": 0.018
+        }
+      }
+    },
+    {
+      "id": "fbk-forecast",
+      "type": "Feedback",
+      "feedback_type": "accuracy",
+      "feedback_on": [
+        "outcome-lost-sales"
+      ],
+      "recommended_adjustments": [
+        "Feed carrier delay patterns into the demand forecasting model"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+# State-changing Actions by Agents that went ahead without the human
+# oversight their effective Assurance Level requires.
+#
+# Effective level = the lowest of the Intent's, the Task's, and the Skill's
+# requires_assurance, and the Agent's autonomy_level.
+#
+# An Action is a gap when it changes state (its Skill's side_effects is not
+# "none"), it was neither escalated nor blocked, nobody approved it, and
+#   - the effective level is AL0 or AL1 (a person must approve), or
+#   - it carries no Confidence, or a Confidence below the level's floor, or
+#   - the effective level is AL3 or higher and the Skill is irreversible.
+#
+# Floors are the ontology's defaults; a deployment whose Policies set other
+# floors should substitute them. An empty answer means no gaps.
+
+PREFIX aow: <https://w3id.org/aow#>
+
+SELECT ?action ?agent ?effective ?confidence ?floor ?sideEffects
+WHERE {
+  ?action a aow:Action ;
+          aow:performedBy ?agent ;
+          aow:fulfills ?task ;
+          aow:invokes ?skill .
+  ?agent a aow:Agent ;
+         aow:autonomyLevel/aow:level ?agentLevel .
+  ?skill aow:sideEffects ?sideEffects .
+  FILTER (?sideEffects != "none")
+  ?plan aow:hasTask ?task ;
+        aow:realizes ?intent .
+  ?intent aow:requiresAssurance/aow:level ?intentLevel .
+  OPTIONAL { ?task aow:requiresAssurance/aow:level ?taskLevel }
+  OPTIONAL { ?skill aow:requiresAssurance/aow:level ?skillLevel }
+  BIND (IF(BOUND(?taskLevel) && ?taskLevel < ?intentLevel, ?taskLevel, ?intentLevel) AS ?l1)
+  BIND (IF(BOUND(?skillLevel) && ?skillLevel < ?l1, ?skillLevel, ?l1) AS ?l2)
+  BIND (IF(?agentLevel < ?l2, ?agentLevel, ?l2) AS ?effective)
+  ?level a aow:AssuranceLevel ;
+         aow:level ?effective .
+  OPTIONAL { ?level aow:defaultConfidenceFloor ?floor }
+  OPTIONAL { ?action aow:hasConfidence/aow:value ?confidence }
+  FILTER NOT EXISTS { ?action aow:approvedBy ?approver }
+  FILTER NOT EXISTS { ?action aow:status ?status . FILTER (?status IN ("escalated", "blocked")) }
+  FILTER (
+    ?effective <= 1
+    || !BOUND(?confidence)
+    || (BOUND(?floor) && ?confidence < ?floor)
+    || (?effective >= 3 && ?sideEffects = "irreversible")
+  )
+}
+ORDER BY ?action

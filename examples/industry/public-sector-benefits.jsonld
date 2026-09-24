@@ -1,0 +1,184 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    {
+      "@base": "https://example.org/benefits/"
+    }
+  ],
+  "@graph": [
+    {
+      "id": "obj-backlog",
+      "type": "Objective",
+      "description": "Reduce the benefits application backlog.",
+      "kpi_target": "Backlog under 10 working days",
+      "priority": "high"
+    },
+    {
+      "id": "intent-eligibility-checks",
+      "type": "Intent",
+      "goal_statement": "Check eligibility of routine applications automatically.",
+      "serves_objective": "obj-backlog",
+      "shaped_by": [
+        "ctx-household"
+      ],
+      "constrained_by": [
+        "policy-sensitive-escalation"
+      ],
+      "requires_assurance": "aow:AL2"
+    },
+    {
+      "id": "ctx-household",
+      "type": "Context",
+      "context_type": "data",
+      "variables": {
+        "household_size": 3,
+        "monthly_income": 2150
+      },
+      "sensitivity_level": "restricted"
+    },
+    {
+      "id": "policy-sensitive-escalation",
+      "type": "Policy",
+      "rule_set": "Applications flagged sensitive (domestic violence, disability, appeals) escalate to a specialist caseworker.",
+      "rule_language": "text",
+      "effect": "escalate",
+      "severity": "high",
+      "escalates_to": [
+        "role-specialist"
+      ]
+    },
+    {
+      "id": "role-specialist",
+      "type": "Role",
+      "label": "Specialist caseworker"
+    },
+    {
+      "id": "caseworker-9",
+      "type": "HumanActor",
+      "name": "Specialist caseworker 9",
+      "fills_role": [
+        "role-specialist"
+      ]
+    },
+    {
+      "id": "guardian-benefits",
+      "type": "Guardian",
+      "enforcement_mode": "preventive",
+      "enforces": [
+        "policy-sensitive-escalation"
+      ],
+      "oversees": [
+        "agent-eligibility"
+      ],
+      "escalates_to": [
+        "role-specialist"
+      ]
+    },
+    {
+      "id": "application-2207",
+      "type": "WorkItem",
+      "item_type": "benefits-application",
+      "external_ref": "BA-2207",
+      "state": "approved"
+    },
+    {
+      "id": "plan-2207",
+      "type": "Plan",
+      "realizes": "intent-eligibility-checks",
+      "has_task": [
+        "task-check-2207"
+      ]
+    },
+    {
+      "id": "task-check-2207",
+      "type": "Task",
+      "description": "Check eligibility and record the determination.",
+      "concerns": [
+        "application-2207"
+      ],
+      "assigned_to": "agent-eligibility"
+    },
+    {
+      "id": "agent-eligibility",
+      "type": "Agent",
+      "name": "Eligibility agent",
+      "has_skill": [
+        "skill-record-determination"
+      ],
+      "autonomy_level": "aow:AL2"
+    },
+    {
+      "id": "skill-record-determination",
+      "type": "Skill",
+      "label": "record_determination",
+      "side_effects": "reversible"
+    },
+    {
+      "id": "act-check-2207",
+      "type": "Action",
+      "performed_by": "agent-eligibility",
+      "fulfills": "task-check-2207",
+      "invokes": "skill-record-determination",
+      "status": "blocked",
+      "rationale": "Guardian blocked: application flagged sensitive.",
+      "started_at": "2026-09-15T10:00:00Z"
+    },
+    {
+      "id": "act-guardian-2207",
+      "type": "Action",
+      "performed_by": "guardian-benefits",
+      "fulfills": "task-check-2207",
+      "started_at": "2026-09-15T10:00:01Z",
+      "status": "escalated",
+      "rationale": "Sensitive flag present; routed to Specialist caseworker role."
+    },
+    {
+      "id": "act-specialist-2207",
+      "type": "Action",
+      "performed_by": "caseworker-9",
+      "fulfills": "task-check-2207",
+      "invokes": "skill-record-determination",
+      "started_at": "2026-09-15T14:30:00Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "res-2207",
+      "type": "Result",
+      "summary": "Eligible; determination recorded by specialist.",
+      "generated_by": "act-specialist-2207",
+      "affects": [
+        "application-2207"
+      ],
+      "contributes_to": [
+        "outcome-backlog"
+      ]
+    },
+    {
+      "id": "outcome-backlog",
+      "type": "Outcome",
+      "evaluates": "obj-backlog",
+      "description": "Illustrative figures.",
+      "kpi_impact": {
+        "backlog_working_days": {
+          "before": 23,
+          "after": 9
+        }
+      }
+    },
+    {
+      "id": "fbk-threshold",
+      "type": "Feedback",
+      "feedback_type": "policy",
+      "feedback_on": [
+        "outcome-backlog"
+      ],
+      "provided_by": "caseworker-9",
+      "recommended_adjustments": [
+        "Tune the income threshold rounding rule"
+      ],
+      "updates": [
+        "policy-sensitive-escalation"
+      ]
+    }
+  ]
+}

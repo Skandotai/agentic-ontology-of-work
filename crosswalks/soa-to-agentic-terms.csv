@@ -1,0 +1,29 @@
+soa_term,agentic_term,aow_term,aow_iri,relation,note
+Service / Microservice,Agent,Agent,aow:Agent,exactMatch,An AOW Agent is the SOA mapping's Agent.
+Microservices,Agent Tools,Agent,aow:Agent,narrowMatch,"Narrow, single-purpose Agents; scope is expressed by the Skills and Roles they hold."
+Common Services,Agentic Tools,Skill,aow:Skill,closeMatch,"Shared, reusable capabilities are Skills available to many Actors (has_skill)."
+Service Contract,Agent Contract,Skill + Policy + Assurance Level,aow:Skill,relatedMatch,"AOW splits the contract: Skill schemas (what it takes and returns), Policies (what it may do), and Assurance Level (how much autonomy)."
+Service Registry,Agent Catalog,Agent (registry of),aow:Agent,relatedMatch,"A catalog is a store of Agent, Skill, and Role descriptions; the whitepaper's Appendix B gives a registry format."
+Service Discovery,Agent Discovery,has_skill / fills_role,aow:hasSkill,relatedMatch,Discovery queries Actors by the Skills they hold and the Roles they may fill.
+Service Bus (ESB),Execution Mesh,(out of scope),,noMatch,"Transport and routing infrastructure; AOW describes the work, not the wire."
+API Gateway,Agent Gateway,Guardian,aow:Guardian,relatedMatch,A gateway that enforces Policy at the edge is one implementation of a preventive Guardian.
+Orchestration (BPEL),Agentic Orchestrator,Orchestrator,aow:Orchestrator,exactMatch,Plans are what the Orchestrator produces; Tasks are what it assigns.
+Service Choreography,Agent Choreography,Plan (without a planned_by Orchestrator),aow:Plan,relatedMatch,"Choreographed work still has Tasks and dependencies, but no single planner."
+Service Composition,Agent Assembly (or Agent Build),Plan,aow:Plan,relatedMatch,A composition of Agents and Skills to fulfill an Intent.
+Loose Coupling,Agent Autonomy,Assurance Level,aow:AssuranceLevel,relatedMatch,AOW grades autonomy on the AL0 to AL4 scale.
+Service Granularity,Agent Scope,Role,aow:Role,relatedMatch,Scope is the set of responsibilities an Agent may take on.
+Statelessness,Session State Boundary,Operational Memory / Context (session),aow:OperationalMemory,relatedMatch,"Session state lives in Operational Memory and session Context, not in the Agent."
+Idempotency,Idempotent Action,Action (idempotency_key),aow:idempotencyKey,closeMatch,An Action's idempotency_key makes a retry safe.
+Circuit Breaker,Agent Fallback Protocol,Plan (exception_protocol) / Guardian,aow:exceptionProtocol,relatedMatch,Fallback behavior is the Plan's or Orchestrator's exception_protocol; suspension is a Guardian Action.
+Event-Driven Architecture,Agent Triggers,Signal,aow:Signal,relatedMatch,Triggers are Signals that start or change work.
+Message Exchange,Agent Communication Protocol (ACP),(out of scope),,noMatch,Protocols such as A2A carry AOW Tasks; AOW does not define the message format.
+Service Integration Protocol,Agent Integration Protocol (AIP),Skill (binding),aow:binding,relatedMatch,"A Skill's binding names how it is invoked, for example an MCP tool."
+Interoperability,Cross-Agent Standards,(the ontology itself),,relatedMatch,AOW is offered as one of these standards.
+Enterprise Integration Patterns (EIP),Agent Patterns,Plan,aow:Plan,relatedMatch,Recurring Plan shapes; a pattern catalog is future work.
+Canonical Data Model,Canonical Context Model,Context,aow:Context,closeMatch,"AOW's Context, with its context_type and variables, is a canonical context model."
+Service Consumer / Provider,Requester / Fulfilling Agent,Task (assigned_to) / Actor,aow:assignedTo,relatedMatch,The requester creates the Intent or Task; the fulfilling Actor is the one it is assigned_to.
+Service Versioning,Skill Versioning,"Provenance facet (version, revision_of)",aow:Skill,relatedMatch,Every AOW entity carries version and revision_of.
+Service Virtualization,Agent Virtualization,(out of scope),,noMatch,Simulation is listed as a candidate extension.
+SLA (Service Level Agreement),Agent QoS,"Objective (kpi_target) / Skill (latency, cost_profile)",aow:Objective,relatedMatch,Business-level commitments are Objectives; per-capability characteristics are Skill attributes.
+Service Level Objective (SLO),Agent Performance Objective,Outcome,aow:Outcome,relatedMatch,Outcomes are measured against Objectives; a performance objective is a narrow Objective.
+Governance,Agentic Governance,Policy + Guardian + Assurance Level,aow:Guardian,relatedMatch,AOW's Assurance layer is its governance model.

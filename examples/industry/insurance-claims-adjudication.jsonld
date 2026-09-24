@@ -1,0 +1,161 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    {
+      "@base": "https://example.org/insurance/"
+    }
+  ],
+  "@graph": [
+    {
+      "id": "obj-adjudication-time",
+      "type": "Objective",
+      "description": "Reduce claims adjudication time while keeping SLA compliance above 98%.",
+      "kpi_target": "Adjudication within SLA for 98% of claims",
+      "priority": "high",
+      "time_horizon": "FY2027"
+    },
+    {
+      "id": "intent-eligibility-triage",
+      "type": "Intent",
+      "goal_statement": "Triage incoming claims for eligibility and approve low-risk claims automatically.",
+      "serves_objective": "obj-adjudication-time",
+      "shaped_by": [
+        "ctx-claimant"
+      ],
+      "constrained_by": [
+        "policy-low-risk-auto-approve"
+      ],
+      "requires_assurance": "aow:AL2",
+      "acceptable_risk_band": "low",
+      "status": "active"
+    },
+    {
+      "id": "ctx-claimant",
+      "type": "Context",
+      "context_type": "data",
+      "variables": {
+        "claimant_age": 52,
+        "policy_details": "HO-3 homeowners",
+        "historical_exceptions": 0
+      },
+      "sensitivity_level": "confidential"
+    },
+    {
+      "id": "policy-low-risk-auto-approve",
+      "type": "Policy",
+      "rule_set": "Approve claims scored low-risk automatically; route medium and high risk to an adjuster.",
+      "rule_language": "text",
+      "effect": "permit",
+      "severity": "high",
+      "escalates_to": [
+        "role-adjuster"
+      ]
+    },
+    {
+      "id": "role-adjuster",
+      "type": "Role",
+      "label": "Adjuster"
+    },
+    {
+      "id": "claim-5521",
+      "type": "WorkItem",
+      "item_type": "property-claim",
+      "external_ref": "PC-5521",
+      "state": "approved"
+    },
+    {
+      "id": "plan-5521",
+      "type": "Plan",
+      "realizes": "intent-eligibility-triage",
+      "status": "completed",
+      "has_task": [
+        "task-triage-5521"
+      ]
+    },
+    {
+      "id": "task-triage-5521",
+      "type": "Task",
+      "description": "Score risk and decide eligibility.",
+      "status": "completed",
+      "concerns": [
+        "claim-5521"
+      ],
+      "assigned_to": "agent-triage"
+    },
+    {
+      "id": "agent-triage",
+      "type": "Agent",
+      "name": "Triage agent",
+      "has_skill": [
+        "skill-record-eligibility"
+      ],
+      "autonomy_level": "aow:AL2"
+    },
+    {
+      "id": "skill-record-eligibility",
+      "type": "Skill",
+      "label": "record_eligibility",
+      "side_effects": "reversible"
+    },
+    {
+      "id": "act-triage-5521",
+      "type": "Action",
+      "performed_by": "agent-triage",
+      "fulfills": "task-triage-5521",
+      "invokes": "skill-record-eligibility",
+      "concerns": [
+        "claim-5521"
+      ],
+      "has_confidence": "conf-5521",
+      "started_at": "2026-09-15T08:00:00Z",
+      "status": "succeeded",
+      "rationale": "Risk score low; confidence above the AL2 floor."
+    },
+    {
+      "id": "conf-5521",
+      "type": "Confidence",
+      "value": 0.95,
+      "source": "model",
+      "compared_against": "aow:AL2"
+    },
+    {
+      "id": "res-5521",
+      "type": "Result",
+      "summary": "Eligibility decision: approved.",
+      "status": "success",
+      "generated_by": "act-triage-5521",
+      "affects": [
+        "claim-5521"
+      ],
+      "contributes_to": [
+        "outcome-sla"
+      ]
+    },
+    {
+      "id": "outcome-sla",
+      "type": "Outcome",
+      "evaluates": "obj-adjudication-time",
+      "description": "Illustrative figures.",
+      "kpi_impact": {
+        "sla_compliance": {
+          "before": 0.91,
+          "after": 0.985
+        }
+      }
+    },
+    {
+      "id": "fbk-expand",
+      "type": "Feedback",
+      "feedback_type": "policy",
+      "feedback_on": [
+        "outcome-sla"
+      ],
+      "recommended_adjustments": [
+        "Expand auto-approval to medium-risk water-damage claims under $5,000"
+      ],
+      "updates": [
+        "policy-low-risk-auto-approve"
+      ]
+    }
+  ]
+}

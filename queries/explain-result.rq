@@ -1,0 +1,28 @@
+# Reconstruct why a Result exists: which Action produced it, who performed
+# it and with what Skill, for which Task, under which Plan, to fulfill which
+# Intent, in service of which Objective.
+#
+# This is the "explainability-ready" validation criterion made executable.
+# Run it over AOW instance data (with the ontology loaded alongside).
+
+PREFIX aow: <https://w3id.org/aow#>
+
+SELECT ?result ?summary ?action ?actor ?skill ?rationale ?confidence ?task ?plan ?intent ?objective
+WHERE {
+  ?result a aow:Result ;
+          aow:generatedBy ?action .
+  OPTIONAL { ?result aow:summary ?summary }
+  ?action aow:performedBy ?actor .
+  OPTIONAL { ?action aow:invokes ?skill }
+  OPTIONAL { ?action aow:rationale ?rationale }
+  OPTIONAL { ?result aow:hasConfidence/aow:value ?confidence }
+  OPTIONAL {
+    ?action aow:fulfills ?task .
+    OPTIONAL {
+      ?plan aow:hasTask ?task ;
+            aow:realizes ?intent .
+      ?intent aow:servesObjective ?objective .
+    }
+  }
+}
+ORDER BY ?result

@@ -1,0 +1,17 @@
+# Results that cannot be traced all the way back to an Objective.
+# An empty answer means every Result is explainable end to end.
+
+PREFIX aow: <https://w3id.org/aow#>
+
+SELECT ?result
+WHERE {
+  ?result a aow:Result .
+  FILTER NOT EXISTS {
+    ?result aow:generatedBy ?action .
+    ?action aow:performedBy ?actor ;
+            aow:fulfills ?task .
+    ?plan aow:hasTask ?task ;
+          aow:realizes ?intent .
+    ?intent aow:servesObjective ?objective .
+  }
+}

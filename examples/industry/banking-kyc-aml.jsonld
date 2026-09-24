@@ -1,0 +1,185 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    {
+      "@base": "https://example.org/bank/"
+    }
+  ],
+  "@graph": [
+    {
+      "id": "obj-compliance-throughput",
+      "type": "Objective",
+      "description": "Improve KYC review throughput without weakening AML controls.",
+      "kpi_target": "Onboarding time -40%",
+      "priority": "high"
+    },
+    {
+      "id": "intent-doc-verification",
+      "type": "Intent",
+      "goal_statement": "Verify customer identity documents automatically and flag anomalies for review.",
+      "serves_objective": "obj-compliance-throughput",
+      "shaped_by": [
+        "ctx-risk-profile"
+      ],
+      "constrained_by": [
+        "policy-high-risk-human"
+      ],
+      "requires_assurance": "aow:AL2"
+    },
+    {
+      "id": "ctx-risk-profile",
+      "type": "Context",
+      "context_type": "data",
+      "variables": {
+        "customer_risk": "standard",
+        "jurisdiction": "EU",
+        "pep": false
+      },
+      "sensitivity_level": "restricted"
+    },
+    {
+      "id": "policy-high-risk-human",
+      "type": "Policy",
+      "rule_set": "High-risk customers (PEPs, high-risk jurisdictions) require human review of every verification.",
+      "rule_language": "text",
+      "effect": "require",
+      "severity": "critical",
+      "escalates_to": [
+        "role-kyc-analyst"
+      ]
+    },
+    {
+      "id": "role-kyc-analyst",
+      "type": "Role",
+      "label": "KYC analyst"
+    },
+    {
+      "id": "application-7781",
+      "type": "WorkItem",
+      "item_type": "account-application",
+      "external_ref": "APP-7781",
+      "state": "verified"
+    },
+    {
+      "id": "sig-passport-7781",
+      "type": "Signal",
+      "signal_type": "document",
+      "source": "onboarding-app",
+      "observed_at": "2026-09-15T09:00:00Z",
+      "sensitivity_level": "restricted"
+    },
+    {
+      "id": "obs-mrz-7781",
+      "type": "Observation",
+      "observed_property": "mrz_checksum_valid",
+      "observed_value": true,
+      "derived_from": [
+        "sig-passport-7781"
+      ],
+      "about": "application-7781"
+    },
+    {
+      "id": "plan-7781",
+      "type": "Plan",
+      "realizes": "intent-doc-verification",
+      "has_task": [
+        "task-verify-7781"
+      ]
+    },
+    {
+      "id": "task-verify-7781",
+      "type": "Task",
+      "description": "Verify identity documents.",
+      "concerns": [
+        "application-7781"
+      ],
+      "assigned_to": "agent-kyc"
+    },
+    {
+      "id": "agent-kyc",
+      "type": "Agent",
+      "name": "Document verification agent",
+      "has_skill": [
+        "skill-verify-document",
+        "skill-record-verification"
+      ],
+      "autonomy_level": "aow:AL3"
+    },
+    {
+      "id": "skill-verify-document",
+      "type": "Skill",
+      "label": "verify_document",
+      "side_effects": "none"
+    },
+    {
+      "id": "skill-record-verification",
+      "type": "Skill",
+      "label": "record_verification",
+      "side_effects": "reversible"
+    },
+    {
+      "id": "act-verify-7781",
+      "type": "Action",
+      "performed_by": "agent-kyc",
+      "fulfills": "task-verify-7781",
+      "invokes": "skill-verify-document",
+      "started_at": "2026-09-15T09:00:02Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "act-record-7781",
+      "type": "Action",
+      "performed_by": "agent-kyc",
+      "fulfills": "task-verify-7781",
+      "invokes": "skill-record-verification",
+      "has_confidence": "conf-7781",
+      "started_at": "2026-09-15T09:00:05Z",
+      "status": "succeeded"
+    },
+    {
+      "id": "conf-7781",
+      "type": "Confidence",
+      "value": 0.96,
+      "source": "ensemble",
+      "compared_against": "aow:AL2"
+    },
+    {
+      "id": "res-7781",
+      "type": "Result",
+      "summary": "Documents verified.",
+      "generated_by": "act-record-7781",
+      "affects": [
+        "application-7781"
+      ],
+      "contributes_to": [
+        "outcome-onboarding"
+      ]
+    },
+    {
+      "id": "outcome-onboarding",
+      "type": "Outcome",
+      "evaluates": "obj-compliance-throughput",
+      "description": "Illustrative figures.",
+      "kpi_impact": {
+        "median_onboarding_days": {
+          "before": 5,
+          "after": 2
+        }
+      }
+    },
+    {
+      "id": "fbk-thresholds",
+      "type": "Feedback",
+      "feedback_type": "accuracy",
+      "feedback_on": [
+        "outcome-onboarding"
+      ],
+      "recommended_adjustments": [
+        "Lower the anomaly threshold for utility-bill proof of address"
+      ],
+      "updates": [
+        "skill-verify-document"
+      ]
+    }
+  ]
+}

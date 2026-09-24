@@ -1,0 +1,52 @@
+{
+  "@context": [
+    "https://w3id.org/aow/context.jsonld",
+    {
+      "@base": "https://example.org/t/"
+    }
+  ],
+  "@graph": [
+    {
+      "id": "obj",
+      "type": "Objective",
+      "description": "Reduce backlog."
+    },
+    {
+      "id": "intent",
+      "type": "Intent",
+      "goal_statement": "Clear the backlog.",
+      "serves_objective": "obj",
+      "requires_assurance": "aow:AL2"
+    },
+    {
+      "id": "plan",
+      "type": "Plan",
+      "realizes": "intent",
+      "has_task": [
+        "task"
+      ]
+    },
+    {
+      "id": "task",
+      "type": "Task",
+      "description": "Decide the item."
+    },
+    {
+      "id": "agent",
+      "type": "Agent",
+      "name": "Decision agent",
+      "autonomy_level": "aow:AL3"
+    },
+    {
+      "id": "skill",
+      "type": "Skill",
+      "label": "record_decision",
+      "side_effects": "reversible"
+    },
+    {
+      "id": "c",
+      "type": "Confidence",
+      "value": 1.4
+    }
+  ]
+}
