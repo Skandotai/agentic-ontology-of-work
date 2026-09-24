@@ -87,6 +87,7 @@ def build_owl(m: Model) -> str:
         ("vann:preferredNamespacePrefix", [lit(meta["prefix"], None)]),
         ("vann:preferredNamespaceUri", [lit(meta["namespace"], None)]),
         ("rdfs:seeAlso", [f"<{meta['site']}>", f"<{meta['repository']}>"]),
+        ("dcterms:identifier", [lit("https://doi.org/" + meta["doi"], None)] if meta.get("doi") else []),
     ]))
 
     out.write("\n# ---- Annotation properties used to document the ontology\n\n")

@@ -15,6 +15,11 @@
         "@value": "A platform-agnostic semantic model for enterprise work performed by AI agents, people, and systems. AOW defines Objectives and the Intents and Plans derived from them; the Actors and Skills that perform the work; the Results and Outcomes produced; and the Assurance Levels, Feedback, and Memory used to govern and improve the work."
       }
     ],
+    "http://purl.org/dc/terms/identifier": [
+      {
+        "@value": "https://doi.org/10.5281/zenodo.22945904"
+      }
+    ],
     "http://purl.org/dc/terms/issued": [
       {
         "@type": "http://www.w3.org/2001/XMLSchema#date",

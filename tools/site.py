@@ -95,7 +95,7 @@ def page(*, title: str, description: str, body: str, path: str, current: str = "
   <div class="wrap">
     <p>Agentic Ontology of Work, version 2.0 · By Manish Garg, <a href="https://www.skan.ai">Skan.ai</a></p>
     <p>Prose licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, schemas, and code licensed <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.</p>
-    <p>Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="{REPO}">{REPO.replace("https://", "")}</a></p>
+    <p>DOI: <a href="https://doi.org/10.5281/zenodo.22945904">https://doi.org/10.5281/zenodo.22945904</a> · Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="{REPO}">{REPO.replace("https://", "")}</a></p>
     <p class="family">Related: <a href="{SOA_SITE}">SOA-to-Agentic AI Terminology Mapping</a></p>
   </div>
 </footer>
@@ -358,7 +358,7 @@ def home(m: Model) -> str:
         "description": m.meta["description"],
         "url": SITE,
         "sameAs": REPO,
-        "identifier": "https://w3id.org/aow",
+        "identifier": ["https://doi.org/10.5281/zenodo.22945904", "https://w3id.org/aow"],
         "version": m.meta["version"],
         "datePublished": m.meta["released"],
         "inLanguage": "en",
@@ -467,7 +467,7 @@ def home(m: Model) -> str:
     <div>
       <h2>Contributing</h2>
       <p>Issues and pull requests are welcome, particularly reports of real-world work that AOW cannot describe. <a href="{REPO}/issues/new/choose">Open an issue</a> or see the <a href="{REPO}/blob/main/CONTRIBUTING.md">contribution guidelines</a>.</p>
-      <p class="small muted">Citation: Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. <a href="{REPO}">{REPO.replace("https://", "")}</a></p>
+      <p class="small muted">Citation: Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. <a href="https://doi.org/10.5281/zenodo.22945905">https://doi.org/10.5281/zenodo.22945905</a></p>
     </div>
   </div>
 </section>
@@ -714,7 +714,9 @@ def about(m: Model) -> str:
 
   <h2>Citation</h2>
   <p>Whitepaper preprint: https://doi.org/10.5281/zenodo.22945754</p>
-  <blockquote>Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. {REPO}</blockquote>
+  <p>Concept DOI (latest version): https://doi.org/10.5281/zenodo.22945904</p>
+  <p>Version 2.0.0 DOI: https://doi.org/10.5281/zenodo.22945905</p>
+  <blockquote>Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. https://doi.org/10.5281/zenodo.22945905</blockquote>
 </section>
 """
     body = re.sub(r'(?<![">=])(https://[^\s<)]*[^\s<).,;])', r'<a href="\1">\1</a>', body)

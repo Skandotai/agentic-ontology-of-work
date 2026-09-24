@@ -2,7 +2,7 @@
 
 **A semantic model for enterprise work performed by AI agents, people, and systems**
 
-Version 2.0 · September 2026 · Manish Garg, Skan.ai
+Version 2.0 · September 2026 · Manish Garg, Skan.ai · Ontology DOI: https://doi.org/10.5281/zenodo.22945905
 
 Preprint: https://doi.org/10.5281/zenodo.22945754
 

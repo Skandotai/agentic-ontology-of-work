@@ -24,6 +24,8 @@ ontology:
   iri: "https://w3id.org/aow"
   site: "https://skandotai.github.io/agentic-ontology-of-work/"
   repository: "https://github.com/Skandotai/agentic-ontology-of-work"
+  doi: "10.5281/zenodo.22945904"
+  version_doi: "10.5281/zenodo.22945905"
   creator:
     name: Manish Garg
     affiliation: Skan.ai

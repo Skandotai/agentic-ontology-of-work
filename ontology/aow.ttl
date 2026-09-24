@@ -27,7 +27,8 @@
     dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
     vann:preferredNamespacePrefix "aow" ;
     vann:preferredNamespaceUri "https://w3id.org/aow#" ;
-    rdfs:seeAlso <https://skandotai.github.io/agentic-ontology-of-work/> , <https://github.com/Skandotai/agentic-ontology-of-work> .
+    rdfs:seeAlso <https://skandotai.github.io/agentic-ontology-of-work/> , <https://github.com/Skandotai/agentic-ontology-of-work> ;
+    dcterms:identifier "https://doi.org/10.5281/zenodo.22945904" .
 
 
 # ---- Annotation properties used to document the ontology

@@ -30,6 +30,14 @@ keywords:
 license: "CC-BY-4.0"
 version: 2.0.0
 date-released: "2026-09-24"
+doi: "10.5281/zenodo.22945905"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22945904"
+    description: "Concept DOI; resolves to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22945905"
+    description: "Version DOI for 2.0.0"
 references:
   - type: article
     title: "Agentic Ontology of Work (AOW), Version 2.0: A semantic model for enterprise work performed by AI agents, people, and systems"
