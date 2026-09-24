@@ -73,7 +73,7 @@ def build_html(m: Model) -> str:
   <p class="sub">A semantic model for enterprise work performed by AI agents, people, and systems</p>
   <p class="author">Manish Garg</p>
   <p class="aff">Skan.ai</p>
-  <p class="meta">Preprint, September 2026. Not peer reviewed.</p>
+  <p class="meta">September 2026</p>
   <p class="meta">Ontology, schemas, and examples: {REPO}</p>
   <p class="meta">Licensed CC BY 4.0. Cite as: Garg, M. (2026). Agentic Ontology of Work (AOW), version {version}. Skan.ai. {cite}</p>
 </div>
@@ -87,7 +87,7 @@ def main(chromium: str | None) -> None:
     m = Model()
     html = build_html(m)
     footer = ('<div style="font-size:7.5px;width:100%;padding:0 1in;color:#5e5f58;font-family:Arial;'
-              'display:flex;justify-content:space-between"><span>Garg · Agentic Ontology of Work 2.0 · Preprint</span>'
+              'display:flex;justify-content:space-between"><span>Garg · Agentic Ontology of Work 2.0</span>'
               '<span><span class="pageNumber"></span></span></div>')
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=chromium) if chromium else p.chromium.launch()
@@ -103,7 +103,7 @@ def main(chromium: str | None) -> None:
 
         doc = pymupdf.open(OUT)
         doc.set_metadata({**doc.metadata, "title": "Agentic Ontology of Work (AOW), Version 2.0",
-                          "author": "Manish Garg", "subject": "Preprint. Not peer reviewed.",
+                          "author": "Manish Garg", "subject": "A semantic model for enterprise work performed by AI agents, people, and systems",
                           "keywords": ", ".join(KEYWORDS), "creator": "", "producer": ""})
         doc.saveIncr()
         print(f"wrote {OUT.relative_to(ROOT)} ({doc.page_count} pages)")
