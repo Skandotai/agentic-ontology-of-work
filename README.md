@@ -107,9 +107,15 @@ To change the ontology, edit `aow.yaml` and run:
 python tools/build.py && python tools/site.py && python tools/validate.py
 ```
 
-## Related work
+## Related project
 
-AOW is a companion to the [SOA-to-Agentic AI Terminology Mapping](https://github.com/Skandotai/soa-to-agentic-terms), which maps 28 Service-Oriented Architecture terms to agentic equivalents. [`crosswalks/soa-to-agentic-terms.csv`](crosswalks/soa-to-agentic-terms.csv) maps each of those terms to the corresponding AOW class or property.
+The SOA-to-Agentic AI Terminology Mapping maps 28 Service-Oriented Architecture terms to agentic equivalents.
+
+- Repository: https://github.com/Skandotai/soa-to-agentic-terms
+- Website: https://skandotai.github.io/soa-to-agentic-terms/
+- Crosswalk from the 28 agentic terms to AOW: [`crosswalks/soa-to-agentic-terms.csv`](crosswalks/soa-to-agentic-terms.csv)
+
+## Related standards
 
 AOW reuses or aligns with existing standards where they apply, including W3C PROV-O, the W3C Organization Ontology, SOSA, ODRL, and schema.org, and the A2A task lifecycle. Whitepaper section 12 describes its relationship to BPMN, DMN, multi-agent systems research, process mining standards (XES, OCEL), MCP, OpenTelemetry, the NIST AI RMF, ISO/IEC 42001, and the EU AI Act.
 
