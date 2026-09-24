@@ -76,7 +76,7 @@ AssuranceLevel,level,aow:level,integer,true,,Position on the AL0 to AL4 scale.
 AssuranceLevel,human_role,aow:humanRole,text,false,,What people do at this level.
 AssuranceLevel,agent_role,aow:agentRole,text,false,,What Agents may do at this level.
 AssuranceLevel,review_protocol,aow:reviewProtocol,text,false,,The human oversight this level requires.
-AssuranceLevel,default_confidence_floor,aow:defaultConfidenceFloor,number,false,,"Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor."
+AssuranceLevel,default_confidence_floor,aow:defaultConfidenceFloor,number,false,,"Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different threshold."
 AssuranceLevel,risk_class,aow:riskClass,string,false,,The class of risk this level is suited to.
 Outcome,kpi_impact,aow:kpiImpact,json,false,,"The measured change, for example {""cycle_time_hours"": {""before"": 48, ""after"": 0.12}}."
 Outcome,measured_at,aow:measuredAt,datetime,false,,When the Outcome was measured.

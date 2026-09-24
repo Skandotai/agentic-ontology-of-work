@@ -22,7 +22,7 @@ derived_from,aow:derivedFrom,derived from,source of,Observation,Signal,many,Obse
 about,aow:about,about,observed by,Observation,WorkItem|Actor|Action|Task,one,,,What the Observation describes.
 affects,aow:affects,affects,affected by,Result,WorkItem,many,,,Work Items whose state the Result changed.
 has_confidence,aow:hasConfidence,has confidence,confidence of,Result|Observation|Action|Plan,Confidence,one,,,"The Confidence attached to this Result, Observation, Action, or Plan."
-compared_against,aow:comparedAgainst,compared against,threshold for,Confidence,AssuranceLevel,one,,,The Assurance Level whose confidence floor the Confidence was checked against.
+compared_against,aow:comparedAgainst,compared against,threshold for,Confidence,AssuranceLevel,one,,,The Assurance Level whose confidence threshold the Confidence was checked against.
 contributes_to,aow:contributesTo,contributes to,aggregates,Result,Outcome,many,,,Outcomes this Result counts toward.
 evaluates,aow:evaluates,evaluates,evaluated by,Outcome,Objective,one,Outcome,,The Objective the Outcome is measured against.
 feedback_on,aow:feedbackOn,feedback on,received feedback,Feedback,Outcome|Result|Action|Plan,many,Feedback,,What the Feedback is about.

@@ -543,7 +543,7 @@ def md_matrix(m: Model) -> str:
 
 
 def md_assurance(m: Model) -> str:
-    out = ["| Level | Name | People | Agents | Default confidence floor | Suited to |", "|---|---|---|---|---|---|"]
+    out = ["| Level | Name | People | Agents | Default confidence threshold | Suited to |", "|---|---|---|---|---|---|"]
     for al in m.assurance_levels:
         floor = "—" if al["default_confidence_floor"] is None else f"{al['default_confidence_floor']:.2f}"
         out.append(f"| **{al['id']}** | {al['label']} | {al['human_role']} | {al['agent_role']} | {floor} | {al['risk_class']} |")

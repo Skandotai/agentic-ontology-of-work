@@ -6,7 +6,7 @@ body:
     id: term
     attributes:
       label: Term
-      description: For example, "Intent", "requires_assurance", or a new term you're proposing.
+      description: For example, "Intent", "requires_assurance", or a proposed new term.
     validations:
       required: true
   - type: textarea
@@ -19,12 +19,12 @@ body:
   - type: textarea
     id: why
     attributes:
-      label: Why
-      description: What can't be expressed today, or what is ambiguous? Why can't it be an extension in your own namespace?
+      label: Rationale
+      description: What cannot be expressed today, or what is ambiguous? Why is an extension in a separate namespace not sufficient?
     validations:
       required: true
   - type: textarea
     id: alignment
     attributes:
       label: Related standards
-      description: Does an existing standard or protocol already define this? (PROV-O, BPMN, A2A, MCP, and so on)
+      description: Does an existing standard or protocol define this concept (for example, PROV-O, BPMN, A2A, or MCP)?

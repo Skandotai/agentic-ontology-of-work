@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agentic Ontology of Work (AOW)</title>
-<meta name="description" content="An open, platform-agnostic ontology of agentic enterprise work: 25 classes across Perception, Cognition, Execution, and Assurance, with a five-level autonomy scale. OWL, JSON-LD, SHACL, and JSON Schema.">
+<meta name="description" content="A platform-agnostic ontology of enterprise work performed by AI agents, people, and systems. 25 classes in four layers, with a five-level autonomy scale. Published in OWL, JSON-LD, SHACL, and JSON Schema.">
 <link rel="canonical" href="https://skandotai.github.io/agentic-ontology-of-work/">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#161714">
 <meta property="og:title" content="Agentic Ontology of Work (AOW)">
-<meta property="og:description" content="An open, platform-agnostic ontology of agentic enterprise work: 25 classes across Perception, Cognition, Execution, and Assurance, with a five-level autonomy scale. OWL, JSON-LD, SHACL, and JSON Schema.">
+<meta property="og:description" content="A platform-agnostic ontology of enterprise work performed by AI agents, people, and systems. 25 classes in four layers, with a five-level autonomy scale. Published in OWL, JSON-LD, SHACL, and JSON Schema.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://skandotai.github.io/agentic-ontology-of-work/">
 <meta property="og:image" content="https://skandotai.github.io/agentic-ontology-of-work/assets/social-preview.png">
@@ -30,7 +30,7 @@
   "@type": "Dataset",
   "name": "Agentic Ontology of Work (AOW)",
   "alternateName": "AOW",
-  "description": "A platform-agnostic semantic model for intelligent, autonomous, and governed enterprise work. AOW names the things that agentic systems, people, and the governance around them have in common: the Objectives work serves, the Intents and Plans derived from them, the Actors and Skills that carry them out, the Results and Outcomes they produce, and the Assurance, Feedback, and Memory that keep the whole loop safe and improving.",
+  "description": "A platform-agnostic semantic model for enterprise work performed by AI agents, people, and systems. AOW defines Objectives and the Intents and Plans derived from them; the Actors and Skills that perform the work; the Results and Outcomes produced; and the Assurance Levels, Feedback, and Memory used to govern and improve the work.",
   "url": "https://skandotai.github.io/agentic-ontology-of-work/",
   "sameAs": "https://github.com/Skandotai/agentic-ontology-of-work",
   "identifier": "https://w3id.org/aow",
@@ -111,36 +111,36 @@
 <main id="main">
 
 <div class="hero wrap">
-  <p class="eyebrow">An open ontology for agentic work</p>
+  <p class="eyebrow">Open ontology · Version 2.0</p>
   <h1>Agentic Ontology of Work</h1>
-  <p class="lede">Agents are being put to work faster than anyone can agree on how to describe that work. AOW is a shared, platform-agnostic model for it: what the work is for, who or what does it, under which rules and how much autonomy, what it changed, and what was learned. It's written precisely enough that software can check it.</p>
+  <p class="lede">A platform-agnostic semantic model for enterprise work performed by AI agents, people, and systems. AOW defines the objectives work serves, who performs it, the rules and level of autonomy that apply, the results it produces, and how outcomes are fed back. It is published in formats that software can validate.</p>
   <div class="cta-row">
-    <a class="btn primary" href="entities/index.html">Explore the ontology</a>
+    <a class="btn primary" href="entities/index.html">View the ontology</a>
     <a class="btn" href="whitepaper/index.html">Read the whitepaper</a>
-    <a class="btn" href="https://github.com/Skandotai/agentic-ontology-of-work">View on GitHub</a>
+    <a class="btn" href="https://github.com/Skandotai/agentic-ontology-of-work">GitHub repository</a>
   </div>
-  <p class="meta">Version 2.0 · By Manish Garg, Skan.ai · Free to use and adapt, with attribution</p>
+  <p class="meta">Author: Manish Garg, Skan.ai · License: CC-BY 4.0 (prose), Apache 2.0 (ontology and code)</p>
 </div>
 
 <section class="wrap divider-top">
   <div class="two-col">
     <div>
-      <h2>Why an ontology</h2>
-      <p>Ask three teams what an "agent" is and you get four answers. The same goes for "task," "workflow," and "orchestration." That's why integrations break where one platform hands off to another, why governance policies mean different things in different systems, and why audit trails stop at the seams.</p>
-      <p>A glossary gives people the same words. An ontology also fixes what each thing carries and how things connect: an Intent serves an Objective, a Result was generated by an Action, and an Action was performed by an Actor under a Policy. Because it's formal, conformance can be checked instead of asserted.</p>
+      <h2>Purpose</h2>
+      <p>Terms such as "agent," "task," "workflow," and "orchestration" are used inconsistently across vendors and teams. This makes agentic systems difficult to integrate, govern, and audit, particularly where work passes from one system to another.</p>
+      <p>AOW addresses this with a formal ontology. In addition to defining terms, it specifies the attributes of each entity and the relationships between entities. For example, an Intent serves an Objective, a Result is generated by an Action, and an Action is performed by an Actor under a Policy. Because these rules are formal, conformance can be verified by software.</p>
     </div>
     <div>
-      <h2>What's in it</h2>
-      <p><b>25 classes and 33 relationships</b>, across four layers. It follows work from the business <b>Objective</b> it serves, through <b>Intents</b>, <b>Plans</b>, and <b>Tasks</b>, to the <b>Actions</b> that agents and people take with their <b>Skills</b>, the <b>Results</b> those produce, and the <b>Outcomes</b> they add up to.</p>
-      <p>Around that path sit the things that make autonomy safe to grant: <b>Policy</b>, <b>Confidence</b>, a five-level <b>Assurance Level</b> scale, an independent <b>Guardian</b>, and <b>Feedback</b> into <b>Memory</b>.</p>
+      <h2>Contents</h2>
+      <p>AOW 2.0 defines <b>25 classes and 33 relationships</b> in four layers. The model links each business <b>Objective</b> to the <b>Intents</b>, <b>Plans</b>, and <b>Tasks</b> derived from it, the <b>Actions</b> that agents and people take using <b>Skills</b>, and the <b>Results</b> and <b>Outcomes</b> produced.</p>
+      <p>Governance is part of the model: <b>Policy</b>, <b>Confidence</b>, a five-level <b>Assurance Level</b> scale, an independent <b>Guardian</b>, and <b>Feedback</b> recorded in <b>Memory</b>.</p>
     </div>
   </div>
 </section>
 
 <section class="wrap divider-top" id="model">
-  <p class="eyebrow">The model</p>
-  <h2>Four layers, one graph</h2>
-  <p>Each layer answers one question. Hover over or tab to a class to see what it connects to; select it for the full definition.</p>
+  <p class="eyebrow">Model</p>
+  <h2>Classes and relationships</h2>
+  <p>The diagram shows each class by layer. Hover over or select a class with the keyboard to show its relationships. Select a class to open its definition.</p>
   <figure class="graph">
     <div class="graph-scroll">
 <svg id="aow-graph" viewBox="0 0 1060 640" role="group" aria-labelledby="g-title g-desc" xmlns="http://www.w3.org/2000/svg">
@@ -256,59 +256,60 @@
 <a class="g-node" href="entities/knowledge-base/index.html" data-id="KnowledgeBase" data-info="&lt;b&gt;Knowledge Base&lt;/b&gt; Long-lived memory of generalized patterns, rules, and precedents. A kind of Memory." aria-label="Knowledge Base: Long-lived memory of generalized patterns, rules, and precedents."><rect x="812.0" y="557.0" width="176" height="34"/><circle class="dot" cx="827.0" cy="574" r="5" fill="var(--layer-assurance)"/><text x="840.0" y="579">Knowledge Base</text></a>
 </svg>
     </div>
-    <p class="g-info" id="g-info" aria-live="polite">Hover over or tab to a class to see its definition and relationships.</p>
-    <figcaption>The main path is drawn by default; hovering shows every relationship of a class, with dashed lines for "is a kind of." <span class="graph-hint">On a small screen, scroll the diagram sideways, or use the lists below.</span></figcaption>
+    <p class="g-info" id="g-info" aria-live="polite">Hover over or select a class to show its definition and relationships.</p>
+    <figcaption>The principal relationships are shown by default. Dashed lines indicate subclasses. <span class="graph-hint">On small screens, scroll the diagram horizontally or use the lists below.</span></figcaption>
   </figure>
-  <div class="layers"><div class="layer perception"><p class="eyebrow">Layer 1</p><h3>Perception</h3><p class="q">What exists, and what is happening?</p><ul><li><a href="entities/work-item/index.html">Work Item</a></li><li><a href="entities/signal/index.html">Signal</a></li><li><a href="entities/observation/index.html">Observation</a></li></ul></div><div class="layer cognition"><p class="eyebrow">Layer 2</p><h3>Cognition</h3><p class="q">What should happen, and within what limits?</p><ul><li><a href="entities/objective/index.html">Objective</a></li><li><a href="entities/intent/index.html">Intent</a></li><li><a href="entities/context/index.html">Context</a></li><li><a href="entities/policy/index.html">Policy</a></li><li><a href="entities/plan/index.html">Plan</a></li></ul></div><div class="layer execution"><p class="eyebrow">Layer 3</p><h3>Execution</h3><p class="q">Who does the work, and what did it change?</p><ul><li><a href="entities/task/index.html">Task</a></li><li><a href="entities/actor/index.html">Actor</a></li><li><a href="entities/agent/index.html">Agent</a></li><li><a href="entities/human-actor/index.html">Human Actor</a></li><li><a href="entities/orchestrator/index.html">Orchestrator</a></li><li><a href="entities/role/index.html">Role</a></li><li><a href="entities/skill/index.html">Skill</a></li><li><a href="entities/action/index.html">Action</a></li><li><a href="entities/result/index.html">Result</a></li></ul></div><div class="layer assurance"><p class="eyebrow">Layer 4</p><h3>Assurance</h3><p class="q">Was it safe, did it work, and what did we learn?</p><ul><li><a href="entities/guardian/index.html">Guardian</a></li><li><a href="entities/confidence/index.html">Confidence</a></li><li><a href="entities/assurance-level/index.html">Assurance Level</a></li><li><a href="entities/outcome/index.html">Outcome</a></li><li><a href="entities/feedback/index.html">Feedback</a></li><li><a href="entities/memory/index.html">Memory</a></li><li><a href="entities/operational-memory/index.html">Operational Memory</a></li><li><a href="entities/knowledge-base/index.html">Knowledge Base</a></li></ul></div></div>
+  <div class="layers"><div class="layer perception"><p class="eyebrow">Layer 1</p><h3>Perception</h3><p class="q">Records the work in progress and what is observed about it.</p><ul><li><a href="entities/work-item/index.html">Work Item</a></li><li><a href="entities/signal/index.html">Signal</a></li><li><a href="entities/observation/index.html">Observation</a></li></ul></div><div class="layer cognition"><p class="eyebrow">Layer 2</p><h3>Cognition</h3><p class="q">Defines what should happen and the limits that apply.</p><ul><li><a href="entities/objective/index.html">Objective</a></li><li><a href="entities/intent/index.html">Intent</a></li><li><a href="entities/context/index.html">Context</a></li><li><a href="entities/policy/index.html">Policy</a></li><li><a href="entities/plan/index.html">Plan</a></li></ul></div><div class="layer execution"><p class="eyebrow">Layer 3</p><h3>Execution</h3><p class="q">Records who performed the work and what it changed.</p><ul><li><a href="entities/task/index.html">Task</a></li><li><a href="entities/actor/index.html">Actor</a></li><li><a href="entities/agent/index.html">Agent</a></li><li><a href="entities/human-actor/index.html">Human Actor</a></li><li><a href="entities/orchestrator/index.html">Orchestrator</a></li><li><a href="entities/role/index.html">Role</a></li><li><a href="entities/skill/index.html">Skill</a></li><li><a href="entities/action/index.html">Action</a></li><li><a href="entities/result/index.html">Result</a></li></ul></div><div class="layer assurance"><p class="eyebrow">Layer 4</p><h3>Assurance</h3><p class="q">Governs autonomy, measures outcomes, and records feedback.</p><ul><li><a href="entities/guardian/index.html">Guardian</a></li><li><a href="entities/confidence/index.html">Confidence</a></li><li><a href="entities/assurance-level/index.html">Assurance Level</a></li><li><a href="entities/outcome/index.html">Outcome</a></li><li><a href="entities/feedback/index.html">Feedback</a></li><li><a href="entities/memory/index.html">Memory</a></li><li><a href="entities/operational-memory/index.html">Operational Memory</a></li><li><a href="entities/knowledge-base/index.html">Knowledge Base</a></li></ul></div></div>
 </section>
 
 <section class="wrap divider-top" id="autonomy">
-  <p class="eyebrow">Governed autonomy</p>
-  <h2>Five levels of autonomy, and a rule for when they disagree</h2>
-  <p>An Intent says how much autonomy its work allows. A Task or a Skill can narrow that, and each Agent has been cleared up to a level. The <b>effective level is the lowest of them</b>: autonomy can be narrowed along the way, never widened. Within that level, an Agent that isn't confident enough escalates.</p>
-  <div class="scale"><div class="step" style="--n:0"><p class="lvl">AL0</p><p class="nm">Manual</p><p><b>People:</b> Performs the work.</p><p><b>Agents:</b> Observes and prepares; takes no Action that changes a Work Item.</p><p class="floor">People do the work</p></div><div class="step" style="--n:1"><p class="lvl">AL1</p><p class="nm">Assisted</p><p><b>People:</b> Decides. Approves every Action that changes a Work Item before it takes effect.</p><p><b>Agents:</b> Recommends, drafts, and prepares.</p><p class="floor">Every state change approved by a person</p></div><div class="step" style="--n:2"><p class="lvl">AL2</p><p class="nm">Delegated</p><p><b>People:</b> Confirms when confidence is low or a Policy triggers; reviews a sample otherwise.</p><p><b>Agents:</b> Decides and acts within Policy.</p><p class="floor">Default confidence floor 0.90</p></div><div class="step" style="--n:3"><p class="lvl">AL3</p><p class="nm">Supervised</p><p><b>People:</b> Reviews by exception, when the Guardian raises an alert, and in periodic audit.</p><p><b>Agents:</b> Acts, and must be able to reverse or compensate its Actions.</p><p class="floor">Default confidence floor 0.95</p></div><div class="step" style="--n:4"><p class="lvl">AL4</p><p class="nm">Autonomous</p><p><b>People:</b> Sets Policy and monitors aggregate Outcomes.</p><p><b>Agents:</b> Acts without routine human review; the Guardian can suspend it at any time.</p><p class="floor">Default confidence floor 0.98</p></div></div>
-  <p class="small muted">The scale builds on the levels-of-automation literature, from Sheridan and Verplank (1978) and Parasuraman, Sheridan, and Wickens (2000) to SAE J3016. <a href="whitepaper/index.html#7-assurance-levels-and-governed-autonomy">How the levels work →</a></p>
+  <p class="eyebrow">Assurance Levels</p>
+  <h2>Five levels of autonomy</h2>
+  <p>An Intent specifies the maximum level of autonomy permitted for its work. A Task or Skill may specify a lower level, and each Agent is cleared up to a specified level. The <b>effective level is the lowest of these</b>. If an Agent's confidence falls below the threshold for the effective level, the Agent must escalate to a person.</p>
+  <div class="scale"><div class="step" style="--n:0"><p class="lvl">AL0</p><p class="nm">Manual</p><p><b>People:</b> Performs the work.</p><p><b>Agents:</b> Observes and prepares; takes no Action that changes a Work Item.</p><p class="floor">Work performed by people</p></div><div class="step" style="--n:1"><p class="lvl">AL1</p><p class="nm">Assisted</p><p><b>People:</b> Decides. Approves every Action that changes a Work Item before it takes effect.</p><p><b>Agents:</b> Recommends, drafts, and prepares.</p><p class="floor">Every change approved by a person</p></div><div class="step" style="--n:2"><p class="lvl">AL2</p><p class="nm">Delegated</p><p><b>People:</b> Confirms when confidence is low or a Policy triggers; reviews a sample otherwise.</p><p><b>Agents:</b> Decides and acts within Policy.</p><p class="floor">Default confidence threshold 0.90</p></div><div class="step" style="--n:3"><p class="lvl">AL3</p><p class="nm">Supervised</p><p><b>People:</b> Reviews by exception, when the Guardian raises an alert, and in periodic audit.</p><p><b>Agents:</b> Acts, and must be able to reverse or compensate its Actions.</p><p class="floor">Default confidence threshold 0.95</p></div><div class="step" style="--n:4"><p class="lvl">AL4</p><p class="nm">Autonomous</p><p><b>People:</b> Sets Policy and monitors aggregate Outcomes.</p><p><b>Agents:</b> Acts without routine human review; the Guardian can suspend it at any time.</p><p class="floor">Default confidence threshold 0.98</p></div></div>
+  <p class="small muted">The scale is based on established levels-of-automation research, including Sheridan and Verplank (1978), Parasuraman, Sheridan, and Wickens (2000), and SAE J3016. <a href="whitepaper/index.html#7-assurance-levels-and-governed-autonomy">Whitepaper, section 7</a></p>
 </section>
 
 <section class="wrap divider-top" id="checked">
-  <p class="eyebrow">Checked, not claimed</p>
-  <h2>Every example passes four gates</h2>
+  <p class="eyebrow">Validation</p>
+  <h2>Validation checks</h2>
+  <p>Every example in the repository is validated against four checks on each change.</p>
   <ol class="gates">
-    <li><b>JSON Schema</b>The document is well formed, and unknown keys (typos) are rejected.</li>
-    <li><b>SHACL</b>The graph is well formed: every Result has an Action, every link points to the right kind of thing.</li>
-    <li><b>Explainability</b>Every Result traces back to the Objective it served.</li>
-    <li><b>Oversight</b>No Agent acted beyond the oversight its effective Assurance Level requires.</li>
+    <li><b>JSON Schema</b>The document is well formed and contains no unrecognized keys.</li>
+    <li><b>SHACL</b>The data is well formed. For example, every Result has an Action, and every relationship points to the correct type of entity.</li>
+    <li><b>Traceability</b>Every Result can be traced to the Objective it served.</li>
+    <li><b>Oversight</b>No Agent acted without the human oversight required by its effective Assurance Level.</li>
   </ol>
-  <p>Here's gate 3 applied to the <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/examples/claims-processing.jsonld">worked claims example</a>. The last row is a claim the agent escalated at 0.81 confidence, below its 0.90 floor, which an adjuster then decided. Both are in the same record, in the same shape.</p>
+  <p>The table below shows the traceability check applied to the <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/examples/claims-processing.jsonld">claims processing example</a>. In the last row, the agent's confidence was 0.81, below the required 0.90, so the claim was escalated and decided by a claims adjuster.</p>
   <div class="table-scroll"><table><thead><tr><th scope="col">Result</th><th scope="col">Performed by</th><th scope="col">Skill</th><th scope="col">Task</th><th scope="col">Intent</th><th scope="col">Objective</th></tr></thead><tbody><tr><td>Monthly benefit of $3,180 calculated.</td><td>Benefit agent</td><td>calculate_benefit</td><td>Determine the monthly benefit.</td><td>Automate eligibility determination</td><td>Faster disability claims</td></tr><tr><td>Coverage active under policy form LTD-2024 on the date of disability.</td><td>Coverage agent</td><td>check_coverage</td><td>Validate that the claimant&#x27;s coverage was active on the date of disability.</td><td>Automate eligibility determination</td><td>Faster disability claims</td></tr><tr><td>Eligibility approved.</td><td>Validation agent</td><td>record_decision</td><td>Generate and record the eligibility decision.</td><td>Automate eligibility determination</td><td>Faster disability claims</td></tr><tr><td>Eligibility approved after adjuster review.</td><td>Claims adjuster 17</td><td>record_decision</td><td>Generate and record the eligibility decision.</td><td>Automate eligibility determination</td><td>Faster disability claims</td></tr></tbody></table></div>
 </section>
 
 <section class="wrap divider-top" id="downloads">
-  <p class="eyebrow">Use it</p>
+  <p class="eyebrow">Downloads</p>
   <h2>Downloads</h2>
-  <p>Everything is generated from one source file, <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/aow.yaml"><code>aow.yaml</code></a>, so the formats can't drift apart. Terms have permanent identifiers under <code>https://w3id.org/aow</code>.</p>
-  <div class="download-grid"><a class="download" href="downloads/agentic-ontology-of-work-v2.0.pdf"><p class="dl-name">The whitepaper <span class="dl-meta">PDF</span></p><p class="dl-desc">The full paper, version 2.0: every entity, the Assurance Level scale, the worked example, and how AOW relates to existing standards.</p></a><a class="download" href="downloads/agentic-ontology-of-work-reference-card.pdf"><p class="dl-name">Reference card <span class="dl-meta">PDF</span></p><p class="dl-desc">Every class on one page, by layer, with the Assurance Level scale. For printing and pinning up.</p></a><a class="download" href="ontology/aow.ttl"><p class="dl-name">The ontology <span class="dl-meta">OWL · Turtle</span></p><p class="dl-desc">For knowledge graphs, reasoners, and ontology editors such as Protégé. Also as JSON-LD.</p></a><a class="download" href="ontology/context.jsonld"><p class="dl-name">JSON-LD context <span class="dl-meta">JSON-LD</span></p><p class="dl-desc">Makes plain AOW JSON readable as RDF with no changes.</p></a><a class="download" href="ontology/shapes.ttl"><p class="dl-name">Validation shapes <span class="dl-meta">SHACL</span></p><p class="dl-desc">Checks that a graph of AOW data is well formed.</p></a><a class="download" href="schemas/aow.schema.json"><p class="dl-name">JSON Schemas <span class="dl-meta">JSON Schema</span></p><p class="dl-desc">One schema per class, plus a document bundle, for teams that never touch RDF.</p></a><a class="download" href="downloads/aow-classes.csv"><p class="dl-name">Classes, attributes, relationships <span class="dl-meta">CSV</span></p><p class="dl-desc">The whole model as three spreadsheets. Also attributes and relationships CSVs.</p></a><a class="download" href="downloads/agentic-ontology-of-work-v1.0.pdf"><p class="dl-name">Version 1.0 <span class="dl-meta">PDF</span></p><p class="dl-desc">The original January 2026 paper, kept as published.</p></a></div>
+  <p>All formats are generated from a single source file, <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/aow.yaml"><code>aow.yaml</code></a>. Terms have permanent identifiers under <code>https://w3id.org/aow</code>.</p>
+  <div class="download-grid"><a class="download" href="downloads/agentic-ontology-of-work-v2.0.pdf"><p class="dl-name">Whitepaper <span class="dl-meta">PDF</span></p><p class="dl-desc">Version 2.0 of the whitepaper, including all entity definitions, the Assurance Level scale, and the worked example.</p></a><a class="download" href="downloads/agentic-ontology-of-work-reference-card.pdf"><p class="dl-name">Reference card <span class="dl-meta">PDF</span></p><p class="dl-desc">All classes and the Assurance Level scale on a single page.</p></a><a class="download" href="ontology/aow.ttl"><p class="dl-name">Ontology <span class="dl-meta">OWL · Turtle</span></p><p class="dl-desc">For ontology editors, reasoners, and knowledge graphs. Also available as JSON-LD.</p></a><a class="download" href="ontology/context.jsonld"><p class="dl-name">JSON-LD context <span class="dl-meta">JSON-LD</span></p><p class="dl-desc">Allows AOW JSON documents to be read as RDF.</p></a><a class="download" href="ontology/shapes.ttl"><p class="dl-name">Validation shapes <span class="dl-meta">SHACL</span></p><p class="dl-desc">Validates AOW data in RDF.</p></a><a class="download" href="schemas/aow.schema.json"><p class="dl-name">JSON Schemas <span class="dl-meta">JSON Schema</span></p><p class="dl-desc">Validates AOW data in JSON. One schema per class, plus a document schema.</p></a><a class="download" href="downloads/aow-classes.csv"><p class="dl-name">Classes <span class="dl-meta">CSV</span></p><p class="dl-desc">All classes with definitions. Attributes and relationships are available as separate CSV files.</p></a><a class="download" href="downloads/agentic-ontology-of-work-v1.0.pdf"><p class="dl-name">Version 1.0 <span class="dl-meta">PDF</span></p><p class="dl-desc">The original paper, January 2026.</p></a></div>
 </section>
 
 <section class="wrap divider-top">
-  <p class="eyebrow">Standing on shoulders</p>
-  <h2>Built from parts the industry already trusts</h2>
-  <p>Where a standard already defines a concept, AOW reuses it or aligns with it rather than inventing its own. <a href="whitepaper/index.html#12-how-aow-relates-to-existing-work">Where each comes from, and where AOW differs →</a></p>
+  <p class="eyebrow">Related standards</p>
+  <h2>Related standards</h2>
+  <p>AOW reuses or aligns with existing standards where they define the same concept. <a href="whitepaper/index.html#12-how-aow-relates-to-existing-work">Whitepaper, section 12</a> describes each relationship.</p>
   <div class="standards"><span>W3C PROV-O</span><span>W3C Organization Ontology</span><span>W3C SOSA</span><span>W3C ODRL</span><span>schema.org</span><span>OWL 2</span><span>SHACL</span><span>JSON-LD 1.1</span><span>BPMN</span><span>DMN</span><span>IEEE XES</span><span>OCEL 2.0</span><span>Model Context Protocol</span><span>Agent2Agent (A2A)</span><span>OpenTelemetry GenAI</span><span>NIST AI RMF</span><span>ISO/IEC 42001</span><span>EU AI Act</span></div>
 </section>
 
 <section class="wrap divider-top">
   <div class="two-col">
     <div class="callout">
-      <p class="eyebrow">Companion project</p>
+      <p class="eyebrow">Related project</p>
       <h3 style="margin-top:0">SOA-to-Agentic AI Terminology Mapping</h3>
-      <p>Twenty-eight Service-Oriented Architecture terms translated into their agentic equivalents. The mapping is the vocabulary; AOW is the structure. A <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/crosswalks/soa-to-agentic-terms.csv">crosswalk</a> connects the two.</p>
-      <p><a href="https://skandotai.github.io/soa-to-agentic-terms/">Read the mapping →</a></p>
+      <p>Maps 28 Service-Oriented Architecture terms to their agentic equivalents. A <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/crosswalks/soa-to-agentic-terms.csv">crosswalk</a> maps each of those terms to AOW.</p>
+      <p><a href="https://skandotai.github.io/soa-to-agentic-terms/">View the mapping</a></p>
     </div>
     <div>
-      <h2>Disagree? Good.</h2>
-      <p>AOW is a starting point, not a finished standard. The most useful contribution is a real piece of work it can't describe. <a href="https://github.com/Skandotai/agentic-ontology-of-work/issues/new/choose">Open an issue</a>, or read <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/CONTRIBUTING.md">how to contribute</a>.</p>
-      <p class="small muted">Cite as: Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
+      <h2>Contributing</h2>
+      <p>Issues and pull requests are welcome, particularly reports of real-world work that AOW cannot describe. <a href="https://github.com/Skandotai/agentic-ontology-of-work/issues/new/choose">Open an issue</a> or see the <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/CONTRIBUTING.md">contribution guidelines</a>.</p>
+      <p class="small muted">Citation: Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
     </div>
   </div>
 </section>

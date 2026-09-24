@@ -328,22 +328,22 @@ def home(m: Model) -> str:
                       f'<h3>{e(layer["name"])}</h3><p class="q">{e(layer["question"])}</p><ul>{items}</ul></div>')
     steps = []
     for al in m.assurance_levels:
-        floor = ("Default confidence floor " + f"{al['default_confidence_floor']:.2f}"
-                 if al["default_confidence_floor"] is not None else "Every state change approved by a person"
-                 if al["level"] == 1 else "People do the work")
+        floor = ("Default confidence threshold " + f"{al['default_confidence_floor']:.2f}"
+                 if al["default_confidence_floor"] is not None else "Every change approved by a person"
+                 if al["level"] == 1 else "Work performed by people")
         steps.append(f'<div class="step" style="--n:{al["level"]}"><p class="lvl">{al["id"]}</p>'
                      f'<p class="nm">{e(al["label"])}</p><p><b>People:</b> {e(al["human_role"])}</p>'
                      f'<p><b>Agents:</b> {e(al["agent_role"])}</p><p class="floor">{e(floor)}</p></div>')
     explain = table(["Result", "Performed by", "Skill", "Task", "Intent", "Objective"], explain_rows())
     downloads = [
-        (PDF_V2, "The whitepaper", "PDF", "The full paper, version 2.0: every entity, the Assurance Level scale, the worked example, and how AOW relates to existing standards."),
-        (PDF_CARD, "Reference card", "PDF", "Every class on one page, by layer, with the Assurance Level scale. For printing and pinning up."),
-        ("ontology/aow.ttl", "The ontology", "OWL · Turtle", "For knowledge graphs, reasoners, and ontology editors such as Protégé. Also as JSON-LD."),
-        ("ontology/context.jsonld", "JSON-LD context", "JSON-LD", "Makes plain AOW JSON readable as RDF with no changes."),
-        ("ontology/shapes.ttl", "Validation shapes", "SHACL", "Checks that a graph of AOW data is well formed."),
-        ("schemas/aow.schema.json", "JSON Schemas", "JSON Schema", "One schema per class, plus a document bundle, for teams that never touch RDF."),
-        ("downloads/aow-classes.csv", "Classes, attributes, relationships", "CSV", "The whole model as three spreadsheets. Also attributes and relationships CSVs."),
-        (PDF_V1, "Version 1.0", "PDF", "The original January 2026 paper, kept as published."),
+        (PDF_V2, "Whitepaper", "PDF", "Version 2.0 of the whitepaper, including all entity definitions, the Assurance Level scale, and the worked example."),
+        (PDF_CARD, "Reference card", "PDF", "All classes and the Assurance Level scale on a single page."),
+        ("ontology/aow.ttl", "Ontology", "OWL · Turtle", "For ontology editors, reasoners, and knowledge graphs. Also available as JSON-LD."),
+        ("ontology/context.jsonld", "JSON-LD context", "JSON-LD", "Allows AOW JSON documents to be read as RDF."),
+        ("ontology/shapes.ttl", "Validation shapes", "SHACL", "Validates AOW data in RDF."),
+        ("schemas/aow.schema.json", "JSON Schemas", "JSON Schema", "Validates AOW data in JSON. One schema per class, plus a document schema."),
+        ("downloads/aow-classes.csv", "Classes", "CSV", "All classes with definitions. Attributes and relationships are available as separate CSV files."),
+        (PDF_V1, "Version 1.0", "PDF", "The original paper, January 2026."),
     ]
     dl = "".join(f'<a class="download" href="{h}"><p class="dl-name">{e(n)} <span class="dl-meta">{e(t)}</span></p>'
                  f'<p class="dl-desc">{e(d)}</p></a>' for h, n, t, d in downloads)
@@ -380,99 +380,100 @@ def home(m: Model) -> str:
     }
     body = f"""
 <div class="hero wrap">
-  <p class="eyebrow">An open ontology for agentic work</p>
+  <p class="eyebrow">Open ontology · Version 2.0</p>
   <h1>Agentic Ontology of Work</h1>
-  <p class="lede">Agents are being put to work faster than anyone can agree on how to describe that work. AOW is a shared, platform-agnostic model for it: what the work is for, who or what does it, under which rules and how much autonomy, what it changed, and what was learned. It's written precisely enough that software can check it.</p>
+  <p class="lede">A platform-agnostic semantic model for enterprise work performed by AI agents, people, and systems. AOW defines the objectives work serves, who performs it, the rules and level of autonomy that apply, the results it produces, and how outcomes are fed back. It is published in formats that software can validate.</p>
   <div class="cta-row">
-    <a class="btn primary" href="entities/index.html">Explore the ontology</a>
+    <a class="btn primary" href="entities/index.html">View the ontology</a>
     <a class="btn" href="whitepaper/index.html">Read the whitepaper</a>
-    <a class="btn" href="{REPO}">View on GitHub</a>
+    <a class="btn" href="{REPO}">GitHub repository</a>
   </div>
-  <p class="meta">Version 2.0 · By Manish Garg, Skan.ai · Free to use and adapt, with attribution</p>
+  <p class="meta">Author: Manish Garg, Skan.ai · License: CC-BY 4.0 (prose), Apache 2.0 (ontology and code)</p>
 </div>
 
 <section class="wrap divider-top">
   <div class="two-col">
     <div>
-      <h2>Why an ontology</h2>
-      <p>Ask three teams what an "agent" is and you get four answers. The same goes for "task," "workflow," and "orchestration." That's why integrations break where one platform hands off to another, why governance policies mean different things in different systems, and why audit trails stop at the seams.</p>
-      <p>A glossary gives people the same words. An ontology also fixes what each thing carries and how things connect: an Intent serves an Objective, a Result was generated by an Action, and an Action was performed by an Actor under a Policy. Because it's formal, conformance can be checked instead of asserted.</p>
+      <h2>Purpose</h2>
+      <p>Terms such as "agent," "task," "workflow," and "orchestration" are used inconsistently across vendors and teams. This makes agentic systems difficult to integrate, govern, and audit, particularly where work passes from one system to another.</p>
+      <p>AOW addresses this with a formal ontology. In addition to defining terms, it specifies the attributes of each entity and the relationships between entities. For example, an Intent serves an Objective, a Result is generated by an Action, and an Action is performed by an Actor under a Policy. Because these rules are formal, conformance can be verified by software.</p>
     </div>
     <div>
-      <h2>What's in it</h2>
-      <p><b>{counts}</b>, across four layers. It follows work from the business <b>Objective</b> it serves, through <b>Intents</b>, <b>Plans</b>, and <b>Tasks</b>, to the <b>Actions</b> that agents and people take with their <b>Skills</b>, the <b>Results</b> those produce, and the <b>Outcomes</b> they add up to.</p>
-      <p>Around that path sit the things that make autonomy safe to grant: <b>Policy</b>, <b>Confidence</b>, a five-level <b>Assurance Level</b> scale, an independent <b>Guardian</b>, and <b>Feedback</b> into <b>Memory</b>.</p>
+      <h2>Contents</h2>
+      <p>AOW 2.0 defines <b>{counts}</b> in four layers. The model links each business <b>Objective</b> to the <b>Intents</b>, <b>Plans</b>, and <b>Tasks</b> derived from it, the <b>Actions</b> that agents and people take using <b>Skills</b>, and the <b>Results</b> and <b>Outcomes</b> produced.</p>
+      <p>Governance is part of the model: <b>Policy</b>, <b>Confidence</b>, a five-level <b>Assurance Level</b> scale, an independent <b>Guardian</b>, and <b>Feedback</b> recorded in <b>Memory</b>.</p>
     </div>
   </div>
 </section>
 
 <section class="wrap divider-top" id="model">
-  <p class="eyebrow">The model</p>
-  <h2>Four layers, one graph</h2>
-  <p>Each layer answers one question. Hover over or tab to a class to see what it connects to; select it for the full definition.</p>
+  <p class="eyebrow">Model</p>
+  <h2>Classes and relationships</h2>
+  <p>The diagram shows each class by layer. Hover over or select a class with the keyboard to show its relationships. Select a class to open its definition.</p>
   <figure class="graph">
     <div class="graph-scroll">
 {graph_svg(m, "")}
     </div>
-    <p class="g-info" id="g-info" aria-live="polite">Hover over or tab to a class to see its definition and relationships.</p>
-    <figcaption>The main path is drawn by default; hovering shows every relationship of a class, with dashed lines for "is a kind of." <span class="graph-hint">On a small screen, scroll the diagram sideways, or use the lists below.</span></figcaption>
+    <p class="g-info" id="g-info" aria-live="polite">Hover over or select a class to show its definition and relationships.</p>
+    <figcaption>The principal relationships are shown by default. Dashed lines indicate subclasses. <span class="graph-hint">On small screens, scroll the diagram horizontally or use the lists below.</span></figcaption>
   </figure>
   <div class="layers">{"".join(layers)}</div>
 </section>
 
 <section class="wrap divider-top" id="autonomy">
-  <p class="eyebrow">Governed autonomy</p>
-  <h2>Five levels of autonomy, and a rule for when they disagree</h2>
-  <p>An Intent says how much autonomy its work allows. A Task or a Skill can narrow that, and each Agent has been cleared up to a level. The <b>effective level is the lowest of them</b>: autonomy can be narrowed along the way, never widened. Within that level, an Agent that isn't confident enough escalates.</p>
+  <p class="eyebrow">Assurance Levels</p>
+  <h2>Five levels of autonomy</h2>
+  <p>An Intent specifies the maximum level of autonomy permitted for its work. A Task or Skill may specify a lower level, and each Agent is cleared up to a specified level. The <b>effective level is the lowest of these</b>. If an Agent's confidence falls below the threshold for the effective level, the Agent must escalate to a person.</p>
   <div class="scale">{"".join(steps)}</div>
-  <p class="small muted">The scale builds on the levels-of-automation literature, from Sheridan and Verplank (1978) and Parasuraman, Sheridan, and Wickens (2000) to SAE J3016. <a href="whitepaper/index.html#7-assurance-levels-and-governed-autonomy">How the levels work →</a></p>
+  <p class="small muted">The scale is based on established levels-of-automation research, including Sheridan and Verplank (1978), Parasuraman, Sheridan, and Wickens (2000), and SAE J3016. <a href="whitepaper/index.html#7-assurance-levels-and-governed-autonomy">Whitepaper, section 7</a></p>
 </section>
 
 <section class="wrap divider-top" id="checked">
-  <p class="eyebrow">Checked, not claimed</p>
-  <h2>Every example passes four gates</h2>
+  <p class="eyebrow">Validation</p>
+  <h2>Validation checks</h2>
+  <p>Every example in the repository is validated against four checks on each change.</p>
   <ol class="gates">
-    <li><b>JSON Schema</b>The document is well formed, and unknown keys (typos) are rejected.</li>
-    <li><b>SHACL</b>The graph is well formed: every Result has an Action, every link points to the right kind of thing.</li>
-    <li><b>Explainability</b>Every Result traces back to the Objective it served.</li>
-    <li><b>Oversight</b>No Agent acted beyond the oversight its effective Assurance Level requires.</li>
+    <li><b>JSON Schema</b>The document is well formed and contains no unrecognized keys.</li>
+    <li><b>SHACL</b>The data is well formed. For example, every Result has an Action, and every relationship points to the correct type of entity.</li>
+    <li><b>Traceability</b>Every Result can be traced to the Objective it served.</li>
+    <li><b>Oversight</b>No Agent acted without the human oversight required by its effective Assurance Level.</li>
   </ol>
-  <p>Here's gate 3 applied to the <a href="{REPO}/blob/main/examples/claims-processing.jsonld">worked claims example</a>. The last row is a claim the agent escalated at 0.81 confidence, below its 0.90 floor, which an adjuster then decided. Both are in the same record, in the same shape.</p>
+  <p>The table below shows the traceability check applied to the <a href="{REPO}/blob/main/examples/claims-processing.jsonld">claims processing example</a>. In the last row, the agent's confidence was 0.81, below the required 0.90, so the claim was escalated and decided by a claims adjuster.</p>
   {explain}
 </section>
 
 <section class="wrap divider-top" id="downloads">
-  <p class="eyebrow">Use it</p>
+  <p class="eyebrow">Downloads</p>
   <h2>Downloads</h2>
-  <p>Everything is generated from one source file, <a href="{REPO}/blob/main/aow.yaml"><code>aow.yaml</code></a>, so the formats can't drift apart. Terms have permanent identifiers under <code>https://w3id.org/aow</code>.</p>
+  <p>All formats are generated from a single source file, <a href="{REPO}/blob/main/aow.yaml"><code>aow.yaml</code></a>. Terms have permanent identifiers under <code>https://w3id.org/aow</code>.</p>
   <div class="download-grid">{dl}</div>
 </section>
 
 <section class="wrap divider-top">
-  <p class="eyebrow">Standing on shoulders</p>
-  <h2>Built from parts the industry already trusts</h2>
-  <p>Where a standard already defines a concept, AOW reuses it or aligns with it rather than inventing its own. <a href="whitepaper/index.html#12-how-aow-relates-to-existing-work">Where each comes from, and where AOW differs →</a></p>
+  <p class="eyebrow">Related standards</p>
+  <h2>Related standards</h2>
+  <p>AOW reuses or aligns with existing standards where they define the same concept. <a href="whitepaper/index.html#12-how-aow-relates-to-existing-work">Whitepaper, section 12</a> describes each relationship.</p>
   <div class="standards">{"".join(f"<span>{e(s)}</span>" for s in standards)}</div>
 </section>
 
 <section class="wrap divider-top">
   <div class="two-col">
     <div class="callout">
-      <p class="eyebrow">Companion project</p>
+      <p class="eyebrow">Related project</p>
       <h3 style="margin-top:0">SOA-to-Agentic AI Terminology Mapping</h3>
-      <p>Twenty-eight Service-Oriented Architecture terms translated into their agentic equivalents. The mapping is the vocabulary; AOW is the structure. A <a href="{REPO}/blob/main/crosswalks/soa-to-agentic-terms.csv">crosswalk</a> connects the two.</p>
-      <p><a href="{SOA_SITE}">Read the mapping →</a></p>
+      <p>Maps 28 Service-Oriented Architecture terms to their agentic equivalents. A <a href="{REPO}/blob/main/crosswalks/soa-to-agentic-terms.csv">crosswalk</a> maps each of those terms to AOW.</p>
+      <p><a href="{SOA_SITE}">View the mapping</a></p>
     </div>
     <div>
-      <h2>Disagree? Good.</h2>
-      <p>AOW is a starting point, not a finished standard. The most useful contribution is a real piece of work it can't describe. <a href="{REPO}/issues/new/choose">Open an issue</a>, or read <a href="{REPO}/blob/main/CONTRIBUTING.md">how to contribute</a>.</p>
-      <p class="small muted">Cite as: Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. <a href="{REPO}">{REPO.replace("https://", "")}</a></p>
+      <h2>Contributing</h2>
+      <p>Issues and pull requests are welcome, particularly reports of real-world work that AOW cannot describe. <a href="{REPO}/issues/new/choose">Open an issue</a> or see the <a href="{REPO}/blob/main/CONTRIBUTING.md">contribution guidelines</a>.</p>
+      <p class="small muted">Citation: Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. <a href="{REPO}">{REPO.replace("https://", "")}</a></p>
     </div>
   </div>
 </section>
 """
     return page(title="Agentic Ontology of Work (AOW)",
-                description="An open, platform-agnostic ontology of agentic enterprise work: 25 classes across Perception, Cognition, Execution, and Assurance, with a five-level autonomy scale. OWL, JSON-LD, SHACL, and JSON Schema.",
+                description="A platform-agnostic ontology of enterprise work performed by AI agents, people, and systems. 25 classes in four layers, with a five-level autonomy scale. Published in OWL, JSON-LD, SHACL, and JSON Schema.",
                 body=body + GRAPH_JS, path="index.html", head_extra=jsonld_script(dataset))
 
 
@@ -485,13 +486,13 @@ def entities_index(m: Model) -> str:
             f'{new_chip if x.since.startswith("2") else ""}</p>'
             f'<p>{e(x.definition)}</p></a>' for x in m.entities_in(layer["id"]))
         blocks.append(f'<section class="wrap divider-top" id="{layer["id"]}"><p class="eyebrow">Layer {layer["order"]}</p>'
-                      f'<h2><span class="chip {layer["id"]}">{e(layer["name"])}</span> {e(layer["question"])}</h2>'
+                      f'<h2>{e(layer["name"])}</h2>'
                       f'<p class="purpose">{e(layer["summary"])}</p><div class="cards">{cards}</div></section>')
     body = f"""
 <div class="hero wrap">
-  <p class="eyebrow">The ontology</p>
-  <h1>{len(m.entities)} classes, four layers</h1>
-  <p class="lede">Each class has a page with its definition, purpose, attributes, relationships, alignments to other standards, and an example from the validated examples. For the terse, machine-oriented listing, see the <a href="../ontology/index.html">term reference</a>.</p>
+  <p class="eyebrow">Ontology</p>
+  <h1>Classes</h1>
+  <p class="lede">AOW 2.0 defines {len(m.entities)} classes in four layers. Each class page lists the definition, purpose, attributes, relationships, related standards, and an example. A compact listing of all terms is available in the <a href="../ontology/index.html">term reference</a>.</p>
 </div>
 {"".join(blocks)}
 """
@@ -565,8 +566,8 @@ def entity_page(m: Model, ent, examples: dict, prev_e, next_e) -> str:
     ex = examples.get(ent.id)
     if ex:
         node, src = ex
-        parts.append(f'<h2>Example</h2><p class="small muted">From <a href="{REPO}/blob/main/{src}"><code>{e(src)}</code></a>, '
-                     f'which passes every validation gate.</p><pre><code>{e(json.dumps(node, indent=2, ensure_ascii=False))}</code></pre>')
+        parts.append(f'<h2>Example</h2><p class="small muted">Source: <a href="{REPO}/blob/main/{src}"><code>{e(src)}</code></a>. '
+                     f'The example passes all validation checks.</p><pre><code>{e(json.dumps(node, indent=2, ensure_ascii=False))}</code></pre>')
 
     links = [f'<a href="../../ontology/index.html#{ent.id}">Term reference</a>']
     if not ent.abstract:
@@ -624,7 +625,7 @@ def reference(m: Model) -> str:
 <div class="hero wrap narrow">
   <p class="eyebrow">Term reference</p>
   <h1>Agentic Ontology of Work {e(m.meta["version"])}</h1>
-  <p class="lede">Every term in the <code>aow:</code> namespace, <code>https://w3id.org/aow#</code>. Each term's identifier resolves to its entry on this page.</p>
+  <p class="lede">All terms in the <code>aow:</code> namespace, <code>https://w3id.org/aow#</code>. Each term identifier resolves to its entry on this page.</p>
   {table(["", ""], [["Ontology IRI", "<code>https://w3id.org/aow</code>"], ["This version", f"<code>https://w3id.org/aow/{e(m.meta['version'])}</code>"],
                     ["Formats", '<a href="aow.ttl">Turtle</a> · <a href="aow.jsonld">JSON-LD</a> · <a href="context.jsonld">JSON-LD context</a> · <a href="shapes.ttl">SHACL shapes</a> · <a href="../schemas/aow.schema.json">JSON Schema</a>'],
                     ["Released", e(m.meta["released"])], ["Creator", "Manish Garg, Skan.ai"], ["License", "Apache 2.0"]])}
@@ -636,7 +637,7 @@ def reference(m: Model) -> str:
 <section class="wrap narrow" id="levels"><h2>Assurance Levels</h2>{"".join(levels)}</section>
 """
     return page(title="Term reference · Agentic Ontology of Work", current="reference",
-                description="Every class, relationship, attribute, and Assurance Level in the aow: namespace.",
+                description="All classes, relationships, attributes, and Assurance Levels in the aow: namespace.",
                 body=body, path="ontology/index.html")
 
 
@@ -659,7 +660,7 @@ def whitepaper(m: Model) -> str:
 </div>
 """
     return page(title="Whitepaper · Agentic Ontology of Work", current="whitepaper",
-                description="The Agentic Ontology of Work, version 2.0: a foundational semantic model for intelligent, autonomous, and governed enterprise work.",
+                description="Whitepaper for the Agentic Ontology of Work, version 2.0.",
                 body=body, path="whitepaper/index.html", og_type="article")
 
 
@@ -667,51 +668,57 @@ def about(m: Model) -> str:
     body = f"""
 <div class="hero wrap narrow">
   <p class="eyebrow">About</p>
-  <h1>Why this exists, and who made it</h1>
-  <p class="lede">The short version of the argument, what changed from version 1.0, and how to take part.</p>
+  <h1>About AOW</h1>
+  <p class="lede">AOW is an open ontology for enterprise work performed by AI agents, people, and systems. Version 2.0 was published in September 2026.</p>
 </div>
 <section class="wrap narrow">
-  <h2>Vocabulary was step one</h2>
-  <p>The <a href="{SOA_SITE}">SOA-to-Agentic AI Terminology Mapping</a> borrowed a vocabulary the industry had already agreed on once, Service-Oriented Architecture's, and translated it into agentic terms. That gives people the same words. It doesn't give them the same structure: two teams can agree on what an "Agent" and an "Intent" are and still model the link between them differently, and then their systems still can't share a record of who did what, or why.</p>
-  <p>SOA hit the same wall, and the answer then was an ontology: first from The Open Group, then as an ISO standard (ISO/IEC 18384-3), which pinned down how services, contracts, and compositions relate. AOW is that step for agentic work.</p>
+  <h2>Background</h2>
+  <p>The SOA-to-Agentic AI Terminology Mapping ({SOA_SITE}) maps 28 Service-Oriented Architecture terms to agentic equivalents. It standardizes terms. It does not specify how the concepts relate to each other.</p>
+  <p>AOW specifies those relationships. For example, an Intent serves an Objective, a Result is generated by an Action, and an Action is performed by an Actor. Systems that follow the same relationships can exchange a consistent record of what work was done, by whom, and why.</p>
+  <p>SOA followed the same sequence. Its vocabulary was later formalized as an ontology by The Open Group and standardized as ISO/IEC 18384-3.</p>
 
-  <h2>What's different about agentic work</h2>
-  <p>Services execute fixed operations. Agents interpret goals, plan, and act, with more or less autonomy depending on the stakes and on how sure they are. So AOW needs things SOA's ontology never did: graded autonomy, confidence, people in the loop on the record, and a feedback loop that is itself traceable.</p>
+  <h2>Differences from SOA</h2>
+  <p>Services execute fixed operations. Agents interpret goals, plan, and act with varying autonomy. AOW therefore adds concepts that SOA did not require: graded autonomy, confidence thresholds, recorded human approvals, and traceable feedback.</p>
 
-  <h2>What it deliberately isn't</h2>
+  <h2>Scope</h2>
   <ul>
-    <li><b>Not tied to a product or platform.</b> Nothing in it assumes a vendor, model, or agent framework.</li>
-    <li><b>Not a protocol.</b> MCP and A2A move work between agents and tools; AOW describes the work they move.</li>
-    <li><b>Not a policy language.</b> A Policy can hold rules in ODRL, Rego, Cedar, DMN, or plain text.</li>
-    <li><b>Not finished.</b> Cross-organization governance, negotiation between agents, and trustworthy confidence are open. <a href="../whitepaper/index.html#15-limitations-and-open-questions">The whitepaper lists them.</a></li>
+    <li><b>Implementation.</b> AOW does not assume any vendor, model, or agent framework.</li>
+    <li><b>Protocols.</b> AOW does not define a communication protocol. MCP and A2A transport work between agents and tools. AOW describes the work.</li>
+    <li><b>Policy languages.</b> AOW does not define a policy language. A Policy may contain rules in ODRL, Rego, Cedar, DMN, or plain text.</li>
+    <li><b>Open questions.</b> Governance across organizations, negotiation between agents, and confidence calibration are not yet addressed. See <a href="../whitepaper/index.html#15-limitations-and-open-questions">whitepaper section 15</a>.</li>
   </ul>
 
-  <h2>What changed from version 1.0</h2>
-  <p>Version 1.0 (January 2026) set out the four layers, fifteen entities, the lifecycle, and the validation criteria. Version 2.0 keeps all of it and:</p>
+  <h2>Changes from version 1.0</h2>
+  <p>Version 1.0 was published in January 2026. Version 2.0:</p>
   <ul>
-    <li>adds Work Item, Signal, Observation, Plan, Task, Actor, Human Actor, and Role</li>
-    <li>defines Action, which 1.0 named but never defined, and makes it the thing that produces Results</li>
-    <li>defines the Assurance Level scale, AL0 to AL4, which 1.0 used but never specified</li>
-    <li>makes provenance and versioning a facet of every entity, using W3C PROV-O</li>
-    <li>ships the ontology in OWL, JSON-LD, SHACL, and JSON Schema, with validated examples</li>
-    <li>pairs each validation criterion with an automated check</li>
+    <li>adds eight classes: Work Item, Signal, Observation, Plan, Task, Actor, Human Actor, and Role</li>
+    <li>defines Action and specifies that Actions produce Results</li>
+    <li>defines the Assurance Level scale, AL0 to AL4</li>
+    <li>records provenance and versioning on every entity using W3C PROV-O</li>
+    <li>publishes the ontology in OWL, JSON-LD, SHACL, and JSON Schema, with validated examples</li>
+    <li>adds an automated check for each validation criterion</li>
   </ul>
-  <p>The <a href="{REPO}/blob/main/CHANGELOG.md">changelog</a> has every change. <a href="../{PDF_V1}">Version 1.0 is kept as published.</a></p>
+  <p>Full list of changes: {REPO}/blob/main/CHANGELOG.md</p>
+  <p>Version 1.0 PDF: <a href="../{PDF_V1}">{SITE}{PDF_V1}</a></p>
 
-  <h2>Who made it</h2>
-  <p>AOW was written by <a href="https://www.linkedin.com/in/manishga">Manish Garg</a> of <a href="https://www.skan.ai">Skan.ai</a>, and is published by Skan, Inc. It reflects a view that runs through Skan.ai's work in process intelligence: that you have to see how work actually happens before you can decide how to automate it, and that agents' work should be as observable as anyone else's. That's why AOW has a Perception layer, and why its Actions leave the same trail whoever performs them.</p>
-  <p>AOW is not a Skan.ai product specification. It's offered openly, under licenses that let anyone use, adapt, and build on it commercially.</p>
+  <h2>Author and publisher</h2>
+  <p>Author: Manish Garg, Skan.ai (https://www.linkedin.com/in/manishga)</p>
+  <p>Publisher: Skan, Inc. (https://www.skan.ai)</p>
+  <p>AOW is not a specification of any Skan.ai product.</p>
 
-  <h2>Take part</h2>
-  <p>The most useful contribution is a real piece of work AOW can't describe. <a href="{REPO}/issues/new/choose">Open an issue</a> with the case, or propose a term. Pull requests change <code>aow.yaml</code>; everything else is generated. See <a href="{REPO}/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+  <h2>Contributing</h2>
+  <p>Submit issues at {REPO}/issues. Reports of work that AOW cannot describe are especially useful. Pull requests change <code>aow.yaml</code>. All other files are generated from it. Guidelines: {REPO}/blob/main/CONTRIBUTING.md</p>
 
-  <h2>License and citation</h2>
-  <p>Prose: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, shapes, schemas, queries, examples, and code: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>. Both let you copy, adapt, and use the work commercially, as long as you credit the author and Skan.ai and say what you changed.</p>
-  <blockquote>Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. {REPO.replace("https://", "")}</blockquote>
+  <h2>License</h2>
+  <p>Prose: CC-BY 4.0. Ontology, shapes, schemas, queries, examples, and code: Apache 2.0. Both licenses permit copying, adaptation, and commercial use with attribution to the author and Skan.ai and an indication of changes.</p>
+
+  <h2>Citation</h2>
+  <blockquote>Garg, M. (2026). <i>Agentic Ontology of Work (AOW)</i>, version 2.0.0. Skan.ai. {REPO}</blockquote>
 </section>
 """
+    body = re.sub(r'(?<![">=])(https://[^\s<)]*[^\s<).,;])', r'<a href="\1">\1</a>', body)
     return page(title="About · Agentic Ontology of Work", current="about",
-                description="Why the Agentic Ontology of Work exists, what changed in version 2.0, who made it, and how to contribute.",
+                description="Background, scope, changes in version 2.0, authorship, and license for the Agentic Ontology of Work.",
                 body=body, path="about/index.html")
 
 
@@ -731,7 +738,7 @@ def card(m: Model) -> str:
   <h1 style="font-size:28px;margin:4px 0 6px">Agentic Ontology of Work</h1>
   <p style="font-size:12.5px;margin:0 0 10px;color:var(--ink-2)">Objective → Intent → Plan → Task → Action (by an Actor, with a Skill) → Result → Outcome → Feedback → Memory. Governed by Policy, Confidence, Assurance Level, and the Guardian.</p>
   <div class="layers" style="grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px">{"".join(cols)}</div>
-  <p style="font-size:12px;margin:12px 0 4px"><b>Assurance Levels.</b> The effective level is the lowest of the Intent's, Task's, and Skill's, and the Agent's clearance. Below the confidence floor, escalate.</p>
+  <p style="font-size:12px;margin:12px 0 4px"><b>Assurance Levels.</b> The effective level is the lowest of the levels set by the Intent, Task, Skill, and Agent. Below the confidence threshold, the Agent escalates to a person.</p>
   <div class="scale" style="grid-template-columns:repeat(5,1fr);margin:4px 0">{levels}</div>
   <p style="font-size:10.5px;color:var(--muted);margin-top:10px">By Manish Garg, Skan.ai · {SITE} · Identifiers https://w3id.org/aow · Prose CC-BY 4.0, ontology Apache 2.0</p>
 </div>
@@ -745,8 +752,8 @@ def not_found(m: Model) -> str:
     body = """
 <div class="hero wrap narrow">
   <p class="eyebrow">404</p>
-  <h1>That page isn't here</h1>
-  <p class="lede">Try the <a href="/agentic-ontology-of-work/">home page</a>, the <a href="/agentic-ontology-of-work/entities/">list of classes</a>, or the <a href="/agentic-ontology-of-work/ontology/">term reference</a>.</p>
+  <h1>Page not found</h1>
+  <p class="lede">Go to the <a href="/agentic-ontology-of-work/">home page</a>, the <a href="/agentic-ontology-of-work/entities/">list of classes</a>, or the <a href="/agentic-ontology-of-work/ontology/">term reference</a>.</p>
 </div>
 """
     doc = page(title="Not found · Agentic Ontology of Work", description="Page not found.", body=body, path="404.html")

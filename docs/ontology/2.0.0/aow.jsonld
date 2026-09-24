@@ -12,7 +12,7 @@
     "http://purl.org/dc/terms/description": [
       {
         "@language": "en",
-        "@value": "A platform-agnostic semantic model for intelligent, autonomous, and governed enterprise work. AOW names the things that agentic systems, people, and the governance around them have in common: the Objectives work serves, the Intents and Plans derived from them, the Actors and Skills that carry them out, the Results and Outcomes they produce, and the Assurance, Feedback, and Memory that keep the whole loop safe and improving."
+        "@value": "A platform-agnostic semantic model for enterprise work performed by AI agents, people, and systems. AOW defines Objectives and the Intents and Plans derived from them; the Actors and Skills that perform the work; the Results and Outcomes produced; and the Assurance Levels, Feedback, and Memory used to govern and improve the work."
       }
     ],
     "http://purl.org/dc/terms/issued": [
@@ -221,7 +221,7 @@
     "https://w3id.org/aow#reviewProtocol": [
       {
         "@language": "en",
-        "@value": "Escalate below the confidence floor or on Policy trigger; sampled review otherwise."
+        "@value": "Escalate below the confidence threshold or on Policy trigger; sampled review otherwise."
       }
     ],
     "https://w3id.org/aow#riskClass": [
@@ -357,7 +357,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "The atom of accountability. Every Result traces back to an Action, and every Action to who did it, why, and under what authority."
+        "@value": "Records who did what, when, and why. Every Result is linked to the Action that produced it."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -390,7 +390,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "Named in version 1.0 but never defined. In 2.0 the Action, not the Skill, produces the Result: a Skill is a capability, an Action is its use."
+        "@value": "Named but not defined in version 1.0. In 2.0, the Action produces the Result. A Skill is a capability. An Action is one use of it."
       }
     ],
     "https://w3id.org/aow#alignment": [
@@ -422,7 +422,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Lets the ontology describe work the same way whoever performs it, so that work can move between people and agents without being re-modeled."
+        "@value": "Allows work to be described the same way whether a person or an agent performs it."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -466,7 +466,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "The primary performer of agentic work, described by what it may do rather than by how it is built."
+        "@value": "Describes an agent by its permitted capabilities and autonomy, not by its implementation."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -499,7 +499,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "Deliberately says nothing about models, prompts, or frameworks. implementation_ref may point to those."
+        "@value": "AOW does not describe models, prompts, or frameworks. implementation_ref may reference them."
       }
     ],
     "https://w3id.org/aow#alignment": [
@@ -535,7 +535,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Was it safe, did it work, and what did we learn?"
+        "@value": "Governs autonomy, measures outcomes, and records feedback."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -546,7 +546,7 @@
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@language": "en",
-        "@value": "Governs autonomy, measures certainty, oversees behavior, evaluates Outcomes, and carries Feedback into Memory so the next cycle starts smarter."
+        "@value": "Sets permitted autonomy, measures confidence, oversees behavior, evaluates Outcomes, and records Feedback in Memory."
       }
     ],
     "http://www.w3.org/2004/02/skos/core#notation": [
@@ -569,7 +569,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Makes the choice between autonomy and human oversight explicit, graded, and checkable. AOW defines five levels, AL0 to AL4."
+        "@value": "Specifies the permitted autonomy and required human oversight for a piece of work. AOW defines five levels, AL0 to AL4."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -592,7 +592,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "Higher levels grant more autonomy and therefore demand more assurance evidence before they are granted. See the Assurance Level scale."
+        "@value": "Higher levels permit more autonomy and require more evidence before they are granted."
       }
     ],
     "https://w3id.org/aow#layer": [
@@ -614,7 +614,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "What should happen, and within what limits?"
+        "@value": "Defines what should happen and the limits that apply."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -625,7 +625,7 @@
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@language": "en",
-        "@value": "Turns business goals into actionable Intents, gives them Context, bounds them with Policy, and plans how to fulfill them."
+        "@value": "Derives Intents from business Objectives, adds Context, applies Policy, and plans the work."
       }
     ],
     "http://www.w3.org/2004/02/skos/core#notation": [
@@ -648,7 +648,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Lets autonomy depend on certainty: the same Agent may act alone when it is sure and escalate when it is not."
+        "@value": "Allows autonomy to depend on certainty. An Agent acts without approval only when its Confidence meets the threshold for its Assurance Level."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -692,7 +692,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Makes the same Intent resolve differently for different situations, and records what an Actor knew when it acted."
+        "@value": "Allows the same Intent to be handled differently in different situations, and records the information available to an Actor when it acted."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -747,7 +747,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Who does the work, and what did it change?"
+        "@value": "Records who performed the work and what it changed."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -758,7 +758,7 @@
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@language": "en",
-        "@value": "Actors (Agents and people alike) take on Tasks, invoke Skills through Actions, and produce Results."
+        "@value": "Actors, both Agents and people, are assigned Tasks, invoke Skills through Actions, and produce Results."
       }
     ],
     "http://www.w3.org/2004/02/skos/core#notation": [
@@ -781,7 +781,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Turns Outcomes, reviews, and incidents into specific, attributable changes."
+        "@value": "Records changes proposed as a result of Outcomes, reviews, and incidents, and who proposed them."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -820,7 +820,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Separates doing the work from checking the work, so that no Actor is its own only safeguard."
+        "@value": "Separates performing work from checking it."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -848,7 +848,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "A Guardian may be software, a person, or both. Because it is an Actor, its own interventions are Actions and leave the same trail as everyone else's."
+        "@value": "A Guardian may be software, a person, or both. Its interventions are recorded as Actions."
       }
     ],
     "https://w3id.org/aow#layer": [
@@ -870,7 +870,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Makes human-in-the-loop a first-class, traceable part of the model rather than an exception outside it."
+        "@value": "Records human participation, including approvals and decisions, in the same form as agent activity."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -917,7 +917,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Turns a business goal into something that can be planned, assigned, governed, and checked."
+        "@value": "States a business goal in a form that can be planned, assigned, governed, and verified."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1012,7 +1012,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Lets the system learn without retraining, and remember why it did what it did."
+        "@value": "Retains information from past work for use in future Context and audit."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1113,7 +1113,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Separates what was seen (Signal) from what it was taken to mean (Observation), so that a wrong interpretation can be traced and corrected without doubting the evidence."
+        "@value": "Separates recorded evidence (Signal) from its interpretation (Observation), so an incorrect interpretation can be identified and corrected."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1217,7 +1217,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Decomposes and coordinates work so that no single Agent has to."
+        "@value": "Decomposes Intents into Tasks and coordinates their execution."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1245,7 +1245,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "An Orchestrator may itself be an Agent, a deterministic workflow engine, or a person. The role is what matters."
+        "@value": "An Orchestrator may be an Agent, a workflow engine, or a person."
       }
     ],
     "https://w3id.org/aow#alignment": [
@@ -1273,7 +1273,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Closes the loop between what agents did and what the business wanted."
+        "@value": "Measures the effect of work against the Objective it served."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1312,7 +1312,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "What exists, and what is happening?"
+        "@value": "Records the work in progress and what is observed about it."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1323,7 +1323,7 @@
     "http://www.w3.org/2004/02/skos/core#definition": [
       {
         "@language": "en",
-        "@value": "Captures the Work Items in flight and the Signals and Observations about them. This is the ground truth the rest of the ontology reasons over."
+        "@value": "Records the Work Items in progress and the Signals and Observations about them. The other layers use this information."
       }
     ],
     "http://www.w3.org/2004/02/skos/core#notation": [
@@ -1346,7 +1346,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Separates deciding how to do something from doing it, so that plans can be inspected, approved, compared, and replayed."
+        "@value": "Separates planning from execution, so plans can be reviewed, approved, and compared."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1400,7 +1400,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Makes governance explicit and machine-checkable. Policies constrain behavior; they never describe it."
+        "@value": "States governance rules in a form that can be checked by software. Policies constrain behavior. They do not perform Actions."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1456,7 +1456,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Records what an Action changed or produced, so that it can be verified, rolled up into Outcomes, and fed back."
+        "@value": "Records what an Action changed or produced, so it can be verified and aggregated into Outcomes."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1511,7 +1511,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Lets Tasks, Policies, and escalations target a responsibility rather than a specific person or agent, so either can fill it."
+        "@value": "Allows Tasks, Policies, and escalations to target a responsibility instead of a specific person or agent."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1555,7 +1555,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Anchors the ontology in what actually happened, before any interpretation. Signals are the evidence that Observations, Context, and audit trails are built from."
+        "@value": "Records what happened before any interpretation. Observations, Context, and audit trails are derived from Signals."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1588,7 +1588,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "Actions leave Signals behind. Linking a Signal to the Action that generated it (generated_by) is what makes agent behavior observable with the same tools used to observe human and system work."
+        "@value": "A Signal can be linked to the Action that generated it (generated_by). Agent activity can then be analyzed with the same tools used for human and system activity."
       },
       {
         "@language": "en",
@@ -1624,7 +1624,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Describes what can be done, with its inputs, outputs, cost, and side effects, so that it can be discovered, governed, and swapped."
+        "@value": "Describes a capability's inputs, outputs, cost, and side effects, so it can be discovered, governed, and replaced."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1652,7 +1652,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "side_effects is new in 2.0. Whether a Skill changes the world, and whether that change can be undone, is the single most important fact for deciding how much autonomy to grant around it."
+        "@value": "side_effects is new in 2.0. It records whether a Skill changes external state and whether the change can be reversed. Assurance Levels AL3 and AL4 do not permit irreversible Skills without approval."
       }
     ],
     "https://w3id.org/aow#alignment": [
@@ -1688,7 +1688,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Gives \"task\" a single meaning. A Task is what gets assigned; an Action is what gets done; a Skill is what makes it possible."
+        "@value": "Defines the unit of work that is assigned. A Task is assigned to an Actor. An Action is performed to complete it. A Skill is the capability the Action uses."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1716,7 +1716,7 @@
     "http://www.w3.org/2004/02/skos/core#scopeNote": [
       {
         "@language": "en",
-        "@value": "Task states follow the Agent2Agent (A2A) protocol's task lifecycle so that AOW Tasks can be exchanged over A2A without translation."
+        "@value": "Task states match the task states of the Agent2Agent (A2A) protocol, so Tasks can be exchanged over A2A without conversion."
       }
     ],
     "https://w3id.org/aow#alignment": [
@@ -1748,7 +1748,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Gives every Intent, Task, Action, and Observation a concrete subject, so that work can be followed end to end regardless of which systems, agents, or people touched it."
+        "@value": "Identifies the item that Intents, Tasks, Actions, and Observations refer to, so work on one item can be followed across systems, agents, and people."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
@@ -1775,7 +1775,7 @@
       },
       {
         "@language": "en",
-        "@value": "Version 1.0 carried the work item implicitly inside Context (for example, \"ctx-claim-84933\"). Making it explicit lets two Intents, or an Intent and a human Task, refer to the same claim."
+        "@value": "In version 1.0 the work item was implicit in Context (for example, \"ctx-claim-84933\"). As a separate entity, it can be referenced by several Intents and Tasks."
       }
     ],
     "https://w3id.org/aow#alignment": [
@@ -2291,7 +2291,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "The Assurance Level whose confidence floor the Confidence was checked against."
+        "@value": "The Assurance Level whose confidence threshold the Confidence was checked against."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [
@@ -2602,7 +2602,7 @@
     "http://www.w3.org/2000/01/rdf-schema#comment": [
       {
         "@language": "en",
-        "@value": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor."
+        "@value": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different threshold."
       }
     ],
     "http://www.w3.org/2000/01/rdf-schema#domain": [

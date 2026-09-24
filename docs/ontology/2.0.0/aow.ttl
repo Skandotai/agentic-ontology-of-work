@@ -18,7 +18,7 @@
 <https://w3id.org/aow>
     a owl:Ontology ;
     dcterms:title "Agentic Ontology of Work"@en ;
-    dcterms:description "A platform-agnostic semantic model for intelligent, autonomous, and governed enterprise work. AOW names the things that agentic systems, people, and the governance around them have in common: the Objectives work serves, the Intents and Plans derived from them, the Actors and Skills that carry them out, the Results and Outcomes they produce, and the Assurance, Feedback, and Memory that keep the whole loop safe and improving."@en ;
+    dcterms:description "A platform-agnostic semantic model for enterprise work performed by AI agents, people, and systems. AOW defines Objectives and the Intents and Plans derived from them; the Actors and Skills that perform the work; the Results and Outcomes produced; and the Assurance Levels, Feedback, and Memory used to govern and improve the work."@en ;
     owl:versionIRI <https://w3id.org/aow/2.0.0> ;
     owl:versionInfo "2.0.0" ;
     dcterms:issued "2026-09-24"^^xsd:date ;
@@ -69,32 +69,32 @@ aow:PerceptionLayer
     a skos:Concept ;
     skos:prefLabel "Perception layer"@en ;
     skos:notation "1" ;
-    skos:definition "Captures the Work Items in flight and the Signals and Observations about them. This is the ground truth the rest of the ontology reasons over."@en ;
-    rdfs:comment "What exists, and what is happening?"@en ;
+    skos:definition "Records the Work Items in progress and the Signals and Observations about them. The other layers use this information."@en ;
+    rdfs:comment "Records the work in progress and what is observed about it."@en ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
 
 aow:CognitionLayer
     a skos:Concept ;
     skos:prefLabel "Cognition layer"@en ;
     skos:notation "2" ;
-    skos:definition "Turns business goals into actionable Intents, gives them Context, bounds them with Policy, and plans how to fulfill them."@en ;
-    rdfs:comment "What should happen, and within what limits?"@en ;
+    skos:definition "Derives Intents from business Objectives, adds Context, applies Policy, and plans the work."@en ;
+    rdfs:comment "Defines what should happen and the limits that apply."@en ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
 
 aow:ExecutionLayer
     a skos:Concept ;
     skos:prefLabel "Execution layer"@en ;
     skos:notation "3" ;
-    skos:definition "Actors (Agents and people alike) take on Tasks, invoke Skills through Actions, and produce Results."@en ;
-    rdfs:comment "Who does the work, and what did it change?"@en ;
+    skos:definition "Actors, both Agents and people, are assigned Tasks, invoke Skills through Actions, and produce Results."@en ;
+    rdfs:comment "Records who performed the work and what it changed."@en ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
 
 aow:AssuranceLayer
     a skos:Concept ;
     skos:prefLabel "Assurance layer"@en ;
     skos:notation "4" ;
-    skos:definition "Governs autonomy, measures certainty, oversees behavior, evaluates Outcomes, and carries Feedback into Memory so the next cycle starts smarter."@en ;
-    rdfs:comment "Was it safe, did it work, and what did we learn?"@en ;
+    skos:definition "Sets permitted autonomy, measures confidence, oversees behavior, evaluates Outcomes, and records Feedback in Memory."@en ;
+    rdfs:comment "Governs autonomy, measures outcomes, and records feedback."@en ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
 
 
@@ -104,8 +104,8 @@ aow:WorkItem
     a owl:Class ;
     rdfs:label "Work Item"@en ;
     skos:definition "The unit of business work that the rest of the ontology is about: a claim, an application, an order, a case, a ticket."@en ;
-    rdfs:comment "Gives every Intent, Task, Action, and Observation a concrete subject, so that work can be followed end to end regardless of which systems, agents, or people touched it."@en ;
-    skos:scopeNote "Version 1.0 carried the work item implicitly inside Context (for example, \"ctx-claim-84933\"). Making it explicit lets two Intents, or an Intent and a human Task, refer to the same claim."@en , "Corresponds to a case or object in process mining (IEEE 1849 XES and the OCEL 2.0 object-centric event log format)."@en ;
+    rdfs:comment "Identifies the item that Intents, Tasks, Actions, and Observations refer to, so work on one item can be followed across systems, agents, and people."@en ;
+    skos:scopeNote "In version 1.0 the work item was implicit in Context (for example, \"ctx-claim-84933\"). As a separate entity, it can be referenced by several Intents and Tasks."@en , "Corresponds to a case or object in process mining (IEEE 1849 XES and the OCEL 2.0 object-centric event log format)."@en ;
     aow:layer aow:PerceptionLayer ;
     aow:since "2.0.0" ;
     aow:alignment "OCEL 2.0: object (closeMatch)"@en , "IEEE 1849 XES: trace (case) (relatedMatch)"@en , "BPMN 2.0: Data Object (relatedMatch)"@en ;
@@ -115,8 +115,8 @@ aow:Signal
     a owl:Class ;
     rdfs:label "Signal"@en ;
     skos:definition "A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample."@en ;
-    rdfs:comment "Anchors the ontology in what actually happened, before any interpretation. Signals are the evidence that Observations, Context, and audit trails are built from."@en ;
-    skos:scopeNote "Version 1.0 listed Telemetry Events, Signals, Session State, and Environmental Observations as Perception-layer elements without defining them. In 2.0 a Telemetry Event is a Signal whose signal_type is \"event\" or \"metric\"; Session State is Context with context_type \"session\"."@en , "Actions leave Signals behind. Linking a Signal to the Action that generated it (generated_by) is what makes agent behavior observable with the same tools used to observe human and system work."@en ;
+    rdfs:comment "Records what happened before any interpretation. Observations, Context, and audit trails are derived from Signals."@en ;
+    skos:scopeNote "Version 1.0 listed Telemetry Events, Signals, Session State, and Environmental Observations as Perception-layer elements without defining them. In 2.0 a Telemetry Event is a Signal whose signal_type is \"event\" or \"metric\"; Session State is Context with context_type \"session\"."@en , "A Signal can be linked to the Action that generated it (generated_by). Agent activity can then be analyzed with the same tools used for human and system activity."@en ;
     rdfs:subClassOf prov:Entity ;
     owl:disjointWith aow:Observation ;
     aow:layer aow:PerceptionLayer ;
@@ -128,7 +128,7 @@ aow:Observation
     a owl:Class ;
     rdfs:label "Observation"@en ;
     skos:definition "An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence."@en ;
-    rdfs:comment "Separates what was seen (Signal) from what it was taken to mean (Observation), so that a wrong interpretation can be traced and corrected without doubting the evidence."@en ;
+    rdfs:comment "Separates recorded evidence (Signal) from its interpretation (Observation), so an incorrect interpretation can be identified and corrected."@en ;
     skos:scopeNote "\"The claim amount is $38,200\" is an Observation; the scanned claim form it was extracted from is a Signal."@en ;
     rdfs:subClassOf prov:Entity ;
     aow:layer aow:PerceptionLayer ;
@@ -152,7 +152,7 @@ aow:Intent
     a owl:Class ;
     rdfs:label "Intent"@en ;
     skos:definition "A structured, actionable goal derived from an Objective and interpretable by agents, orchestrators, and people."@en ;
-    rdfs:comment "Turns a business goal into something that can be planned, assigned, governed, and checked."@en ;
+    rdfs:comment "States a business goal in a form that can be planned, assigned, governed, and verified."@en ;
     skos:scopeNote "Objective answers why. Intent answers what. Plan answers how."@en ;
     aow:layer aow:CognitionLayer ;
     aow:since "1.0.0" ;
@@ -163,7 +163,7 @@ aow:Context
     a owl:Class ;
     rdfs:label "Context"@en ;
     skos:definition "The structured situational information that gives relevance to an Intent."@en ;
-    rdfs:comment "Makes the same Intent resolve differently for different situations, and records what an Actor knew when it acted."@en ;
+    rdfs:comment "Allows the same Intent to be handled differently in different situations, and records the information available to an Actor when it acted."@en ;
     skos:scopeNote "Context types: environmental, procedural, data, historical, session."@en ;
     aow:layer aow:CognitionLayer ;
     aow:since "1.0.0" ;
@@ -174,7 +174,7 @@ aow:Policy
     a owl:Class ;
     rdfs:label "Policy"@en ;
     skos:definition "Declarative constraints defining permissible, required, or restricted behavior."@en ;
-    rdfs:comment "Makes governance explicit and machine-checkable. Policies constrain behavior; they never describe it."@en ;
+    rdfs:comment "States governance rules in a form that can be checked by software. Policies constrain behavior. They do not perform Actions."@en ;
     skos:scopeNote "AOW does not prescribe a policy language. rule_set may hold rules in ODRL, Rego, Cedar, DMN, or plain text, named in rule_language."@en ;
     aow:layer aow:CognitionLayer ;
     aow:since "1.0.0" ;
@@ -186,7 +186,7 @@ aow:Plan
     a owl:Class ;
     rdfs:label "Plan"@en ;
     skos:definition "An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor."@en ;
-    rdfs:comment "Separates deciding how to do something from doing it, so that plans can be inspected, approved, compared, and replayed."@en ;
+    rdfs:comment "Separates planning from execution, so plans can be reviewed, approved, and compared."@en ;
     skos:scopeNote "Listed as an optional concept in version 1.0; a full entity in 2.0."@en , "The Orchestrator's dependency_graph in version 1.0 is the Plan's set of Tasks and their depends_on links."@en ;
     rdfs:subClassOf prov:Plan ;
     aow:layer aow:CognitionLayer ;
@@ -197,8 +197,8 @@ aow:Task
     a owl:Class ;
     rdfs:label "Task"@en ;
     skos:definition "A unit of assigned work within a Plan, performed by an Actor filling a Role."@en ;
-    rdfs:comment "Gives \"task\" a single meaning. A Task is what gets assigned; an Action is what gets done; a Skill is what makes it possible."@en ;
-    skos:scopeNote "Task states follow the Agent2Agent (A2A) protocol's task lifecycle so that AOW Tasks can be exchanged over A2A without translation."@en ;
+    rdfs:comment "Defines the unit of work that is assigned. A Task is assigned to an Actor. An Action is performed to complete it. A Skill is the capability the Action uses."@en ;
+    skos:scopeNote "Task states match the task states of the Agent2Agent (A2A) protocol, so Tasks can be exchanged over A2A without conversion."@en ;
     owl:disjointWith aow:Action ;
     aow:layer aow:ExecutionLayer ;
     aow:since "2.0.0" ;
@@ -209,7 +209,7 @@ aow:Actor
     a owl:Class ;
     rdfs:label "Actor"@en ;
     skos:definition "Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian."@en ;
-    rdfs:comment "Lets the ontology describe work the same way whoever performs it, so that work can move between people and agents without being re-modeled."@en ;
+    rdfs:comment "Allows work to be described the same way whether a person or an agent performs it."@en ;
     rdfs:subClassOf prov:Agent ;
     aow:layer aow:ExecutionLayer ;
     aow:since "2.0.0" ;
@@ -219,8 +219,8 @@ aow:Agent
     a owl:Class ;
     rdfs:label "Agent"@en ;
     skos:definition "A software Actor that interprets Intents and Tasks and acts on them using Skills, within the autonomy it has been cleared for."@en ;
-    rdfs:comment "The primary performer of agentic work, described by what it may do rather than by how it is built."@en ;
-    skos:scopeNote "Deliberately says nothing about models, prompts, or frameworks. implementation_ref may point to those."@en ;
+    rdfs:comment "Describes an agent by its permitted capabilities and autonomy, not by its implementation."@en ;
+    skos:scopeNote "AOW does not describe models, prompts, or frameworks. implementation_ref may reference them."@en ;
     rdfs:subClassOf aow:Actor ;
     owl:disjointWith aow:HumanActor ;
     aow:layer aow:ExecutionLayer ;
@@ -232,7 +232,7 @@ aow:HumanActor
     a owl:Class ;
     rdfs:label "Human Actor"@en ;
     skos:definition "A person who performs, approves, reviews, or oversees work."@en ;
-    rdfs:comment "Makes human-in-the-loop a first-class, traceable part of the model rather than an exception outside it."@en ;
+    rdfs:comment "Records human participation, including approvals and decisions, in the same form as agent activity."@en ;
     rdfs:subClassOf aow:Actor , prov:Person ;
     aow:layer aow:ExecutionLayer ;
     aow:since "2.0.0" ;
@@ -242,8 +242,8 @@ aow:Orchestrator
     a owl:Class ;
     rdfs:label "Orchestrator"@en ;
     skos:definition "A coordinating Actor that turns Intents into Plans, assigns Tasks to Actors, and manages sequencing and exceptions."@en ;
-    rdfs:comment "Decomposes and coordinates work so that no single Agent has to."@en ;
-    skos:scopeNote "An Orchestrator may itself be an Agent, a deterministic workflow engine, or a person. The role is what matters."@en ;
+    rdfs:comment "Decomposes Intents into Tasks and coordinates their execution."@en ;
+    skos:scopeNote "An Orchestrator may be an Agent, a workflow engine, or a person."@en ;
     rdfs:subClassOf aow:Actor ;
     aow:layer aow:ExecutionLayer ;
     aow:since "1.0.0" ;
@@ -254,8 +254,8 @@ aow:Guardian
     a owl:Class ;
     rdfs:label "Guardian"@en ;
     skos:definition "The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed."@en ;
-    rdfs:comment "Separates doing the work from checking the work, so that no Actor is its own only safeguard."@en ;
-    skos:scopeNote "A Guardian may be software, a person, or both. Because it is an Actor, its own interventions are Actions and leave the same trail as everyone else's."@en ;
+    rdfs:comment "Separates performing work from checking it."@en ;
+    skos:scopeNote "A Guardian may be software, a person, or both. Its interventions are recorded as Actions."@en ;
     rdfs:subClassOf aow:Actor ;
     aow:layer aow:AssuranceLayer ;
     aow:since "1.0.0" ;
@@ -265,7 +265,7 @@ aow:Role
     a owl:Class ;
     rdfs:label "Role"@en ;
     skos:definition "A named set of responsibilities and authority that an Actor can fill, such as \"claims adjuster\" or \"eligibility reviewer\"."@en ;
-    rdfs:comment "Lets Tasks, Policies, and escalations target a responsibility rather than a specific person or agent, so either can fill it."@en ;
+    rdfs:comment "Allows Tasks, Policies, and escalations to target a responsibility instead of a specific person or agent."@en ;
     aow:layer aow:ExecutionLayer ;
     aow:since "2.0.0" ;
     skos:closeMatch org:Role ;
@@ -275,8 +275,8 @@ aow:Skill
     a owl:Class ;
     rdfs:label "Skill"@en ;
     skos:definition "A reusable capability that an Actor can invoke."@en ;
-    rdfs:comment "Describes what can be done, with its inputs, outputs, cost, and side effects, so that it can be discovered, governed, and swapped."@en ;
-    skos:scopeNote "side_effects is new in 2.0. Whether a Skill changes the world, and whether that change can be undone, is the single most important fact for deciding how much autonomy to grant around it."@en ;
+    rdfs:comment "Describes a capability's inputs, outputs, cost, and side effects, so it can be discovered, governed, and replaced."@en ;
+    skos:scopeNote "side_effects is new in 2.0. It records whether a Skill changes external state and whether the change can be reversed. Assurance Levels AL3 and AL4 do not permit irreversible Skills without approval."@en ;
     owl:disjointWith aow:Action ;
     aow:layer aow:ExecutionLayer ;
     aow:since "1.0.0" ;
@@ -287,8 +287,8 @@ aow:Action
     a owl:Class ;
     rdfs:label "Action"@en ;
     skos:definition "A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time."@en ;
-    rdfs:comment "The atom of accountability. Every Result traces back to an Action, and every Action to who did it, why, and under what authority."@en ;
-    skos:scopeNote "Named in version 1.0 but never defined. In 2.0 the Action, not the Skill, produces the Result: a Skill is a capability, an Action is its use."@en ;
+    rdfs:comment "Records who did what, when, and why. Every Result is linked to the Action that produced it."@en ;
+    skos:scopeNote "Named but not defined in version 1.0. In 2.0, the Action produces the Result. A Skill is a capability. An Action is one use of it."@en ;
     rdfs:subClassOf prov:Activity ;
     aow:layer aow:ExecutionLayer ;
     aow:since "1.0.0" ;
@@ -300,7 +300,7 @@ aow:Result
     a owl:Class ;
     rdfs:label "Result"@en ;
     skos:definition "The immediate, atomic effect or output of an Action."@en ;
-    rdfs:comment "Records what an Action changed or produced, so that it can be verified, rolled up into Outcomes, and fed back."@en ;
+    rdfs:comment "Records what an Action changed or produced, so it can be verified and aggregated into Outcomes."@en ;
     skos:scopeNote "A Result is local and immediate. An Outcome is aggregated and business-level."@en ;
     rdfs:subClassOf prov:Entity ;
     owl:disjointWith aow:Outcome ;
@@ -312,7 +312,7 @@ aow:Confidence
     a owl:Class ;
     rdfs:label "Confidence"@en ;
     skos:definition "A model-, rule-, or human-derived measure of certainty about an Observation, a Result, or an Action."@en ;
-    rdfs:comment "Lets autonomy depend on certainty: the same Agent may act alone when it is sure and escalate when it is not."@en ;
+    rdfs:comment "Allows autonomy to depend on certainty. An Agent acts without approval only when its Confidence meets the threshold for its Assurance Level."@en ;
     owl:disjointWith aow:AssuranceLevel ;
     aow:layer aow:AssuranceLayer ;
     aow:since "1.0.0" ;
@@ -322,8 +322,8 @@ aow:AssuranceLevel
     a owl:Class ;
     rdfs:label "Assurance Level"@en ;
     skos:definition "A governance-set level of permitted autonomy, with the human oversight and evidence it requires."@en ;
-    rdfs:comment "Makes the choice between autonomy and human oversight explicit, graded, and checkable. AOW defines five levels, AL0 to AL4."@en ;
-    skos:scopeNote "Higher levels grant more autonomy and therefore demand more assurance evidence before they are granted. See the Assurance Level scale."@en ;
+    rdfs:comment "Specifies the permitted autonomy and required human oversight for a piece of work. AOW defines five levels, AL0 to AL4."@en ;
+    skos:scopeNote "Higher levels permit more autonomy and require more evidence before they are granted."@en ;
     aow:layer aow:AssuranceLayer ;
     aow:since "1.0.0" ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
@@ -332,7 +332,7 @@ aow:Outcome
     a owl:Class ;
     rdfs:label "Outcome"@en ;
     skos:definition "The aggregated business impact of one or more Results, measured against an Objective."@en ;
-    rdfs:comment "Closes the loop between what agents did and what the business wanted."@en ;
+    rdfs:comment "Measures the effect of work against the Objective it served."@en ;
     aow:layer aow:AssuranceLayer ;
     aow:since "1.0.0" ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
@@ -341,7 +341,7 @@ aow:Feedback
     a owl:Class ;
     rdfs:label "Feedback"@en ;
     skos:definition "Structured information, from people or systems, used to improve future behavior."@en ;
-    rdfs:comment "Turns Outcomes, reviews, and incidents into specific, attributable changes."@en ;
+    rdfs:comment "Records changes proposed as a result of Outcomes, reviews, and incidents, and who proposed them."@en ;
     aow:layer aow:AssuranceLayer ;
     aow:since "1.0.0" ;
     rdfs:isDefinedBy <https://w3id.org/aow> .
@@ -350,7 +350,7 @@ aow:Memory
     a owl:Class ;
     rdfs:label "Memory"@en ;
     skos:definition "Persistent knowledge accumulated from experience, used to inform future Context."@en ;
-    rdfs:comment "Lets the system learn without retraining, and remember why it did what it did."@en ;
+    rdfs:comment "Retains information from past work for use in future Context and audit."@en ;
     skos:scopeNote "Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived)."@en ;
     aow:layer aow:AssuranceLayer ;
     aow:since "1.0.0" ;
@@ -617,7 +617,7 @@ aow:comparedAgainst
     a owl:ObjectProperty ;
     rdfs:label "compared against"@en ;
     aow:inverseLabel "threshold for"@en ;
-    rdfs:comment "The Assurance Level whose confidence floor the Confidence was checked against."@en ;
+    rdfs:comment "The Assurance Level whose confidence threshold the Confidence was checked against."@en ;
     rdfs:domain aow:Confidence ;
     rdfs:range aow:AssuranceLevel ;
     aow:jsonKey "compared_against" ;
@@ -809,7 +809,7 @@ aow:costProfile
 aow:defaultConfidenceFloor
     a owl:DatatypeProperty ;
     rdfs:label "default confidence floor"@en ;
-    rdfs:comment "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor."@en ;
+    rdfs:comment "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different threshold."@en ;
     rdfs:domain aow:AssuranceLevel ;
     rdfs:range xsd:double ;
     aow:jsonKey "default_confidence_floor" ;
@@ -1405,7 +1405,7 @@ aow:AL2
     aow:level 2 ;
     aow:humanRole "Confirms when confidence is low or a Policy triggers; reviews a sample otherwise."@en ;
     aow:agentRole "Decides and acts within Policy."@en ;
-    aow:reviewProtocol "Escalate below the confidence floor or on Policy trigger; sampled review otherwise."@en ;
+    aow:reviewProtocol "Escalate below the confidence threshold or on Policy trigger; sampled review otherwise."@en ;
     aow:riskClass "Moderate-risk, well-characterized decisions."@en ;
     aow:defaultConfidenceFloor "0.9"^^xsd:double ;
     rdfs:isDefinedBy <https://w3id.org/aow> .

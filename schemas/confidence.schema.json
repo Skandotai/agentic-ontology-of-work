@@ -68,7 +68,7 @@
     },
     "compared_against": {
       "$ref": "#/$defs/ref",
-      "description": "The Assurance Level whose confidence floor the Confidence was checked against."
+      "description": "The Assurance Level whose confidence threshold the Confidence was checked against."
     }
   },
   "patternProperties": {

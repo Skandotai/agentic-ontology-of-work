@@ -34,45 +34,41 @@ ontology:
   license_prose: CC-BY-4.0
   license_data: Apache-2.0
   description: >-
-    A platform-agnostic semantic model for intelligent, autonomous, and
-    governed enterprise work. AOW names the things that agentic systems,
-    people, and the governance around them have in common: the Objectives
-    work serves, the Intents and Plans derived from them, the Actors and
-    Skills that carry them out, the Results and Outcomes they produce, and
-    the Assurance, Feedback, and Memory that keep the whole loop safe and
-    improving.
+    A platform-agnostic semantic model for enterprise work performed by AI
+    agents, people, and systems. AOW defines Objectives and the Intents and
+    Plans derived from them; the Actors and Skills that perform the work;
+    the Results and Outcomes produced; and the Assurance Levels, Feedback,
+    and Memory used to govern and improve the work.
 
 layers:
   - id: perception
     name: Perception
     order: 1
-    question: What exists, and what is happening?
+    question: Records the work in progress and what is observed about it.
     summary: >-
-      Captures the Work Items in flight and the Signals and Observations
-      about them. This is the ground truth the rest of the ontology reasons
-      over.
+      Records the Work Items in progress and the Signals and Observations
+      about them. The other layers use this information.
   - id: cognition
     name: Cognition
     order: 2
-    question: What should happen, and within what limits?
+    question: Defines what should happen and the limits that apply.
     summary: >-
-      Turns business goals into actionable Intents, gives them Context,
-      bounds them with Policy, and plans how to fulfill them.
+      Derives Intents from business Objectives, adds Context, applies
+      Policy, and plans the work.
   - id: execution
     name: Execution
     order: 3
-    question: Who does the work, and what did it change?
+    question: Records who performed the work and what it changed.
     summary: >-
-      Actors (Agents and people alike) take on Tasks, invoke Skills through
-      Actions, and produce Results.
+      Actors, both Agents and people, are assigned Tasks, invoke Skills
+      through Actions, and produce Results.
   - id: assurance
     name: Assurance
     order: 4
-    question: Was it safe, did it work, and what did we learn?
+    question: Governs autonomy, measures outcomes, and records feedback.
     summary: >-
-      Governs autonomy, measures certainty, oversees behavior, evaluates
-      Outcomes, and carries Feedback into Memory so the next cycle starts
-      smarter.
+      Sets permitted autonomy, measures confidence, oversees behavior,
+      evaluates Outcomes, and records Feedback in Memory.
 
 # Attributes every AOW entity may carry. Provenance and versioning are a
 # facet of every entity rather than an entity of their own (see the
@@ -121,14 +117,14 @@ entities:
       The unit of business work that the rest of the ontology is about: a
       claim, an application, an order, a case, a ticket.
     purpose: >-
-      Gives every Intent, Task, Action, and Observation a concrete subject,
-      so that work can be followed end to end regardless of which systems,
-      agents, or people touched it.
+      Identifies the item that Intents, Tasks, Actions, and Observations
+      refer to, so work on one item can be followed across systems, agents,
+      and people.
     notes:
       - >-
-        Version 1.0 carried the work item implicitly inside Context
-        (for example, "ctx-claim-84933"). Making it explicit lets two
-        Intents, or an Intent and a human Task, refer to the same claim.
+        In version 1.0 the work item was implicit in Context (for example,
+        "ctx-claim-84933"). As a separate entity, it can be referenced by
+        several Intents and Tasks.
       - >-
         Corresponds to a case or object in process mining (IEEE 1849 XES
         and the OCEL 2.0 object-centric event log format).
@@ -163,9 +159,8 @@ entities:
       environment: an event, a log line, a user-interface interaction, a
       document arriving, a state change, a metric sample.
     purpose: >-
-      Anchors the ontology in what actually happened, before any
-      interpretation. Signals are the evidence that Observations, Context,
-      and audit trails are built from.
+      Records what happened before any interpretation. Observations,
+      Context, and audit trails are derived from Signals.
     notes:
       - >-
         Version 1.0 listed Telemetry Events, Signals, Session State, and
@@ -174,9 +169,9 @@ entities:
         signal_type is "event" or "metric"; Session State is Context with
         context_type "session".
       - >-
-        Actions leave Signals behind. Linking a Signal to the Action that
-        generated it (generated_by) is what makes agent behavior observable
-        with the same tools used to observe human and system work.
+        A Signal can be linked to the Action that generated it
+        (generated_by). Agent activity can then be analyzed with the same
+        tools used for human and system activity.
     attributes:
       - key: signal_type
         type: enum
@@ -211,9 +206,9 @@ entities:
       An interpreted fact about a Work Item, Actor, or Action, derived from
       one or more Signals and carrying a Confidence.
     purpose: >-
-      Separates what was seen (Signal) from what it was taken to mean
-      (Observation), so that a wrong interpretation can be traced and
-      corrected without doubting the evidence.
+      Separates recorded evidence (Signal) from its interpretation
+      (Observation), so an incorrect interpretation can be identified and
+      corrected.
     notes:
       - >-
         "The claim amount is $38,200" is an Observation; the scanned claim
@@ -268,8 +263,8 @@ entities:
       A structured, actionable goal derived from an Objective and
       interpretable by agents, orchestrators, and people.
     purpose: >-
-      Turns a business goal into something that can be planned, assigned,
-      governed, and checked.
+      States a business goal in a form that can be planned, assigned,
+      governed, and verified.
     notes:
       - "Objective answers why. Intent answers what. Plan answers how."
     attributes:
@@ -301,8 +296,9 @@ entities:
     since: 1.0.0
     definition: The structured situational information that gives relevance to an Intent.
     purpose: >-
-      Makes the same Intent resolve differently for different situations,
-      and records what an Actor knew when it acted.
+      Allows the same Intent to be handled differently in different
+      situations, and records the information available to an Actor when it
+      acted.
     notes:
       - >-
         Context types: environmental, procedural, data, historical, session.
@@ -331,8 +327,8 @@ entities:
     since: 1.0.0
     definition: Declarative constraints defining permissible, required, or restricted behavior.
     purpose: >-
-      Makes governance explicit and machine-checkable. Policies constrain
-      behavior; they never describe it.
+      States governance rules in a form that can be checked by software.
+      Policies constrain behavior. They do not perform Actions.
     notes:
       - >-
         AOW does not prescribe a policy language. rule_set may hold rules in
@@ -371,8 +367,8 @@ entities:
       An ordered or partially ordered set of Tasks intended to fulfill an
       Intent, produced by an Orchestrator or other Actor.
     purpose: >-
-      Separates deciding how to do something from doing it, so that plans
-      can be inspected, approved, compared, and replayed.
+      Separates planning from execution, so plans can be reviewed,
+      approved, and compared.
     notes:
       - "Listed as an optional concept in version 1.0; a full entity in 2.0."
       - >-
@@ -398,12 +394,13 @@ entities:
       A unit of assigned work within a Plan, performed by an Actor filling
       a Role.
     purpose: >-
-      Gives "task" a single meaning. A Task is what gets assigned; an Action
-      is what gets done; a Skill is what makes it possible.
+      Defines the unit of work that is assigned. A Task is assigned to an
+      Actor. An Action is performed to complete it. A Skill is the
+      capability the Action uses.
     notes:
       - >-
-        Task states follow the Agent2Agent (A2A) protocol's task lifecycle
-        so that AOW Tasks can be exchanged over A2A without translation.
+        Task states match the task states of the Agent2Agent (A2A) protocol,
+        so Tasks can be exchanged over A2A without conversion.
     attributes:
       - key: status
         type: enum
@@ -426,9 +423,8 @@ entities:
       Anything that can be assigned Tasks, perform Actions, and be held to
       account for them: an Agent, a person, an Orchestrator, or a Guardian.
     purpose: >-
-      Lets the ontology describe work the same way whoever performs it, so
-      that work can move between people and agents without being
-      re-modeled.
+      Allows work to be described the same way whether a person or an agent
+      performs it.
     attributes:
       - key: name
         type: string
@@ -445,12 +441,12 @@ entities:
       A software Actor that interprets Intents and Tasks and acts on them
       using Skills, within the autonomy it has been cleared for.
     purpose: >-
-      The primary performer of agentic work, described by what it may do
-      rather than by how it is built.
+      Describes an agent by its permitted capabilities and autonomy, not by
+      its implementation.
     notes:
       - >-
-        Deliberately says nothing about models, prompts, or frameworks.
-        implementation_ref may point to those.
+        AOW does not describe models, prompts, or frameworks.
+        implementation_ref may reference them.
     attributes:
       - key: autonomy_level
         type: ref
@@ -474,8 +470,8 @@ entities:
     subclass_of: Actor
     definition: A person who performs, approves, reviews, or oversees work.
     purpose: >-
-      Makes human-in-the-loop a first-class, traceable part of the model
-      rather than an exception outside it.
+      Records human participation, including approvals and decisions, in
+      the same form as agent activity.
     attributes:
       - key: organizational_unit
         type: string
@@ -491,11 +487,10 @@ entities:
     definition: >-
       A coordinating Actor that turns Intents into Plans, assigns Tasks to
       Actors, and manages sequencing and exceptions.
-    purpose: Decomposes and coordinates work so that no single Agent has to.
+    purpose: Decomposes Intents into Tasks and coordinates their execution.
     notes:
       - >-
-        An Orchestrator may itself be an Agent, a deterministic workflow
-        engine, or a person. The role is what matters.
+        An Orchestrator may be an Agent, a workflow engine, or a person.
     attributes:
       - key: planning_model
         type: string
@@ -518,13 +513,11 @@ entities:
       The oversight Actor that enforces Policy and Assurance Levels,
       monitors behavior, and escalates to people when needed.
     purpose: >-
-      Separates doing the work from checking the work, so that no Actor is
-      its own only safeguard.
+      Separates performing work from checking it.
     notes:
       - >-
-        A Guardian may be software, a person, or both. Because it is an
-        Actor, its own interventions are Actions and leave the same trail as
-        everyone else's.
+        A Guardian may be software, a person, or both. Its interventions are
+        recorded as Actions.
     attributes:
       - key: enforcement_mode
         type: enum
@@ -542,8 +535,8 @@ entities:
       A named set of responsibilities and authority that an Actor can fill,
       such as "claims adjuster" or "eligibility reviewer".
     purpose: >-
-      Lets Tasks, Policies, and escalations target a responsibility rather
-      than a specific person or agent, so either can fill it.
+      Allows Tasks, Policies, and escalations to target a responsibility
+      instead of a specific person or agent.
     attributes:
       - key: responsibilities
         type: string-list
@@ -558,13 +551,14 @@ entities:
     since: 1.0.0
     definition: A reusable capability that an Actor can invoke.
     purpose: >-
-      Describes what can be done, with its inputs, outputs, cost, and side
-      effects, so that it can be discovered, governed, and swapped.
+      Describes a capability's inputs, outputs, cost, and side effects, so
+      it can be discovered, governed, and replaced.
     notes:
       - >-
-        side_effects is new in 2.0. Whether a Skill changes the world, and
-        whether that change can be undone, is the single most important fact
-        for deciding how much autonomy to grant around it.
+        side_effects is new in 2.0. It records whether a Skill changes
+        external state and whether the change can be reversed. Assurance
+        Levels AL3 and AL4 do not permit irreversible Skills without
+        approval.
     attributes:
       - key: input_schema
         type: json
@@ -599,13 +593,12 @@ entities:
       A single execution event in which an Actor invokes a Skill, in service
       of a Task, at a point in time.
     purpose: >-
-      The atom of accountability. Every Result traces back to an Action,
-      and every Action to who did it, why, and under what authority.
+      Records who did what, when, and why. Every Result is linked to the
+      Action that produced it.
     notes:
       - >-
-        Named in version 1.0 but never defined. In 2.0 the Action, not the
-        Skill, produces the Result: a Skill is a capability, an Action is its
-        use.
+        Named but not defined in version 1.0. In 2.0, the Action produces
+        the Result. A Skill is a capability. An Action is one use of it.
     attributes:
       - key: started_at
         type: datetime
@@ -639,8 +632,8 @@ entities:
     since: 1.0.0
     definition: The immediate, atomic effect or output of an Action.
     purpose: >-
-      Records what an Action changed or produced, so that it can be
-      verified, rolled up into Outcomes, and fed back.
+      Records what an Action changed or produced, so it can be verified and
+      aggregated into Outcomes.
     notes:
       - "A Result is local and immediate. An Outcome is aggregated and business-level."
     attributes:
@@ -666,8 +659,9 @@ entities:
       A model-, rule-, or human-derived measure of certainty about an
       Observation, a Result, or an Action.
     purpose: >-
-      Lets autonomy depend on certainty: the same Agent may act alone when
-      it is sure and escalate when it is not.
+      Allows autonomy to depend on certainty. An Agent acts without
+      approval only when its Confidence meets the threshold for its
+      Assurance Level.
     attributes:
       - key: value
         type: number
@@ -695,13 +689,12 @@ entities:
       A governance-set level of permitted autonomy, with the human oversight
       and evidence it requires.
     purpose: >-
-      Makes the choice between autonomy and human oversight explicit,
-      graded, and checkable. AOW defines five levels, AL0 to AL4.
+      Specifies the permitted autonomy and required human oversight for a
+      piece of work. AOW defines five levels, AL0 to AL4.
     notes:
       - >-
-        Higher levels grant more autonomy and therefore demand more
-        assurance evidence before they are granted. See the Assurance Level
-        scale.
+        Higher levels permit more autonomy and require more evidence before
+        they are granted.
     attributes:
       - key: level
         type: integer
@@ -724,7 +717,7 @@ entities:
         max: 1
         description: >-
           Confidence below which an Actor operating at this level must
-          escalate, unless a Policy sets a different floor.
+          escalate, unless a Policy sets a different threshold.
       - key: risk_class
         type: string
         description: The class of risk this level is suited to.
@@ -734,7 +727,7 @@ entities:
     layer: assurance
     since: 1.0.0
     definition: The aggregated business impact of one or more Results, measured against an Objective.
-    purpose: Closes the loop between what agents did and what the business wanted.
+    purpose: Measures the effect of work against the Objective it served.
     attributes:
       - key: kpi_impact
         type: json
@@ -757,7 +750,7 @@ entities:
     layer: assurance
     since: 1.0.0
     definition: Structured information, from people or systems, used to improve future behavior.
-    purpose: Turns Outcomes, reviews, and incidents into specific, attributable changes.
+    purpose: Records changes proposed as a result of Outcomes, reviews, and incidents, and who proposed them.
     attributes:
       - key: feedback_type
         type: enum
@@ -783,7 +776,7 @@ entities:
     since: 1.0.0
     abstract: true
     definition: Persistent knowledge accumulated from experience, used to inform future Context.
-    purpose: Lets the system learn without retraining, and remember why it did what it did.
+    purpose: Retains information from past work for use in future Context and audit.
     notes:
       - "Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived)."
     attributes:
@@ -1020,7 +1013,7 @@ relationships:
     inverse_label: threshold for
     domain: [Confidence]
     range: [AssuranceLevel]
-    description: The Assurance Level whose confidence floor the Confidence was checked against.
+    description: The Assurance Level whose confidence threshold the Confidence was checked against.
 
   - key: contributes_to
     label: contributes to
@@ -1118,7 +1111,7 @@ assurance_levels:
     level: 2
     human_role: Confirms when confidence is low or a Policy triggers; reviews a sample otherwise.
     agent_role: Decides and acts within Policy.
-    review_protocol: Escalate below the confidence floor or on Policy trigger; sampled review otherwise.
+    review_protocol: Escalate below the confidence threshold or on Policy trigger; sampled review otherwise.
     default_confidence_floor: 0.90
     risk_class: Moderate-risk, well-characterized decisions.
   - id: AL3

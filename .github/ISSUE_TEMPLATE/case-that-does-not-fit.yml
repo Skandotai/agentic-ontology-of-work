@@ -1,24 +1,24 @@
-name: A case AOW can't describe
-description: Real work that doesn't fit the ontology. The most useful kind of issue.
+name: Work AOW cannot describe
+description: Report real-world work that the ontology cannot model.
 labels: ["modeling"]
 body:
   - type: textarea
     id: work
     attributes:
       label: The work
-      description: What is being done, by whom (agents, people, systems), and under what rules?
+      description: What work is performed, by whom (agents, people, or systems), and under what rules?
     validations:
       required: true
   - type: textarea
     id: tried
     attributes:
-      label: What you tried
-      description: How you modeled it in AOW. A snippet of AOW JSON is ideal.
+      label: Attempted model
+      description: How you modeled the work in AOW. Include AOW JSON if available.
   - type: textarea
     id: broke
     attributes:
-      label: Where it broke
-      description: What couldn't be said, or could only be said awkwardly?
+      label: Limitation
+      description: What could not be expressed, or could only be expressed indirectly?
     validations:
       required: true
   - type: input

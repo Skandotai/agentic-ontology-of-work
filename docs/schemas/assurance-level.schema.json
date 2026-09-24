@@ -57,7 +57,7 @@
       "type": "string"
     },
     "default_confidence_floor": {
-      "description": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor.",
+      "description": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different threshold.",
       "type": "number",
       "minimum": 0,
       "maximum": 1
