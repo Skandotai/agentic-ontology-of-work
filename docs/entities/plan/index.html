@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan · Agentic Ontology of Work</title>
+<meta name="description" content="An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.">
+<link rel="canonical" href="https://skandotai.github.io/agentic-ontology-of-work/entities/plan/">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta name="theme-color" content="#161714">
+<meta property="og:title" content="Plan · Agentic Ontology of Work">
+<meta property="og:description" content="An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://skandotai.github.io/agentic-ontology-of-work/entities/plan/">
+<meta property="og:image" content="https://skandotai.github.io/agentic-ontology-of-work/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Agentic Ontology of Work: four layers, Perception, Cognition, Execution, and Assurance, connecting Objectives to Actions to Outcomes.">
+<meta property="og:site_name" content="Agentic Ontology of Work">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "Plan",
+  "description": "An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.",
+  "termCode": "aow:Plan",
+  "url": "https://skandotai.github.io/agentic-ontology-of-work/entities/plan/",
+  "sameAs": "https://w3id.org/aow#Plan",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Agentic Ontology of Work",
+    "url": "https://skandotai.github.io/agentic-ontology-of-work/"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Agentic Ontology of Work <span>· Skan<b>.ai</b></span></a>
+    <nav aria-label="Site"><a href="../../entities/index.html" aria-current="page">Ontology</a><a href="../../whitepaper/index.html">Whitepaper</a><a href="../../ontology/index.html">Reference</a><a href="../../about/index.html">About</a><a href="https://github.com/Skandotai/agentic-ontology-of-work">GitHub</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+  <p class="crumbs"><a href="../index.html">Ontology</a> / <a href="../index.html#cognition">Cognition</a></p>
+  <div class="entity-head">
+    <h1>Plan</h1>
+    <div class="facts"><span class="chip cognition">Cognition</span> <span class="chip new">new in 2.0</span> since 2.0 <code>aow:Plan</code></div>
+  </div>
+  <p class="definition">An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.</p><p class="purpose">Separates deciding how to do something from doing it, so that plans can be inspected, approved, compared, and replayed.</p><h2>Attributes</h2><div class="table-scroll"><table><thead><tr><th scope="col">Attribute</th><th scope="col">Type</th><th scope="col">Required</th><th scope="col">Description</th></tr></thead><tbody><tr><td><code>status</code></td><td>one of <code>draft</code>, <code>approved</code>, <code>executing</code>, <code>completed</code>, <code>failed</code>, <code>abandoned</code></td><td></td><td>Where the Plan is in its life.</td></tr><tr><td><code>exception_protocol</code></td><td>text</td><td></td><td>What to do when a Task fails or a Policy blocks progress.</td></tr></tbody></table></div><p class="small muted">Every entity also has an <code>id</code> and a <code>type</code>, and may carry <code>label</code>, <code>description</code>, and the provenance facet: <code>version</code>, <code>created_at</code>, <code>created_by</code>, <code>revision_of</code>.</p><h2>Relationships</h2><div class="table-scroll"><table><thead><tr><th scope="col">Relationship</th><th scope="col">Points to</th><th scope="col">How many</th><th scope="col">Required</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>constrained_by</code></td><td><a href="../policy/index.html">Policy</a></td><td>many</td><td></td><td>Policies that apply.</td></tr><tr><td><code>realizes</code></td><td><a href="../intent/index.html">Intent</a></td><td>one</td><td>yes</td><td>The Intent the Plan is meant to fulfill.</td></tr><tr><td><code>planned_by</code></td><td><a href="../actor/index.html">Actor</a></td><td>one</td><td></td><td>The Actor (usually an Orchestrator) that produced the Plan.</td></tr><tr><td><code>has_task</code></td><td><a href="../task/index.html">Task</a></td><td>many</td><td></td><td>The Tasks that make up the Plan.</td></tr><tr><td><code>approved_by</code></td><td><a href="../human-actor/index.html">Human Actor</a></td><td>many</td><td></td><td>People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation.</td></tr><tr><td><code>has_confidence</code></td><td><a href="../confidence/index.html">Confidence</a></td><td>one</td><td></td><td>The Confidence attached to this Result, Observation, Action, or Plan.</td></tr></tbody></table></div><h3>Pointed to by</h3><div class="table-scroll"><table><thead><tr><th scope="col">From</th><th scope="col">Relationship</th><th scope="col">Read backward as</th></tr></thead><tbody><tr><td><a href="../feedback/index.html">Feedback</a></td><td><code>feedback_on</code></td><td>received feedback</td></tr><tr><td><a href="../feedback/index.html">Feedback</a></td><td><code>updates</code></td><td>updated by</td></tr><tr><td><a href="../guardian/index.html">Guardian</a></td><td><code>oversees</code></td><td>overseen by</td></tr></tbody></table></div><h2>Notes</h2><div class="notes"><p>Listed as an optional concept in version 1.0; a full entity in 2.0.</p><p>The Orchestrator&#x27;s dependency_graph in version 1.0 is the Plan&#x27;s set of Tasks and their depends_on links.</p></div><h2>Alignments</h2><div class="table-scroll"><table><thead><tr><th scope="col">Standard or protocol</th><th scope="col">Term</th><th scope="col">Correspondence</th></tr></thead><tbody><tr><td>W3C PROV-O</td><td><code>prov:Plan</code></td><td>subClassOf</td></tr></tbody></table></div><h2>Example</h2><p class="small muted">From <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/examples/claims-processing.jsonld"><code>examples/claims-processing.jsonld</code></a>, which passes every validation gate.</p><pre><code>{
+  &quot;id&quot;: &quot;plan-84933&quot;,
+  &quot;type&quot;: &quot;Plan&quot;,
+  &quot;realizes&quot;: &quot;intent-eligibility-2026&quot;,
+  &quot;planned_by&quot;: &quot;orch-claims&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;has_task&quot;: [
+    &quot;task-extract-84933&quot;,
+    &quot;task-coverage-84933&quot;,
+    &quot;task-benefit-84933&quot;,
+    &quot;task-decision-84933&quot;
+  ],
+  &quot;constrained_by&quot;: [
+    &quot;policy-auto-approval&quot;,
+    &quot;policy-high-risk-review&quot;
+  ]
+}</code></pre><p class="small"><a href="../../ontology/index.html#Plan">Term reference</a> · <a href="../../schemas/plan.schema.json">JSON Schema</a> · <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/ontology/shapes.ttl">SHACL shape <code>aowsh:PlanShape</code></a></p>
+  <nav class="pager" aria-label="Classes"><a href="../policy/index.html">← Policy</a><a href="../task/index.html">Task →</a></nav>
+</div>
+
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Agentic Ontology of Work, version 2.0 · By Manish Garg, <a href="https://www.skan.ai">Skan.ai</a></p>
+    <p>Prose licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, schemas, and code licensed <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.</p>
+    <p>Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
+    <p class="family">Also from Skan.ai: <a href="https://skandotai.github.io/soa-to-agentic-terms/">SOA-to-Agentic AI Terminology Mapping</a></p>
+  </div>
+</footer>
+</body>
+</html>

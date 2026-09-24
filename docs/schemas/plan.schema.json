@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/plan.schema.json",
+  "title": "Plan",
+  "description": "An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "Plan",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "status": {
+      "description": "Where the Plan is in its life.",
+      "enum": [
+        "draft",
+        "approved",
+        "executing",
+        "completed",
+        "failed",
+        "abandoned"
+      ]
+    },
+    "exception_protocol": {
+      "description": "What to do when a Task fails or a Policy blocks progress.",
+      "type": "string"
+    },
+    "constrained_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Policies that apply."
+    },
+    "realizes": {
+      "$ref": "#/$defs/ref",
+      "description": "The Intent the Plan is meant to fulfill."
+    },
+    "planned_by": {
+      "$ref": "#/$defs/ref",
+      "description": "The Actor (usually an Orchestrator) that produced the Plan."
+    },
+    "has_task": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "The Tasks that make up the Plan."
+    },
+    "approved_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."
+    },
+    "has_confidence": {
+      "$ref": "#/$defs/ref",
+      "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "realizes"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

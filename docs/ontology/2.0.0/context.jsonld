@@ -1,0 +1,326 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aow": "https://w3id.org/aow#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "schema": "https://schema.org/",
+    "@vocab": "https://w3id.org/aow#",
+    "id": "@id",
+    "type": "@type",
+    "label": "rdfs:label",
+    "description": "dcterms:description",
+    "version": "schema:version",
+    "created_at": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "created_by": {
+      "@id": "prov:wasAttributedTo",
+      "@type": "@id"
+    },
+    "revision_of": {
+      "@id": "prov:wasRevisionOf",
+      "@type": "@id"
+    },
+    "acceptable_risk_band": "aow:acceptableRiskBand",
+    "agent_role": "aow:agentRole",
+    "artifacts": {
+      "@id": "aow:artifacts",
+      "@type": "xsd:anyURI",
+      "@container": "@set"
+    },
+    "autonomy_level": {
+      "@id": "aow:autonomyLevel",
+      "@type": "@id"
+    },
+    "binding": "aow:binding",
+    "calibrated": "aow:calibrated",
+    "closed_at": {
+      "@id": "aow:closedAt",
+      "@type": "xsd:dateTime"
+    },
+    "constraints": {
+      "@id": "aow:constraints",
+      "@container": "@set"
+    },
+    "context_type": "aow:contextType",
+    "cost_profile": "aow:costProfile",
+    "default_confidence_floor": "aow:defaultConfidenceFloor",
+    "due_by": {
+      "@id": "aow:dueBy",
+      "@type": "xsd:dateTime"
+    },
+    "effect": "aow:effect",
+    "ended_at": {
+      "@id": "aow:endedAt",
+      "@type": "xsd:dateTime"
+    },
+    "enforcement_mode": "aow:enforcementMode",
+    "exception_protocol": "aow:exceptionProtocol",
+    "external_ref": "aow:externalRef",
+    "feedback_type": "aow:feedbackType",
+    "goal_statement": "aow:goalStatement",
+    "human_role": "aow:humanRole",
+    "idempotency_key": "aow:idempotencyKey",
+    "implementation_ref": {
+      "@id": "aow:implementationRef",
+      "@type": "xsd:anyURI"
+    },
+    "input_schema": {
+      "@id": "aow:inputSchema",
+      "@type": "@json"
+    },
+    "inputs": {
+      "@id": "aow:inputs",
+      "@type": "@json"
+    },
+    "issue_detected": "aow:issueDetected",
+    "item_type": "aow:itemType",
+    "kpi_impact": {
+      "@id": "aow:kpiImpact",
+      "@type": "@json"
+    },
+    "kpi_target": "aow:kpiTarget",
+    "latency": "aow:latency",
+    "level": "aow:level",
+    "measured_at": {
+      "@id": "aow:measuredAt",
+      "@type": "xsd:dateTime"
+    },
+    "measurement_window": "aow:measurementWindow",
+    "method": "aow:method",
+    "name": "aow:name",
+    "observed_at": {
+      "@id": "aow:observedAt",
+      "@type": "xsd:dateTime"
+    },
+    "observed_property": "aow:observedProperty",
+    "observed_value": {
+      "@id": "aow:observedValue",
+      "@type": "@json"
+    },
+    "opened_at": {
+      "@id": "aow:openedAt",
+      "@type": "xsd:dateTime"
+    },
+    "organizational_unit": "aow:organizationalUnit",
+    "output_schema": {
+      "@id": "aow:outputSchema",
+      "@type": "@json"
+    },
+    "override_protocol": "aow:overrideProtocol",
+    "payload_ref": {
+      "@id": "aow:payloadRef",
+      "@type": "xsd:anyURI"
+    },
+    "planning_model": "aow:planningModel",
+    "priority": "aow:priority",
+    "rationale": "aow:rationale",
+    "recommended_adjustments": {
+      "@id": "aow:recommendedAdjustments",
+      "@container": "@set"
+    },
+    "resource_constraints": "aow:resourceConstraints",
+    "responsibilities": {
+      "@id": "aow:responsibilities",
+      "@container": "@set"
+    },
+    "retention_policy": "aow:retentionPolicy",
+    "review_protocol": "aow:reviewProtocol",
+    "risk_class": "aow:riskClass",
+    "risk_profile_change": "aow:riskProfileChange",
+    "rule_language": "aow:ruleLanguage",
+    "rule_set": "aow:ruleSet",
+    "scope": "aow:scope",
+    "sensitivity_level": "aow:sensitivityLevel",
+    "severity": "aow:severity",
+    "side_effects": "aow:sideEffects",
+    "signal_type": "aow:signalType",
+    "source": "aow:source",
+    "started_at": {
+      "@id": "aow:startedAt",
+      "@type": "xsd:dateTime"
+    },
+    "state": "aow:state",
+    "status": "aow:status",
+    "store_ref": {
+      "@id": "aow:storeRef",
+      "@type": "xsd:anyURI"
+    },
+    "summary": "aow:summary",
+    "time_horizon": "aow:timeHorizon",
+    "time_to_value": "aow:timeToValue",
+    "timestamp": {
+      "@id": "aow:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "trigger_conditions": {
+      "@id": "aow:triggerConditions",
+      "@container": "@set"
+    },
+    "valid_until": {
+      "@id": "aow:validUntil",
+      "@type": "xsd:dateTime"
+    },
+    "value": "aow:value",
+    "variables": {
+      "@id": "aow:variables",
+      "@type": "@json"
+    },
+    "volatility": "aow:volatility",
+    "serves_objective": {
+      "@id": "aow:servesObjective",
+      "@type": "@id"
+    },
+    "shaped_by": {
+      "@id": "aow:shapedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "draws_on": {
+      "@id": "aow:drawsOn",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "concerns": {
+      "@id": "aow:concerns",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "constrained_by": {
+      "@id": "aow:constrainedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "requires_assurance": {
+      "@id": "aow:requiresAssurance",
+      "@type": "@id"
+    },
+    "realizes": {
+      "@id": "aow:realizes",
+      "@type": "@id"
+    },
+    "planned_by": {
+      "@id": "aow:plannedBy",
+      "@type": "@id"
+    },
+    "has_task": {
+      "@id": "aow:hasTask",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "depends_on": {
+      "@id": "aow:dependsOn",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "assigned_to": {
+      "@id": "aow:assignedTo",
+      "@type": "@id"
+    },
+    "requires_role": {
+      "@id": "aow:requiresRole",
+      "@type": "@id"
+    },
+    "fills_role": {
+      "@id": "aow:fillsRole",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "has_skill": {
+      "@id": "aow:hasSkill",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "performed_by": {
+      "@id": "aow:performedBy",
+      "@type": "@id"
+    },
+    "fulfills": {
+      "@id": "aow:fulfills",
+      "@type": "@id"
+    },
+    "invokes": {
+      "@id": "aow:invokes",
+      "@type": "@id"
+    },
+    "approved_by": {
+      "@id": "aow:approvedBy",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "generated_by": {
+      "@id": "aow:generatedBy",
+      "@type": "@id"
+    },
+    "derived_from": {
+      "@id": "aow:derivedFrom",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "about": {
+      "@id": "aow:about",
+      "@type": "@id"
+    },
+    "affects": {
+      "@id": "aow:affects",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "has_confidence": {
+      "@id": "aow:hasConfidence",
+      "@type": "@id"
+    },
+    "compared_against": {
+      "@id": "aow:comparedAgainst",
+      "@type": "@id"
+    },
+    "contributes_to": {
+      "@id": "aow:contributesTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "evaluates": {
+      "@id": "aow:evaluates",
+      "@type": "@id"
+    },
+    "feedback_on": {
+      "@id": "aow:feedbackOn",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "provided_by": {
+      "@id": "aow:providedBy",
+      "@type": "@id"
+    },
+    "updates": {
+      "@id": "aow:updates",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "writes_to": {
+      "@id": "aow:writesTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "enforces": {
+      "@id": "aow:enforces",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "oversees": {
+      "@id": "aow:oversees",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "escalates_to": {
+      "@id": "aow:escalatesTo",
+      "@type": "@id",
+      "@container": "@set"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/assurance-level.schema.json",
+  "title": "Assurance Level",
+  "description": "A governance-set level of permitted autonomy, with the human oversight and evidence it requires.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "AssuranceLevel",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "level": {
+      "description": "Position on the AL0 to AL4 scale.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "human_role": {
+      "description": "What people do at this level.",
+      "type": "string"
+    },
+    "agent_role": {
+      "description": "What Agents may do at this level.",
+      "type": "string"
+    },
+    "review_protocol": {
+      "description": "The human oversight this level requires.",
+      "type": "string"
+    },
+    "default_confidence_floor": {
+      "description": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "risk_class": {
+      "description": "The class of risk this level is suited to.",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "level"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/observation.schema.json",
+  "title": "Observation",
+  "description": "An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "Observation",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "observed_property": {
+      "description": "What was observed, for example \"claim_amount\" or \"handling_time\".",
+      "type": "string"
+    },
+    "observed_value": {
+      "description": "The observed value, in any JSON form."
+    },
+    "observed_at": {
+      "description": "When the observation was made.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "method": {
+      "description": "How the value was derived, for example \"document-extraction\" or \"rule\".",
+      "type": "string"
+    },
+    "generated_by": {
+      "$ref": "#/$defs/ref",
+      "description": "The Action that produced this Result, Signal, or Observation."
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "The Signals an Observation was interpreted from."
+    },
+    "about": {
+      "$ref": "#/$defs/ref",
+      "description": "What the Observation describes."
+    },
+    "has_confidence": {
+      "$ref": "#/$defs/ref",
+      "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type",
+    "observed_property",
+    "derived_from"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

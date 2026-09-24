@@ -1,0 +1,1436 @@
+# Agentic Ontology of Work (AOW) 2.0.0
+# Generated from aow.yaml by tools/build.py. Do not edit by hand.
+
+@prefix aow: <https://w3id.org/aow#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schema: <https://schema.org/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+
+<https://w3id.org/aow>
+    a owl:Ontology ;
+    dcterms:title "Agentic Ontology of Work"@en ;
+    dcterms:description "A platform-agnostic semantic model for intelligent, autonomous, and governed enterprise work. AOW names the things that agentic systems, people, and the governance around them have in common: the Objectives work serves, the Intents and Plans derived from them, the Actors and Skills that carry them out, the Results and Outcomes they produce, and the Assurance, Feedback, and Memory that keep the whole loop safe and improving."@en ;
+    owl:versionIRI <https://w3id.org/aow/2.0.0> ;
+    owl:versionInfo "2.0.0" ;
+    dcterms:issued "2026-09-24"^^xsd:date ;
+    dcterms:creator "Manish Garg (Skan.ai)" ;
+    dcterms:publisher "Skan, Inc." ;
+    dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+    vann:preferredNamespacePrefix "aow" ;
+    vann:preferredNamespaceUri "https://w3id.org/aow#" ;
+    rdfs:seeAlso <https://skandotai.github.io/agentic-ontology-of-work/> , <https://github.com/Skandotai/agentic-ontology-of-work> .
+
+
+# ---- Annotation properties used to document the ontology
+
+aow:layer
+    a owl:AnnotationProperty ;
+    rdfs:label "layer"@en ;
+    rdfs:comment "The layer of the four-layer stack a class belongs to."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:since
+    a owl:AnnotationProperty ;
+    rdfs:label "since"@en ;
+    rdfs:comment "The AOW version in which a term first appeared."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:inverseLabel
+    a owl:AnnotationProperty ;
+    rdfs:label "inverse label"@en ;
+    rdfs:comment "How to read a relationship from its object back to its subject."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:jsonKey
+    a owl:AnnotationProperty ;
+    rdfs:label "json key"@en ;
+    rdfs:comment "The key used for this property in AOW JSON and JSON-LD documents."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:alignment
+    a owl:AnnotationProperty ;
+    rdfs:label "alignment"@en ;
+    rdfs:comment "A correspondence to a term in a standard or protocol that has no dereferenceable IRI."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+
+# ---- Layers
+
+aow:PerceptionLayer
+    a skos:Concept ;
+    skos:prefLabel "Perception layer"@en ;
+    skos:notation "1" ;
+    skos:definition "Captures the Work Items in flight and the Signals and Observations about them. This is the ground truth the rest of the ontology reasons over."@en ;
+    rdfs:comment "What exists, and what is happening?"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:CognitionLayer
+    a skos:Concept ;
+    skos:prefLabel "Cognition layer"@en ;
+    skos:notation "2" ;
+    skos:definition "Turns business goals into actionable Intents, gives them Context, bounds them with Policy, and plans how to fulfill them."@en ;
+    rdfs:comment "What should happen, and within what limits?"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:ExecutionLayer
+    a skos:Concept ;
+    skos:prefLabel "Execution layer"@en ;
+    skos:notation "3" ;
+    skos:definition "Actors (Agents and people alike) take on Tasks, invoke Skills through Actions, and produce Results."@en ;
+    rdfs:comment "Who does the work, and what did it change?"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:AssuranceLayer
+    a skos:Concept ;
+    skos:prefLabel "Assurance layer"@en ;
+    skos:notation "4" ;
+    skos:definition "Governs autonomy, measures certainty, oversees behavior, evaluates Outcomes, and carries Feedback into Memory so the next cycle starts smarter."@en ;
+    rdfs:comment "Was it safe, did it work, and what did we learn?"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+
+# ---- Classes
+
+aow:WorkItem
+    a owl:Class ;
+    rdfs:label "Work Item"@en ;
+    skos:definition "The unit of business work that the rest of the ontology is about: a claim, an application, an order, a case, a ticket."@en ;
+    rdfs:comment "Gives every Intent, Task, Action, and Observation a concrete subject, so that work can be followed end to end regardless of which systems, agents, or people touched it."@en ;
+    skos:scopeNote "Version 1.0 carried the work item implicitly inside Context (for example, \"ctx-claim-84933\"). Making it explicit lets two Intents, or an Intent and a human Task, refer to the same claim."@en , "Corresponds to a case or object in process mining (IEEE 1849 XES and the OCEL 2.0 object-centric event log format)."@en ;
+    aow:layer aow:PerceptionLayer ;
+    aow:since "2.0.0" ;
+    aow:alignment "OCEL 2.0: object (closeMatch)"@en , "IEEE 1849 XES: trace (case) (relatedMatch)"@en , "BPMN 2.0: Data Object (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Signal
+    a owl:Class ;
+    rdfs:label "Signal"@en ;
+    skos:definition "A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample."@en ;
+    rdfs:comment "Anchors the ontology in what actually happened, before any interpretation. Signals are the evidence that Observations, Context, and audit trails are built from."@en ;
+    skos:scopeNote "Version 1.0 listed Telemetry Events, Signals, Session State, and Environmental Observations as Perception-layer elements without defining them. In 2.0 a Telemetry Event is a Signal whose signal_type is \"event\" or \"metric\"; Session State is Context with context_type \"session\"."@en , "Actions leave Signals behind. Linking a Signal to the Action that generated it (generated_by) is what makes agent behavior observable with the same tools used to observe human and system work."@en ;
+    rdfs:subClassOf prov:Entity ;
+    owl:disjointWith aow:Observation ;
+    aow:layer aow:PerceptionLayer ;
+    aow:since "2.0.0" ;
+    aow:alignment "OpenTelemetry: span / log record / metric data point (relatedMatch)"@en , "IEEE 1849 XES: event (closeMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Observation
+    a owl:Class ;
+    rdfs:label "Observation"@en ;
+    skos:definition "An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence."@en ;
+    rdfs:comment "Separates what was seen (Signal) from what it was taken to mean (Observation), so that a wrong interpretation can be traced and corrected without doubting the evidence."@en ;
+    skos:scopeNote "\"The claim amount is $38,200\" is an Observation; the scanned claim form it was extracted from is a Signal."@en ;
+    rdfs:subClassOf prov:Entity ;
+    aow:layer aow:PerceptionLayer ;
+    aow:since "2.0.0" ;
+    skos:closeMatch sosa:Observation ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Objective
+    a owl:Class ;
+    rdfs:label "Objective"@en ;
+    skos:definition "A business-level goal expressed in strategic or operational terms."@en ;
+    rdfs:comment "Connects agentic activity to specific, measurable enterprise value."@en ;
+    skos:scopeNote "Objective answers why. Intent answers what."@en ;
+    owl:disjointWith aow:Intent ;
+    aow:layer aow:CognitionLayer ;
+    aow:since "1.0.0" ;
+    aow:alignment "BDI agent model: desire (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Intent
+    a owl:Class ;
+    rdfs:label "Intent"@en ;
+    skos:definition "A structured, actionable goal derived from an Objective and interpretable by agents, orchestrators, and people."@en ;
+    rdfs:comment "Turns a business goal into something that can be planned, assigned, governed, and checked."@en ;
+    skos:scopeNote "Objective answers why. Intent answers what. Plan answers how."@en ;
+    aow:layer aow:CognitionLayer ;
+    aow:since "1.0.0" ;
+    aow:alignment "BDI agent model: intention (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Context
+    a owl:Class ;
+    rdfs:label "Context"@en ;
+    skos:definition "The structured situational information that gives relevance to an Intent."@en ;
+    rdfs:comment "Makes the same Intent resolve differently for different situations, and records what an Actor knew when it acted."@en ;
+    skos:scopeNote "Context types: environmental, procedural, data, historical, session."@en ;
+    aow:layer aow:CognitionLayer ;
+    aow:since "1.0.0" ;
+    aow:alignment "BDI agent model: belief (relatedMatch)"@en , "Model Context Protocol: resource (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Policy
+    a owl:Class ;
+    rdfs:label "Policy"@en ;
+    skos:definition "Declarative constraints defining permissible, required, or restricted behavior."@en ;
+    rdfs:comment "Makes governance explicit and machine-checkable. Policies constrain behavior; they never describe it."@en ;
+    skos:scopeNote "AOW does not prescribe a policy language. rule_set may hold rules in ODRL, Rego, Cedar, DMN, or plain text, named in rule_language."@en ;
+    aow:layer aow:CognitionLayer ;
+    aow:since "1.0.0" ;
+    skos:closeMatch odrl:Policy ;
+    aow:alignment "OMG DMN: Decision (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Plan
+    a owl:Class ;
+    rdfs:label "Plan"@en ;
+    skos:definition "An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor."@en ;
+    rdfs:comment "Separates deciding how to do something from doing it, so that plans can be inspected, approved, compared, and replayed."@en ;
+    skos:scopeNote "Listed as an optional concept in version 1.0; a full entity in 2.0."@en , "The Orchestrator's dependency_graph in version 1.0 is the Plan's set of Tasks and their depends_on links."@en ;
+    rdfs:subClassOf prov:Plan ;
+    aow:layer aow:CognitionLayer ;
+    aow:since "2.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Task
+    a owl:Class ;
+    rdfs:label "Task"@en ;
+    skos:definition "A unit of assigned work within a Plan, performed by an Actor filling a Role."@en ;
+    rdfs:comment "Gives \"task\" a single meaning. A Task is what gets assigned; an Action is what gets done; a Skill is what makes it possible."@en ;
+    skos:scopeNote "Task states follow the Agent2Agent (A2A) protocol's task lifecycle so that AOW Tasks can be exchanged over A2A without translation."@en ;
+    owl:disjointWith aow:Action ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "2.0.0" ;
+    aow:alignment "Agent2Agent (A2A): Task (closeMatch)"@en , "BPMN 2.0: Task (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Actor
+    a owl:Class ;
+    rdfs:label "Actor"@en ;
+    skos:definition "Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian."@en ;
+    rdfs:comment "Lets the ontology describe work the same way whoever performs it, so that work can move between people and agents without being re-modeled."@en ;
+    rdfs:subClassOf prov:Agent ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "2.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Agent
+    a owl:Class ;
+    rdfs:label "Agent"@en ;
+    skos:definition "A software Actor that interprets Intents and Tasks and acts on them using Skills, within the autonomy it has been cleared for."@en ;
+    rdfs:comment "The primary performer of agentic work, described by what it may do rather than by how it is built."@en ;
+    skos:scopeNote "Deliberately says nothing about models, prompts, or frameworks. implementation_ref may point to those."@en ;
+    rdfs:subClassOf aow:Actor ;
+    owl:disjointWith aow:HumanActor ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "1.0.0" ;
+    aow:alignment "Agent2Agent (A2A): Agent (AgentCard) (closeMatch)"@en , "OpenTelemetry GenAI: gen_ai.agent.* (relatedMatch)"@en , "SOA-to-Agentic mapping: Agent (from Service) (exactMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:HumanActor
+    a owl:Class ;
+    rdfs:label "Human Actor"@en ;
+    skos:definition "A person who performs, approves, reviews, or oversees work."@en ;
+    rdfs:comment "Makes human-in-the-loop a first-class, traceable part of the model rather than an exception outside it."@en ;
+    rdfs:subClassOf aow:Actor , prov:Person ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "2.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Orchestrator
+    a owl:Class ;
+    rdfs:label "Orchestrator"@en ;
+    skos:definition "A coordinating Actor that turns Intents into Plans, assigns Tasks to Actors, and manages sequencing and exceptions."@en ;
+    rdfs:comment "Decomposes and coordinates work so that no single Agent has to."@en ;
+    skos:scopeNote "An Orchestrator may itself be an Agent, a deterministic workflow engine, or a person. The role is what matters."@en ;
+    rdfs:subClassOf aow:Actor ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "1.0.0" ;
+    aow:alignment "SOA-to-Agentic mapping: Agentic Orchestrator (exactMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Guardian
+    a owl:Class ;
+    rdfs:label "Guardian"@en ;
+    skos:definition "The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed."@en ;
+    rdfs:comment "Separates doing the work from checking the work, so that no Actor is its own only safeguard."@en ;
+    skos:scopeNote "A Guardian may be software, a person, or both. Because it is an Actor, its own interventions are Actions and leave the same trail as everyone else's."@en ;
+    rdfs:subClassOf aow:Actor ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Role
+    a owl:Class ;
+    rdfs:label "Role"@en ;
+    skos:definition "A named set of responsibilities and authority that an Actor can fill, such as \"claims adjuster\" or \"eligibility reviewer\"."@en ;
+    rdfs:comment "Lets Tasks, Policies, and escalations target a responsibility rather than a specific person or agent, so either can fill it."@en ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "2.0.0" ;
+    skos:closeMatch org:Role ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Skill
+    a owl:Class ;
+    rdfs:label "Skill"@en ;
+    skos:definition "A reusable capability that an Actor can invoke."@en ;
+    rdfs:comment "Describes what can be done, with its inputs, outputs, cost, and side effects, so that it can be discovered, governed, and swapped."@en ;
+    skos:scopeNote "side_effects is new in 2.0. Whether a Skill changes the world, and whether that change can be undone, is the single most important fact for deciding how much autonomy to grant around it."@en ;
+    owl:disjointWith aow:Action ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "1.0.0" ;
+    aow:alignment "Model Context Protocol: tool (closeMatch)"@en , "Agent2Agent (A2A): AgentSkill (closeMatch)"@en , "SOA-to-Agentic mapping: Agentic Tools (from Operation / Common Services) (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Action
+    a owl:Class ;
+    rdfs:label "Action"@en ;
+    skos:definition "A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time."@en ;
+    rdfs:comment "The atom of accountability. Every Result traces back to an Action, and every Action to who did it, why, and under what authority."@en ;
+    skos:scopeNote "Named in version 1.0 but never defined. In 2.0 the Action, not the Skill, produces the Result: a Skill is a capability, an Action is its use."@en ;
+    rdfs:subClassOf prov:Activity ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "1.0.0" ;
+    skos:closeMatch schema:Action ;
+    aow:alignment "OpenTelemetry GenAI: execute_tool span (relatedMatch)"@en , "SOA-to-Agentic mapping: Idempotent Action (relatedMatch)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Result
+    a owl:Class ;
+    rdfs:label "Result"@en ;
+    skos:definition "The immediate, atomic effect or output of an Action."@en ;
+    rdfs:comment "Records what an Action changed or produced, so that it can be verified, rolled up into Outcomes, and fed back."@en ;
+    skos:scopeNote "A Result is local and immediate. An Outcome is aggregated and business-level."@en ;
+    rdfs:subClassOf prov:Entity ;
+    owl:disjointWith aow:Outcome ;
+    aow:layer aow:ExecutionLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Confidence
+    a owl:Class ;
+    rdfs:label "Confidence"@en ;
+    skos:definition "A model-, rule-, or human-derived measure of certainty about an Observation, a Result, or an Action."@en ;
+    rdfs:comment "Lets autonomy depend on certainty: the same Agent may act alone when it is sure and escalate when it is not."@en ;
+    owl:disjointWith aow:AssuranceLevel ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:AssuranceLevel
+    a owl:Class ;
+    rdfs:label "Assurance Level"@en ;
+    skos:definition "A governance-set level of permitted autonomy, with the human oversight and evidence it requires."@en ;
+    rdfs:comment "Makes the choice between autonomy and human oversight explicit, graded, and checkable. AOW defines five levels, AL0 to AL4."@en ;
+    skos:scopeNote "Higher levels grant more autonomy and therefore demand more assurance evidence before they are granted. See the Assurance Level scale."@en ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Outcome
+    a owl:Class ;
+    rdfs:label "Outcome"@en ;
+    skos:definition "The aggregated business impact of one or more Results, measured against an Objective."@en ;
+    rdfs:comment "Closes the loop between what agents did and what the business wanted."@en ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Feedback
+    a owl:Class ;
+    rdfs:label "Feedback"@en ;
+    skos:definition "Structured information, from people or systems, used to improve future behavior."@en ;
+    rdfs:comment "Turns Outcomes, reviews, and incidents into specific, attributable changes."@en ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:Memory
+    a owl:Class ;
+    rdfs:label "Memory"@en ;
+    skos:definition "Persistent knowledge accumulated from experience, used to inform future Context."@en ;
+    rdfs:comment "Lets the system learn without retraining, and remember why it did what it did."@en ;
+    skos:scopeNote "Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived)."@en ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:OperationalMemory
+    a owl:Class ;
+    rdfs:label "Operational Memory"@en ;
+    skos:definition "Short-lived, execution-oriented memory scoped to a session, Task, or Work Item."@en ;
+    rdfs:comment "Carries state across the steps of a single piece of work."@en ;
+    rdfs:subClassOf aow:Memory ;
+    owl:disjointWith aow:KnowledgeBase ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:KnowledgeBase
+    a owl:Class ;
+    rdfs:label "Knowledge Base"@en ;
+    skos:definition "Long-lived memory of generalized patterns, rules, and precedents."@en ;
+    rdfs:comment "Carries what was learned from one piece of work into the next."@en ;
+    rdfs:subClassOf aow:Memory ;
+    aow:layer aow:AssuranceLayer ;
+    aow:since "1.0.0" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+
+# ---- Relationships (object properties)
+
+aow:servesObjective
+    a owl:ObjectProperty ;
+    rdfs:label "serves objective"@en ;
+    aow:inverseLabel "produces intent"@en ;
+    rdfs:comment "The Objective an Intent was derived from."@en ;
+    rdfs:domain aow:Intent ;
+    rdfs:range aow:Objective ;
+    aow:jsonKey "serves_objective" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:shapedBy
+    a owl:ObjectProperty ;
+    rdfs:label "shaped by"@en ;
+    aow:inverseLabel "shapes"@en ;
+    rdfs:comment "Context that gives the Intent or Task its situational meaning."@en ;
+    schema:domainIncludes aow:Intent , aow:Task ;
+    rdfs:range aow:Context ;
+    aow:jsonKey "shaped_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:drawsOn
+    a owl:ObjectProperty ;
+    rdfs:label "draws on"@en ;
+    aow:inverseLabel "informs"@en ;
+    rdfs:comment "Memory and Observations the Context was assembled from."@en ;
+    rdfs:domain aow:Context ;
+    schema:rangeIncludes aow:Memory , aow:Observation ;
+    aow:jsonKey "draws_on" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:concerns
+    a owl:ObjectProperty ;
+    rdfs:label "concerns"@en ;
+    aow:inverseLabel "is subject of"@en ;
+    rdfs:comment "The Work Item the Intent, Task, or Action is about."@en ;
+    schema:domainIncludes aow:Intent , aow:Task , aow:Action ;
+    rdfs:range aow:WorkItem ;
+    aow:jsonKey "concerns" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:constrainedBy
+    a owl:ObjectProperty ;
+    rdfs:label "constrained by"@en ;
+    aow:inverseLabel "constrains"@en ;
+    rdfs:comment "Policies that apply."@en ;
+    schema:domainIncludes aow:Intent , aow:Plan , aow:Task , aow:Actor , aow:Skill , aow:Role ;
+    rdfs:range aow:Policy ;
+    aow:jsonKey "constrained_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:requiresAssurance
+    a owl:ObjectProperty ;
+    rdfs:label "requires assurance"@en ;
+    aow:inverseLabel "required by"@en ;
+    rdfs:comment "The highest Assurance Level at which this work may be done. The effective level is the lowest of the Intent's, the Task's, the Skill's, and the performing Agent's autonomy_level."@en ;
+    schema:domainIncludes aow:Intent , aow:Task , aow:Skill ;
+    rdfs:range aow:AssuranceLevel ;
+    aow:jsonKey "requires_assurance" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:realizes
+    a owl:ObjectProperty ;
+    rdfs:label "realizes"@en ;
+    aow:inverseLabel "realized by"@en ;
+    rdfs:comment "The Intent the Plan is meant to fulfill."@en ;
+    rdfs:domain aow:Plan ;
+    rdfs:range aow:Intent ;
+    aow:jsonKey "realizes" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:plannedBy
+    a owl:ObjectProperty ;
+    rdfs:label "planned by"@en ;
+    aow:inverseLabel "plans"@en ;
+    rdfs:comment "The Actor (usually an Orchestrator) that produced the Plan."@en ;
+    rdfs:domain aow:Plan ;
+    rdfs:range aow:Actor ;
+    aow:jsonKey "planned_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:hasTask
+    a owl:ObjectProperty ;
+    rdfs:label "has task"@en ;
+    aow:inverseLabel "part of plan"@en ;
+    rdfs:comment "The Tasks that make up the Plan."@en ;
+    rdfs:domain aow:Plan ;
+    rdfs:range aow:Task ;
+    aow:jsonKey "has_task" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:dependsOn
+    a owl:ObjectProperty ;
+    rdfs:label "depends on"@en ;
+    aow:inverseLabel "prerequisite of"@en ;
+    rdfs:comment "Tasks that must complete before this one can start."@en ;
+    rdfs:domain aow:Task ;
+    rdfs:range aow:Task ;
+    aow:jsonKey "depends_on" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:assignedTo
+    a owl:ObjectProperty ;
+    rdfs:label "assigned to"@en ;
+    aow:inverseLabel "assigned"@en ;
+    rdfs:comment "The Actor responsible for performing the Task."@en ;
+    rdfs:domain aow:Task ;
+    rdfs:range aow:Actor ;
+    aow:jsonKey "assigned_to" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:requiresRole
+    a owl:ObjectProperty ;
+    rdfs:label "requires role"@en ;
+    aow:inverseLabel "required for"@en ;
+    rdfs:comment "The Role an Actor must fill to take the Task."@en ;
+    rdfs:domain aow:Task ;
+    rdfs:range aow:Role ;
+    aow:jsonKey "requires_role" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:fillsRole
+    a owl:ObjectProperty ;
+    rdfs:label "fills role"@en ;
+    aow:inverseLabel "filled by"@en ;
+    rdfs:comment "Roles the Actor is authorized to fill."@en ;
+    rdfs:domain aow:Actor ;
+    rdfs:range aow:Role ;
+    aow:jsonKey "fills_role" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:hasSkill
+    a owl:ObjectProperty ;
+    rdfs:label "has skill"@en ;
+    aow:inverseLabel "available to"@en ;
+    rdfs:comment "Skills the Actor can invoke."@en ;
+    rdfs:domain aow:Actor ;
+    rdfs:range aow:Skill ;
+    aow:jsonKey "has_skill" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:performedBy
+    a owl:ObjectProperty ;
+    rdfs:label "performed by"@en ;
+    aow:inverseLabel "performs"@en ;
+    rdfs:comment "The Actor that carried out the Action."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range aow:Actor ;
+    rdfs:subPropertyOf prov:wasAssociatedWith ;
+    aow:jsonKey "performed_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:fulfills
+    a owl:ObjectProperty ;
+    rdfs:label "fulfills"@en ;
+    aow:inverseLabel "fulfilled through"@en ;
+    rdfs:comment "The Task the Action was performed for."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range aow:Task ;
+    aow:jsonKey "fulfills" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:invokes
+    a owl:ObjectProperty ;
+    rdfs:label "invokes"@en ;
+    aow:inverseLabel "invoked by"@en ;
+    rdfs:comment "The Skill the Action used."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range aow:Skill ;
+    aow:jsonKey "invokes" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:approvedBy
+    a owl:ObjectProperty ;
+    rdfs:label "approved by"@en ;
+    aow:inverseLabel "approves"@en ;
+    rdfs:comment "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."@en ;
+    schema:domainIncludes aow:Action , aow:Plan , aow:Result ;
+    rdfs:range aow:HumanActor ;
+    aow:jsonKey "approved_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:generatedBy
+    a owl:ObjectProperty ;
+    rdfs:label "generated by"@en ;
+    aow:inverseLabel "generated"@en ;
+    rdfs:comment "The Action that produced this Result, Signal, or Observation."@en ;
+    schema:domainIncludes aow:Result , aow:Signal , aow:Observation ;
+    rdfs:range aow:Action ;
+    rdfs:subPropertyOf prov:wasGeneratedBy ;
+    aow:jsonKey "generated_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:derivedFrom
+    a owl:ObjectProperty ;
+    rdfs:label "derived from"@en ;
+    aow:inverseLabel "source of"@en ;
+    rdfs:comment "The Signals an Observation was interpreted from."@en ;
+    rdfs:domain aow:Observation ;
+    rdfs:range aow:Signal ;
+    rdfs:subPropertyOf prov:wasDerivedFrom ;
+    aow:jsonKey "derived_from" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:about
+    a owl:ObjectProperty ;
+    rdfs:label "about"@en ;
+    aow:inverseLabel "observed by"@en ;
+    rdfs:comment "What the Observation describes."@en ;
+    rdfs:domain aow:Observation ;
+    schema:rangeIncludes aow:WorkItem , aow:Actor , aow:Action , aow:Task ;
+    aow:jsonKey "about" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:affects
+    a owl:ObjectProperty ;
+    rdfs:label "affects"@en ;
+    aow:inverseLabel "affected by"@en ;
+    rdfs:comment "Work Items whose state the Result changed."@en ;
+    rdfs:domain aow:Result ;
+    rdfs:range aow:WorkItem ;
+    aow:jsonKey "affects" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:hasConfidence
+    a owl:ObjectProperty ;
+    rdfs:label "has confidence"@en ;
+    aow:inverseLabel "confidence of"@en ;
+    rdfs:comment "The Confidence attached to this Result, Observation, Action, or Plan."@en ;
+    schema:domainIncludes aow:Result , aow:Observation , aow:Action , aow:Plan ;
+    rdfs:range aow:Confidence ;
+    aow:jsonKey "has_confidence" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:comparedAgainst
+    a owl:ObjectProperty ;
+    rdfs:label "compared against"@en ;
+    aow:inverseLabel "threshold for"@en ;
+    rdfs:comment "The Assurance Level whose confidence floor the Confidence was checked against."@en ;
+    rdfs:domain aow:Confidence ;
+    rdfs:range aow:AssuranceLevel ;
+    aow:jsonKey "compared_against" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:contributesTo
+    a owl:ObjectProperty ;
+    rdfs:label "contributes to"@en ;
+    aow:inverseLabel "aggregates"@en ;
+    rdfs:comment "Outcomes this Result counts toward."@en ;
+    rdfs:domain aow:Result ;
+    rdfs:range aow:Outcome ;
+    aow:jsonKey "contributes_to" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:evaluates
+    a owl:ObjectProperty ;
+    rdfs:label "evaluates"@en ;
+    aow:inverseLabel "evaluated by"@en ;
+    rdfs:comment "The Objective the Outcome is measured against."@en ;
+    rdfs:domain aow:Outcome ;
+    rdfs:range aow:Objective ;
+    aow:jsonKey "evaluates" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:feedbackOn
+    a owl:ObjectProperty ;
+    rdfs:label "feedback on"@en ;
+    aow:inverseLabel "received feedback"@en ;
+    rdfs:comment "What the Feedback is about."@en ;
+    rdfs:domain aow:Feedback ;
+    schema:rangeIncludes aow:Outcome , aow:Result , aow:Action , aow:Plan ;
+    aow:jsonKey "feedback_on" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:providedBy
+    a owl:ObjectProperty ;
+    rdfs:label "provided by"@en ;
+    aow:inverseLabel "provided"@en ;
+    rdfs:comment "Who gave the Feedback."@en ;
+    rdfs:domain aow:Feedback ;
+    rdfs:range aow:Actor ;
+    aow:jsonKey "provided_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:updates
+    a owl:ObjectProperty ;
+    rdfs:label "updates"@en ;
+    aow:inverseLabel "updated by"@en ;
+    rdfs:comment "What the Feedback changed."@en ;
+    rdfs:domain aow:Feedback ;
+    schema:rangeIncludes aow:Policy , aow:Memory , aow:Plan , aow:Skill , aow:Actor , aow:Context ;
+    aow:jsonKey "updates" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:writesTo
+    a owl:ObjectProperty ;
+    rdfs:label "writes to"@en ;
+    aow:inverseLabel "written by"@en ;
+    rdfs:comment "Memory the Actor records its experience in."@en ;
+    rdfs:domain aow:Actor ;
+    rdfs:range aow:Memory ;
+    aow:jsonKey "writes_to" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:enforces
+    a owl:ObjectProperty ;
+    rdfs:label "enforces"@en ;
+    aow:inverseLabel "enforced by"@en ;
+    rdfs:comment "The Policies and Assurance Levels the Guardian enforces."@en ;
+    rdfs:domain aow:Guardian ;
+    schema:rangeIncludes aow:Policy , aow:AssuranceLevel ;
+    aow:jsonKey "enforces" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:oversees
+    a owl:ObjectProperty ;
+    rdfs:label "oversees"@en ;
+    aow:inverseLabel "overseen by"@en ;
+    rdfs:comment "What the Guardian watches."@en ;
+    rdfs:domain aow:Guardian ;
+    schema:rangeIncludes aow:Actor , aow:Plan , aow:Skill ;
+    aow:jsonKey "oversees" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:escalatesTo
+    a owl:ObjectProperty ;
+    rdfs:label "escalates to"@en ;
+    aow:inverseLabel "escalation target of"@en ;
+    rdfs:comment "Where escalations go."@en ;
+    schema:domainIncludes aow:Guardian , aow:Policy ;
+    schema:rangeIncludes aow:Role , aow:HumanActor ;
+    aow:jsonKey "escalates_to" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+
+# ---- Attributes
+
+aow:acceptableRiskBand
+    a owl:DatatypeProperty ;
+    rdfs:label "acceptable risk band"@en ;
+    rdfs:comment "The level of residual risk the requester accepts."@en ;
+    rdfs:domain aow:Intent ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "acceptable_risk_band" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:agentRole
+    a owl:DatatypeProperty ;
+    rdfs:label "agent role"@en ;
+    rdfs:comment "What Agents may do at this level."@en ;
+    rdfs:domain aow:AssuranceLevel ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "agent_role" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:artifacts
+    a owl:DatatypeProperty ;
+    rdfs:label "artifacts"@en ;
+    rdfs:comment "Documents, records, or state changes the Result produced."@en ;
+    rdfs:domain aow:Result ;
+    rdfs:range xsd:anyURI ;
+    aow:jsonKey "artifacts" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:autonomyLevel
+    a owl:ObjectProperty ;
+    rdfs:label "autonomy level"@en ;
+    rdfs:comment "The highest Assurance Level the Agent has been cleared to operate at. The Agent may operate at a lower level on a given Task, never a higher one."@en ;
+    rdfs:domain aow:Agent ;
+    rdfs:range aow:AssuranceLevel ;
+    aow:jsonKey "autonomy_level" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:binding
+    a owl:DatatypeProperty ;
+    rdfs:label "binding"@en ;
+    rdfs:comment "How to invoke it, for example an MCP tool name, an API endpoint, or a UI automation."@en ;
+    rdfs:domain aow:Skill ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "binding" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:calibrated
+    a owl:DatatypeProperty ;
+    rdfs:label "calibrated"@en ;
+    rdfs:comment "Whether the value has been calibrated against observed accuracy."@en ;
+    rdfs:domain aow:Confidence ;
+    rdfs:range xsd:boolean ;
+    aow:jsonKey "calibrated" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:closedAt
+    a owl:DatatypeProperty ;
+    rdfs:label "closed at"@en ;
+    rdfs:comment "When the item left the process, if it has."@en ;
+    rdfs:domain aow:WorkItem ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "closed_at" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:constraints
+    a owl:DatatypeProperty ;
+    rdfs:label "constraints"@en ;
+    rdfs:comment "Free-text constraints that are not (yet) captured as Policies."@en ;
+    rdfs:domain aow:Intent ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "constraints" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:contextType
+    a owl:DatatypeProperty ;
+    rdfs:label "context type"@en ;
+    rdfs:comment "The kind of situational information."@en ;
+    rdfs:domain aow:Context ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "context_type" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:costProfile
+    a owl:DatatypeProperty ;
+    rdfs:label "cost profile"@en ;
+    rdfs:comment "Relative cost per invocation."@en ;
+    rdfs:domain aow:Skill ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "cost_profile" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:defaultConfidenceFloor
+    a owl:DatatypeProperty ;
+    rdfs:label "default confidence floor"@en ;
+    rdfs:comment "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor."@en ;
+    rdfs:domain aow:AssuranceLevel ;
+    rdfs:range xsd:double ;
+    aow:jsonKey "default_confidence_floor" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:dueBy
+    a owl:DatatypeProperty ;
+    rdfs:label "due by"@en ;
+    rdfs:comment "When the Task must be completed."@en ;
+    rdfs:domain aow:Task ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "due_by" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:effect
+    a owl:DatatypeProperty ;
+    rdfs:label "effect"@en ;
+    rdfs:comment "What the Policy does when it applies."@en ;
+    rdfs:domain aow:Policy ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "effect" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:endedAt
+    a owl:DatatypeProperty ;
+    rdfs:label "ended at"@en ;
+    rdfs:comment "When the Action ended."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "ended_at" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:enforcementMode
+    a owl:DatatypeProperty ;
+    rdfs:label "enforcement mode"@en ;
+    rdfs:comment "Whether it blocks before, detects after, or repairs after the fact."@en ;
+    rdfs:domain aow:Guardian ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "enforcement_mode" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:exceptionProtocol
+    a owl:DatatypeProperty ;
+    rdfs:label "exception protocol"@en ;
+    rdfs:comment "What to do when a Task fails or a Policy blocks progress."@en ;
+    schema:domainIncludes aow:Plan , aow:Orchestrator ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "exception_protocol" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:externalRef
+    a owl:DatatypeProperty ;
+    rdfs:label "external ref"@en ;
+    rdfs:comment "Identifier of the item in its system of record."@en ;
+    rdfs:domain aow:WorkItem ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "external_ref" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:feedbackType
+    a owl:DatatypeProperty ;
+    rdfs:label "feedback type"@en ;
+    rdfs:comment "What the Feedback is about."@en ;
+    rdfs:domain aow:Feedback ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "feedback_type" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:goalStatement
+    a owl:DatatypeProperty ;
+    rdfs:label "goal statement"@en ;
+    rdfs:comment "What the Intent is meant to achieve, stated as an outcome rather than a procedure."@en ;
+    rdfs:domain aow:Intent ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "goal_statement" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:humanRole
+    a owl:DatatypeProperty ;
+    rdfs:label "human role"@en ;
+    rdfs:comment "What people do at this level."@en ;
+    rdfs:domain aow:AssuranceLevel ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "human_role" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:idempotencyKey
+    a owl:DatatypeProperty ;
+    rdfs:label "idempotency key"@en ;
+    rdfs:comment "Key that makes a retried Action safe to repeat."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "idempotency_key" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:implementationRef
+    a owl:DatatypeProperty ;
+    rdfs:label "implementation ref"@en ;
+    rdfs:comment "Pointer to the Agent's implementation, model card, or A2A Agent Card."@en ;
+    rdfs:domain aow:Agent ;
+    rdfs:range xsd:anyURI ;
+    aow:jsonKey "implementation_ref" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:inputSchema
+    a owl:DatatypeProperty ;
+    rdfs:label "input schema"@en ;
+    rdfs:comment "JSON Schema (or equivalent) for the Skill's inputs."@en ;
+    rdfs:domain aow:Skill ;
+    rdfs:range rdf:JSON ;
+    aow:jsonKey "input_schema" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:inputs
+    a owl:DatatypeProperty ;
+    rdfs:label "inputs"@en ;
+    rdfs:comment "The inputs passed to the Skill."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range rdf:JSON ;
+    aow:jsonKey "inputs" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:issueDetected
+    a owl:DatatypeProperty ;
+    rdfs:label "issue detected"@en ;
+    rdfs:comment "What went wrong or could be better."@en ;
+    rdfs:domain aow:Feedback ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "issue_detected" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:itemType
+    a owl:DatatypeProperty ;
+    rdfs:label "item type"@en ;
+    rdfs:comment "The kind of work item, for example \"insurance-claim\" or \"purchase-order\"."@en ;
+    rdfs:domain aow:WorkItem ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "item_type" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:kpiImpact
+    a owl:DatatypeProperty ;
+    rdfs:label "kpi impact"@en ;
+    rdfs:comment "The measured change, for example {\"cycle_time_hours\": {\"before\": 48, \"after\": 0.12}}."@en ;
+    rdfs:domain aow:Outcome ;
+    rdfs:range rdf:JSON ;
+    aow:jsonKey "kpi_impact" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:kpiTarget
+    a owl:DatatypeProperty ;
+    rdfs:label "kpi target"@en ;
+    rdfs:comment "The measurable target, for example \"claims cycle time -20%\"."@en ;
+    rdfs:domain aow:Objective ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "kpi_target" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:latency
+    a owl:DatatypeProperty ;
+    rdfs:label "latency"@en ;
+    rdfs:comment "Typical or maximum latency, for example \"< 1s\"."@en ;
+    rdfs:domain aow:Skill ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "latency" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:level
+    a owl:DatatypeProperty ;
+    rdfs:label "level"@en ;
+    rdfs:comment "Position on the AL0 to AL4 scale."@en ;
+    rdfs:domain aow:AssuranceLevel ;
+    rdfs:range xsd:integer ;
+    aow:jsonKey "level" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:measuredAt
+    a owl:DatatypeProperty ;
+    rdfs:label "measured at"@en ;
+    rdfs:comment "When the Outcome was measured."@en ;
+    rdfs:domain aow:Outcome ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "measured_at" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:measurementWindow
+    a owl:DatatypeProperty ;
+    rdfs:label "measurement window"@en ;
+    rdfs:comment "The period the measurement covers."@en ;
+    rdfs:domain aow:Outcome ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "measurement_window" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:method
+    a owl:DatatypeProperty ;
+    rdfs:label "method"@en ;
+    rdfs:comment "How the value was derived, for example \"document-extraction\" or \"rule\"."@en ;
+    rdfs:domain aow:Observation ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "method" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:name
+    a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "Display name."@en ;
+    rdfs:domain aow:Actor ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "name" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:observedAt
+    a owl:DatatypeProperty ;
+    rdfs:label "observed at"@en ;
+    rdfs:comment "When the Signal occurred."@en ;
+    schema:domainIncludes aow:Signal , aow:Observation ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "observed_at" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:observedProperty
+    a owl:DatatypeProperty ;
+    rdfs:label "observed property"@en ;
+    rdfs:comment "What was observed, for example \"claim_amount\" or \"handling_time\"."@en ;
+    rdfs:domain aow:Observation ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "observed_property" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:observedValue
+    a owl:DatatypeProperty ;
+    rdfs:label "observed value"@en ;
+    rdfs:comment "The observed value, in any JSON form."@en ;
+    rdfs:domain aow:Observation ;
+    rdfs:range rdf:JSON ;
+    aow:jsonKey "observed_value" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:openedAt
+    a owl:DatatypeProperty ;
+    rdfs:label "opened at"@en ;
+    rdfs:comment "When the item entered the process."@en ;
+    rdfs:domain aow:WorkItem ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "opened_at" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:organizationalUnit
+    a owl:DatatypeProperty ;
+    rdfs:label "organizational unit"@en ;
+    rdfs:comment "The team or department the person works in."@en ;
+    rdfs:domain aow:HumanActor ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "organizational_unit" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:outputSchema
+    a owl:DatatypeProperty ;
+    rdfs:label "output schema"@en ;
+    rdfs:comment "JSON Schema (or equivalent) for the Skill's outputs."@en ;
+    rdfs:domain aow:Skill ;
+    rdfs:range rdf:JSON ;
+    aow:jsonKey "output_schema" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:overrideProtocol
+    a owl:DatatypeProperty ;
+    rdfs:label "override protocol"@en ;
+    rdfs:comment "Who may override the Policy, and how."@en ;
+    rdfs:domain aow:Policy ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "override_protocol" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:payloadRef
+    a owl:DatatypeProperty ;
+    rdfs:label "payload ref"@en ;
+    rdfs:comment "Where the raw payload is stored, if it is kept."@en ;
+    rdfs:domain aow:Signal ;
+    rdfs:range xsd:anyURI ;
+    aow:jsonKey "payload_ref" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:planningModel
+    a owl:DatatypeProperty ;
+    rdfs:label "planning model"@en ;
+    rdfs:comment "How the Orchestrator plans, for example \"rule-based\", \"LLM-planned\", \"hybrid\"."@en ;
+    rdfs:domain aow:Orchestrator ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "planning_model" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:priority
+    a owl:DatatypeProperty ;
+    rdfs:label "priority"@en ;
+    rdfs:comment "Relative business priority."@en ;
+    schema:domainIncludes aow:Objective , aow:Intent ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "priority" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:rationale
+    a owl:DatatypeProperty ;
+    rdfs:label "rationale"@en ;
+    rdfs:comment "The Actor's stated reason for the Action, recorded for explainability."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "rationale" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:recommendedAdjustments
+    a owl:DatatypeProperty ;
+    rdfs:label "recommended adjustments"@en ;
+    rdfs:comment "Specific changes proposed."@en ;
+    rdfs:domain aow:Feedback ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "recommended_adjustments" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:resourceConstraints
+    a owl:DatatypeProperty ;
+    rdfs:label "resource constraints"@en ;
+    rdfs:comment "Limits on concurrency, cost, or time it must respect."@en ;
+    rdfs:domain aow:Orchestrator ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "resource_constraints" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:responsibilities
+    a owl:DatatypeProperty ;
+    rdfs:label "responsibilities"@en ;
+    rdfs:comment "What an Actor in this Role is accountable for."@en ;
+    rdfs:domain aow:Role ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "responsibilities" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:retentionPolicy
+    a owl:DatatypeProperty ;
+    rdfs:label "retention policy"@en ;
+    rdfs:comment "How long entries are kept and when they are purged."@en ;
+    rdfs:domain aow:Memory ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "retention_policy" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:reviewProtocol
+    a owl:DatatypeProperty ;
+    rdfs:label "review protocol"@en ;
+    rdfs:comment "The human oversight this level requires."@en ;
+    rdfs:domain aow:AssuranceLevel ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "review_protocol" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:riskClass
+    a owl:DatatypeProperty ;
+    rdfs:label "risk class"@en ;
+    rdfs:comment "The class of risk this level is suited to."@en ;
+    rdfs:domain aow:AssuranceLevel ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "risk_class" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:riskProfileChange
+    a owl:DatatypeProperty ;
+    rdfs:label "risk profile change"@en ;
+    rdfs:comment "How the risk picture changed as a result."@en ;
+    rdfs:domain aow:Outcome ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "risk_profile_change" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:ruleLanguage
+    a owl:DatatypeProperty ;
+    rdfs:label "rule language"@en ;
+    rdfs:comment "The language rule_set is written in, for example \"ODRL\", \"Rego\", \"DMN\", \"text\"."@en ;
+    rdfs:domain aow:Policy ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "rule_language" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:ruleSet
+    a owl:DatatypeProperty ;
+    rdfs:label "rule set"@en ;
+    rdfs:comment "The rules, or a reference to them."@en ;
+    rdfs:domain aow:Policy ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "rule_set" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:scope
+    a owl:DatatypeProperty ;
+    rdfs:label "scope"@en ;
+    rdfs:comment "The Actors, Skills, or Work Items it watches."@en ;
+    rdfs:domain aow:Guardian ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "scope" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:sensitivityLevel
+    a owl:DatatypeProperty ;
+    rdfs:label "sensitivity level"@en ;
+    rdfs:comment "Handling classification of the payload."@en ;
+    schema:domainIncludes aow:Signal , aow:Context ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "sensitivity_level" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:severity
+    a owl:DatatypeProperty ;
+    rdfs:label "severity"@en ;
+    rdfs:comment "Consequence of a violation."@en ;
+    schema:domainIncludes aow:Policy , aow:Feedback ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "severity" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:sideEffects
+    a owl:DatatypeProperty ;
+    rdfs:label "side effects"@en ;
+    rdfs:comment "Whether invoking the Skill changes external state, and whether that can be undone."@en ;
+    rdfs:domain aow:Skill ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "side_effects" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:signalType
+    a owl:DatatypeProperty ;
+    rdfs:label "signal type"@en ;
+    rdfs:comment "The kind of trace."@en ;
+    rdfs:domain aow:Signal ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "signal_type" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:source
+    a owl:DatatypeProperty ;
+    rdfs:label "source"@en ;
+    rdfs:comment "The system, sensor, application, or channel that emitted the Signal."@en ;
+    schema:domainIncludes aow:Signal , aow:Confidence ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "source" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:startedAt
+    a owl:DatatypeProperty ;
+    rdfs:label "started at"@en ;
+    rdfs:comment "When the Action began."@en ;
+    rdfs:domain aow:Action ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "started_at" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:state
+    a owl:DatatypeProperty ;
+    rdfs:label "state"@en ;
+    rdfs:comment "Current business state of the item, in the vocabulary of its system of record."@en ;
+    rdfs:domain aow:WorkItem ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "state" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:status
+    a owl:DatatypeProperty ;
+    rdfs:label "status"@en ;
+    rdfs:comment "Where the Intent is in its life."@en ;
+    schema:domainIncludes aow:Intent , aow:Plan , aow:Task , aow:Action , aow:Result ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "status" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:storeRef
+    a owl:DatatypeProperty ;
+    rdfs:label "store ref"@en ;
+    rdfs:comment "Where the memory is held."@en ;
+    rdfs:domain aow:Memory ;
+    rdfs:range xsd:anyURI ;
+    aow:jsonKey "store_ref" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:summary
+    a owl:DatatypeProperty ;
+    rdfs:label "summary"@en ;
+    rdfs:comment "What the Result is, in words."@en ;
+    rdfs:domain aow:Result ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "summary" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:timeHorizon
+    a owl:DatatypeProperty ;
+    rdfs:label "time horizon"@en ;
+    rdfs:comment "The period over which the Objective is pursued, for example \"FY2027\"."@en ;
+    rdfs:domain aow:Objective ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "time_horizon" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:timeToValue
+    a owl:DatatypeProperty ;
+    rdfs:label "time to value"@en ;
+    rdfs:comment "How long it took for the impact to appear."@en ;
+    rdfs:domain aow:Outcome ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "time_to_value" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:timestamp
+    a owl:DatatypeProperty ;
+    rdfs:label "timestamp"@en ;
+    rdfs:comment "When the Feedback was given."@en ;
+    rdfs:domain aow:Feedback ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "timestamp" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:triggerConditions
+    a owl:DatatypeProperty ;
+    rdfs:label "trigger conditions"@en ;
+    rdfs:comment "Conditions under which the Policy applies."@en ;
+    rdfs:domain aow:Policy ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "trigger_conditions" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:validUntil
+    a owl:DatatypeProperty ;
+    rdfs:label "valid until"@en ;
+    rdfs:comment "When the Context should be considered stale."@en ;
+    rdfs:domain aow:Context ;
+    rdfs:range xsd:dateTime ;
+    aow:jsonKey "valid_until" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:value
+    a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    rdfs:comment "Certainty between 0 and 1."@en ;
+    rdfs:domain aow:Confidence ;
+    rdfs:range xsd:double ;
+    aow:jsonKey "value" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:variables
+    a owl:DatatypeProperty ;
+    rdfs:label "variables"@en ;
+    rdfs:comment "The situational values themselves."@en ;
+    rdfs:domain aow:Context ;
+    rdfs:range rdf:JSON ;
+    aow:jsonKey "variables" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:volatility
+    a owl:DatatypeProperty ;
+    rdfs:label "volatility"@en ;
+    rdfs:comment "How much the value is expected to move as evidence arrives."@en ;
+    rdfs:domain aow:Confidence ;
+    rdfs:range xsd:string ;
+    aow:jsonKey "volatility" ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+
+# ---- The Assurance Level scale
+
+aow:AL0
+    a owl:NamedIndividual , aow:AssuranceLevel ;
+    rdfs:label "AL0 Manual"@en ;
+    skos:notation "AL0" ;
+    aow:level 0 ;
+    aow:humanRole "Performs the work."@en ;
+    aow:agentRole "Observes and prepares; takes no Action that changes a Work Item."@en ;
+    aow:reviewProtocol "Not applicable; the work is done by people."@en ;
+    aow:riskClass "Any risk; the default for work not yet assessed."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:AL1
+    a owl:NamedIndividual , aow:AssuranceLevel ;
+    rdfs:label "AL1 Assisted"@en ;
+    skos:notation "AL1" ;
+    aow:level 1 ;
+    aow:humanRole "Decides. Approves every Action that changes a Work Item before it takes effect."@en ;
+    aow:agentRole "Recommends, drafts, and prepares."@en ;
+    aow:reviewProtocol "Every state-changing Action carries approved_by."@en ;
+    aow:riskClass "High-risk or irreversible decisions; new or poorly characterized work."@en ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:AL2
+    a owl:NamedIndividual , aow:AssuranceLevel ;
+    rdfs:label "AL2 Delegated"@en ;
+    skos:notation "AL2" ;
+    aow:level 2 ;
+    aow:humanRole "Confirms when confidence is low or a Policy triggers; reviews a sample otherwise."@en ;
+    aow:agentRole "Decides and acts within Policy."@en ;
+    aow:reviewProtocol "Escalate below the confidence floor or on Policy trigger; sampled review otherwise."@en ;
+    aow:riskClass "Moderate-risk, well-characterized decisions."@en ;
+    aow:defaultConfidenceFloor "0.9"^^xsd:double ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:AL3
+    a owl:NamedIndividual , aow:AssuranceLevel ;
+    rdfs:label "AL3 Supervised"@en ;
+    skos:notation "AL3" ;
+    aow:level 3 ;
+    aow:humanRole "Reviews by exception, when the Guardian raises an alert, and in periodic audit."@en ;
+    aow:agentRole "Acts, and must be able to reverse or compensate its Actions."@en ;
+    aow:reviewProtocol "Guardian-raised exceptions and periodic audit; Skills used must be reversible."@en ;
+    aow:riskClass "Low-to-moderate risk, reversible effects."@en ;
+    aow:defaultConfidenceFloor "0.95"^^xsd:double ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+
+aow:AL4
+    a owl:NamedIndividual , aow:AssuranceLevel ;
+    rdfs:label "AL4 Autonomous"@en ;
+    skos:notation "AL4" ;
+    aow:level 4 ;
+    aow:humanRole "Sets Policy and monitors aggregate Outcomes."@en ;
+    aow:agentRole "Acts without routine human review; the Guardian can suspend it at any time."@en ;
+    aow:reviewProtocol "Continuous Guardian monitoring; audit of aggregate Outcomes."@en ;
+    aow:riskClass "Low-risk, reversible, high-volume, well-characterized work."@en ;
+    aow:defaultConfidenceFloor "0.98"^^xsd:double ;
+    rdfs:isDefinedBy <https://w3id.org/aow> .
+

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/guardian.schema.json",
+  "title": "Guardian",
+  "description": "The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/ref",
+      "description": "Stable identifier of the entity. Serialized as the node's IRI."
+    },
+    "type": {
+      "const": "Guardian",
+      "description": "The AOW class of the entity (for example, \"Intent\")."
+    },
+    "label": {
+      "description": "Short human-readable name.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Longer human-readable explanation.",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "When this entity or version was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "description": "The Actor responsible for creating this entity or version.",
+      "$ref": "#/$defs/ref"
+    },
+    "revision_of": {
+      "description": "The earlier version this entity revises.",
+      "$ref": "#/$defs/ref"
+    },
+    "name": {
+      "description": "Display name.",
+      "type": "string"
+    },
+    "enforcement_mode": {
+      "description": "Whether it blocks before, detects after, or repairs after the fact.",
+      "enum": [
+        "preventive",
+        "detective",
+        "corrective"
+      ]
+    },
+    "scope": {
+      "description": "The Actors, Skills, or Work Items it watches.",
+      "type": "string"
+    },
+    "constrained_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Policies that apply."
+    },
+    "fills_role": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Roles the Actor is authorized to fill."
+    },
+    "has_skill": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Skills the Actor can invoke."
+    },
+    "writes_to": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Memory the Actor records its experience in."
+    },
+    "enforces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "The Policies and Assurance Levels the Guardian enforces."
+    },
+    "oversees": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "What the Guardian watches."
+    },
+    "escalates_to": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ref"
+      },
+      "description": "Where escalations go."
+    }
+  },
+  "patternProperties": {
+    "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+      "description": "Extension property, namespaced with a prefix."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "type"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    }
+  }
+}

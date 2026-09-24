@@ -1,0 +1,2521 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/aow/schemas/aow.schema.json",
+  "title": "Agentic Ontology of Work 2.0.0 document",
+  "description": "An AOW JSON-LD document: a @context and a @graph of AOW entities.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "description": "Must include the AOW context, https://w3id.org/aow/context.jsonld."
+    },
+    "@graph": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    }
+  },
+  "required": [
+    "@context",
+    "@graph"
+  ],
+  "$defs": {
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of an entity: an IRI, a compact IRI such as aow:AL2, or an id relative to the document base."
+    },
+    "WorkItem": {
+      "title": "Work Item",
+      "description": "The unit of business work that the rest of the ontology is about: a claim, an application, an order, a case, a ticket.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "WorkItem",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "item_type": {
+          "description": "The kind of work item, for example \"insurance-claim\" or \"purchase-order\".",
+          "type": "string"
+        },
+        "external_ref": {
+          "description": "Identifier of the item in its system of record.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Current business state of the item, in the vocabulary of its system of record.",
+          "type": "string"
+        },
+        "opened_at": {
+          "description": "When the item entered the process.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "closed_at": {
+          "description": "When the item left the process, if it has.",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "item_type"
+      ]
+    },
+    "Signal": {
+      "title": "Signal",
+      "description": "A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Signal",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "signal_type": {
+          "description": "The kind of trace.",
+          "enum": [
+            "event",
+            "log",
+            "metric",
+            "interaction",
+            "document",
+            "state-change"
+          ]
+        },
+        "source": {
+          "description": "The system, sensor, application, or channel that emitted the Signal.",
+          "type": "string"
+        },
+        "observed_at": {
+          "description": "When the Signal occurred.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "payload_ref": {
+          "description": "Where the raw payload is stored, if it is kept.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "sensitivity_level": {
+          "description": "Handling classification of the payload.",
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "generated_by": {
+          "$ref": "#/$defs/ref",
+          "description": "The Action that produced this Result, Signal, or Observation."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "signal_type",
+        "source",
+        "observed_at"
+      ]
+    },
+    "Observation": {
+      "title": "Observation",
+      "description": "An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Observation",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "observed_property": {
+          "description": "What was observed, for example \"claim_amount\" or \"handling_time\".",
+          "type": "string"
+        },
+        "observed_value": {
+          "description": "The observed value, in any JSON form."
+        },
+        "observed_at": {
+          "description": "When the observation was made.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "method": {
+          "description": "How the value was derived, for example \"document-extraction\" or \"rule\".",
+          "type": "string"
+        },
+        "generated_by": {
+          "$ref": "#/$defs/ref",
+          "description": "The Action that produced this Result, Signal, or Observation."
+        },
+        "derived_from": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "The Signals an Observation was interpreted from."
+        },
+        "about": {
+          "$ref": "#/$defs/ref",
+          "description": "What the Observation describes."
+        },
+        "has_confidence": {
+          "$ref": "#/$defs/ref",
+          "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "observed_property",
+        "derived_from"
+      ]
+    },
+    "Objective": {
+      "title": "Objective",
+      "description": "A business-level goal expressed in strategic or operational terms.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Objective",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "kpi_target": {
+          "description": "The measurable target, for example \"claims cycle time -20%\".",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Relative business priority.",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "time_horizon": {
+          "description": "The period over which the Objective is pursued, for example \"FY2027\".",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "description"
+      ]
+    },
+    "Intent": {
+      "title": "Intent",
+      "description": "A structured, actionable goal derived from an Objective and interpretable by agents, orchestrators, and people.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Intent",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "goal_statement": {
+          "description": "What the Intent is meant to achieve, stated as an outcome rather than a procedure.",
+          "type": "string"
+        },
+        "constraints": {
+          "description": "Free-text constraints that are not (yet) captured as Policies.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "priority": {
+          "description": "Relative priority.",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "acceptable_risk_band": {
+          "description": "The level of residual risk the requester accepts.",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "status": {
+          "description": "Where the Intent is in its life.",
+          "enum": [
+            "proposed",
+            "active",
+            "fulfilled",
+            "abandoned"
+          ]
+        },
+        "serves_objective": {
+          "$ref": "#/$defs/ref",
+          "description": "The Objective an Intent was derived from."
+        },
+        "shaped_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Context that gives the Intent or Task its situational meaning."
+        },
+        "concerns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "The Work Item the Intent, Task, or Action is about."
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "requires_assurance": {
+          "$ref": "#/$defs/ref",
+          "description": "The highest Assurance Level at which this work may be done. The effective level is the lowest of the Intent's, the Task's, the Skill's, and the performing Agent's autonomy_level."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "goal_statement",
+        "serves_objective",
+        "requires_assurance"
+      ]
+    },
+    "Context": {
+      "title": "Context",
+      "description": "The structured situational information that gives relevance to an Intent.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Context",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "context_type": {
+          "description": "The kind of situational information.",
+          "enum": [
+            "environmental",
+            "procedural",
+            "data",
+            "historical",
+            "session"
+          ]
+        },
+        "variables": {
+          "description": "The situational values themselves."
+        },
+        "sensitivity_level": {
+          "description": "Handling classification.",
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "valid_until": {
+          "description": "When the Context should be considered stale.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "draws_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Memory and Observations the Context was assembled from."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "Policy": {
+      "title": "Policy",
+      "description": "Declarative constraints defining permissible, required, or restricted behavior.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Policy",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "rule_set": {
+          "description": "The rules, or a reference to them.",
+          "type": "string"
+        },
+        "rule_language": {
+          "description": "The language rule_set is written in, for example \"ODRL\", \"Rego\", \"DMN\", \"text\".",
+          "type": "string"
+        },
+        "effect": {
+          "description": "What the Policy does when it applies.",
+          "enum": [
+            "permit",
+            "prohibit",
+            "require",
+            "escalate"
+          ]
+        },
+        "trigger_conditions": {
+          "description": "Conditions under which the Policy applies.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "severity": {
+          "description": "Consequence of a violation.",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "override_protocol": {
+          "description": "Who may override the Policy, and how.",
+          "type": "string"
+        },
+        "escalates_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Where escalations go."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "rule_set"
+      ]
+    },
+    "Plan": {
+      "title": "Plan",
+      "description": "An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Plan",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "status": {
+          "description": "Where the Plan is in its life.",
+          "enum": [
+            "draft",
+            "approved",
+            "executing",
+            "completed",
+            "failed",
+            "abandoned"
+          ]
+        },
+        "exception_protocol": {
+          "description": "What to do when a Task fails or a Policy blocks progress.",
+          "type": "string"
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "realizes": {
+          "$ref": "#/$defs/ref",
+          "description": "The Intent the Plan is meant to fulfill."
+        },
+        "planned_by": {
+          "$ref": "#/$defs/ref",
+          "description": "The Actor (usually an Orchestrator) that produced the Plan."
+        },
+        "has_task": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "The Tasks that make up the Plan."
+        },
+        "approved_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."
+        },
+        "has_confidence": {
+          "$ref": "#/$defs/ref",
+          "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "realizes"
+      ]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "A unit of assigned work within a Plan, performed by an Actor filling a Role.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Task",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "status": {
+          "description": "Where the Task is in its life.",
+          "enum": [
+            "submitted",
+            "working",
+            "input-required",
+            "completed",
+            "failed",
+            "canceled",
+            "rejected"
+          ]
+        },
+        "due_by": {
+          "description": "When the Task must be completed.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "shaped_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Context that gives the Intent or Task its situational meaning."
+        },
+        "concerns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "The Work Item the Intent, Task, or Action is about."
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "requires_assurance": {
+          "$ref": "#/$defs/ref",
+          "description": "The highest Assurance Level at which this work may be done. The effective level is the lowest of the Intent's, the Task's, the Skill's, and the performing Agent's autonomy_level."
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Tasks that must complete before this one can start."
+        },
+        "assigned_to": {
+          "$ref": "#/$defs/ref",
+          "description": "The Actor responsible for performing the Task."
+        },
+        "requires_role": {
+          "$ref": "#/$defs/ref",
+          "description": "The Role an Actor must fill to take the Task."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "description"
+      ]
+    },
+    "Actor": {
+      "title": "Actor",
+      "description": "Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Actor",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "name": {
+          "description": "Display name.",
+          "type": "string"
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "fills_role": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Roles the Actor is authorized to fill."
+        },
+        "has_skill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Skills the Actor can invoke."
+        },
+        "writes_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Memory the Actor records its experience in."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "Agent": {
+      "title": "Agent",
+      "description": "A software Actor that interprets Intents and Tasks and acts on them using Skills, within the autonomy it has been cleared for.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Agent",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "name": {
+          "description": "Display name.",
+          "type": "string"
+        },
+        "autonomy_level": {
+          "description": "The highest Assurance Level the Agent has been cleared to operate at. The Agent may operate at a lower level on a given Task, never a higher one.",
+          "$ref": "#/$defs/ref"
+        },
+        "implementation_ref": {
+          "description": "Pointer to the Agent's implementation, model card, or A2A Agent Card.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "fills_role": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Roles the Actor is authorized to fill."
+        },
+        "has_skill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Skills the Actor can invoke."
+        },
+        "writes_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Memory the Actor records its experience in."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "HumanActor": {
+      "title": "Human Actor",
+      "description": "A person who performs, approves, reviews, or oversees work.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "HumanActor",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "name": {
+          "description": "Display name.",
+          "type": "string"
+        },
+        "organizational_unit": {
+          "description": "The team or department the person works in.",
+          "type": "string"
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "fills_role": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Roles the Actor is authorized to fill."
+        },
+        "has_skill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Skills the Actor can invoke."
+        },
+        "writes_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Memory the Actor records its experience in."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "Orchestrator": {
+      "title": "Orchestrator",
+      "description": "A coordinating Actor that turns Intents into Plans, assigns Tasks to Actors, and manages sequencing and exceptions.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Orchestrator",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "name": {
+          "description": "Display name.",
+          "type": "string"
+        },
+        "planning_model": {
+          "description": "How the Orchestrator plans, for example \"rule-based\", \"LLM-planned\", \"hybrid\".",
+          "type": "string"
+        },
+        "exception_protocol": {
+          "description": "Default handling for failures across the Plans it runs.",
+          "type": "string"
+        },
+        "resource_constraints": {
+          "description": "Limits on concurrency, cost, or time it must respect.",
+          "type": "string"
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "fills_role": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Roles the Actor is authorized to fill."
+        },
+        "has_skill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Skills the Actor can invoke."
+        },
+        "writes_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Memory the Actor records its experience in."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "Guardian": {
+      "title": "Guardian",
+      "description": "The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Guardian",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "name": {
+          "description": "Display name.",
+          "type": "string"
+        },
+        "enforcement_mode": {
+          "description": "Whether it blocks before, detects after, or repairs after the fact.",
+          "enum": [
+            "preventive",
+            "detective",
+            "corrective"
+          ]
+        },
+        "scope": {
+          "description": "The Actors, Skills, or Work Items it watches.",
+          "type": "string"
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "fills_role": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Roles the Actor is authorized to fill."
+        },
+        "has_skill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Skills the Actor can invoke."
+        },
+        "writes_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Memory the Actor records its experience in."
+        },
+        "enforces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "The Policies and Assurance Levels the Guardian enforces."
+        },
+        "oversees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "What the Guardian watches."
+        },
+        "escalates_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Where escalations go."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "Role": {
+      "title": "Role",
+      "description": "A named set of responsibilities and authority that an Actor can fill, such as \"claims adjuster\" or \"eligibility reviewer\".",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Role",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "responsibilities": {
+          "description": "What an Actor in this Role is accountable for.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "label"
+      ]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "A reusable capability that an Actor can invoke.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Skill",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "input_schema": {
+          "description": "JSON Schema (or equivalent) for the Skill's inputs."
+        },
+        "output_schema": {
+          "description": "JSON Schema (or equivalent) for the Skill's outputs."
+        },
+        "binding": {
+          "description": "How to invoke it, for example an MCP tool name, an API endpoint, or a UI automation.",
+          "type": "string"
+        },
+        "side_effects": {
+          "description": "Whether invoking the Skill changes external state, and whether that can be undone.",
+          "enum": [
+            "none",
+            "reversible",
+            "irreversible"
+          ]
+        },
+        "latency": {
+          "description": "Typical or maximum latency, for example \"< 1s\".",
+          "type": "string"
+        },
+        "cost_profile": {
+          "description": "Relative cost per invocation.",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "constrained_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Policies that apply."
+        },
+        "requires_assurance": {
+          "$ref": "#/$defs/ref",
+          "description": "The highest Assurance Level at which this work may be done. The effective level is the lowest of the Intent's, the Task's, the Skill's, and the performing Agent's autonomy_level."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "Action": {
+      "title": "Action",
+      "description": "A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Action",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "started_at": {
+          "description": "When the Action began.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "ended_at": {
+          "description": "When the Action ended.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "description": "How the Action ended.",
+          "enum": [
+            "succeeded",
+            "failed",
+            "blocked",
+            "escalated",
+            "compensated"
+          ]
+        },
+        "rationale": {
+          "description": "The Actor's stated reason for the Action, recorded for explainability.",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "description": "Key that makes a retried Action safe to repeat.",
+          "type": "string"
+        },
+        "inputs": {
+          "description": "The inputs passed to the Skill."
+        },
+        "concerns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "The Work Item the Intent, Task, or Action is about."
+        },
+        "performed_by": {
+          "$ref": "#/$defs/ref",
+          "description": "The Actor that carried out the Action."
+        },
+        "fulfills": {
+          "$ref": "#/$defs/ref",
+          "description": "The Task the Action was performed for."
+        },
+        "invokes": {
+          "$ref": "#/$defs/ref",
+          "description": "The Skill the Action used."
+        },
+        "approved_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."
+        },
+        "has_confidence": {
+          "$ref": "#/$defs/ref",
+          "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "started_at",
+        "performed_by"
+      ]
+    },
+    "Result": {
+      "title": "Result",
+      "description": "The immediate, atomic effect or output of an Action.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Result",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "status": {
+          "description": "Whether the Action achieved what it set out to.",
+          "enum": [
+            "success",
+            "partial",
+            "failure"
+          ]
+        },
+        "summary": {
+          "description": "What the Result is, in words.",
+          "type": "string"
+        },
+        "artifacts": {
+          "description": "Documents, records, or state changes the Result produced.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri-reference"
+          }
+        },
+        "approved_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."
+        },
+        "generated_by": {
+          "$ref": "#/$defs/ref",
+          "description": "The Action that produced this Result, Signal, or Observation."
+        },
+        "affects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Work Items whose state the Result changed."
+        },
+        "has_confidence": {
+          "$ref": "#/$defs/ref",
+          "description": "The Confidence attached to this Result, Observation, Action, or Plan."
+        },
+        "contributes_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "Outcomes this Result counts toward."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "generated_by"
+      ]
+    },
+    "Confidence": {
+      "title": "Confidence",
+      "description": "A model-, rule-, or human-derived measure of certainty about an Observation, a Result, or an Action.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Confidence",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "value": {
+          "description": "Certainty between 0 and 1.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source": {
+          "description": "What produced the measure.",
+          "enum": [
+            "model",
+            "heuristic",
+            "rule",
+            "ensemble",
+            "human"
+          ]
+        },
+        "calibrated": {
+          "description": "Whether the value has been calibrated against observed accuracy.",
+          "type": "boolean"
+        },
+        "volatility": {
+          "description": "How much the value is expected to move as evidence arrives.",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "compared_against": {
+          "$ref": "#/$defs/ref",
+          "description": "The Assurance Level whose confidence floor the Confidence was checked against."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "value"
+      ]
+    },
+    "AssuranceLevel": {
+      "title": "Assurance Level",
+      "description": "A governance-set level of permitted autonomy, with the human oversight and evidence it requires.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "AssuranceLevel",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "level": {
+          "description": "Position on the AL0 to AL4 scale.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "human_role": {
+          "description": "What people do at this level.",
+          "type": "string"
+        },
+        "agent_role": {
+          "description": "What Agents may do at this level.",
+          "type": "string"
+        },
+        "review_protocol": {
+          "description": "The human oversight this level requires.",
+          "type": "string"
+        },
+        "default_confidence_floor": {
+          "description": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "risk_class": {
+          "description": "The class of risk this level is suited to.",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "level"
+      ]
+    },
+    "Outcome": {
+      "title": "Outcome",
+      "description": "The aggregated business impact of one or more Results, measured against an Objective.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Outcome",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "kpi_impact": {
+          "description": "The measured change, for example {\"cycle_time_hours\": {\"before\": 48, \"after\": 0.12}}."
+        },
+        "measured_at": {
+          "description": "When the Outcome was measured.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "measurement_window": {
+          "description": "The period the measurement covers.",
+          "type": "string"
+        },
+        "time_to_value": {
+          "description": "How long it took for the impact to appear.",
+          "type": "string"
+        },
+        "risk_profile_change": {
+          "description": "How the risk picture changed as a result.",
+          "type": "string"
+        },
+        "evaluates": {
+          "$ref": "#/$defs/ref",
+          "description": "The Objective the Outcome is measured against."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "evaluates"
+      ]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "Structured information, from people or systems, used to improve future behavior.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Feedback",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "feedback_type": {
+          "description": "What the Feedback is about.",
+          "enum": [
+            "accuracy",
+            "policy",
+            "exception",
+            "preference",
+            "incident"
+          ]
+        },
+        "issue_detected": {
+          "description": "What went wrong or could be better.",
+          "type": "string"
+        },
+        "recommended_adjustments": {
+          "description": "Specific changes proposed.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "severity": {
+          "description": "How urgent the Feedback is.",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "timestamp": {
+          "description": "When the Feedback was given.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "feedback_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "What the Feedback is about."
+        },
+        "provided_by": {
+          "$ref": "#/$defs/ref",
+          "description": "Who gave the Feedback."
+        },
+        "updates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ref"
+          },
+          "description": "What the Feedback changed."
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "feedback_on"
+      ]
+    },
+    "Memory": {
+      "title": "Memory",
+      "description": "Persistent knowledge accumulated from experience, used to inform future Context.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "Memory",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "store_ref": {
+          "description": "Where the memory is held.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "retention_policy": {
+          "description": "How long entries are kept and when they are purged.",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "OperationalMemory": {
+      "title": "Operational Memory",
+      "description": "Short-lived, execution-oriented memory scoped to a session, Task, or Work Item.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "OperationalMemory",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "store_ref": {
+          "description": "Where the memory is held.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "retention_policy": {
+          "description": "How long entries are kept and when they are purged.",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "KnowledgeBase": {
+      "title": "Knowledge Base",
+      "description": "Long-lived memory of generalized patterns, rules, and precedents.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/ref",
+          "description": "Stable identifier of the entity. Serialized as the node's IRI."
+        },
+        "type": {
+          "const": "KnowledgeBase",
+          "description": "The AOW class of the entity (for example, \"Intent\")."
+        },
+        "label": {
+          "description": "Short human-readable name.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer human-readable explanation.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of this entity definition, ideally a semantic version such as \"1.4.2\".",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "When this entity or version was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "description": "The Actor responsible for creating this entity or version.",
+          "$ref": "#/$defs/ref"
+        },
+        "revision_of": {
+          "description": "The earlier version this entity revises.",
+          "$ref": "#/$defs/ref"
+        },
+        "store_ref": {
+          "description": "Where the memory is held.",
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "retention_policy": {
+          "description": "How long entries are kept and when they are purged.",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_-]+$": {
+          "description": "Extension property, namespaced with a prefix."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "node": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "WorkItem",
+            "Signal",
+            "Observation",
+            "Objective",
+            "Intent",
+            "Context",
+            "Policy",
+            "Plan",
+            "Task",
+            "Agent",
+            "HumanActor",
+            "Orchestrator",
+            "Guardian",
+            "Role",
+            "Skill",
+            "Action",
+            "Result",
+            "Confidence",
+            "AssuranceLevel",
+            "Outcome",
+            "Feedback",
+            "OperationalMemory",
+            "KnowledgeBase"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "WorkItem"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/WorkItem"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Signal"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Signal"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Observation"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Observation"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Objective"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Objective"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Intent"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Intent"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Context"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Context"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Policy"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Policy"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Plan"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Plan"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Task"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Task"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Agent"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Agent"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "HumanActor"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/HumanActor"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Orchestrator"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Orchestrator"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Guardian"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Guardian"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Role"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Role"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Skill"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Skill"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Action"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Action"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Result"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Result"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Confidence"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Confidence"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "AssuranceLevel"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/AssuranceLevel"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Outcome"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Outcome"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "Feedback"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/Feedback"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "OperationalMemory"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/OperationalMemory"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "KnowledgeBase"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/KnowledgeBase"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,6294 @@
+[
+  {
+    "@id": "https://w3id.org/aow",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://purl.org/dc/terms/creator": [
+      {
+        "@value": "Manish Garg (Skan.ai)"
+      }
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@language": "en",
+        "@value": "A platform-agnostic semantic model for intelligent, autonomous, and governed enterprise work. AOW names the things that agentic systems, people, and the governance around them have in common: the Objectives work serves, the Intents and Plans derived from them, the Actors and Skills that carry them out, the Results and Outcomes they produce, and the Assurance, Feedback, and Memory that keep the whole loop safe and improving."
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2026-09-24"
+      }
+    ],
+    "http://purl.org/dc/terms/license": [
+      {
+        "@id": "https://www.apache.org/licenses/LICENSE-2.0"
+      }
+    ],
+    "http://purl.org/dc/terms/publisher": [
+      {
+        "@value": "Skan, Inc."
+      }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@language": "en",
+        "@value": "Agentic Ontology of Work"
+      }
+    ],
+    "http://purl.org/vocab/vann/preferredNamespacePrefix": [
+      {
+        "@value": "aow"
+      }
+    ],
+    "http://purl.org/vocab/vann/preferredNamespaceUri": [
+      {
+        "@value": "https://w3id.org/aow#"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "https://github.com/Skandotai/agentic-ontology-of-work"
+      },
+      {
+        "@id": "https://skandotai.github.io/agentic-ontology-of-work/"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionIRI": [
+      {
+        "@id": "https://w3id.org/aow/2.0.0"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AL0",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "https://w3id.org/aow#AssuranceLevel"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AL0 Manual"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "AL0"
+      }
+    ],
+    "https://w3id.org/aow#agentRole": [
+      {
+        "@language": "en",
+        "@value": "Observes and prepares; takes no Action that changes a Work Item."
+      }
+    ],
+    "https://w3id.org/aow#humanRole": [
+      {
+        "@language": "en",
+        "@value": "Performs the work."
+      }
+    ],
+    "https://w3id.org/aow#level": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 0
+      }
+    ],
+    "https://w3id.org/aow#reviewProtocol": [
+      {
+        "@language": "en",
+        "@value": "Not applicable; the work is done by people."
+      }
+    ],
+    "https://w3id.org/aow#riskClass": [
+      {
+        "@language": "en",
+        "@value": "Any risk; the default for work not yet assessed."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AL1",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "https://w3id.org/aow#AssuranceLevel"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AL1 Assisted"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "AL1"
+      }
+    ],
+    "https://w3id.org/aow#agentRole": [
+      {
+        "@language": "en",
+        "@value": "Recommends, drafts, and prepares."
+      }
+    ],
+    "https://w3id.org/aow#humanRole": [
+      {
+        "@language": "en",
+        "@value": "Decides. Approves every Action that changes a Work Item before it takes effect."
+      }
+    ],
+    "https://w3id.org/aow#level": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1
+      }
+    ],
+    "https://w3id.org/aow#reviewProtocol": [
+      {
+        "@language": "en",
+        "@value": "Every state-changing Action carries approved_by."
+      }
+    ],
+    "https://w3id.org/aow#riskClass": [
+      {
+        "@language": "en",
+        "@value": "High-risk or irreversible decisions; new or poorly characterized work."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AL2",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "https://w3id.org/aow#AssuranceLevel"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AL2 Delegated"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "AL2"
+      }
+    ],
+    "https://w3id.org/aow#agentRole": [
+      {
+        "@language": "en",
+        "@value": "Decides and acts within Policy."
+      }
+    ],
+    "https://w3id.org/aow#defaultConfidenceFloor": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#double",
+        "@value": 0.9
+      }
+    ],
+    "https://w3id.org/aow#humanRole": [
+      {
+        "@language": "en",
+        "@value": "Confirms when confidence is low or a Policy triggers; reviews a sample otherwise."
+      }
+    ],
+    "https://w3id.org/aow#level": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 2
+      }
+    ],
+    "https://w3id.org/aow#reviewProtocol": [
+      {
+        "@language": "en",
+        "@value": "Escalate below the confidence floor or on Policy trigger; sampled review otherwise."
+      }
+    ],
+    "https://w3id.org/aow#riskClass": [
+      {
+        "@language": "en",
+        "@value": "Moderate-risk, well-characterized decisions."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AL3",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "https://w3id.org/aow#AssuranceLevel"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AL3 Supervised"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "AL3"
+      }
+    ],
+    "https://w3id.org/aow#agentRole": [
+      {
+        "@language": "en",
+        "@value": "Acts, and must be able to reverse or compensate its Actions."
+      }
+    ],
+    "https://w3id.org/aow#defaultConfidenceFloor": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#double",
+        "@value": 0.95
+      }
+    ],
+    "https://w3id.org/aow#humanRole": [
+      {
+        "@language": "en",
+        "@value": "Reviews by exception, when the Guardian raises an alert, and in periodic audit."
+      }
+    ],
+    "https://w3id.org/aow#level": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 3
+      }
+    ],
+    "https://w3id.org/aow#reviewProtocol": [
+      {
+        "@language": "en",
+        "@value": "Guardian-raised exceptions and periodic audit; Skills used must be reversible."
+      }
+    ],
+    "https://w3id.org/aow#riskClass": [
+      {
+        "@language": "en",
+        "@value": "Low-to-moderate risk, reversible effects."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AL4",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "https://w3id.org/aow#AssuranceLevel"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "AL4 Autonomous"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "AL4"
+      }
+    ],
+    "https://w3id.org/aow#agentRole": [
+      {
+        "@language": "en",
+        "@value": "Acts without routine human review; the Guardian can suspend it at any time."
+      }
+    ],
+    "https://w3id.org/aow#defaultConfidenceFloor": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#double",
+        "@value": 0.98
+      }
+    ],
+    "https://w3id.org/aow#humanRole": [
+      {
+        "@language": "en",
+        "@value": "Sets Policy and monitors aggregate Outcomes."
+      }
+    ],
+    "https://w3id.org/aow#level": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 4
+      }
+    ],
+    "https://w3id.org/aow#reviewProtocol": [
+      {
+        "@language": "en",
+        "@value": "Continuous Guardian monitoring; audit of aggregate Outcomes."
+      }
+    ],
+    "https://w3id.org/aow#riskClass": [
+      {
+        "@language": "en",
+        "@value": "Low-risk, reversible, high-volume, well-characterized work."
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Action",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The atom of accountability. Every Result traces back to an Action, and every Action to who did it, why, and under what authority."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Activity"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#closeMatch": [
+      {
+        "@id": "https://schema.org/Action"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Named in version 1.0 but never defined. In 2.0 the Action, not the Skill, produces the Result: a Skill is a capability, an Action is its use."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "OpenTelemetry GenAI: execute_tool span (relatedMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "SOA-to-Agentic mapping: Idempotent Action (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Actor",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Lets the ontology describe work the same way whoever performs it, so that work can move between people and agents without being re-modeled."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Agent"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Agent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The primary performer of agentic work, described by what it may do rather than by how it is built."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Agent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#HumanActor"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A software Actor that interprets Intents and Tasks and acts on them using Skills, within the autonomy it has been cleared for."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Deliberately says nothing about models, prompts, or frameworks. implementation_ref may point to those."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "Agent2Agent (A2A): Agent (AgentCard) (closeMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "OpenTelemetry GenAI: gen_ai.agent.* (relatedMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "SOA-to-Agentic mapping: Agent (from Service) (exactMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AssuranceLayer",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Was it safe, did it work, and what did we learn?"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Governs autonomy, measures certainty, oversees behavior, evaluates Outcomes, and carries Feedback into Memory so the next cycle starts smarter."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "4"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@language": "en",
+        "@value": "Assurance layer"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#AssuranceLevel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Makes the choice between autonomy and human oversight explicit, graded, and checkable. AOW defines five levels, AL0 to AL4."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Assurance Level"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A governance-set level of permitted autonomy, with the human oversight and evidence it requires."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Higher levels grant more autonomy and therefore demand more assurance evidence before they are granted. See the Assurance Level scale."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#CognitionLayer",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What should happen, and within what limits?"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Turns business goals into actionable Intents, gives them Context, bounds them with Policy, and plans how to fulfill them."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "2"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@language": "en",
+        "@value": "Cognition layer"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Confidence",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Lets autonomy depend on certainty: the same Agent may act alone when it is sure and escalate when it is not."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Confidence"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A model-, rule-, or human-derived measure of certainty about an Observation, a Result, or an Action."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Context",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Makes the same Intent resolve differently for different situations, and records what an Actor knew when it acted."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Context"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "The structured situational information that gives relevance to an Intent."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Context types: environmental, procedural, data, historical, session."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "BDI agent model: belief (relatedMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "Model Context Protocol: resource (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#CognitionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#ExecutionLayer",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Who does the work, and what did it change?"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Actors (Agents and people alike) take on Tasks, invoke Skills through Actions, and produce Results."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "3"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@language": "en",
+        "@value": "Execution layer"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Feedback",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Turns Outcomes, reviews, and incidents into specific, attributable changes."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Feedback"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Structured information, from people or systems, used to improve future behavior."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Guardian",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Separates doing the work from checking the work, so that no Actor is its own only safeguard."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Guardian"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "A Guardian may be software, a person, or both. Because it is an Actor, its own interventions are Actions and leave the same trail as everyone else's."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#HumanActor",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Makes human-in-the-loop a first-class, traceable part of the model rather than an exception outside it."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Human Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Person"
+      },
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A person who performs, approves, reviews, or oversees work."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Intent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Turns a business goal into something that can be planned, assigned, governed, and checked."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Intent"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A structured, actionable goal derived from an Objective and interpretable by agents, orchestrators, and people."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Objective answers why. Intent answers what. Plan answers how."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "BDI agent model: intention (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#CognitionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#KnowledgeBase",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Carries what was learned from one piece of work into the next."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Knowledge Base"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Long-lived memory of generalized patterns, rules, and precedents."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Memory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Lets the system learn without retraining, and remember why it did what it did."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Memory"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Persistent knowledge accumulated from experience, used to inform future Context."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived)."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Objective",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Connects agentic activity to specific, measurable enterprise value."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Objective"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A business-level goal expressed in strategic or operational terms."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Objective answers why. Intent answers what."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "BDI agent model: desire (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#CognitionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Observation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Separates what was seen (Signal) from what it was taken to mean (Observation), so that a wrong interpretation can be traced and corrected without doubting the evidence."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Entity"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#closeMatch": [
+      {
+        "@id": "http://www.w3.org/ns/sosa/Observation"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "\"The claim amount is $38,200\" is an Observation; the scanned claim form it was extracted from is a Signal."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#PerceptionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#OperationalMemory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Carries state across the steps of a single piece of work."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Operational Memory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#KnowledgeBase"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Short-lived, execution-oriented memory scoped to a session, Task, or Work Item."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Orchestrator",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Decomposes and coordinates work so that no single Agent has to."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Orchestrator"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A coordinating Actor that turns Intents into Plans, assigns Tasks to Actors, and manages sequencing and exceptions."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "An Orchestrator may itself be an Agent, a deterministic workflow engine, or a person. The role is what matters."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "SOA-to-Agentic mapping: Agentic Orchestrator (exactMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Outcome",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Closes the loop between what agents did and what the business wanted."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Outcome"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "The aggregated business impact of one or more Results, measured against an Objective."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#PerceptionLayer",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What exists, and what is happening?"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Captures the Work Items in flight and the Signals and Observations about them. This is the ground truth the rest of the ontology reasons over."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "1"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@language": "en",
+        "@value": "Perception layer"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Plan",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Separates deciding how to do something from doing it, so that plans can be inspected, approved, compared, and replayed."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Plan"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Plan"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Listed as an optional concept in version 1.0; a full entity in 2.0."
+      },
+      {
+        "@language": "en",
+        "@value": "The Orchestrator's dependency_graph in version 1.0 is the Plan's set of Tasks and their depends_on links."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#CognitionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Policy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Makes governance explicit and machine-checkable. Policies constrain behavior; they never describe it."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Policy"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#closeMatch": [
+      {
+        "@id": "http://www.w3.org/ns/odrl/2/Policy"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "Declarative constraints defining permissible, required, or restricted behavior."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "AOW does not prescribe a policy language. rule_set may hold rules in ODRL, Rego, Cedar, DMN, or plain text, named in rule_language."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "OMG DMN: Decision (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#CognitionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Result",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Records what an Action changed or produced, so that it can be verified, rolled up into Outcomes, and fed back."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Result"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Entity"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "The immediate, atomic effect or output of an Action."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "A Result is local and immediate. An Outcome is aggregated and business-level."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Role",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Lets Tasks, Policies, and escalations target a responsibility rather than a specific person or agent, so either can fill it."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Role"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#closeMatch": [
+      {
+        "@id": "http://www.w3.org/ns/org#Role"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A named set of responsibilities and authority that an Actor can fill, such as \"claims adjuster\" or \"eligibility reviewer\"."
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Signal",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Anchors the ontology in what actually happened, before any interpretation. Signals are the evidence that Observations, Context, and audit trails are built from."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Signal"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#Entity"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Actions leave Signals behind. Linking a Signal to the Action that generated it (generated_by) is what makes agent behavior observable with the same tools used to observe human and system work."
+      },
+      {
+        "@language": "en",
+        "@value": "Version 1.0 listed Telemetry Events, Signals, Session State, and Environmental Observations as Perception-layer elements without defining them. In 2.0 a Telemetry Event is a Signal whose signal_type is \"event\" or \"metric\"; Session State is Context with context_type \"session\"."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "IEEE 1849 XES: event (closeMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "OpenTelemetry: span / log record / metric data point (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#PerceptionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Skill",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Describes what can be done, with its inputs, outputs, cost, and side effects, so that it can be discovered, governed, and swapped."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Skill"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A reusable capability that an Actor can invoke."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "side_effects is new in 2.0. Whether a Skill changes the world, and whether that change can be undone, is the single most important fact for deciding how much autonomy to grant around it."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "Agent2Agent (A2A): AgentSkill (closeMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "Model Context Protocol: tool (closeMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "SOA-to-Agentic mapping: Agentic Tools (from Operation / Common Services) (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "1.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#Task",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Gives \"task\" a single meaning. A Task is what gets assigned; an Action is what gets done; a Skill is what makes it possible."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Task"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "A unit of assigned work within a Plan, performed by an Actor filling a Role."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Task states follow the Agent2Agent (A2A) protocol's task lifecycle so that AOW Tasks can be exchanged over A2A without translation."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "Agent2Agent (A2A): Task (closeMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "BPMN 2.0: Task (relatedMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#ExecutionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#WorkItem",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Gives every Intent, Task, Action, and Observation a concrete subject, so that work can be followed end to end regardless of which systems, agents, or people touched it."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "Work Item"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@language": "en",
+        "@value": "The unit of business work that the rest of the ontology is about: a claim, an application, an order, a case, a ticket."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@language": "en",
+        "@value": "Corresponds to a case or object in process mining (IEEE 1849 XES and the OCEL 2.0 object-centric event log format)."
+      },
+      {
+        "@language": "en",
+        "@value": "Version 1.0 carried the work item implicitly inside Context (for example, \"ctx-claim-84933\"). Making it explicit lets two Intents, or an Intent and a human Task, refer to the same claim."
+      }
+    ],
+    "https://w3id.org/aow#alignment": [
+      {
+        "@language": "en",
+        "@value": "BPMN 2.0: Data Object (relatedMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "IEEE 1849 XES: trace (case) (relatedMatch)"
+      },
+      {
+        "@language": "en",
+        "@value": "OCEL 2.0: object (closeMatch)"
+      }
+    ],
+    "https://w3id.org/aow#layer": [
+      {
+        "@id": "https://w3id.org/aow#PerceptionLayer"
+      }
+    ],
+    "https://w3id.org/aow#since": [
+      {
+        "@value": "2.0.0"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#about",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Observation describes."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "about"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      },
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      },
+      {
+        "@id": "https://w3id.org/aow#Task"
+      },
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "observed by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "about"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#acceptableRiskBand",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The level of residual risk the requester accepts."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "acceptable risk band"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "acceptable_risk_band"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#affects",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Work Items whose state the Result changed."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "affects"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "affected by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "affects"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#agentRole",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What Agents may do at this level."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "agent role"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "agent_role"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#alignment",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "A correspondence to a term in a standard or protocol that has no dereferenceable IRI."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "alignment"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#approvedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "People who confirmed the Action, Plan, or Result before it took effect. Required whenever the effective Assurance Level or a Policy calls for human confirmation."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "approved by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#HumanActor"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "approves"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "approved_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#artifacts",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Documents, records, or state changes the Result produced."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "artifacts"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "artifacts"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#assignedTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Actor responsible for performing the Task."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "assigned to"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "assigned"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "assigned_to"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#autonomyLevel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The highest Assurance Level the Agent has been cleared to operate at. The Agent may operate at a lower level on a given Task, never a higher one."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Agent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "autonomy level"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "autonomy_level"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#binding",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How to invoke it, for example an MCP tool name, an API endpoint, or a UI automation."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "binding"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "binding"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#calibrated",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Whether the value has been calibrated against observed accuracy."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Confidence"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "calibrated"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "calibrated"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#closedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the item left the process, if it has."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "closed at"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "closed_at"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#comparedAgainst",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Assurance Level whose confidence floor the Confidence was checked against."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Confidence"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "compared against"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "threshold for"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "compared_against"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#concerns",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Work Item the Intent, Task, or Action is about."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "concerns"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      },
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      },
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "is subject of"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "concerns"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#constrainedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Policies that apply."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "constrained by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      },
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Role"
+      },
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      },
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "constrains"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "constrained_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#constraints",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Free-text constraints that are not (yet) captured as Policies."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "constraints"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "constraints"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#contextType",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The kind of situational information."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Context"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "context type"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "context_type"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#contributesTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Outcomes this Result counts toward."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "contributes to"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "aggregates"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "contributes_to"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#costProfile",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Relative cost per invocation."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "cost profile"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "cost_profile"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#defaultConfidenceFloor",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "default confidence floor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#double"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "default_confidence_floor"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#dependsOn",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Tasks that must complete before this one can start."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "depends on"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "prerequisite of"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "depends_on"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#derivedFrom",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Signals an Observation was interpreted from."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "derived from"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#wasDerivedFrom"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "source of"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "derived_from"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#drawsOn",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Memory and Observations the Context was assembled from."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Context"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "draws on"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      },
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "informs"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "draws_on"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#dueBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Task must be completed."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "due by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "due_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#effect",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Policy does when it applies."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "effect"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "effect"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#endedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Action ended."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "ended at"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "ended_at"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#enforcementMode",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Whether it blocks before, detects after, or repairs after the fact."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Guardian"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "enforcement mode"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "enforcement_mode"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#enforces",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Policies and Assurance Levels the Guardian enforces."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Guardian"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "enforces"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      },
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "enforced by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "enforces"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#escalatesTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Where escalations go."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "escalates to"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Guardian"
+      },
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#HumanActor"
+      },
+      {
+        "@id": "https://w3id.org/aow#Role"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "escalation target of"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "escalates_to"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#evaluates",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Objective the Outcome is measured against."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "evaluates"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Objective"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "evaluated by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "evaluates"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#exceptionProtocol",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What to do when a Task fails or a Policy blocks progress."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "exception protocol"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Orchestrator"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "exception_protocol"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#externalRef",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Identifier of the item in its system of record."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "external ref"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "external_ref"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#feedbackOn",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Feedback is about."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "feedback on"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      },
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "received feedback"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "feedback_on"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#feedbackType",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Feedback is about."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "feedback type"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "feedback_type"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#fillsRole",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Roles the Actor is authorized to fill."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "fills role"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Role"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "filled by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "fills_role"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#fulfills",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Task the Action was performed for."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "fulfills"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "fulfilled through"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "fulfills"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#generatedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Action that produced this Result, Signal, or Observation."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "generated by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#wasGeneratedBy"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      },
+      {
+        "@id": "https://w3id.org/aow#Result"
+      },
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "generated"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "generated_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#goalStatement",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Intent is meant to achieve, stated as an outcome rather than a procedure."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "goal statement"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "goal_statement"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#hasConfidence",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Confidence attached to this Result, Observation, Action, or Plan."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "has confidence"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Confidence"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      },
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "confidence of"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "has_confidence"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#hasSkill",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Skills the Actor can invoke."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "has skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "available to"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "has_skill"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#hasTask",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Tasks that make up the Plan."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "has task"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "part of plan"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "has_task"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#humanRole",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What people do at this level."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "human role"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "human_role"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#idempotencyKey",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Key that makes a retried Action safe to repeat."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "idempotency key"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "idempotency_key"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#implementationRef",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Pointer to the Agent's implementation, model card, or A2A Agent Card."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Agent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "implementation ref"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "implementation_ref"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#inputSchema",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "JSON Schema (or equivalent) for the Skill's inputs."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "input schema"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "input_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#inputs",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The inputs passed to the Skill."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "inputs"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "inputs"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#inverseLabel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How to read a relationship from its object back to its subject."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "inverse label"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#invokes",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Skill the Action used."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "invokes"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "invoked by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "invokes"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#issueDetected",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What went wrong or could be better."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "issue detected"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "issue_detected"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#itemType",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The kind of work item, for example \"insurance-claim\" or \"purchase-order\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "item type"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "item_type"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#jsonKey",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The key used for this property in AOW JSON and JSON-LD documents."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "json key"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#kpiImpact",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The measured change, for example {\"cycle_time_hours\": {\"before\": 48, \"after\": 0.12}}."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "kpi impact"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "kpi_impact"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#kpiTarget",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The measurable target, for example \"claims cycle time -20%\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Objective"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "kpi target"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "kpi_target"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#latency",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Typical or maximum latency, for example \"< 1s\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "latency"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "latency"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#layer",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The layer of the four-layer stack a class belongs to."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "layer"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#level",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Position on the AL0 to AL4 scale."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "level"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "level"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#measuredAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Outcome was measured."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "measured at"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "measured_at"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#measurementWindow",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The period the measurement covers."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "measurement window"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "measurement_window"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#method",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How the value was derived, for example \"document-extraction\" or \"rule\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "method"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "method"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#name",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Display name."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "name"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "name"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#observedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Signal occurred."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "observed at"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      },
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "observed_at"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#observedProperty",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What was observed, for example \"claim_amount\" or \"handling_time\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "observed property"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "observed_property"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#observedValue",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The observed value, in any JSON form."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Observation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "observed value"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "observed_value"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#openedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the item entered the process."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "opened at"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "opened_at"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#organizationalUnit",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The team or department the person works in."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#HumanActor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "organizational unit"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "organizational_unit"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#outputSchema",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "JSON Schema (or equivalent) for the Skill's outputs."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "output schema"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "output_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#overrideProtocol",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Who may override the Policy, and how."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "override protocol"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "override_protocol"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#oversees",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Guardian watches."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Guardian"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "oversees"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "overseen by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "oversees"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#payloadRef",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Where the raw payload is stored, if it is kept."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "payload ref"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "payload_ref"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#performedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Actor that carried out the Action."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "performed by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+      {
+        "@id": "http://www.w3.org/ns/prov#wasAssociatedWith"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "performs"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "performed_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#plannedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Actor (usually an Orchestrator) that produced the Plan."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "planned by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "plans"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "planned_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#planningModel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How the Orchestrator plans, for example \"rule-based\", \"LLM-planned\", \"hybrid\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Orchestrator"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "planning model"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "planning_model"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#priority",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Relative business priority."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "priority"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      },
+      {
+        "@id": "https://w3id.org/aow#Objective"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "priority"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#providedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Who gave the Feedback."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "provided by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "provided"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "provided_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#rationale",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Actor's stated reason for the Action, recorded for explainability."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "rationale"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "rationale"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#realizes",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Intent the Plan is meant to fulfill."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "realizes"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "realized by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "realizes"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#recommendedAdjustments",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Specific changes proposed."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "recommended adjustments"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "recommended_adjustments"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#requiresAssurance",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The highest Assurance Level at which this work may be done. The effective level is the lowest of the Intent's, the Task's, the Skill's, and the performing Agent's autonomy_level."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "requires assurance"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      },
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      },
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "required by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "requires_assurance"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#requiresRole",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Role an Actor must fill to take the Task."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "requires role"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Role"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "required for"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "requires_role"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#resourceConstraints",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Limits on concurrency, cost, or time it must respect."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Orchestrator"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "resource constraints"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "resource_constraints"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#responsibilities",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What an Actor in this Role is accountable for."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Role"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "responsibilities"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "responsibilities"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#retentionPolicy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How long entries are kept and when they are purged."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "retention policy"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "retention_policy"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#reviewProtocol",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The human oversight this level requires."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "review protocol"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "review_protocol"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#riskClass",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The class of risk this level is suited to."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#AssuranceLevel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "risk class"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "risk_class"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#riskProfileChange",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How the risk picture changed as a result."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "risk profile change"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "risk_profile_change"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#ruleLanguage",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The language rule_set is written in, for example \"ODRL\", \"Rego\", \"DMN\", \"text\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "rule language"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "rule_language"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#ruleSet",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The rules, or a reference to them."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "rule set"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "rule_set"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#scope",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Actors, Skills, or Work Items it watches."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Guardian"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "scope"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "scope"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#sensitivityLevel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Handling classification of the payload."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "sensitivity level"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Context"
+      },
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "sensitivity_level"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#servesObjective",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The Objective an Intent was derived from."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "serves objective"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Objective"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "produces intent"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "serves_objective"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#severity",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Consequence of a violation."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "severity"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      },
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "severity"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#shapedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Context that gives the Intent or Task its situational meaning."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "shaped by"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Context"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      },
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "shapes"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "shaped_by"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#sideEffects",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Whether invoking the Skill changes external state, and whether that can be undone."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "side effects"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "side_effects"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#signalType",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The kind of trace."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "signal type"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "signal_type"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#since",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The AOW version in which a term first appeared."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "since"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#source",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The system, sensor, application, or channel that emitted the Signal."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "source"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Confidence"
+      },
+      {
+        "@id": "https://w3id.org/aow#Signal"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "source"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#startedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Action began."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "started at"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "started_at"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#state",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Current business state of the item, in the vocabulary of its system of record."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#WorkItem"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "state"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "state"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#status",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Where the Intent is in its life."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "status"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://schema.org/domainIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Action"
+      },
+      {
+        "@id": "https://w3id.org/aow#Intent"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Result"
+      },
+      {
+        "@id": "https://w3id.org/aow#Task"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "status"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#storeRef",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Where the memory is held."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "store ref"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "store_ref"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#summary",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Result is, in words."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Result"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "summary"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "summary"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#timeHorizon",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The period over which the Objective is pursued, for example \"FY2027\"."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Objective"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "time horizon"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "time_horizon"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#timeToValue",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How long it took for the impact to appear."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Outcome"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "time to value"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "time_to_value"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#timestamp",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Feedback was given."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "timestamp"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "timestamp"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#triggerConditions",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Conditions under which the Policy applies."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "trigger conditions"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "trigger_conditions"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#updates",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "What the Feedback changed."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Feedback"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "updates"
+      }
+    ],
+    "https://schema.org/rangeIncludes": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      },
+      {
+        "@id": "https://w3id.org/aow#Context"
+      },
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      },
+      {
+        "@id": "https://w3id.org/aow#Plan"
+      },
+      {
+        "@id": "https://w3id.org/aow#Policy"
+      },
+      {
+        "@id": "https://w3id.org/aow#Skill"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "updated by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "updates"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#validUntil",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "When the Context should be considered stale."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Context"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "valid until"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "valid_until"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#value",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Certainty between 0 and 1."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Confidence"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "value"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#double"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "value"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#variables",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "The situational values themselves."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Context"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "variables"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "variables"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#volatility",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "How much the value is expected to move as evidence arrives."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Confidence"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "volatility"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "volatility"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/aow#writesTo",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@language": "en",
+        "@value": "Memory the Actor records its experience in."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "https://w3id.org/aow#Actor"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "https://w3id.org/aow"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "en",
+        "@value": "writes to"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://w3id.org/aow#Memory"
+      }
+    ],
+    "https://w3id.org/aow#inverseLabel": [
+      {
+        "@language": "en",
+        "@value": "written by"
+      }
+    ],
+    "https://w3id.org/aow#jsonKey": [
+      {
+        "@value": "writes_to"
+      }
+    ]
+  }
+]

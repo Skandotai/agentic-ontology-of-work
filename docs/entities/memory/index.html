@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory · Agentic Ontology of Work</title>
+<meta name="description" content="Persistent knowledge accumulated from experience, used to inform future Context.">
+<link rel="canonical" href="https://skandotai.github.io/agentic-ontology-of-work/entities/memory/">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta name="theme-color" content="#161714">
+<meta property="og:title" content="Memory · Agentic Ontology of Work">
+<meta property="og:description" content="Persistent knowledge accumulated from experience, used to inform future Context.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://skandotai.github.io/agentic-ontology-of-work/entities/memory/">
+<meta property="og:image" content="https://skandotai.github.io/agentic-ontology-of-work/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Agentic Ontology of Work: four layers, Perception, Cognition, Execution, and Assurance, connecting Objectives to Actions to Outcomes.">
+<meta property="og:site_name" content="Agentic Ontology of Work">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "Memory",
+  "description": "Persistent knowledge accumulated from experience, used to inform future Context.",
+  "termCode": "aow:Memory",
+  "url": "https://skandotai.github.io/agentic-ontology-of-work/entities/memory/",
+  "sameAs": "https://w3id.org/aow#Memory",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Agentic Ontology of Work",
+    "url": "https://skandotai.github.io/agentic-ontology-of-work/"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Agentic Ontology of Work <span>· Skan<b>.ai</b></span></a>
+    <nav aria-label="Site"><a href="../../entities/index.html" aria-current="page">Ontology</a><a href="../../whitepaper/index.html">Whitepaper</a><a href="../../ontology/index.html">Reference</a><a href="../../about/index.html">About</a><a href="https://github.com/Skandotai/agentic-ontology-of-work">GitHub</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+  <p class="crumbs"><a href="../index.html">Ontology</a> / <a href="../index.html#assurance">Assurance</a></p>
+  <div class="entity-head">
+    <h1>Memory</h1>
+    <div class="facts"><span class="chip assurance">Assurance</span> <span class="chip">abstract</span> since 1.0 <code>aow:Memory</code></div>
+  </div>
+  <p class="definition">Persistent knowledge accumulated from experience, used to inform future Context.</p><p class="purpose">Lets the system learn without retraining, and remember why it did what it did.</p><p>Kinds: <a href="../operational-memory/index.html">Operational Memory</a>, <a href="../knowledge-base/index.html">Knowledge Base</a>.</p><h2>Attributes</h2><div class="table-scroll"><table><thead><tr><th scope="col">Attribute</th><th scope="col">Type</th><th scope="col">Required</th><th scope="col">Description</th></tr></thead><tbody><tr><td><code>store_ref</code></td><td>uri</td><td></td><td>Where the memory is held.</td></tr><tr><td><code>retention_policy</code></td><td>text</td><td></td><td>How long entries are kept and when they are purged.</td></tr></tbody></table></div><p class="small muted">Every entity also has an <code>id</code> and a <code>type</code>, and may carry <code>label</code>, <code>description</code>, and the provenance facet: <code>version</code>, <code>created_at</code>, <code>created_by</code>, <code>revision_of</code>.</p><h3>Pointed to by</h3><div class="table-scroll"><table><thead><tr><th scope="col">From</th><th scope="col">Relationship</th><th scope="col">Read backward as</th></tr></thead><tbody><tr><td><a href="../context/index.html">Context</a></td><td><code>draws_on</code></td><td>informs</td></tr><tr><td><a href="../feedback/index.html">Feedback</a></td><td><code>updates</code></td><td>updated by</td></tr><tr><td><a href="../actor/index.html">Actor</a></td><td><code>writes_to</code></td><td>written by</td></tr></tbody></table></div><h2>Notes</h2><div class="notes"><p>Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived).</p></div><p class="small"><a href="../../ontology/index.html#Memory">Term reference</a> · <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/ontology/shapes.ttl">SHACL shape <code>aowsh:MemoryShape</code></a></p>
+  <nav class="pager" aria-label="Classes"><a href="../feedback/index.html">← Feedback</a><a href="../operational-memory/index.html">Operational Memory →</a></nav>
+</div>
+
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Agentic Ontology of Work, version 2.0 · By Manish Garg, <a href="https://www.skan.ai">Skan.ai</a></p>
+    <p>Prose licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, schemas, and code licensed <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.</p>
+    <p>Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
+    <p class="family">Also from Skan.ai: <a href="https://skandotai.github.io/soa-to-agentic-terms/">SOA-to-Agentic AI Terminology Mapping</a></p>
+  </div>
+</footer>
+</body>
+</html>

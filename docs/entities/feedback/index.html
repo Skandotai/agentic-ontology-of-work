@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback · Agentic Ontology of Work</title>
+<meta name="description" content="Structured information, from people or systems, used to improve future behavior.">
+<link rel="canonical" href="https://skandotai.github.io/agentic-ontology-of-work/entities/feedback/">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta name="theme-color" content="#161714">
+<meta property="og:title" content="Feedback · Agentic Ontology of Work">
+<meta property="og:description" content="Structured information, from people or systems, used to improve future behavior.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://skandotai.github.io/agentic-ontology-of-work/entities/feedback/">
+<meta property="og:image" content="https://skandotai.github.io/agentic-ontology-of-work/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Agentic Ontology of Work: four layers, Perception, Cognition, Execution, and Assurance, connecting Objectives to Actions to Outcomes.">
+<meta property="og:site_name" content="Agentic Ontology of Work">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "Feedback",
+  "description": "Structured information, from people or systems, used to improve future behavior.",
+  "termCode": "aow:Feedback",
+  "url": "https://skandotai.github.io/agentic-ontology-of-work/entities/feedback/",
+  "sameAs": "https://w3id.org/aow#Feedback",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Agentic Ontology of Work",
+    "url": "https://skandotai.github.io/agentic-ontology-of-work/"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Agentic Ontology of Work <span>· Skan<b>.ai</b></span></a>
+    <nav aria-label="Site"><a href="../../entities/index.html" aria-current="page">Ontology</a><a href="../../whitepaper/index.html">Whitepaper</a><a href="../../ontology/index.html">Reference</a><a href="../../about/index.html">About</a><a href="https://github.com/Skandotai/agentic-ontology-of-work">GitHub</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+  <p class="crumbs"><a href="../index.html">Ontology</a> / <a href="../index.html#assurance">Assurance</a></p>
+  <div class="entity-head">
+    <h1>Feedback</h1>
+    <div class="facts"><span class="chip assurance">Assurance</span> since 1.0 <code>aow:Feedback</code></div>
+  </div>
+  <p class="definition">Structured information, from people or systems, used to improve future behavior.</p><p class="purpose">Turns Outcomes, reviews, and incidents into specific, attributable changes.</p><h2>Attributes</h2><div class="table-scroll"><table><thead><tr><th scope="col">Attribute</th><th scope="col">Type</th><th scope="col">Required</th><th scope="col">Description</th></tr></thead><tbody><tr><td><code>feedback_type</code></td><td>one of <code>accuracy</code>, <code>policy</code>, <code>exception</code>, <code>preference</code>, <code>incident</code></td><td></td><td>What the Feedback is about.</td></tr><tr><td><code>issue_detected</code></td><td>text</td><td></td><td>What went wrong or could be better.</td></tr><tr><td><code>recommended_adjustments</code></td><td>string-list</td><td></td><td>Specific changes proposed.</td></tr><tr><td><code>severity</code></td><td>one of <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td><td></td><td>How urgent the Feedback is.</td></tr><tr><td><code>timestamp</code></td><td>datetime</td><td></td><td>When the Feedback was given.</td></tr></tbody></table></div><p class="small muted">Every entity also has an <code>id</code> and a <code>type</code>, and may carry <code>label</code>, <code>description</code>, and the provenance facet: <code>version</code>, <code>created_at</code>, <code>created_by</code>, <code>revision_of</code>.</p><h2>Relationships</h2><div class="table-scroll"><table><thead><tr><th scope="col">Relationship</th><th scope="col">Points to</th><th scope="col">How many</th><th scope="col">Required</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>feedback_on</code></td><td><a href="../outcome/index.html">Outcome</a>, <a href="../result/index.html">Result</a>, <a href="../action/index.html">Action</a>, <a href="../plan/index.html">Plan</a></td><td>many</td><td>yes</td><td>What the Feedback is about.</td></tr><tr><td><code>provided_by</code></td><td><a href="../actor/index.html">Actor</a></td><td>one</td><td></td><td>Who gave the Feedback.</td></tr><tr><td><code>updates</code></td><td><a href="../policy/index.html">Policy</a>, <a href="../memory/index.html">Memory</a>, <a href="../plan/index.html">Plan</a>, <a href="../skill/index.html">Skill</a>, <a href="../actor/index.html">Actor</a>, <a href="../context/index.html">Context</a></td><td>many</td><td></td><td>What the Feedback changed.</td></tr></tbody></table></div><h2>Example</h2><p class="small muted">From <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/examples/claims-processing.jsonld"><code>examples/claims-processing.jsonld</code></a>, which passes every validation gate.</p><pre><code>{
+  &quot;id&quot;: &quot;fbk-age-65&quot;,
+  &quot;type&quot;: &quot;Feedback&quot;,
+  &quot;feedback_type&quot;: &quot;exception&quot;,
+  &quot;issue_detected&quot;: &quot;Claimants over 65 with pre-existing conditions reached an adjuster only after an automated decision had been drafted.&quot;,
+  &quot;recommended_adjustments&quot;: [
+    &quot;Add a rule exception for claimants over 65 with pre-existing conditions&quot;,
+    &quot;Record the exception pattern in the claims knowledge base&quot;
+  ],
+  &quot;severity&quot;: &quot;medium&quot;,
+  &quot;timestamp&quot;: &quot;2026-09-20T15:04:00Z&quot;,
+  &quot;feedback_on&quot;: [
+    &quot;outcome-cycle-time-2026q3&quot;
+  ],
+  &quot;provided_by&quot;: &quot;person-adjuster-17&quot;,
+  &quot;updates&quot;: [
+    &quot;policy-high-risk-review&quot;,
+    &quot;kb-claims&quot;
+  ]
+}</code></pre><p class="small"><a href="../../ontology/index.html#Feedback">Term reference</a> · <a href="../../schemas/feedback.schema.json">JSON Schema</a> · <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/ontology/shapes.ttl">SHACL shape <code>aowsh:FeedbackShape</code></a></p>
+  <nav class="pager" aria-label="Classes"><a href="../outcome/index.html">← Outcome</a><a href="../memory/index.html">Memory →</a></nav>
+</div>
+
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Agentic Ontology of Work, version 2.0 · By Manish Garg, <a href="https://www.skan.ai">Skan.ai</a></p>
+    <p>Prose licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, schemas, and code licensed <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.</p>
+    <p>Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
+    <p class="family">Also from Skan.ai: <a href="https://skandotai.github.io/soa-to-agentic-terms/">SOA-to-Agentic AI Terminology Mapping</a></p>
+  </div>
+</footer>
+</body>
+</html>

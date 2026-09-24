@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitepaper · Agentic Ontology of Work</title>
+<meta name="description" content="The Agentic Ontology of Work, version 2.0: a foundational semantic model for intelligent, autonomous, and governed enterprise work.">
+<link rel="canonical" href="https://skandotai.github.io/agentic-ontology-of-work/whitepaper/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#161714">
+<meta property="og:title" content="Whitepaper · Agentic Ontology of Work">
+<meta property="og:description" content="The Agentic Ontology of Work, version 2.0: a foundational semantic model for intelligent, autonomous, and governed enterprise work.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://skandotai.github.io/agentic-ontology-of-work/whitepaper/">
+<meta property="og:image" content="https://skandotai.github.io/agentic-ontology-of-work/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Agentic Ontology of Work: four layers, Perception, Cognition, Execution, and Assurance, connecting Objectives to Actions to Outcomes.">
+<meta property="og:site_name" content="Agentic Ontology of Work">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Agentic Ontology of Work <span>· Skan<b>.ai</b></span></a>
+    <nav aria-label="Site"><a href="../entities/index.html">Ontology</a><a href="../whitepaper/index.html" aria-current="page">Whitepaper</a><a href="../ontology/index.html">Reference</a><a href="../about/index.html">About</a><a href="https://github.com/Skandotai/agentic-ontology-of-work">GitHub</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap">
+  <div class="prose" style="padding-top:40px">
+    <p class="eyebrow">Whitepaper · version 2.0</p>
+    <p class="small"><a href="../downloads/agentic-ontology-of-work-v2.0.pdf">Download as PDF</a> · <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/whitepaper.md">Source on GitHub</a> · <a href="../downloads/agentic-ontology-of-work-v1.0.pdf">Version 1.0 (PDF)</a></p>
+    <details class="toc"><summary>Contents</summary><ol><li><a href="#abstract">Abstract</a></li><li><a href="#1-introduction">1 Introduction</a></li><li><a href="#2-design-principles">2 Design principles</a></li><li><a href="#3-the-four-layer-stack">3 The four-layer stack</a></li><li><a href="#4-canonical-entities">4 Canonical entities</a></li><li><a href="#5-provenance-and-versioning">5 Provenance and versioning</a></li><li><a href="#6-the-relationship-model">6 The relationship model</a></li><li><a href="#7-assurance-levels-and-governed-autonomy">7 Assurance Levels and governed autonomy</a></li><li><a href="#8-the-lifecycle">8 The lifecycle</a></li><li><a href="#9-formal-representation">9 Formal representation</a></li><li><a href="#10-worked-example-claims-processing">10 Worked example: claims processing</a></li><li><a href="#11-industry-examples">11 Industry examples</a></li><li><a href="#12-how-aow-relates-to-existing-work">12 How AOW relates to existing work</a></li><li><a href="#13-validation-criteria">13 Validation criteria</a></li><li><a href="#14-extending-aow">14 Extending AOW</a></li><li><a href="#15-limitations-and-open-questions">15 Limitations and open questions</a></li><li><a href="#16-glossary">16 Glossary</a></li><li><a href="#17-summary">17 Summary</a></li><li><a href="#appendix-a-relationship-matrix">Appendix A: Relationship matrix</a></li><li><a href="#appendix-b-changes-from-version-10">Appendix B: Changes from version 1.0</a></li><li><a href="#references">References</a></li></ol></details>
+    <h1 id="agentic-ontology-of-work-aow">Agentic Ontology of Work (AOW)</h1>
+<p><strong>A foundational semantic model for intelligent, autonomous, and governed enterprise work</strong></p>
+<p>Version 2.0 · September 2026 · Manish Garg, Skan.ai</p>
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. The machine-readable ontology, shapes, schemas, and examples that accompany this paper are licensed Apache 2.0 and published at <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a>.</p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p>Enterprises are putting agents to work faster than they can agree on how to describe that work. "Agent," "task," "workflow," and "orchestration" mean different things to different vendors and teams, and the result is integrations that break at the seams, governance policies that cannot be applied consistently, and audit trails that stop where one system hands off to the next.</p>
+<p>The Agentic Ontology of Work (AOW) is a platform-agnostic semantic model for that work. It names twenty-five kinds of things that agentic systems, people, and the governance around them have in common, and thirty-three relationships between them. It follows work from the business Objective it serves, through the Intents, Plans, and Tasks derived from it, to the Actions that Actors (Agents and people alike) take with their Skills, the Results those Actions produce, and the Outcomes those Results add up to. Around that path, it places the things that make autonomy safe to grant: Policy, Confidence, a five-level Assurance Level scale, an independent Guardian, and a Feedback loop into Memory.</p>
+<p>Version 2.0 does two things version 1.0 did not. It fills the gaps a close reading of 1.0 exposes, including undefined Actions, Tasks, and autonomy levels, and no place for the people in the loop. And it ships the ontology in the machine-readable formats 1.0 promised: OWL, JSON-LD, SHACL, and JSON Schema, with worked examples and queries that check an explanation can be reconstructed and that no Agent acted beyond the oversight its Assurance Level requires.</p>
+<hr />
+<h2 id="1-introduction">1 Introduction</h2>
+<h3 id="11-the-rise-of-the-agentic-enterprise">1.1 The rise of the agentic enterprise</h3>
+<p>The modern enterprise is moving from systems that automate tasks to systems that understand, reason, and act across complex operations. Several developments are converging to drive the shift: multi-agent systems, learned behavior, contextual awareness, structured governance, continuous feedback loops, and observability at enterprise scale.</p>
+<p>The capability to build agentic systems is arriving quickly. A shared language for describing them is not. Enterprises lack an agreed way to say what these systems are, how they behave, how they relate to one another and to the people they work alongside, and how they must be governed.</p>
+<p>Enterprise computing has been here before. Service-Oriented Architecture (SOA) gave the industry its first widely adopted formalism for services, endpoints, and contracts, and the shared vocabulary mattered as much as the technology. The agentic era needs the equivalent: a common way to describe Intents, Agents, Skills, Policies, Context, Outcomes, Assurance, Memory, and Feedback.</p>
+<h3 id="12-why-an-ontology-not-a-glossary">1.2 Why an ontology, not a glossary</h3>
+<p>A glossary defines words. An ontology is "an explicit specification of a conceptualization" (Gruber, 1993): it names the kinds of things in a domain, the attributes those things have, and the relationships that connect them, precisely enough that software can check whether a description conforms.</p>
+<p>Without a shared ontology, enterprises face:</p>
+<ul>
+<li>inconsistent definitions, in which "agent," "workflow," and "task" overlap</li>
+<li>brittle integrations between platforms that model the same work differently</li>
+<li>governance blind spots where no one can say which rules applied to an action</li>
+<li>ambiguous responsibility when work passes between agents and people</li>
+<li>no reliable way to scale autonomous activity</li>
+</ul>
+<p>A well-designed ontology anchors governance and compliance, makes behavior explainable, improves interoperability across platforms, reduces ambiguity, and becomes the grammar in which intelligent work is described.</p>
+<h3 id="13-goals">1.3 Goals</h3>
+<p>AOW aims to:</p>
+<ul>
+<li>establish a platform-agnostic semantic framework for agentic work</li>
+<li>enable interoperability across multi-agent systems, robotic process automation, AI systems, and human workflows</li>
+<li>support governance, auditability, and risk management by design</li>
+<li>provide a foundation that standards bodies and reference architectures can build on</li>
+<li>help enterprises scale intelligent automation safely, with trust and transparency</li>
+</ul>
+<h3 id="14-scope-and-non-goals">1.4 Scope and non-goals</h3>
+<p>AOW describes work: what is being attempted, by whom, under what constraints, with what effect, and what was learned. It deliberately does not specify:</p>
+<ul>
+<li><strong>how agents are built.</strong> Models, prompts, and frameworks are implementation details. An Agent's <code>implementation_ref</code> may point to them.</li>
+<li><strong>how agents talk to each other.</strong> Protocols such as Agent2Agent (A2A) and the Model Context Protocol (MCP) carry AOW entities; AOW does not redefine them (section 12.6).</li>
+<li><strong>a policy language.</strong> A Policy's rules may be written in ODRL, Rego, Cedar, DMN, or plain text (section 4).</li>
+<li><strong>a storage technology.</strong> AOW can be stored in a knowledge graph, a relational database, or a document store (section 12.4).</li>
+</ul>
+<h3 id="15-what-changed-from-version-10">1.5 What changed from version 1.0</h3>
+<p>Version 1.0 (January 2026) set out the four-layer model, fifteen canonical entities, the lifecycle, and the validation criteria. Version 2.0 keeps all of that and is backward compatible in meaning: every 1.0 entity still exists and still means what it meant. The main changes are:</p>
+<ul>
+<li><strong>Eight new classes</strong> fill gaps 1.0 named but did not define: Work Item, Signal, and Observation (Perception); Plan and Task; and Actor, Human Actor, and Role, which make people first-class participants. Orchestrator and Guardian become kinds of Actor.</li>
+<li><strong>Action is now defined.</strong> 1.0 listed it in the glossary and registry but gave it no section, and said in one place that Skills produce Results and in another that Actions do. In 2.0, a Skill is a capability, an Action is its use, and the Action produces the Result.</li>
+<li><strong>The Assurance Level scale is defined</strong>, from AL0 (Manual) to AL4 (Autonomous), with a rule for the effective level when an Agent, a Task, and a Skill disagree (section 7).</li>
+<li><strong>Provenance and Versioning become a facet</strong> of every entity, expressed with W3C PROV-O, rather than two entities of their own (section 5).</li>
+<li><strong>Every entity has attributes and relationships.</strong> In 1.0, Guardian, Memory, Provenance, and Assurance Level had none, or only one of the two.</li>
+<li><strong>The ontology ships in machine-readable form</strong>, with validation (section 9).</li>
+<li><strong>Editorial fixes</strong>: consistent numbering, corrected example schemas, and a more measured claim about what the ontology is.</li>
+</ul>
+<p>Appendix B lists every change.</p>
+<hr />
+<h2 id="2-design-principles">2 Design principles</h2>
+<p>AOW is built on seven principles. The first six are carried over from version 1.0; the seventh is new.</p>
+<p><strong>Principle 1: Platform agnosticism.</strong> The ontology describes concepts, not implementations. No vendor-specific models, training mechanisms, or product metaphors are embedded in it.</p>
+<p><strong>Principle 2: Hierarchical simplicity with semantic completeness.</strong> The ontology must be rich enough to model complex work and simple enough for architects, engineers, risk teams, and business owners to use.</p>
+<p><strong>Principle 3: Governed autonomy.</strong> Agentic systems operate under constraints, not unchecked freedom. Policy, Assurance Levels, and provenance are first-class.</p>
+<p><strong>Principle 4: Observability and explainability.</strong> No action happens without visibility, and no decision is made without a traceable rationale.</p>
+<p><strong>Principle 5: Contextual intelligence.</strong> Actions are always understood in relation to the environment, history, constraints, and intended Outcomes.</p>
+<p><strong>Principle 6: Continuous learning.</strong> The ontology supports the accumulation of experience and adaptation as environments shift and agents evolve.</p>
+<p><strong>Principle 7: Actor neutrality.</strong> Work is described the same way whoever performs it. A Task can be assigned to an Agent or a person; an Action has the same shape and leaves the same trail either way. This is what lets work move between people and agents, in either direction, without being re-modeled, and what lets human oversight be recorded rather than assumed.</p>
+<hr />
+<h2 id="3-the-four-layer-stack">3 The four-layer stack</h2>
+<p>Work is not a line; it is a graph connecting Objectives, Intents, Context, constraints, Actors, Actions, Observations, Feedback, and Outcomes. AOW organizes that graph into four layers, each answering a different question.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Question it answers</th>
+<th>Entities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 Perception</strong></td>
+<td>What exists, and what is happening?</td>
+<td>Work Item, Signal, Observation</td>
+</tr>
+<tr>
+<td><strong>2 Cognition</strong></td>
+<td>What should happen, and within what limits?</td>
+<td>Objective, Intent, Context, Policy, Plan</td>
+</tr>
+<tr>
+<td><strong>3 Execution</strong></td>
+<td>Who does the work, and what did it change?</td>
+<td>Task, Actor, Agent, Human Actor, Orchestrator, Role, Skill, Action, Result</td>
+</tr>
+<tr>
+<td><strong>4 Assurance</strong></td>
+<td>Was it safe, did it work, and what did we learn?</td>
+<td>Confidence, Assurance Level, Guardian, Outcome, Feedback, Memory, Operational Memory, Knowledge Base</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Layer 1: Perception</strong> captures the ground truth: the Work Items in flight and the Signals (events, logs, documents, interactions, state changes, metrics) and Observations about them. Version 1.0 named Telemetry Events, Signals, Session State, and Environmental Observations here without defining them. In 2.0, a telemetry event is a Signal, session state is session Context, and an environmental observation is an Observation.</p>
+<p><strong>Layer 2: Cognition</strong> evaluates goals, constraints, context, and policies to decide what should happen next, and plans how.</p>
+<p><strong>Layer 3: Execution</strong> is where Actors take on Tasks, invoke Skills through Actions, and produce Results.</p>
+<p><strong>Layer 4: Assurance</strong> ensures safety, reliability, trust, and improvement: it measures certainty, grades autonomy, oversees behavior, evaluates Outcomes, and carries Feedback into Memory.</p>
+<p>The layers describe what an entity is for, not a deployment architecture. One system may span several layers, and entities in every layer carry the provenance facet described in section 5.</p>
+<hr />
+<h2 id="4-canonical-entities">4 Canonical entities</h2>
+<p>This section defines each entity: what it is, why it exists, its attributes, and the relationships it can start. Attribute and relationship keys are shown as they appear in AOW JSON documents (<code>snake_case</code>); the RDF property for each is the same name in <code>lowerCamelCase</code> in the <code>aow:</code> namespace (<code>goal_statement</code> becomes <code>aow:goalStatement</code>). Every entity also has an <code>id</code> and a <code>type</code>, and may carry the common attributes <code>label</code>, <code>description</code>, and the provenance facet (section 5).</p>
+<p>Where a relationship is shown with more than one target, any of them is allowed. "Required" means a conformant document must include it.</p>
+<h3 id="41-work-item">4.1 Work Item</h3>
+<p><em>Layer: Perception · since 2.0 · <code>aow:WorkItem</code></em></p>
+<p><strong>Definition.</strong> The unit of business work that the rest of the ontology is about: a claim, an application, an order, a case, a ticket.</p>
+<p><strong>Purpose.</strong> Gives every Intent, Task, Action, and Observation a concrete subject, so that work can be followed end to end regardless of which systems, agents, or people touched it.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>item_type</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The kind of work item, for example "insurance-claim" or "purchase-order".</td>
+</tr>
+<tr>
+<td><code>external_ref</code></td>
+<td>string</td>
+<td></td>
+<td>Identifier of the item in its system of record.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>string</td>
+<td></td>
+<td>Current business state of the item, in the vocabulary of its system of record.</td>
+</tr>
+<tr>
+<td><code>opened_at</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the item entered the process.</td>
+</tr>
+<tr>
+<td><code>closed_at</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the item left the process, if it has.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Version 1.0 carried the work item implicitly inside Context (for example, "ctx-claim-84933"). Making it explicit lets two Intents, or an Intent and a human Task, refer to the same claim.</li>
+<li>Corresponds to a case or object in process mining (IEEE 1849 XES and the OCEL 2.0 object-centric event log format).</li>
+</ul>
+<h3 id="42-signal">4.2 Signal</h3>
+<p><em>Layer: Perception · since 2.0 · <code>aow:Signal</code></em></p>
+<p><strong>Definition.</strong> A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample.</p>
+<p><strong>Purpose.</strong> Anchors the ontology in what actually happened, before any interpretation. Signals are the evidence that Observations, Context, and audit trails are built from.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>signal_type</code></td>
+<td>one of <code>event</code>, <code>log</code>, <code>metric</code>, <code>interaction</code>, <code>document</code>, <code>state-change</code></td>
+<td>yes</td>
+<td>The kind of trace.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The system, sensor, application, or channel that emitted the Signal.</td>
+</tr>
+<tr>
+<td><code>observed_at</code></td>
+<td>datetime</td>
+<td>yes</td>
+<td>When the Signal occurred.</td>
+</tr>
+<tr>
+<td><code>payload_ref</code></td>
+<td>uri</td>
+<td></td>
+<td>Where the raw payload is stored, if it is kept.</td>
+</tr>
+<tr>
+<td><code>sensitivity_level</code></td>
+<td>one of <code>public</code>, <code>internal</code>, <code>confidential</code>, <code>restricted</code></td>
+<td></td>
+<td>Handling classification of the payload.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>generated_by</code> → Action</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Version 1.0 listed Telemetry Events, Signals, Session State, and Environmental Observations as Perception-layer elements without defining them. In 2.0 a Telemetry Event is a Signal whose signal_type is "event" or "metric"; Session State is Context with context_type "session".</li>
+<li>Actions leave Signals behind. Linking a Signal to the Action that generated it (generated_by) is what makes agent behavior observable with the same tools used to observe human and system work.</li>
+</ul>
+<h3 id="43-observation">4.3 Observation</h3>
+<p><em>Layer: Perception · since 2.0 · <code>aow:Observation</code></em></p>
+<p><strong>Definition.</strong> An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence.</p>
+<p><strong>Purpose.</strong> Separates what was seen (Signal) from what it was taken to mean (Observation), so that a wrong interpretation can be traced and corrected without doubting the evidence.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observed_property</code></td>
+<td>string</td>
+<td>yes</td>
+<td>What was observed, for example "claim_amount" or "handling_time".</td>
+</tr>
+<tr>
+<td><code>observed_value</code></td>
+<td>json</td>
+<td></td>
+<td>The observed value, in any JSON form.</td>
+</tr>
+<tr>
+<td><code>observed_at</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the observation was made.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>string</td>
+<td></td>
+<td>How the value was derived, for example "document-extraction" or "rule".</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>generated_by</code> → Action</li>
+<li><code>derived_from</code> → Signal (one or more) <em>(required)</em></li>
+<li><code>about</code> → Work Item / Actor / Action / Task</li>
+<li><code>has_confidence</code> → Confidence</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>"The claim amount is $38,200" is an Observation; the scanned claim form it was extracted from is a Signal.</li>
+</ul>
+<h3 id="44-objective">4.4 Objective</h3>
+<p><em>Layer: Cognition · since 1.0 · <code>aow:Objective</code></em></p>
+<p><strong>Definition.</strong> A business-level goal expressed in strategic or operational terms.</p>
+<p><strong>Purpose.</strong> Connects agentic activity to specific, measurable enterprise value.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kpi_target</code></td>
+<td>string</td>
+<td></td>
+<td>The measurable target, for example "claims cycle time -20%".</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td>
+<td></td>
+<td>Relative business priority.</td>
+</tr>
+<tr>
+<td><code>time_horizon</code></td>
+<td>string</td>
+<td></td>
+<td>The period over which the Objective is pursued, for example "FY2027".</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>text</td>
+<td>yes</td>
+<td>Longer human-readable explanation.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Objective answers why. Intent answers what.</li>
+</ul>
+<h3 id="45-intent">4.5 Intent</h3>
+<p><em>Layer: Cognition · since 1.0 · <code>aow:Intent</code></em></p>
+<p><strong>Definition.</strong> A structured, actionable goal derived from an Objective and interpretable by agents, orchestrators, and people.</p>
+<p><strong>Purpose.</strong> Turns a business goal into something that can be planned, assigned, governed, and checked.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>goal_statement</code></td>
+<td>text</td>
+<td>yes</td>
+<td>What the Intent is meant to achieve, stated as an outcome rather than a procedure.</td>
+</tr>
+<tr>
+<td><code>constraints</code></td>
+<td>string-list</td>
+<td></td>
+<td>Free-text constraints that are not (yet) captured as Policies.</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td>
+<td></td>
+<td>Relative priority.</td>
+</tr>
+<tr>
+<td><code>acceptable_risk_band</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code></td>
+<td></td>
+<td>The level of residual risk the requester accepts.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>one of <code>proposed</code>, <code>active</code>, <code>fulfilled</code>, <code>abandoned</code></td>
+<td></td>
+<td>Where the Intent is in its life.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>serves_objective</code> → Objective <em>(required)</em></li>
+<li><code>shaped_by</code> → Context (one or more)</li>
+<li><code>concerns</code> → Work Item (one or more)</li>
+<li><code>constrained_by</code> → Policy (one or more)</li>
+<li><code>requires_assurance</code> → Assurance Level <em>(required)</em></li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Objective answers why. Intent answers what. Plan answers how.</li>
+</ul>
+<h3 id="46-context">4.6 Context</h3>
+<p><em>Layer: Cognition · since 1.0 · <code>aow:Context</code></em></p>
+<p><strong>Definition.</strong> The structured situational information that gives relevance to an Intent.</p>
+<p><strong>Purpose.</strong> Makes the same Intent resolve differently for different situations, and records what an Actor knew when it acted.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>context_type</code></td>
+<td>one of <code>environmental</code>, <code>procedural</code>, <code>data</code>, <code>historical</code>, <code>session</code></td>
+<td></td>
+<td>The kind of situational information.</td>
+</tr>
+<tr>
+<td><code>variables</code></td>
+<td>json</td>
+<td></td>
+<td>The situational values themselves.</td>
+</tr>
+<tr>
+<td><code>sensitivity_level</code></td>
+<td>one of <code>public</code>, <code>internal</code>, <code>confidential</code>, <code>restricted</code></td>
+<td></td>
+<td>Handling classification.</td>
+</tr>
+<tr>
+<td><code>valid_until</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the Context should be considered stale.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>draws_on</code> → Memory / Observation (one or more)</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Context types: environmental, procedural, data, historical, session.</li>
+</ul>
+<h3 id="47-policy">4.7 Policy</h3>
+<p><em>Layer: Cognition · since 1.0 · <code>aow:Policy</code></em></p>
+<p><strong>Definition.</strong> Declarative constraints defining permissible, required, or restricted behavior.</p>
+<p><strong>Purpose.</strong> Makes governance explicit and machine-checkable. Policies constrain behavior; they never describe it.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rule_set</code></td>
+<td>text</td>
+<td>yes</td>
+<td>The rules, or a reference to them.</td>
+</tr>
+<tr>
+<td><code>rule_language</code></td>
+<td>string</td>
+<td></td>
+<td>The language rule_set is written in, for example "ODRL", "Rego", "DMN", "text".</td>
+</tr>
+<tr>
+<td><code>effect</code></td>
+<td>one of <code>permit</code>, <code>prohibit</code>, <code>require</code>, <code>escalate</code></td>
+<td></td>
+<td>What the Policy does when it applies.</td>
+</tr>
+<tr>
+<td><code>trigger_conditions</code></td>
+<td>string-list</td>
+<td></td>
+<td>Conditions under which the Policy applies.</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td>
+<td></td>
+<td>Consequence of a violation.</td>
+</tr>
+<tr>
+<td><code>override_protocol</code></td>
+<td>text</td>
+<td></td>
+<td>Who may override the Policy, and how.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>escalates_to</code> → Role / Human Actor (one or more)</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>AOW does not prescribe a policy language. rule_set may hold rules in ODRL, Rego, Cedar, DMN, or plain text, named in rule_language.</li>
+</ul>
+<h3 id="48-plan">4.8 Plan</h3>
+<p><em>Layer: Cognition · since 2.0 · <code>aow:Plan</code></em></p>
+<p><strong>Definition.</strong> An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.</p>
+<p><strong>Purpose.</strong> Separates deciding how to do something from doing it, so that plans can be inspected, approved, compared, and replayed.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td>one of <code>draft</code>, <code>approved</code>, <code>executing</code>, <code>completed</code>, <code>failed</code>, <code>abandoned</code></td>
+<td></td>
+<td>Where the Plan is in its life.</td>
+</tr>
+<tr>
+<td><code>exception_protocol</code></td>
+<td>text</td>
+<td></td>
+<td>What to do when a Task fails or a Policy blocks progress.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>constrained_by</code> → Policy (one or more)</li>
+<li><code>realizes</code> → Intent <em>(required)</em></li>
+<li><code>planned_by</code> → Actor</li>
+<li><code>has_task</code> → Task (one or more)</li>
+<li><code>approved_by</code> → Human Actor (one or more)</li>
+<li><code>has_confidence</code> → Confidence</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Listed as an optional concept in version 1.0; a full entity in 2.0.</li>
+<li>The Orchestrator's dependency_graph in version 1.0 is the Plan's set of Tasks and their depends_on links.</li>
+</ul>
+<h3 id="49-task">4.9 Task</h3>
+<p><em>Layer: Execution · since 2.0 · <code>aow:Task</code></em></p>
+<p><strong>Definition.</strong> A unit of assigned work within a Plan, performed by an Actor filling a Role.</p>
+<p><strong>Purpose.</strong> Gives "task" a single meaning. A Task is what gets assigned; an Action is what gets done; a Skill is what makes it possible.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td>one of <code>submitted</code>, <code>working</code>, <code>input-required</code>, <code>completed</code>, <code>failed</code>, <code>canceled</code>, <code>rejected</code></td>
+<td></td>
+<td>Where the Task is in its life.</td>
+</tr>
+<tr>
+<td><code>due_by</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the Task must be completed.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>text</td>
+<td>yes</td>
+<td>Longer human-readable explanation.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>shaped_by</code> → Context (one or more)</li>
+<li><code>concerns</code> → Work Item (one or more)</li>
+<li><code>constrained_by</code> → Policy (one or more)</li>
+<li><code>requires_assurance</code> → Assurance Level</li>
+<li><code>depends_on</code> → Task (one or more)</li>
+<li><code>assigned_to</code> → Actor</li>
+<li><code>requires_role</code> → Role</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Task states follow the Agent2Agent (A2A) protocol's task lifecycle so that AOW Tasks can be exchanged over A2A without translation.</li>
+</ul>
+<h3 id="410-actor">4.10 Actor</h3>
+<p><em>Layer: Execution · abstract · since 2.0 · <code>aow:Actor</code></em></p>
+<p><strong>Definition.</strong> Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.</p>
+<p><strong>Purpose.</strong> Lets the ontology describe work the same way whoever performs it, so that work can move between people and agents without being re-modeled.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td></td>
+<td>Display name.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>constrained_by</code> → Policy (one or more)</li>
+<li><code>fills_role</code> → Role (one or more)</li>
+<li><code>has_skill</code> → Skill (one or more)</li>
+<li><code>writes_to</code> → Memory (one or more)</li>
+</ul>
+<h3 id="411-agent">4.11 Agent</h3>
+<p><em>Layer: Execution · a kind of Actor · since 1.0 · <code>aow:Agent</code></em></p>
+<p><strong>Definition.</strong> A software Actor that interprets Intents and Tasks and acts on them using Skills, within the autonomy it has been cleared for.</p>
+<p><strong>Purpose.</strong> The primary performer of agentic work, described by what it may do rather than by how it is built.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>autonomy_level</code></td>
+<td>→ AssuranceLevel</td>
+<td></td>
+<td>The highest Assurance Level the Agent has been cleared to operate at. The Agent may operate at a lower level on a given Task, never a higher one.</td>
+</tr>
+<tr>
+<td><code>implementation_ref</code></td>
+<td>uri</td>
+<td></td>
+<td>Pointer to the Agent's implementation, model card, or A2A Agent Card.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Deliberately says nothing about models, prompts, or frameworks. implementation_ref may point to those.</li>
+</ul>
+<h3 id="412-human-actor">4.12 Human Actor</h3>
+<p><em>Layer: Execution · a kind of Actor · since 2.0 · <code>aow:HumanActor</code></em></p>
+<p><strong>Definition.</strong> A person who performs, approves, reviews, or oversees work.</p>
+<p><strong>Purpose.</strong> Makes human-in-the-loop a first-class, traceable part of the model rather than an exception outside it.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>organizational_unit</code></td>
+<td>string</td>
+<td></td>
+<td>The team or department the person works in.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="413-orchestrator">4.13 Orchestrator</h3>
+<p><em>Layer: Execution · a kind of Actor · since 1.0 · <code>aow:Orchestrator</code></em></p>
+<p><strong>Definition.</strong> A coordinating Actor that turns Intents into Plans, assigns Tasks to Actors, and manages sequencing and exceptions.</p>
+<p><strong>Purpose.</strong> Decomposes and coordinates work so that no single Agent has to.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>planning_model</code></td>
+<td>string</td>
+<td></td>
+<td>How the Orchestrator plans, for example "rule-based", "LLM-planned", "hybrid".</td>
+</tr>
+<tr>
+<td><code>exception_protocol</code></td>
+<td>text</td>
+<td></td>
+<td>Default handling for failures across the Plans it runs.</td>
+</tr>
+<tr>
+<td><code>resource_constraints</code></td>
+<td>text</td>
+<td></td>
+<td>Limits on concurrency, cost, or time it must respect.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>An Orchestrator may itself be an Agent, a deterministic workflow engine, or a person. The role is what matters.</li>
+</ul>
+<h3 id="414-role">4.14 Role</h3>
+<p><em>Layer: Execution · since 2.0 · <code>aow:Role</code></em></p>
+<p><strong>Definition.</strong> A named set of responsibilities and authority that an Actor can fill, such as "claims adjuster" or "eligibility reviewer".</p>
+<p><strong>Purpose.</strong> Lets Tasks, Policies, and escalations target a responsibility rather than a specific person or agent, so either can fill it.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>responsibilities</code></td>
+<td>string-list</td>
+<td></td>
+<td>What an Actor in this Role is accountable for.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Short human-readable name.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>constrained_by</code> → Policy (one or more)</li>
+</ul>
+<h3 id="415-skill">4.15 Skill</h3>
+<p><em>Layer: Execution · since 1.0 · <code>aow:Skill</code></em></p>
+<p><strong>Definition.</strong> A reusable capability that an Actor can invoke.</p>
+<p><strong>Purpose.</strong> Describes what can be done, with its inputs, outputs, cost, and side effects, so that it can be discovered, governed, and swapped.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input_schema</code></td>
+<td>json</td>
+<td></td>
+<td>JSON Schema (or equivalent) for the Skill's inputs.</td>
+</tr>
+<tr>
+<td><code>output_schema</code></td>
+<td>json</td>
+<td></td>
+<td>JSON Schema (or equivalent) for the Skill's outputs.</td>
+</tr>
+<tr>
+<td><code>binding</code></td>
+<td>string</td>
+<td></td>
+<td>How to invoke it, for example an MCP tool name, an API endpoint, or a UI automation.</td>
+</tr>
+<tr>
+<td><code>side_effects</code></td>
+<td>one of <code>none</code>, <code>reversible</code>, <code>irreversible</code></td>
+<td></td>
+<td>Whether invoking the Skill changes external state, and whether that can be undone.</td>
+</tr>
+<tr>
+<td><code>latency</code></td>
+<td>string</td>
+<td></td>
+<td>Typical or maximum latency, for example "&lt; 1s".</td>
+</tr>
+<tr>
+<td><code>cost_profile</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code></td>
+<td></td>
+<td>Relative cost per invocation.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>constrained_by</code> → Policy (one or more)</li>
+<li><code>requires_assurance</code> → Assurance Level</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>side_effects is new in 2.0. Whether a Skill changes the world, and whether that change can be undone, is the single most important fact for deciding how much autonomy to grant around it.</li>
+</ul>
+<h3 id="416-action">4.16 Action</h3>
+<p><em>Layer: Execution · since 1.0 · <code>aow:Action</code></em></p>
+<p><strong>Definition.</strong> A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time.</p>
+<p><strong>Purpose.</strong> The atom of accountability. Every Result traces back to an Action, and every Action to who did it, why, and under what authority.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>started_at</code></td>
+<td>datetime</td>
+<td>yes</td>
+<td>When the Action began.</td>
+</tr>
+<tr>
+<td><code>ended_at</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the Action ended.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>one of <code>succeeded</code>, <code>failed</code>, <code>blocked</code>, <code>escalated</code>, <code>compensated</code></td>
+<td></td>
+<td>How the Action ended.</td>
+</tr>
+<tr>
+<td><code>rationale</code></td>
+<td>text</td>
+<td></td>
+<td>The Actor's stated reason for the Action, recorded for explainability.</td>
+</tr>
+<tr>
+<td><code>idempotency_key</code></td>
+<td>string</td>
+<td></td>
+<td>Key that makes a retried Action safe to repeat.</td>
+</tr>
+<tr>
+<td><code>inputs</code></td>
+<td>json</td>
+<td></td>
+<td>The inputs passed to the Skill.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>concerns</code> → Work Item (one or more)</li>
+<li><code>performed_by</code> → Actor <em>(required)</em></li>
+<li><code>fulfills</code> → Task</li>
+<li><code>invokes</code> → Skill</li>
+<li><code>approved_by</code> → Human Actor (one or more)</li>
+<li><code>has_confidence</code> → Confidence</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Named in version 1.0 but never defined. In 2.0 the Action, not the Skill, produces the Result: a Skill is a capability, an Action is its use.</li>
+</ul>
+<h3 id="417-result">4.17 Result</h3>
+<p><em>Layer: Execution · since 1.0 · <code>aow:Result</code></em></p>
+<p><strong>Definition.</strong> The immediate, atomic effect or output of an Action.</p>
+<p><strong>Purpose.</strong> Records what an Action changed or produced, so that it can be verified, rolled up into Outcomes, and fed back.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td>one of <code>success</code>, <code>partial</code>, <code>failure</code></td>
+<td></td>
+<td>Whether the Action achieved what it set out to.</td>
+</tr>
+<tr>
+<td><code>summary</code></td>
+<td>text</td>
+<td></td>
+<td>What the Result is, in words.</td>
+</tr>
+<tr>
+<td><code>artifacts</code></td>
+<td>uri-list</td>
+<td></td>
+<td>Documents, records, or state changes the Result produced.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>approved_by</code> → Human Actor (one or more)</li>
+<li><code>generated_by</code> → Action <em>(required)</em></li>
+<li><code>affects</code> → Work Item (one or more)</li>
+<li><code>has_confidence</code> → Confidence</li>
+<li><code>contributes_to</code> → Outcome (one or more)</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>A Result is local and immediate. An Outcome is aggregated and business-level.</li>
+</ul>
+<h3 id="418-guardian">4.18 Guardian</h3>
+<p><em>Layer: Assurance · a kind of Actor · since 1.0 · <code>aow:Guardian</code></em></p>
+<p><strong>Definition.</strong> The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed.</p>
+<p><strong>Purpose.</strong> Separates doing the work from checking the work, so that no Actor is its own only safeguard.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enforcement_mode</code></td>
+<td>one of <code>preventive</code>, <code>detective</code>, <code>corrective</code></td>
+<td></td>
+<td>Whether it blocks before, detects after, or repairs after the fact.</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>text</td>
+<td></td>
+<td>The Actors, Skills, or Work Items it watches.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>enforces</code> → Policy / Assurance Level (one or more)</li>
+<li><code>oversees</code> → Actor / Plan / Skill (one or more)</li>
+<li><code>escalates_to</code> → Role / Human Actor (one or more)</li>
+</ul>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>A Guardian may be software, a person, or both. Because it is an Actor, its own interventions are Actions and leave the same trail as everyone else's.</li>
+</ul>
+<h3 id="419-confidence">4.19 Confidence</h3>
+<p><em>Layer: Assurance · since 1.0 · <code>aow:Confidence</code></em></p>
+<p><strong>Definition.</strong> A model-, rule-, or human-derived measure of certainty about an Observation, a Result, or an Action.</p>
+<p><strong>Purpose.</strong> Lets autonomy depend on certainty: the same Agent may act alone when it is sure and escalate when it is not.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>number (0–1)</td>
+<td>yes</td>
+<td>Certainty between 0 and 1.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>one of <code>model</code>, <code>heuristic</code>, <code>rule</code>, <code>ensemble</code>, <code>human</code></td>
+<td></td>
+<td>What produced the measure.</td>
+</tr>
+<tr>
+<td><code>calibrated</code></td>
+<td>boolean</td>
+<td></td>
+<td>Whether the value has been calibrated against observed accuracy.</td>
+</tr>
+<tr>
+<td><code>volatility</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code></td>
+<td></td>
+<td>How much the value is expected to move as evidence arrives.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>compared_against</code> → Assurance Level</li>
+</ul>
+<h3 id="420-assurance-level">4.20 Assurance Level</h3>
+<p><em>Layer: Assurance · since 1.0 · <code>aow:AssuranceLevel</code></em></p>
+<p><strong>Definition.</strong> A governance-set level of permitted autonomy, with the human oversight and evidence it requires.</p>
+<p><strong>Purpose.</strong> Makes the choice between autonomy and human oversight explicit, graded, and checkable. AOW defines five levels, AL0 to AL4.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>level</code></td>
+<td>integer (0–4)</td>
+<td>yes</td>
+<td>Position on the AL0 to AL4 scale.</td>
+</tr>
+<tr>
+<td><code>human_role</code></td>
+<td>text</td>
+<td></td>
+<td>What people do at this level.</td>
+</tr>
+<tr>
+<td><code>agent_role</code></td>
+<td>text</td>
+<td></td>
+<td>What Agents may do at this level.</td>
+</tr>
+<tr>
+<td><code>review_protocol</code></td>
+<td>text</td>
+<td></td>
+<td>The human oversight this level requires.</td>
+</tr>
+<tr>
+<td><code>default_confidence_floor</code></td>
+<td>number (0–1)</td>
+<td></td>
+<td>Confidence below which an Actor operating at this level must escalate, unless a Policy sets a different floor.</td>
+</tr>
+<tr>
+<td><code>risk_class</code></td>
+<td>string</td>
+<td></td>
+<td>The class of risk this level is suited to.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Higher levels grant more autonomy and therefore demand more assurance evidence before they are granted. See the Assurance Level scale.</li>
+</ul>
+<h3 id="421-outcome">4.21 Outcome</h3>
+<p><em>Layer: Assurance · since 1.0 · <code>aow:Outcome</code></em></p>
+<p><strong>Definition.</strong> The aggregated business impact of one or more Results, measured against an Objective.</p>
+<p><strong>Purpose.</strong> Closes the loop between what agents did and what the business wanted.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kpi_impact</code></td>
+<td>json</td>
+<td></td>
+<td>The measured change, for example {"cycle_time_hours": {"before": 48, "after": 0.12}}.</td>
+</tr>
+<tr>
+<td><code>measured_at</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the Outcome was measured.</td>
+</tr>
+<tr>
+<td><code>measurement_window</code></td>
+<td>string</td>
+<td></td>
+<td>The period the measurement covers.</td>
+</tr>
+<tr>
+<td><code>time_to_value</code></td>
+<td>string</td>
+<td></td>
+<td>How long it took for the impact to appear.</td>
+</tr>
+<tr>
+<td><code>risk_profile_change</code></td>
+<td>text</td>
+<td></td>
+<td>How the risk picture changed as a result.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>evaluates</code> → Objective <em>(required)</em></li>
+</ul>
+<h3 id="422-feedback">4.22 Feedback</h3>
+<p><em>Layer: Assurance · since 1.0 · <code>aow:Feedback</code></em></p>
+<p><strong>Definition.</strong> Structured information, from people or systems, used to improve future behavior.</p>
+<p><strong>Purpose.</strong> Turns Outcomes, reviews, and incidents into specific, attributable changes.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feedback_type</code></td>
+<td>one of <code>accuracy</code>, <code>policy</code>, <code>exception</code>, <code>preference</code>, <code>incident</code></td>
+<td></td>
+<td>What the Feedback is about.</td>
+</tr>
+<tr>
+<td><code>issue_detected</code></td>
+<td>text</td>
+<td></td>
+<td>What went wrong or could be better.</td>
+</tr>
+<tr>
+<td><code>recommended_adjustments</code></td>
+<td>string-list</td>
+<td></td>
+<td>Specific changes proposed.</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>one of <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td>
+<td></td>
+<td>How urgent the Feedback is.</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>datetime</td>
+<td></td>
+<td>When the Feedback was given.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Relationships.</strong></p>
+<ul>
+<li><code>feedback_on</code> → Outcome / Result / Action / Plan (one or more) <em>(required)</em></li>
+<li><code>provided_by</code> → Actor</li>
+<li><code>updates</code> → Policy / Memory / Plan / Skill / Actor / Context (one or more)</li>
+</ul>
+<h3 id="423-memory">4.23 Memory</h3>
+<p><em>Layer: Assurance · abstract · since 1.0 · <code>aow:Memory</code></em></p>
+<p><strong>Definition.</strong> Persistent knowledge accumulated from experience, used to inform future Context.</p>
+<p><strong>Purpose.</strong> Lets the system learn without retraining, and remember why it did what it did.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>store_ref</code></td>
+<td>uri</td>
+<td></td>
+<td>Where the memory is held.</td>
+</tr>
+<tr>
+<td><code>retention_policy</code></td>
+<td>text</td>
+<td></td>
+<td>How long entries are kept and when they are purged.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Notes.</strong></p>
+<ul>
+<li>Two kinds: Operational Memory (short-lived) and Knowledge Base (long-lived).</li>
+</ul>
+<h3 id="424-operational-memory">4.24 Operational Memory</h3>
+<p><em>Layer: Assurance · a kind of Memory · since 1.0 · <code>aow:OperationalMemory</code></em></p>
+<p><strong>Definition.</strong> Short-lived, execution-oriented memory scoped to a session, Task, or Work Item.</p>
+<p><strong>Purpose.</strong> Carries state across the steps of a single piece of work.</p>
+<h3 id="425-knowledge-base">4.25 Knowledge Base</h3>
+<p><em>Layer: Assurance · a kind of Memory · since 1.0 · <code>aow:KnowledgeBase</code></em></p>
+<p><strong>Definition.</strong> Long-lived memory of generalized patterns, rules, and precedents.</p>
+<p><strong>Purpose.</strong> Carries what was learned from one piece of work into the next.</p>
+<hr />
+<h2 id="5-provenance-and-versioning">5 Provenance and versioning</h2>
+<p>Version 1.0 listed "Provenance &amp; Versioning" as an entity. On closer inspection, it is not a kind of thing that exists alongside Intents and Agents; it is something every one of them has. A Policy has a version and an author. A Skill is revised. A Result was generated by an Action at a time. Modeling provenance as a separate entity would mean every other entity pointing to one, which adds a node without adding meaning, and fails the "minimal redundancy" criterion (section 13).</p>
+<p>AOW 2.0 therefore treats provenance as a facet that any entity may carry, expressed with the W3C PROV Ontology (PROV-O), the established standard for provenance on the web:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Meaning</th>
+<th>RDF property</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>Version of this entity definition</td>
+<td><code>schema:version</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>When this entity or version was created</td>
+<td><code>prov:generatedAtTime</code></td>
+</tr>
+<tr>
+<td><code>created_by</code></td>
+<td>The Actor responsible for it</td>
+<td><code>prov:wasAttributedTo</code></td>
+</tr>
+<tr>
+<td><code>revision_of</code></td>
+<td>The earlier version this one revises</td>
+<td><code>prov:wasRevisionOf</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>AOW's own classes and relationships are also anchored in PROV-O, so a PROV-aware tool can read an AOW graph without knowing AOW: Actor is a <code>prov:Agent</code>, Action is a <code>prov:Activity</code>, Result, Signal, and Observation are <code>prov:Entity</code>, Plan is a <code>prov:Plan</code>, <code>performed_by</code> specializes <code>prov:wasAssociatedWith</code>, <code>generated_by</code> specializes <code>prov:wasGeneratedBy</code>, and <code>derived_from</code> specializes <code>prov:wasDerivedFrom</code>.</p>
+<p>The effect is that "who did this, when, from what, and under which version of which rule" can be answered for any entity with one vocabulary, which is the precondition for the explainability criterion in section 13.</p>
+<hr />
+<h2 id="6-the-relationship-model">6 The relationship model</h2>
+<h3 id="61-the-semantic-graph">6.1 The semantic graph</h3>
+<p>At its core, AOW is a directed, constraint-aware, learning-enabled graph that connects business goals to execution and back to learning. Its spine reads top to bottom:</p>
+<pre><code>                          Objective
+                              ▲ serves_objective
+   Context ◀─ shaped_by ─── Intent ──── constrained_by ─▶ Policy ◀─ enforces ─ Guardian
+      │                       ▲ realizes                    ▲                    │
+   draws_on                  Plan ── planned_by ─▶ Orchestrator                oversees
+      ▼                       │ has_task                                         ▼
+ Memory, Observation         Task ── assigned_to ─▶ Actor (Agent, Human Actor) ◀─┘
+      ▲                       ▲ fulfills              ▲ performed_by
+      │                     Action ──────────────────┘
+      │                       │ invokes ─▶ Skill
+      │                       ▲ generated_by
+      │                     Result ── has_confidence ─▶ Confidence ─ compared_against ─▶ Assurance Level
+      │                       │ contributes_to
+      │                     Outcome ── evaluates ─▶ Objective
+      │                       ▲ feedback_on
+      └─────── updates ──── Feedback
+</code></pre>
+<p>Reading the spine in words:</p>
+<ul>
+<li>An <strong>Objective</strong> gives rise to one or more <strong>Intents</strong>, each a specific, actionable part of the broader goal.</li>
+<li>Intents are <strong>shaped by Context</strong> and <strong>constrained by Policy</strong>, and state the <strong>Assurance Level</strong> they require.</li>
+<li>An <strong>Orchestrator</strong> turns an Intent into a <strong>Plan</strong> of <strong>Tasks</strong>, and assigns each Task to an <strong>Actor</strong>, chosen by Role, Skills, and autonomy.</li>
+<li>Actors carry out Tasks through <strong>Actions</strong>, each of which <strong>invokes a Skill</strong> and produces a <strong>Result</strong>.</li>
+<li>Results carry a <strong>Confidence</strong>, which is compared against the Assurance Level to decide whether a person must confirm.</li>
+<li>Results <strong>contribute to Outcomes</strong>, which are measured against the originating Objective.</li>
+<li>Outcomes (and people) generate <strong>Feedback</strong>, which <strong>updates</strong> Policies, Memory, Plans, and Skills.</li>
+<li><strong>Memory</strong> enriches future Context, so the next Intent is interpreted better than the last.</li>
+<li>The <strong>Guardian</strong> enforces Policy and Assurance Levels across all of it, and escalates to people when needed.</li>
+</ul>
+<p>The published site renders this graph interactively.</p>
+<h3 id="62-all-relationships">6.2 All relationships</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>From</th>
+<th>To</th>
+<th>Read backward as</th>
+<th>Required on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>serves_objective</code></td>
+<td>Intent</td>
+<td>Objective</td>
+<td>produces intent</td>
+<td>Intent</td>
+</tr>
+<tr>
+<td><code>shaped_by</code></td>
+<td>Intent, Task</td>
+<td>Context (many)</td>
+<td>shapes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>draws_on</code></td>
+<td>Context</td>
+<td>Memory, Observation (many)</td>
+<td>informs</td>
+<td></td>
+</tr>
+<tr>
+<td><code>concerns</code></td>
+<td>Intent, Task, Action</td>
+<td>Work Item (many)</td>
+<td>is subject of</td>
+<td></td>
+</tr>
+<tr>
+<td><code>constrained_by</code></td>
+<td>Intent, Plan, Task, Actor, Skill, Role</td>
+<td>Policy (many)</td>
+<td>constrains</td>
+<td></td>
+</tr>
+<tr>
+<td><code>requires_assurance</code></td>
+<td>Intent, Task, Skill</td>
+<td>Assurance Level</td>
+<td>required by</td>
+<td>Intent</td>
+</tr>
+<tr>
+<td><code>realizes</code></td>
+<td>Plan</td>
+<td>Intent</td>
+<td>realized by</td>
+<td>Plan</td>
+</tr>
+<tr>
+<td><code>planned_by</code></td>
+<td>Plan</td>
+<td>Actor</td>
+<td>plans</td>
+<td></td>
+</tr>
+<tr>
+<td><code>has_task</code></td>
+<td>Plan</td>
+<td>Task (many)</td>
+<td>part of plan</td>
+<td></td>
+</tr>
+<tr>
+<td><code>depends_on</code></td>
+<td>Task</td>
+<td>Task (many)</td>
+<td>prerequisite of</td>
+<td></td>
+</tr>
+<tr>
+<td><code>assigned_to</code></td>
+<td>Task</td>
+<td>Actor</td>
+<td>assigned</td>
+<td></td>
+</tr>
+<tr>
+<td><code>requires_role</code></td>
+<td>Task</td>
+<td>Role</td>
+<td>required for</td>
+<td></td>
+</tr>
+<tr>
+<td><code>fills_role</code></td>
+<td>Actor</td>
+<td>Role (many)</td>
+<td>filled by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>has_skill</code></td>
+<td>Actor</td>
+<td>Skill (many)</td>
+<td>available to</td>
+<td></td>
+</tr>
+<tr>
+<td><code>performed_by</code></td>
+<td>Action</td>
+<td>Actor</td>
+<td>performs</td>
+<td>Action</td>
+</tr>
+<tr>
+<td><code>fulfills</code></td>
+<td>Action</td>
+<td>Task</td>
+<td>fulfilled through</td>
+<td></td>
+</tr>
+<tr>
+<td><code>invokes</code></td>
+<td>Action</td>
+<td>Skill</td>
+<td>invoked by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>approved_by</code></td>
+<td>Action, Plan, Result</td>
+<td>Human Actor (many)</td>
+<td>approves</td>
+<td></td>
+</tr>
+<tr>
+<td><code>generated_by</code></td>
+<td>Result, Signal, Observation</td>
+<td>Action</td>
+<td>generated</td>
+<td>Result</td>
+</tr>
+<tr>
+<td><code>derived_from</code></td>
+<td>Observation</td>
+<td>Signal (many)</td>
+<td>source of</td>
+<td>Observation</td>
+</tr>
+<tr>
+<td><code>about</code></td>
+<td>Observation</td>
+<td>Work Item, Actor, Action, Task</td>
+<td>observed by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>affects</code></td>
+<td>Result</td>
+<td>Work Item (many)</td>
+<td>affected by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>has_confidence</code></td>
+<td>Result, Observation, Action, Plan</td>
+<td>Confidence</td>
+<td>confidence of</td>
+<td></td>
+</tr>
+<tr>
+<td><code>compared_against</code></td>
+<td>Confidence</td>
+<td>Assurance Level</td>
+<td>threshold for</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contributes_to</code></td>
+<td>Result</td>
+<td>Outcome (many)</td>
+<td>aggregates</td>
+<td></td>
+</tr>
+<tr>
+<td><code>evaluates</code></td>
+<td>Outcome</td>
+<td>Objective</td>
+<td>evaluated by</td>
+<td>Outcome</td>
+</tr>
+<tr>
+<td><code>feedback_on</code></td>
+<td>Feedback</td>
+<td>Outcome, Result, Action, Plan (many)</td>
+<td>received feedback</td>
+<td>Feedback</td>
+</tr>
+<tr>
+<td><code>provided_by</code></td>
+<td>Feedback</td>
+<td>Actor</td>
+<td>provided</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates</code></td>
+<td>Feedback</td>
+<td>Policy, Memory, Plan, Skill, Actor, Context (many)</td>
+<td>updated by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>writes_to</code></td>
+<td>Actor</td>
+<td>Memory (many)</td>
+<td>written by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>enforces</code></td>
+<td>Guardian</td>
+<td>Policy, Assurance Level (many)</td>
+<td>enforced by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>oversees</code></td>
+<td>Guardian</td>
+<td>Actor, Plan, Skill (many)</td>
+<td>overseen by</td>
+<td></td>
+</tr>
+<tr>
+<td><code>escalates_to</code></td>
+<td>Guardian, Policy</td>
+<td>Role, Human Actor (many)</td>
+<td>escalation target of</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="63-design-notes">6.3 Design notes</h3>
+<p><strong>One direction per relationship.</strong> Each relationship is stated once, in the direction that lets the entity that knows about the link record it (a Result knows which Action generated it; the Action need not list every Result). Each has an inverse reading for documentation ("read backward as"), but no separate inverse property, which keeps the vocabulary small. Queries can traverse in either direction.</p>
+<p><strong>Tasks and Actions, not "delegates to."</strong> Version 1.0 had an Orchestrator "delegate to" Agents. In 2.0 that is expressed as a Plan the Orchestrator produced (<code>planned_by</code>) containing Tasks <code>assigned_to</code> Actors, so delegation is recorded on the Task it concerns and not duplicated.</p>
+<p><strong>Policies constrain; they do not act.</strong> A Policy never performs an Action. When a rule blocks or escalates something, the blocking or escalating is an Action performed by a Guardian, which leaves a trail like any other Action (see the public-sector example in section 11).</p>
+<hr />
+<h2 id="7-assurance-levels-and-governed-autonomy">7 Assurance Levels and governed autonomy</h2>
+<p>Version 1.0 used "AL2" and "Delegated" in its examples without defining a scale. Version 2.0 defines one.</p>
+<h3 id="71-the-scale">7.1 The scale</h3>
+<p>An <strong>Assurance Level</strong> states how much autonomy the governance function is prepared to grant for a piece of work, and therefore how much evidence and oversight that grant requires. Higher levels grant more autonomy and demand more assurance before they are granted.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Name</th>
+<th>People</th>
+<th>Agents</th>
+<th>Default confidence floor</th>
+<th>Suited to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AL0</strong></td>
+<td>Manual</td>
+<td>Performs the work.</td>
+<td>Observes and prepares; takes no Action that changes a Work Item.</td>
+<td>—</td>
+<td>Any risk; the default for work not yet assessed.</td>
+</tr>
+<tr>
+<td><strong>AL1</strong></td>
+<td>Assisted</td>
+<td>Decides. Approves every Action that changes a Work Item before it takes effect.</td>
+<td>Recommends, drafts, and prepares.</td>
+<td>—</td>
+<td>High-risk or irreversible decisions; new or poorly characterized work.</td>
+</tr>
+<tr>
+<td><strong>AL2</strong></td>
+<td>Delegated</td>
+<td>Confirms when confidence is low or a Policy triggers; reviews a sample otherwise.</td>
+<td>Decides and acts within Policy.</td>
+<td>0.90</td>
+<td>Moderate-risk, well-characterized decisions.</td>
+</tr>
+<tr>
+<td><strong>AL3</strong></td>
+<td>Supervised</td>
+<td>Reviews by exception, when the Guardian raises an alert, and in periodic audit.</td>
+<td>Acts, and must be able to reverse or compensate its Actions.</td>
+<td>0.95</td>
+<td>Low-to-moderate risk, reversible effects.</td>
+</tr>
+<tr>
+<td><strong>AL4</strong></td>
+<td>Autonomous</td>
+<td>Sets Policy and monitors aggregate Outcomes.</td>
+<td>Acts without routine human review; the Guardian can suspend it at any time.</td>
+<td>0.98</td>
+<td>Low-risk, reversible, high-volume, well-characterized work.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The scale is published as five named individuals of the Assurance Level class, <code>aow:AL0</code> to <code>aow:AL4</code>, so documents refer to a level by its IRI (for example, <code>"requires_assurance": "aow:AL2"</code>).</p>
+<p>The scale follows a long line of work on levels of automation, from Sheridan and Verplank's original ten-level scale (1978), through Parasuraman, Sheridan, and Wickens's model of types and levels of human interaction with automation (2000), to the SAE J3016 levels of driving automation. AOW's levels are fewer and tied to enterprise governance: each one says what the person does, what the Agent may do, and what review is required.</p>
+<h3 id="72-the-effective-level">7.2 The effective level</h3>
+<p>Several parties have a say in how autonomous a given Action may be:</p>
+<ul>
+<li>the <strong>Intent</strong> states the level its work requires (<code>requires_assurance</code>, required)</li>
+<li>a <strong>Task</strong> may lower that level for one step (<code>requires_assurance</code>, optional)</li>
+<li>a <strong>Skill</strong> may cap the level at which it may be used, typically because it has irreversible side effects</li>
+<li>an <strong>Agent</strong> has been cleared to operate up to a level (<code>autonomy_level</code>)</li>
+</ul>
+<p>The <strong>effective Assurance Level</strong> of an Action is the lowest of these. Autonomy can only be narrowed along the way, never widened: an Agent cleared for AL3 working on an Intent that requires AL2 operates at AL2.</p>
+<h3 id="73-confidence-and-escalation">7.3 Confidence and escalation</h3>
+<p>Within its effective level, an Agent's autonomy also depends on how sure it is. Each level from AL2 up has a default confidence floor (0.90, 0.95, 0.98). When the Confidence attached to a state-changing Action falls below the floor, the Agent must escalate, recording the Action with status <code>escalated</code> and letting a person decide. A Policy may set a different floor; the defaults exist so that "sure enough" has a number before anyone has set one.</p>
+<p>At AL0 and AL1, every Action that changes a Work Item must be approved by a person (<code>approved_by</code>). At AL3 and above, an Agent must not use a Skill whose side effects are irreversible without approval, because the review at those levels happens after the fact.</p>
+<h3 id="74-checking-it">7.4 Checking it</h3>
+<p>These rules are published as an executable query, <code>queries/oversight-gaps.rq</code>, which lists every state-changing Action by an Agent that went ahead without the oversight its effective level requires. For a conformant deployment, the answer is empty. The query runs in the project's continuous integration against every example, and a deliberately broken example (an Agent acting at 0.72 confidence under an AL2 Intent, with no approval) is kept to prove it catches the gap.</p>
+<p>This is what "governed autonomy" (Principle 3) means in practice: not that governance exists somewhere, but that whether it was followed can be checked from the record.</p>
+<hr />
+<h2 id="8-the-lifecycle">8 The lifecycle</h2>
+<p>The lifecycle follows one pass of agentic work from business goal to improvement. Each stage names the entities it creates or uses.</p>
+<ol>
+<li><strong>Goal setting</strong> (Objective). The business defines Objectives, tied to KPIs, SLAs, regulatory requirements, or operational targets. <em>Example: reduce claims cycle time by 20%.</em></li>
+<li><strong>Intent formation</strong> (Intent). An Intent structures the Objective into machine-interpretable form and states the Assurance Level the work requires. <em>Example: automate eligibility determination, at AL2.</em></li>
+<li><strong>Perception</strong> (Work Item, Signal, Observation). Signals about the Work Item are captured and interpreted into Observations. <em>Example: a claim form arrives; the claim amount is extracted.</em></li>
+<li><strong>Context enrichment</strong> (Context, Memory). Real-time data, procedure, history, and Memory enrich the Intent. <em>Example: claim type disability; claimant age 45; policy form LTD-2024.</em></li>
+<li><strong>Policy application</strong> (Policy). Policies filter what is permitted, required, or prohibited. <em>Example: auto-approve claims under $50,000 when confidence is at least 0.90.</em></li>
+<li><strong>Planning</strong> (Orchestrator, Plan, Task). The Orchestrator produces a Plan of Tasks: extract claim details, validate coverage, calculate the benefit, record the decision.</li>
+<li><strong>Assignment</strong> (Task, Actor, Role). Each Task is assigned to an Actor that can fill the required Role and holds the necessary Skills, at an autonomy level the Task allows.</li>
+<li><strong>Execution</strong> (Action, Skill). Actors perform Actions, each invoking a Skill, and record their rationale.</li>
+<li><strong>Result generation</strong> (Result, Confidence). Each Action produces a Result, annotated with its Confidence, artifacts, and the Work Items it affected.</li>
+<li><strong>Assurance verification</strong> (Guardian, Assurance Level, Human Actor). The Guardian checks compliance, Assurance Levels, Policies, and provenance, and escalates to people where required. People approve what their level requires them to.</li>
+<li><strong>Outcome assessment</strong> (Outcome). Results aggregate into Outcomes measured against the Objective: cycle time, error rate, SLA attainment.</li>
+<li><strong>Feedback</strong> (Feedback). Outcomes, reviewers, and incidents produce Feedback that updates Policies, Plans, Skills, and agent behavior.</li>
+<li><strong>Memory update</strong> (Memory, Knowledge Base). The trace is recorded for future Context, knowledge improvement, and audit.</li>
+</ol>
+<p>Version 1.0's eleven stages are all here. Perception (3) and Assignment (7) are new, because 1.0 had no entity to hang them on.</p>
+<hr />
+<h2 id="9-formal-representation">9 Formal representation</h2>
+<p>Version 1.0 said the ontology "should be implementable using JSON-LD, RDF/OWL, GraphQL schemas, and knowledge graph frameworks." Version 2.0 provides those implementations, all generated from one source file so they cannot drift apart.</p>
+<h3 id="91-namespace-and-identifiers">9.1 Namespace and identifiers</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td><code>https://w3id.org/aow#</code> (prefix <code>aow:</code>)</td>
+</tr>
+<tr>
+<td>Ontology IRI</td>
+<td><code>https://w3id.org/aow</code></td>
+</tr>
+<tr>
+<td>This version</td>
+<td><code>https://w3id.org/aow/2.0.0</code></td>
+</tr>
+<tr>
+<td>JSON-LD context</td>
+<td><code>https://w3id.org/aow/context.jsonld</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The identifiers use w3id.org, a community-run permanent identifier service, so they will keep resolving if the project's hosting changes.</p>
+<h3 id="92-the-artifacts">9.2 The artifacts</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Format</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aow.yaml</code></td>
+<td>YAML</td>
+<td>The canonical source. Everything below is generated from it.</td>
+</tr>
+<tr>
+<td><code>ontology/aow.ttl</code>, <code>aow.jsonld</code></td>
+<td>OWL 2 (Turtle, JSON-LD)</td>
+<td>The ontology itself, for reasoners, knowledge graphs, and ontology editors.</td>
+</tr>
+<tr>
+<td><code>ontology/context.jsonld</code></td>
+<td>JSON-LD 1.1 context</td>
+<td>Lets plain AOW JSON be read as RDF with no changes.</td>
+</tr>
+<tr>
+<td><code>ontology/shapes.ttl</code></td>
+<td>SHACL</td>
+<td>Checks that a graph of AOW data is well formed: types, required links, allowed values.</td>
+</tr>
+<tr>
+<td><code>schemas/*.schema.json</code></td>
+<td>JSON Schema 2020-12</td>
+<td>Checks individual AOW JSON documents, for teams that never touch RDF.</td>
+</tr>
+<tr>
+<td><code>queries/*.rq</code></td>
+<td>SPARQL</td>
+<td>Explanation and oversight checks (sections 7.4 and 10).</td>
+</tr>
+<tr>
+<td><code>examples/</code></td>
+<td>JSON-LD</td>
+<td>The worked example and industry examples in this paper, all valid.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="93-one-document-two-readings">9.3 One document, two readings</h3>
+<p>AOW JSON is ordinary JSON: <code>snake_case</code> keys, string identifiers, and the <code>type</code> of each entity. The JSON-LD context maps each key to its RDF property, so the same document is also RDF. An Intent from the worked example:</p>
+<pre><code class="language-json">{
+  &quot;@context&quot;: [&quot;https://w3id.org/aow/context.jsonld&quot;, { &quot;@base&quot;: &quot;https://example.org/claims/&quot; }],
+  &quot;@graph&quot;: [
+    {
+      &quot;id&quot;: &quot;intent-eligibility-2026&quot;,
+      &quot;type&quot;: &quot;Intent&quot;,
+      &quot;goal_statement&quot;: &quot;Determine eligibility for incoming disability claims automatically wherever policy allows.&quot;,
+      &quot;serves_objective&quot;: &quot;obj-claims-cycle-time&quot;,
+      &quot;shaped_by&quot;: [&quot;ctx-claims-procedure&quot;],
+      &quot;constrained_by&quot;: [&quot;policy-auto-approval&quot;, &quot;policy-high-risk-review&quot;],
+      &quot;requires_assurance&quot;: &quot;aow:AL2&quot;,
+      &quot;priority&quot;: &quot;high&quot;
+    }
+  ]
+}
+</code></pre>
+<p>A team that only wants JSON validates this against <code>schemas/intent.schema.json</code> and never needs to know it is also a graph. A team that runs a knowledge graph loads it as RDF and validates it with the SHACL shapes. Both are checking the same rules.</p>
+<p>The JSON Schemas reject unknown keys, which catches typos (<code>goal_statment</code>). Extensions are still possible: any key with a namespace prefix, such as <code>acme:region</code>, is allowed (section 14).</p>
+<h3 id="94-the-validation-pipeline">9.4 The validation pipeline</h3>
+<p>Every example in the repository passes four gates in continuous integration:</p>
+<ol>
+<li><strong>JSON Schema</strong>: the document is well formed.</li>
+<li><strong>SHACL</strong>: the graph is well formed. Every Result has an Action, every Intent serves an Objective, every link points to the right kind of thing.</li>
+<li><strong>Explainability</strong>: every Result can be traced back to an Objective (<code>queries/untraced-results.rq</code> returns nothing).</li>
+<li><strong>Oversight</strong>: no Agent acted beyond the oversight its effective Assurance Level requires (<code>queries/oversight-gaps.rq</code> returns nothing).</li>
+</ol>
+<p>The repository also keeps a set of deliberately broken documents, each of which must fail at a specific gate, to prove the gates catch what they claim to.</p>
+<h3 id="95-a-registry">9.5 A registry</h3>
+<p>A platform can hold its AOW entities in a registry: a catalog of the Agents, Skills, Roles, Policies, and Assurance Levels in use, plus the Intents, Plans, Tasks, and Actions that reference them. Any store that can hold the JSON documents above is a valid registry; a knowledge graph that loads them as RDF is a queryable one. Version 1.0's registry sketch (its Appendix B) is superseded by the <code>examples/</code> directory, which shows complete, valid registries for six scenarios.</p>
+<hr />
+<h2 id="10-worked-example-claims-processing">10 Worked example: claims processing</h2>
+<p>This is the example from version 1.0, expanded to exercise every layer, and including a claim that a person has to decide. The complete, valid document is <code>examples/claims-processing.jsonld</code>.</p>
+<p><strong>Objective.</strong> Reduce disability claims cycle time by 20% without increasing leakage.</p>
+<p><strong>Intent.</strong> Determine eligibility for incoming disability claims automatically wherever policy allows, and route the rest to an adjuster with the work already done. Requires <strong>AL2</strong>.</p>
+<p><strong>Policies.</strong> Auto-approve claims under $50,000 when eligibility confidence is at least 0.90. Claims with fraud indicators, or from claimants over 65 with pre-existing conditions, require adjuster review.</p>
+<p><strong>Perception.</strong> A claim form arrives through the intake portal (a Signal). The Validation agent extracts the claim amount, $38,200, with confidence 0.97 (an Observation about Work Item <code>claim-84933</code>).</p>
+<p><strong>Context.</strong> Claim type disability; claimant age 45; claim amount $38,200; policy form LTD-2024.</p>
+<p><strong>Plan.</strong> The Claims orchestrator produces four Tasks, each depending on the last: extract claim metadata, validate coverage, determine the benefit, record the decision.</p>
+<p><strong>Actors and Skills.</strong> The Validation, Coverage, and Benefit agents fill the Eligibility processor Role and are each cleared for AL3. They use <code>extract_claim_fields</code>, <code>check_coverage</code>, <code>rule_validate</code>, <code>calculate_benefit</code>, and <code>record_decision</code>. Only <code>record_decision</code> changes anything, and its effect is reversible.</p>
+<p><strong>Claim 84933: decided by an agent.</strong> The decision Task requires AL2; the Validation agent is cleared for AL3; so the effective level is AL2, with a confidence floor of 0.90. The agent's eligibility confidence is 0.93, so it records the decision itself, with its rationale: <em>"Coverage active, benefit calculated, no high-risk indicators; claim under $50,000 and eligibility confidence 0.93 meets the AL2 floor of 0.90."</em></p>
+<p><strong>Claim 84951: decided by a person.</strong> For the next claim, the agent's confidence is 0.81, below the floor. It records its Action as <code>escalated</code>, with a recommendation. A claims adjuster reviews the recommendation and the attending physician's statement, and records the decision through the same <code>record_decision</code> Skill. The adjuster's Action has exactly the same shape as the agent's would have (Principle 7).</p>
+<p><strong>Outcome.</strong> Median turnaround falls from 48 hours to 7 minutes over the quarter, with 64% of claims processed straight through.</p>
+<p><strong>Feedback.</strong> The adjuster notes that claimants over 65 with pre-existing conditions are reaching review too late, after a decision has been drafted. The Feedback updates the high-risk review Policy (now version 1.1.0, a <code>revision_of</code> 1.0.0) and the claims Knowledge Base.</p>
+<p><strong>Explaining a decision.</strong> Running <code>queries/explain-result.rq</code> over the example reconstructs, for every Result, the chain back to the Objective:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Action</th>
+<th>Performed by</th>
+<th>Skill</th>
+<th>Task</th>
+<th>Intent</th>
+<th>Objective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coverage active</td>
+<td>act-coverage-84933</td>
+<td>Coverage agent</td>
+<td>check_coverage</td>
+<td>Validate coverage</td>
+<td>Automate eligibility determination</td>
+<td>Faster disability claims</td>
+</tr>
+<tr>
+<td>Monthly benefit $3,180</td>
+<td>act-benefit-84933</td>
+<td>Benefit agent</td>
+<td>calculate_benefit</td>
+<td>Determine benefit</td>
+<td>Automate eligibility determination</td>
+<td>Faster disability claims</td>
+</tr>
+<tr>
+<td>Eligibility approved (0.93)</td>
+<td>act-decision-84933</td>
+<td>Validation agent</td>
+<td>record_decision</td>
+<td>Record decision</td>
+<td>Automate eligibility determination</td>
+<td>Faster disability claims</td>
+</tr>
+<tr>
+<td>Approved after review</td>
+<td>act-review-84951</td>
+<td>Claims adjuster 17</td>
+<td>record_decision</td>
+<td>Record decision</td>
+<td>Automate eligibility determination</td>
+<td>Faster disability claims</td>
+</tr>
+</tbody>
+</table></div>
+<p>That table is what an auditor, a regulator, or a customer asking "why?" needs, and it comes from the record, not from reconstructing events after the fact.</p>
+<hr />
+<h2 id="11-industry-examples">11 Industry examples</h2>
+<p>The same entities describe work in any industry. Each example below is a complete, valid document in <code>examples/industry/</code>. Figures are illustrative.</p>
+<p><strong>Insurance: claims adjudication (AL2).</strong> Objective: reduce adjudication time. Intent: triage eligibility and approve low-risk claims automatically. Context: claimant age, policy details, historical exceptions. Policy: approve low-risk claims automatically; route others to an adjuster. Result: eligibility decision at 0.95 confidence. Outcome: SLA compliance up. Feedback: extend auto-approval to small water-damage claims.</p>
+<p><strong>Banking: KYC and AML review (AL2).</strong> Objective: improve compliance throughput. Intent: verify identity documents and flag anomalies. Perception: a passport scan (Signal) yields a machine-readable-zone check (Observation). Policy: high-risk customers need human review of every verification. Result: documents verified. Outcome: faster onboarding. Feedback: adjust an anomaly threshold in the verification Skill.</p>
+<p><strong>Healthcare: prior authorization (AL1).</strong> Objective: reduce patient wait time. Intent: assess medical necessity and prepare a decision. Policy: advanced imaging needs clinical validation. Because the Intent requires AL1, the agent prepares the authorization and a clinical reviewer approves it before it takes effect (<code>approved_by</code>). Outcome: faster approvals. Feedback: update guidelines for repeat imaging.</p>
+<p><strong>Public sector: benefits determination (AL2).</strong> Objective: reduce backlog. Intent: check eligibility of routine applications. Policy: sensitive cases go to a specialist. When an application is flagged sensitive, the Guardian blocks the agent's Action and escalates; a specialist caseworker records the determination. All three Actions are in the record. Outcome: backlog down. Feedback: tune an income threshold.</p>
+<p><strong>Retail: supply chain exceptions (AL3).</strong> Objective: reduce stockouts. Intent: detect and resolve shipment anomalies. Perception: a carrier feed reports a 30-hour delay. Policy: auto-correct only when risk is under threshold and the correction can be reversed. The agent re-routes the shipment at 0.97 confidence, above the AL3 floor, with an idempotency key so a retry cannot double-book. Outcome: fewer lost sales. Feedback: feed delay patterns into forecasting.</p>
+<hr />
+<h2 id="12-how-aow-relates-to-existing-work">12 How AOW relates to existing work</h2>
+<p>AOW is deliberately built from parts the industry has already validated. This section says where each comes from, and where AOW differs.</p>
+<h3 id="121-service-oriented-architecture">12.1 Service-Oriented Architecture</h3>
+<p>SOA is AOW's closest precedent, in purpose if not in content. SOA also had an ontology: The Open Group's SOA Ontology, later standardized as ISO/IEC 18384-3:2016, formalized services, contracts, and compositions so that architectures could be described consistently.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>SOA concept</th>
+<th>AOW equivalent</th>
+<th>Key difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service</td>
+<td>Agent</td>
+<td>Agents reason, plan, and act within granted autonomy; services execute fixed operations.</td>
+</tr>
+<tr>
+<td>Operation</td>
+<td>Skill</td>
+<td>Skills carry side effects, cost, and governance metadata.</td>
+</tr>
+<tr>
+<td>Service contract</td>
+<td>Skill schemas + Policy + Assurance Level</td>
+<td>AOW adds confidence and risk to the contract.</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>Orchestrator and Plan</td>
+<td>Plans are produced dynamically, under Context.</td>
+</tr>
+<tr>
+<td>Registry (UDDI)</td>
+<td>AOW registry (section 9.5)</td>
+<td>Records learning and Outcomes, not only endpoints.</td>
+</tr>
+</tbody>
+</table></div>
+<p>AOW extends SOA from static invocation to contextual, adaptive, governed execution.</p>
+<p>A companion project, the <a href="https://github.com/Skandotai/soa-to-agentic-terms">SOA-to-Agentic AI Terminology Mapping</a> (Skan, Inc., 2026), maps twenty-eight SOA terms to agentic equivalents. <code>crosswalks/soa-to-agentic-terms.csv</code> maps each of those agentic terms to the AOW class or property that formalizes it, so the two can be used together: the mapping for vocabulary, AOW for structure.</p>
+<h3 id="122-bpmn-and-dmn">12.2 BPMN and DMN</h3>
+<p>The Object Management Group's Business Process Model and Notation (BPMN) and Decision Model and Notation (DMN) both describe work, and AOW borrows freely from them. The differences are of emphasis:</p>
+<ul>
+<li>BPMN assumes flows are designed in advance; AOW supports Plans produced at run time, under Context.</li>
+<li>BPMN models tasks, not reasoning; AOW models the Objectives, Context, Policies, and Outcomes around the tasks.</li>
+<li>BPMN is flow-first; AOW is meaning-first.</li>
+</ul>
+<p>They combine well. A BPMN process can be the source of an AOW Plan, and a DMN decision table can be the <code>rule_set</code> of an AOW Policy.</p>
+<h3 id="123-multi-agent-systems-research">12.3 Multi-agent systems research</h3>
+<p>AOW's Agents act autonomously, its Skills correspond to the capabilities of multi-agent systems literature, and its Orchestrator is a coordination mechanism. Its cognitive vocabulary echoes the belief-desire-intention (BDI) model (Rao and Georgeff, 1995): Objectives play the part of desires, Intents of intentions, and Context and Memory of beliefs. The FIPA agent communication standards are an earlier attempt at interoperable agent semantics.</p>
+<p>What multi-agent systems research rarely includes, and AOW adds, is enterprise governance: Assurance Levels, Policies, the Guardian, provenance, and the systematic treatment of Outcomes, Feedback, and Memory.</p>
+<h3 id="124-knowledge-graphs-and-w3c-standards">12.4 Knowledge graphs and W3C standards</h3>
+<p>AOW can be implemented on a knowledge graph but is not one: a knowledge graph is a storage substrate; AOW is the schema for one kind of knowledge. Where the W3C has already standardized a concept, AOW reuses or aligns with it rather than reinventing it:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROV-O</td>
+<td>Provenance facet; Actor, Action, Result, Plan anchored in PROV classes (section 5)</td>
+</tr>
+<tr>
+<td>Organization Ontology (ORG)</td>
+<td>Role aligns with <code>org:Role</code></td>
+</tr>
+<tr>
+<td>SOSA/SSN</td>
+<td>Observation aligns with <code>sosa:Observation</code></td>
+</tr>
+<tr>
+<td>ODRL 2.2</td>
+<td>Policy aligns with <code>odrl:Policy</code>; ODRL is one possible policy language</td>
+</tr>
+<tr>
+<td>schema.org</td>
+<td>Action aligns with <code>schema:Action</code></td>
+</tr>
+<tr>
+<td>OWL 2, SHACL, JSON-LD 1.1</td>
+<td>The ontology's own formats</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="125-process-mining">12.5 Process mining</h3>
+<p>The Perception layer is where AOW meets process mining, the discipline of reconstructing how work actually happens from the event data systems leave behind (van der Aalst, 2016). A Signal corresponds to an event in the IEEE 1849 (XES) event log standard; a Work Item corresponds to a case, or to an object in the Object-Centric Event Log (OCEL 2.0) format. Because an agent's Actions can be linked to the Signals they leave (<code>generated_by</code>), work done by agents can be mined, compared, and conformance-checked with the same methods used for work done by people and systems, which is how "the agent did what the plan said" can be verified rather than assumed.</p>
+<h3 id="126-agent-protocols-mcp-and-a2a">12.6 Agent protocols: MCP and A2A</h3>
+<p>Two open protocols now carry much of the traffic between agents and their tools. AOW is designed to describe what they carry:</p>
+<ul>
+<li><strong>Model Context Protocol (MCP)</strong> exposes tools and resources to models. An MCP tool is an AOW Skill (its <code>binding</code> can name it), and an MCP resource is a source of Context.</li>
+<li><strong>Agent2Agent (A2A)</strong> lets agents delegate work to one another. A2A's Agent Card describes an AOW Agent, its skills are AOW Skills, and its Tasks are AOW Tasks. AOW's Task states use the A2A task lifecycle's states, so a Task can be carried over A2A without translation.</li>
+</ul>
+<p>Both protocols are now stewarded under the Linux Foundation. AOW adds what the protocols intentionally leave out: why the work is being done (Objective, Intent), what rules apply (Policy, Assurance Level), and what came of it (Outcome, Feedback).</p>
+<h3 id="127-observability-opentelemetry">12.7 Observability: OpenTelemetry</h3>
+<p>The OpenTelemetry semantic conventions for generative AI, in development at the time of writing, define spans for agent operations such as invoking an agent and executing a tool, and attributes that identify agents and tools. An <code>execute_tool</code> span is a natural source for an AOW Action, its trace for the Signals the Action leaves behind, and its agent attributes for the performing Agent. AOW supplies the business meaning a trace lacks: which Task, Intent, and Objective the span was in service of.</p>
+<h3 id="128-ai-governance-frameworks">12.8 AI governance frameworks</h3>
+<p>AOW is not a compliance framework, but it is designed to make compliance evidence easy to produce:</p>
+<ul>
+<li><strong>NIST AI Risk Management Framework (AI RMF 1.0).</strong> The framework's four functions (Govern, Map, Measure, Manage) correspond to AOW's Policy and Assurance Levels, Context and Intents, Confidence and Outcomes, and Guardian and Feedback respectively.</li>
+<li><strong>ISO/IEC 42001:2023</strong> (AI management systems) asks organizations to define roles, controls, and records for AI; AOW's Role, Policy, Guardian, and provenance facet are a vocabulary for those records.</li>
+<li><strong>EU AI Act (Regulation (EU) 2024/1689).</strong> Article 12 requires high-risk systems to keep logs, and Article 14 requires effective human oversight. AOW's Action trail and provenance facet address the first; its Assurance Levels, <code>approved_by</code>, and oversight check address the second. Whether a given deployment complies remains a legal question AOW cannot answer for it.</li>
+</ul>
+<hr />
+<h2 id="13-validation-criteria">13 Validation criteria</h2>
+<p>A mature ontology must meet the criteria below. Version 1.0 stated them; version 2.0 says how each is checked.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>What it requires</th>
+<th>How AOW 2.0 checks it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Semantic completeness</strong></td>
+<td>Every necessary concept is represented, none is overloaded, each has a clear purpose.</td>
+<td>Every class has a definition and a purpose (checked in CI). The six new entities close the gaps 1.0 left.</td>
+</tr>
+<tr>
+<td><strong>Minimal redundancy</strong></td>
+<td>No two entities serve the same role.</td>
+<td>Explicit disjointness axioms (Result vs. Outcome, Signal vs. Observation, Task vs. Action, Skill vs. Action, Confidence vs. Assurance Level, Operational Memory vs. Knowledge Base, Agent vs. Human Actor). Provenance became a facet rather than a redundant entity.</td>
+</tr>
+<tr>
+<td><strong>Orthogonality</strong></td>
+<td>Entities serve independent functions.</td>
+<td>Policies constrain; they never act (Guardian Actions do). Skills are capabilities; Actions are their use.</td>
+</tr>
+<tr>
+<td><strong>Extensibility</strong></td>
+<td>New entities can be added without breaking the structure.</td>
+<td>Extension rules in section 14; namespaced extension keys are accepted by the JSON Schemas.</td>
+</tr>
+<tr>
+<td><strong>Formal mapability</strong></td>
+<td>Implementable in JSON-LD, RDF/OWL, and knowledge graph frameworks.</td>
+<td>Published in OWL, JSON-LD, SHACL, and JSON Schema (section 9).</td>
+</tr>
+<tr>
+<td><strong>Governance-ready</strong></td>
+<td>Expresses versioning, provenance, auditability, risk tiering, and compliance constraints.</td>
+<td>Provenance facet (PROV-O); Assurance Level scale; Policy; Guardian.</td>
+</tr>
+<tr>
+<td><strong>Execution-ready</strong></td>
+<td>Supports dynamic planning, multi-agent cooperation, and real-time context.</td>
+<td>Plan, Task, and Orchestrator; Task states aligned with A2A; Context with validity.</td>
+</tr>
+<tr>
+<td><strong>Explainability-ready</strong></td>
+<td>Intent to Action, Action to Result, and Result to Outcome must be reconstructable deterministically.</td>
+<td><code>queries/explain-result.rq</code> reconstructs the chain; <code>queries/untraced-results.rq</code> must return nothing for every example.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="14-extending-aow">14 Extending AOW</h2>
+<p>AOW is meant to be extended for particular industries and platforms. To keep extensions from fragmenting it:</p>
+<ol>
+<li><strong>Subclass rather than redefine.</strong> A "Claims Agent" is an <code>aow:Agent</code> with extra attributes, not a new kind of actor.</li>
+<li><strong>Use your own namespace.</strong> Extension classes and properties live in your namespace, not <code>aow:</code>. In JSON, extension keys carry a prefix (<code>"acme:region": "EMEA"</code>), which the AOW JSON Schemas accept and the JSON-LD context lets you map.</li>
+<li><strong>Align, then add.</strong> Before adding a concept, check whether an AOW class plus a Policy, Context variable, or Skill attribute already expresses it.</li>
+<li><strong>Propose what generalizes.</strong> If an extension would be useful across organizations, propose it for the core ontology through the project's issue tracker.</li>
+</ol>
+<p>Candidate extensions already under discussion include Simulation (testing Plans before execution), Worklet (reusable Plan fragments), and Cost (accounting for the resources an Action consumes).</p>
+<hr />
+<h2 id="15-limitations-and-open-questions">15 Limitations and open questions</h2>
+<p>AOW 2.0 is a step, not an end state. Known limits:</p>
+<ul>
+<li><strong>Multi-party work.</strong> AOW assumes one organization's governance. How Policies, Assurance Levels, and trust compose when agents from different organizations collaborate is open.</li>
+<li><strong>Negotiation and delegation between agents.</strong> AOW records that a Task was assigned; it does not model the negotiation that led to the assignment.</li>
+<li><strong>Identity and authorization.</strong> Which credentials an Agent acts under is left to identity standards; AOW records only who performed an Action.</li>
+<li><strong>Calibration.</strong> The confidence floors assume Confidence values are calibrated. Many are not. <code>calibrated</code> records whether they are; it cannot make them so.</li>
+<li><strong>Policy semantics.</strong> Because AOW does not prescribe a policy language, it cannot check what a Policy says, only that it exists and was applied.</li>
+<li><strong>Empirical validation.</strong> The examples here are illustrative. The most useful next contributions are real deployments modeled in AOW, including the places it did not fit.</li>
+</ul>
+<p>Disagreement with any of the modeling choices in this paper is welcome, and most useful as an issue or pull request with a concrete case attached.</p>
+<hr />
+<h2 id="16-glossary">16 Glossary</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Action</td>
+<td>A single execution event in which an Actor invokes a Skill, in service of a Task, at a point in time.</td>
+</tr>
+<tr>
+<td>Actor</td>
+<td>Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>A software Actor that interprets Intents and Tasks and acts on them using Skills, within the autonomy it has been cleared for.</td>
+</tr>
+<tr>
+<td>Assurance Level</td>
+<td>A governance-set level of permitted autonomy, with the human oversight and evidence it requires.</td>
+</tr>
+<tr>
+<td>Assurance Level scale</td>
+<td>The five levels of permitted autonomy, AL0 (Manual) to AL4 (Autonomous).</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>A model-, rule-, or human-derived measure of certainty about an Observation, a Result, or an Action.</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>The structured situational information that gives relevance to an Intent.</td>
+</tr>
+<tr>
+<td>Effective Assurance Level</td>
+<td>The lowest of the levels set on the Intent, Task, and Skill, and the performing Agent's autonomy_level.</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Structured information, from people or systems, used to improve future behavior.</td>
+</tr>
+<tr>
+<td>Guardian</td>
+<td>The oversight Actor that enforces Policy and Assurance Levels, monitors behavior, and escalates to people when needed.</td>
+</tr>
+<tr>
+<td>Human Actor</td>
+<td>A person who performs, approves, reviews, or oversees work.</td>
+</tr>
+<tr>
+<td>Intent</td>
+<td>A structured, actionable goal derived from an Objective and interpretable by agents, orchestrators, and people.</td>
+</tr>
+<tr>
+<td>Knowledge Base</td>
+<td>Long-lived memory of generalized patterns, rules, and precedents.</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Persistent knowledge accumulated from experience, used to inform future Context.</td>
+</tr>
+<tr>
+<td>Objective</td>
+<td>A business-level goal expressed in strategic or operational terms.</td>
+</tr>
+<tr>
+<td>Observation</td>
+<td>An interpreted fact about a Work Item, Actor, or Action, derived from one or more Signals and carrying a Confidence.</td>
+</tr>
+<tr>
+<td>Operational Memory</td>
+<td>Short-lived, execution-oriented memory scoped to a session, Task, or Work Item.</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>A coordinating Actor that turns Intents into Plans, assigns Tasks to Actors, and manages sequencing and exceptions.</td>
+</tr>
+<tr>
+<td>Outcome</td>
+<td>The aggregated business impact of one or more Results, measured against an Objective.</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>An ordered or partially ordered set of Tasks intended to fulfill an Intent, produced by an Orchestrator or other Actor.</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>Declarative constraints defining permissible, required, or restricted behavior.</td>
+</tr>
+<tr>
+<td>Provenance facet</td>
+<td>The attributes every entity may carry to record who created it, when, from what, and which version it revises, expressed with W3C PROV-O.</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>The immediate, atomic effect or output of an Action.</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>A named set of responsibilities and authority that an Actor can fill, such as "claims adjuster" or "eligibility reviewer".</td>
+</tr>
+<tr>
+<td>Signal</td>
+<td>A raw, time-stamped trace emitted by a system, a person, or the environment: an event, a log line, a user-interface interaction, a document arriving, a state change, a metric sample.</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>A reusable capability that an Actor can invoke.</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>A unit of assigned work within a Plan, performed by an Actor filling a Role.</td>
+</tr>
+<tr>
+<td>Work Item</td>
+<td>The unit of business work that the rest of the ontology is about: a claim, an application, an order, a case, a ticket.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="17-summary">17 Summary</h2>
+<p>AOW is a platform-agnostic, formally specified ontology of how intelligent work is structured, governed, executed, and learned from. What sets it apart:</p>
+<ul>
+<li>a clear separation of Objective, Intent, Plan, Task, Action, Result, and Outcome</li>
+<li>people and agents as interchangeable Actors, with human oversight recorded rather than assumed</li>
+<li>governance built into the model: Policy, a defined Assurance Level scale, Confidence floors, and an independent Guardian</li>
+<li>a full feedback loop into Memory</li>
+<li>alignment with the standards and protocols enterprises already use, from PROV-O and BPMN to MCP, A2A, and OpenTelemetry</li>
+<li>a machine-readable release in which explainability and oversight are checked, not just claimed</li>
+</ul>
+<p>It is offered as a candidate reference model for the agentic enterprise: a starting point for shared vocabulary and, with enough use and criticism, for a standard.</p>
+<hr />
+<h2 id="appendix-a-relationship-matrix">Appendix A: Relationship matrix</h2>
+<p>For each entity, the kinds of entity it can point to and be pointed to by (inherited relationships included).</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Points to</th>
+<th>Pointed to by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Work Item</td>
+<td>—</td>
+<td>Action, Intent, Observation, Result, Task</td>
+</tr>
+<tr>
+<td>Signal</td>
+<td>Action</td>
+<td>Observation</td>
+</tr>
+<tr>
+<td>Observation</td>
+<td>Action, Actor, Confidence, Signal, Task, Work Item</td>
+<td>Context</td>
+</tr>
+<tr>
+<td>Objective</td>
+<td>—</td>
+<td>Intent, Outcome</td>
+</tr>
+<tr>
+<td>Intent</td>
+<td>Assurance Level, Context, Objective, Policy, Work Item</td>
+<td>Plan</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>Memory, Observation</td>
+<td>Feedback, Intent, Task</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>Human Actor, Role</td>
+<td>Actor, Feedback, Guardian, Intent, Plan, Role, Skill, Task</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>Actor, Confidence, Human Actor, Intent, Policy, Task</td>
+<td>Feedback, Guardian</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>Actor, Assurance Level, Context, Policy, Role, Task, Work Item</td>
+<td>Action, Observation, Plan, Task</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>Memory, Policy, Role, Skill</td>
+<td>Action, Feedback, Guardian, Observation, Plan, Task</td>
+</tr>
+<tr>
+<td>Human Actor</td>
+<td>Memory, Policy, Role, Skill</td>
+<td>Action, Feedback, Guardian, Observation, Plan, Policy, Result, Task</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>Memory, Policy, Role, Skill</td>
+<td>Action, Feedback, Guardian, Observation, Plan, Task</td>
+</tr>
+<tr>
+<td>Guardian</td>
+<td>Actor, Assurance Level, Human Actor, Memory, Plan, Policy, Role, Skill</td>
+<td>Action, Feedback, Guardian, Observation, Plan, Task</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>Policy</td>
+<td>Actor, Guardian, Policy, Task</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>Assurance Level, Policy</td>
+<td>Action, Actor, Feedback, Guardian</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>Actor, Confidence, Human Actor, Skill, Task, Work Item</td>
+<td>Feedback, Observation, Result, Signal</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>Action, Confidence, Human Actor, Outcome, Work Item</td>
+<td>Feedback</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>Assurance Level</td>
+<td>Action, Observation, Plan, Result</td>
+</tr>
+<tr>
+<td>Assurance Level</td>
+<td>—</td>
+<td>Confidence, Guardian, Intent, Skill, Task</td>
+</tr>
+<tr>
+<td>Outcome</td>
+<td>Objective</td>
+<td>Feedback, Result</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Action, Actor, Context, Memory, Outcome, Plan, Policy, Result, Skill</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Operational Memory</td>
+<td>—</td>
+<td>Actor, Context, Feedback</td>
+</tr>
+<tr>
+<td>Knowledge Base</td>
+<td>—</td>
+<td>Actor, Context, Feedback</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="appendix-b-changes-from-version-10">Appendix B: Changes from version 1.0</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Version 1.0</th>
+<th>Version 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entities</td>
+<td>15 described, 17 in the registry</td>
+<td>25 classes, 8 of them new: Work Item, Signal, Observation, Plan, Task, Role, Actor, Human Actor. Orchestrator and Guardian are now kinds of Actor</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>In glossary and registry; no definition</td>
+<td>Defined; produces Results</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>Produced by Skill (section 3.8) or Action (glossary)</td>
+<td>Produced by Action</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>"Optional intermediate concept"</td>
+<td>Full entity; realizes an Intent</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>Used throughout; undefined</td>
+<td>Defined; states follow A2A</td>
+</tr>
+<tr>
+<td>People</td>
+<td>Implicit ("human review")</td>
+<td>Human Actor and Role; <code>approved_by</code></td>
+</tr>
+<tr>
+<td>Autonomy</td>
+<td>"AL2," "Delegated" used, undefined</td>
+<td>AL0 to AL4 scale; effective-level rule; confidence floors</td>
+</tr>
+<tr>
+<td>Provenance &amp; Versioning</td>
+<td>Two registry entities without attributes</td>
+<td>A facet of every entity, expressed with PROV-O</td>
+</tr>
+<tr>
+<td>Guardian</td>
+<td>Definition only</td>
+<td>Actor with attributes and relationships; its interventions are Actions</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Definition and two types</td>
+<td>Abstract class with two subclasses and attributes</td>
+</tr>
+<tr>
+<td>Assurance Level</td>
+<td>No relationships</td>
+<td>Referenced by Intent, Task, Skill, Agent, Confidence, Guardian</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>No side-effect information</td>
+<td><code>side_effects</code>: none, reversible, irreversible</td>
+</tr>
+<tr>
+<td>Identifiers</td>
+<td><code>intent_id</code>, <code>agent_id</code>, and so on</td>
+<td><code>id</code> on every entity; <code>type</code> names the class</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td><code>skills</code>, <code>memory_link</code>, <code>role</code>, <code>assurance_level_required</code> attributes</td>
+<td><code>has_skill</code>, <code>writes_to</code>, <code>fills_role</code> relationships; required assurance moved to Intent, Task, and Skill</td>
+</tr>
+<tr>
+<td>Machine-readable form</td>
+<td>Described</td>
+<td>OWL, JSON-LD, SHACL, JSON Schema, SPARQL, validated examples</td>
+</tr>
+<tr>
+<td>Validation criteria</td>
+<td>Stated</td>
+<td>Each paired with a check</td>
+</tr>
+<tr>
+<td>Relation to other work</td>
+<td>SOA, BPMN, MAS, knowledge graphs</td>
+<td>Adds PROV-O and W3C standards, process mining, MCP, A2A, OpenTelemetry, NIST AI RMF, ISO/IEC 42001, EU AI Act</td>
+</tr>
+<tr>
+<td>Editorial</td>
+<td>Mixed section numbering; version referred to as "v3" in section 11; example YAML lost its indentation</td>
+<td>Corrected throughout</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="references">References</h2>
+<ul>
+<li>Berti, A., et al. (2024). <em>OCEL (Object-Centric Event Log) 2.0 Specification</em>. arXiv:2403.01975.</li>
+<li>Erl, T. (2005). <em>Service-Oriented Architecture: Concepts, Technology, and Design</em>. Prentice Hall.</li>
+<li>European Union (2024). Regulation (EU) 2024/1689 (Artificial Intelligence Act). <em>Official Journal of the European Union</em>.</li>
+<li>FIPA (2002). <em>FIPA ACL Message Structure Specification</em> (SC00061G). Foundation for Intelligent Physical Agents.</li>
+<li>Gruber, T. R. (1993). A translation approach to portable ontology specifications. <em>Knowledge Acquisition</em>, 5(2), 199–220.</li>
+<li>IEEE (2016). <em>IEEE Standard for eXtensible Event Stream (XES) for Achieving Interoperability in Event Logs and Event Streams</em> (IEEE 1849).</li>
+<li>ISO/IEC (2016). <em>ISO/IEC 18384-3:2016 Information technology — Reference Architecture for Service Oriented Architecture (SOA RA) — Part 3: Service Ontology</em>.</li>
+<li>ISO/IEC (2023). <em>ISO/IEC 42001:2023 Information technology — Artificial intelligence — Management system</em>.</li>
+<li>Linux Foundation. <em>Agent2Agent (A2A) Protocol Specification</em>. https://a2a-protocol.org</li>
+<li>Model Context Protocol. <em>Model Context Protocol Specification</em>. https://modelcontextprotocol.io</li>
+<li>NIST (2023). <em>Artificial Intelligence Risk Management Framework (AI RMF 1.0)</em> (NIST AI 100-1). National Institute of Standards and Technology.</li>
+<li>Object Management Group (2013). <em>Business Process Model and Notation (BPMN), Version 2.0.2</em>.</li>
+<li>Object Management Group. <em>Decision Model and Notation (DMN)</em>.</li>
+<li>OpenTelemetry. <em>Semantic Conventions for Generative AI Systems</em>. https://opentelemetry.io/docs/specs/semconv/gen-ai/</li>
+<li>Parasuraman, R., Sheridan, T. B., and Wickens, C. D. (2000). A model for types and levels of human interaction with automation. <em>IEEE Transactions on Systems, Man, and Cybernetics — Part A</em>, 30(3), 286–297.</li>
+<li>Rao, A. S., and Georgeff, M. P. (1995). BDI agents: From theory to practice. <em>Proceedings of the First International Conference on Multi-Agent Systems (ICMAS-95)</em>, 312–319.</li>
+<li>SAE International (2021). <em>J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles</em>.</li>
+<li>Sheridan, T. B., and Verplank, W. L. (1978). <em>Human and Computer Control of Undersea Teleoperators</em>. MIT Man-Machine Systems Laboratory.</li>
+<li>Skan, Inc. (2026). <em>SOA-to-Agentic AI Terminology Mapping</em>, version 2.0.0. Zenodo. https://doi.org/10.5281/zenodo.21823088</li>
+<li>The Open Group. <em>Service-Oriented Architecture Ontology</em>, Technical Standard.</li>
+<li>van der Aalst, W. M. P. (2016). <em>Process Mining: Data Science in Action</em> (2nd ed.). Springer.</li>
+<li>W3C (2012). <em>OWL 2 Web Ontology Language Document Overview (Second Edition)</em>. W3C Recommendation.</li>
+<li>W3C (2013). <em>PROV-O: The PROV Ontology</em>. W3C Recommendation.</li>
+<li>W3C (2014). <em>The Organization Ontology</em>. W3C Recommendation.</li>
+<li>W3C (2017). <em>Shapes Constraint Language (SHACL)</em>. W3C Recommendation.</li>
+<li>W3C (2017). <em>Semantic Sensor Network Ontology</em>. W3C Recommendation.</li>
+<li>W3C (2018). <em>ODRL Information Model 2.2</em>. W3C Recommendation.</li>
+<li>W3C (2020). <em>JSON-LD 1.1</em>. W3C Recommendation.</li>
+<li>Wooldridge, M. (2009). <em>An Introduction to MultiAgent Systems</em> (2nd ed.). Wiley.</li>
+</ul>
+  </div>
+</div>
+
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Agentic Ontology of Work, version 2.0 · By Manish Garg, <a href="https://www.skan.ai">Skan.ai</a></p>
+    <p>Prose licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, schemas, and code licensed <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.</p>
+    <p>Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
+    <p class="family">Also from Skan.ai: <a href="https://skandotai.github.io/soa-to-agentic-terms/">SOA-to-Agentic AI Terminology Mapping</a></p>
+  </div>
+</footer>
+</body>
+</html>

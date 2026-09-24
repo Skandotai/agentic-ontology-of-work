@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actor · Agentic Ontology of Work</title>
+<meta name="description" content="Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.">
+<link rel="canonical" href="https://skandotai.github.io/agentic-ontology-of-work/entities/actor/">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta name="theme-color" content="#161714">
+<meta property="og:title" content="Actor · Agentic Ontology of Work">
+<meta property="og:description" content="Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://skandotai.github.io/agentic-ontology-of-work/entities/actor/">
+<meta property="og:image" content="https://skandotai.github.io/agentic-ontology-of-work/assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Agentic Ontology of Work: four layers, Perception, Cognition, Execution, and Assurance, connecting Objectives to Actions to Outcomes.">
+<meta property="og:site_name" content="Agentic Ontology of Work">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "Actor",
+  "description": "Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.",
+  "termCode": "aow:Actor",
+  "url": "https://skandotai.github.io/agentic-ontology-of-work/entities/actor/",
+  "sameAs": "https://w3id.org/aow#Actor",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Agentic Ontology of Work",
+    "url": "https://skandotai.github.io/agentic-ontology-of-work/"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../index.html">Agentic Ontology of Work <span>· Skan<b>.ai</b></span></a>
+    <nav aria-label="Site"><a href="../../entities/index.html" aria-current="page">Ontology</a><a href="../../whitepaper/index.html">Whitepaper</a><a href="../../ontology/index.html">Reference</a><a href="../../about/index.html">About</a><a href="https://github.com/Skandotai/agentic-ontology-of-work">GitHub</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<div class="wrap narrow">
+  <p class="crumbs"><a href="../index.html">Ontology</a> / <a href="../index.html#execution">Execution</a></p>
+  <div class="entity-head">
+    <h1>Actor</h1>
+    <div class="facts"><span class="chip execution">Execution</span> <span class="chip new">new in 2.0</span> <span class="chip">abstract</span> since 2.0 <code>aow:Actor</code></div>
+  </div>
+  <p class="definition">Anything that can be assigned Tasks, perform Actions, and be held to account for them: an Agent, a person, an Orchestrator, or a Guardian.</p><p class="purpose">Lets the ontology describe work the same way whoever performs it, so that work can move between people and agents without being re-modeled.</p><p>Kinds: <a href="../agent/index.html">Agent</a>, <a href="../human-actor/index.html">Human Actor</a>, <a href="../orchestrator/index.html">Orchestrator</a>, <a href="../guardian/index.html">Guardian</a>.</p><h2>Attributes</h2><div class="table-scroll"><table><thead><tr><th scope="col">Attribute</th><th scope="col">Type</th><th scope="col">Required</th><th scope="col">Description</th></tr></thead><tbody><tr><td><code>name</code></td><td>string</td><td></td><td>Display name.</td></tr></tbody></table></div><p class="small muted">Every entity also has an <code>id</code> and a <code>type</code>, and may carry <code>label</code>, <code>description</code>, and the provenance facet: <code>version</code>, <code>created_at</code>, <code>created_by</code>, <code>revision_of</code>.</p><h2>Relationships</h2><div class="table-scroll"><table><thead><tr><th scope="col">Relationship</th><th scope="col">Points to</th><th scope="col">How many</th><th scope="col">Required</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><code>constrained_by</code></td><td><a href="../policy/index.html">Policy</a></td><td>many</td><td></td><td>Policies that apply.</td></tr><tr><td><code>fills_role</code></td><td><a href="../role/index.html">Role</a></td><td>many</td><td></td><td>Roles the Actor is authorized to fill.</td></tr><tr><td><code>has_skill</code></td><td><a href="../skill/index.html">Skill</a></td><td>many</td><td></td><td>Skills the Actor can invoke.</td></tr><tr><td><code>writes_to</code></td><td><a href="../memory/index.html">Memory</a></td><td>many</td><td></td><td>Memory the Actor records its experience in.</td></tr></tbody></table></div><h3>Pointed to by</h3><div class="table-scroll"><table><thead><tr><th scope="col">From</th><th scope="col">Relationship</th><th scope="col">Read backward as</th></tr></thead><tbody><tr><td><a href="../plan/index.html">Plan</a></td><td><code>planned_by</code></td><td>plans</td></tr><tr><td><a href="../task/index.html">Task</a></td><td><code>assigned_to</code></td><td>assigned</td></tr><tr><td><a href="../action/index.html">Action</a></td><td><code>performed_by</code></td><td>performs</td></tr><tr><td><a href="../observation/index.html">Observation</a></td><td><code>about</code></td><td>observed by</td></tr><tr><td><a href="../feedback/index.html">Feedback</a></td><td><code>provided_by</code></td><td>provided</td></tr><tr><td><a href="../feedback/index.html">Feedback</a></td><td><code>updates</code></td><td>updated by</td></tr><tr><td><a href="../guardian/index.html">Guardian</a></td><td><code>oversees</code></td><td>overseen by</td></tr></tbody></table></div><h2>Alignments</h2><div class="table-scroll"><table><thead><tr><th scope="col">Standard or protocol</th><th scope="col">Term</th><th scope="col">Correspondence</th></tr></thead><tbody><tr><td>W3C PROV-O</td><td><code>prov:Agent</code></td><td>subClassOf</td></tr></tbody></table></div><p class="small"><a href="../../ontology/index.html#Actor">Term reference</a> · <a href="https://github.com/Skandotai/agentic-ontology-of-work/blob/main/ontology/shapes.ttl">SHACL shape <code>aowsh:ActorShape</code></a></p>
+  <nav class="pager" aria-label="Classes"><a href="../task/index.html">← Task</a><a href="../agent/index.html">Agent →</a></nav>
+</div>
+
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p>Agentic Ontology of Work, version 2.0 · By Manish Garg, <a href="https://www.skan.ai">Skan.ai</a></p>
+    <p>Prose licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Ontology, schemas, and code licensed <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.</p>
+    <p>Identifiers: <code>https://w3id.org/aow</code> · Source: <a href="https://github.com/Skandotai/agentic-ontology-of-work">github.com/Skandotai/agentic-ontology-of-work</a></p>
+    <p class="family">Also from Skan.ai: <a href="https://skandotai.github.io/soa-to-agentic-terms/">SOA-to-Agentic AI Terminology Mapping</a></p>
+  </div>
+</footer>
+</body>
+</html>
