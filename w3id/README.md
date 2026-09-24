@@ -2,7 +2,7 @@
 
 AOW's identifiers (`https://w3id.org/aow#Intent` and so on) use [w3id.org](https://w3id.org), a community-run permanent identifier service, so they keep resolving even if the project's hosting changes.
 
-The redirect rules live in [`.htaccess`](.htaccess). To register or update them, open a pull request against [perma-id/w3id.org](https://github.com/perma-id/w3id.org) that adds this file as `aow/.htaccess` and a short `aow/README.md` naming the maintainers.
+The redirect rules are in [`.htaccess`](.htaccess). The registered copy is `ids/aow/.htaccess` in https://github.com/perma-id/w3id.org. To change the rules, update both copies: edit this file, then open a pull request against perma-id/w3id.org from the Skandotai fork (https://github.com/Skandotai/w3id.org).
 
 | Request | Redirects to |
 |---|---|

@@ -1,9 +1,9 @@
 # Permanent identifiers for the Agentic Ontology of Work
-# Submit as aow/.htaccess in a pull request to https://github.com/perma-id/w3id.org
+# Source: https://github.com/Skandotai/agentic-ontology-of-work/tree/main/w3id
 #
 # Contacts:
 #   Manish Garg, Skan.ai <https://www.linkedin.com/in/manishga>
-#   GitHub: Skandotai/agentic-ontology-of-work
+#   GitHub: @Skandotai, https://github.com/Skandotai/agentic-ontology-of-work/issues
 
 Options +FollowSymLinks
 RewriteEngine on
@@ -26,8 +26,6 @@ RewriteCond %{HTTP_ACCEPT} text/turtle
 RewriteRule ^$ https://skandotai.github.io/agentic-ontology-of-work/ontology/aow.ttl [R=303,L]
 RewriteCond %{HTTP_ACCEPT} application/ld\+json
 RewriteRule ^$ https://skandotai.github.io/agentic-ontology-of-work/ontology/aow.jsonld [R=303,L]
-RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
-RewriteRule ^$ https://skandotai.github.io/agentic-ontology-of-work/ontology/aow.ttl [R=303,L]
 RewriteRule ^$ https://skandotai.github.io/agentic-ontology-of-work/ontology/ [R=303,L]
 
 # Anything else goes to the site
