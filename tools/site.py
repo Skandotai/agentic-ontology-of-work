@@ -653,7 +653,7 @@ def whitepaper(m: Model) -> str:
 <div class="wrap">
   <div class="prose" style="padding-top:40px">
     <p class="eyebrow">Whitepaper · version 2.0</p>
-    <p class="small"><a href="../{PDF_V2}">Download as PDF</a> · <a href="{REPO}/blob/main/whitepaper.md">Source on GitHub</a> · <a href="../{PDF_V1}">Version 1.0 (PDF)</a></p>
+    <p class="small"><a href="../{PDF_V2}">Download as PDF</a> · <a href="../downloads/agentic-ontology-of-work-v2.0-preprint.pdf">Preprint edition (PDF)</a> · <a href="{REPO}/blob/main/whitepaper.md">Source on GitHub</a> · <a href="../{PDF_V1}">Version 1.0 (PDF)</a></p>
     <details class="toc"><summary>Contents</summary><ol>{toc_html}</ol></details>
     {body_html}
   </div>

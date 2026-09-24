@@ -35,7 +35,7 @@ The model links each business Objective to the Intents, Plans, and Tasks derived
 | [`ontology/shapes.ttl`](ontology/shapes.ttl) | SHACL | Validating AOW data in RDF |
 | [`schemas/`](schemas/) | JSON Schema 2020-12 | Validating AOW data in JSON |
 | [`queries/`](queries/) | SPARQL | Tracing results to objectives; detecting missing human oversight |
-| [`docs/downloads/`](docs/downloads/) | CSV, PDF | The model as spreadsheets; the whitepaper and a reference card |
+| [`docs/downloads/`](docs/downloads/) | CSV, PDF | The model as spreadsheets; the whitepaper, a preprint edition, and a reference card |
 
 All of these files are generated from [`aow.yaml`](aow.yaml), which is the canonical source.
 
@@ -81,7 +81,7 @@ agentic-ontology-of-work/
 ├── examples/                 worked examples, all validated
 ├── crosswalks/               mapping from the SOA-to-Agentic terminology to AOW
 ├── tests/invalid/            documents that must fail validation
-├── tools/                    build.py, site.py, validate.py, make_assets.py
+├── tools/                    build.py, site.py, validate.py, make_assets.py, make_preprint.py
 ├── w3id/                     redirect rules for the w3id.org/aow identifiers
 └── docs/                     website, downloads, and the version 1.0 paper
 ```
